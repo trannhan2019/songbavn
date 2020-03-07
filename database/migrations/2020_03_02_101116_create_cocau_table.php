@@ -25,6 +25,7 @@ class CreateCocauTable extends Migration
             $table->text('Trinhdo')->nullable();
             $table->string('Email')->nullable();
             $table->string('Phone')->nullable();
+            $table->smallInteger('Vitri');
             $table->text('Ghichu')->nullable();
         });
     }
