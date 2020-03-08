@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePhongbanTable extends Migration
+class CreateTraloicodongTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreatePhongbanTable extends Migration
      */
     public function up()
     {
-        Schema::create('phongbans', function (Blueprint $table) {
+        Schema::create('traloicodongs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Ten');
-            $table->string('Kyhieu');
-            $table->tinyInteger('Active');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->mediumText('reply_content')->nullable();
+            $table->tinyInteger('status');
+            $table->string('author');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ class CreatePhongbanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phongbans');
+        Schema::dropIfExists('traloicodongs');
     }
 }

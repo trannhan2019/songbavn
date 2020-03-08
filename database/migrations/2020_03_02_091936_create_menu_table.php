@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNhamayTable extends Migration
+class CreateMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateNhamayTable extends Migration
      */
     public function up()
     {
-        Schema::create('nhamays', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Ten');
-            $table->string('Kyhieu');
-            $table->tinyInteger('Active');
-            $table->float('Congsuat_dm',2,1);
-            $table->float('MNH_thapnhat',3,2);
-            $table->float('MNH_binhthuong',3,2);
+            $table->string('name');
+            $table->string('slug');
+            $table->tinyInteger('status');
+            $table->integer('parent')->unsigned()->nullable();
+            $table->foreign('parent')->references('id')->on('menus');   
         });
     }
 
@@ -31,6 +30,6 @@ class CreateNhamayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nhamays');
+        Schema::dropIfExists('menus');
     }
 }

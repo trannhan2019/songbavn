@@ -15,15 +15,14 @@ class CreateCommentTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned();
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->integer('user_id')->unsigned();
+            $table->integer('content_id')->unsigned();
+            $table->foreign('content_id')->references('id')->on('contents');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('Hoten_nguoigui');
-            $table->string('Email_nguoigui');
-            $table->text('Noidung_nguoigui');
-            $table->text('Noidung_traloi')->nullable();
-            $table->tinyInteger('Active');
+            $table->string('sendername');
+            $table->string('senderemail');
+            $table->text('content');
+            $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

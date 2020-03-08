@@ -15,14 +15,11 @@ class CreateSlideTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned()->nullable();
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->integer('gioithieu_id')->unsigned()->nullable();
-            $table->foreign('gioithieu_id')->references('id')->on('gioithieus');
-            $table->string('Tieude');
-            $table->string('TieudeSlug');
-            $table->text('Hinh');
-            $table->integer('Vitri')->unsigned();
+            $table->integer('content_id')->unsigned()->nullable();
+            $table->foreign('content_id')->references('id')->on('contents');
+            $table->mediumText('title');
+            $table->text('image');
+            $table->integer('location')->unsigned();
             $table->tinyInteger('Active');
             $table->softDeletes();
             $table->timestamps();

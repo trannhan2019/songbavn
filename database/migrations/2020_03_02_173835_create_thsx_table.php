@@ -15,20 +15,17 @@ class CreateThsxTable extends Migration
     {
         Schema::create('thsxs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nhamay_id')->unsigned();
-            $table->foreign('nhamay_id')->references('id')->on('nhamays');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('factory_id')->unsigned();
+            $table->foreign('factory_id')->references('id')->on('factorys');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->date('ngaysx')->nullable()->default(new DateTime());
-            $table->string('Email_codong');
-            $table->string('Diachi');
-            $table->string('Phone');
-            $table->mediumText('Noidung_codong');
-            $table->tinyInteger('Traloi');
-            $table->longText('Noidung_traloi')->nullable();
-            $table->tinyInteger('Active');
-            $table->string('Tacgia');
-            $table->integer('Views')->unsigned()->default(0);
+            $table->date('date');
+            $table->float('power',2,1);
+            $table->float('quantity');
+            $table->float('MNH');
+            $table->float('rain');
+            $table->string('device');
+            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenucap1Table extends Migration
+class CreateDanhmucykienTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMenucap1Table extends Migration
      */
     public function up()
     {
-        Schema::create('menucap1s', function (Blueprint $table) {
+        Schema::create('danhmucykiens', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Ten');
-            $table->string('TenSlug');
-            $table->smallInteger('Vitri');
-            $table->tinyInteger('Active');
+            $table->string('name');
+            $table->string('slug');
+            $table->tinyInteger('status');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateMenucap1Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menucap1s');
+        Schema::dropIfExists('danhmucykiens');
     }
 }
