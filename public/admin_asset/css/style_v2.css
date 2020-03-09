@@ -1,0 +1,276 @@
+/*All*/
+a:hover{
+	text-decoration: none;
+}
+
+/*Header*/
+.header_login{
+	color: #00001a;
+}
+.header_login i{
+	color: #00001a;
+	font-size: 15px;
+}
+/*.header_logo_title h2{
+	font-weight: bold;
+	color: #0000b3;
+	text-shadow: 1px 1px 1px #000; 
+	margin-bottom: 0;
+}
+.header_logo_title h5{
+	color: #f11b23;
+	font-weight: bold;
+	text-shadow: 1px 1px #000;
+}
+.header_logo_title p{
+	color: #e6b800;
+	text-shadow: 1px 1px #000;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 1.2rem;
+}*/
+
+/*Header-Navigation*/
+.navbar {
+	background: rgba(255, 255, 255) !important;
+}
+.navbar .LOGO{
+	width: 95px;
+}
+.navbar .nav-link {
+	color: black !important;
+}
+.navbar .nav-link:hover {
+	color: #1a53ff !important;
+}
+.navbar .dropdown-item{
+	color: black;
+	/*border-bottom: 1px solid #b8b894;*/
+}
+.navbar .dropdown-item:hover{
+	/*background: rgba(102, 0, 204, 0.9);*/
+	color: #1a53ff;
+}
+
+.navbar .dropdown{
+	position: relative;
+	display: inline-block;
+}
+/*sub-menu*/
+/*.navbar .dropdown-content{
+	display: none;
+	position: absolute;
+	z-index: 1;
+	list-style: none;
+}
+
+.dropdown:hover .dropdown-content{
+	display: block;
+
+}*/
+
+/*Carousel*/
+.carousel-inner img{
+	width: 100%;
+	max-height: 500px;
+}
+.carousel-caption h1{
+	text-shadow: 0.5px 0.5px 0.5px #000 !important;
+}
+
+/*Content*/
+.content a{
+	color: #212529;
+}
+/*.content .set-height{
+	height: 35rem;
+}*/
+/*.content_scroll{
+	overflow: auto;
+	/*height: 35rem;
+	}*/
+
+.headline{
+	border-bottom: 3px solid #00004d;
+}
+.headline h6{
+	background: rgb(0, 0, 77);
+	border-radius: 0 20px 0 0;
+	color: white !important;
+}
+.crop_text {
+	-webkit-line-clamp: 2;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+.banner_inside{
+	background: rgba(0, 0, 77,0.9);
+	border-radius: 5px 5px 0 0;
+}
+.thsx_kd_info td{
+	padding: 0;
+}
+.thsx_kn_info td{
+	padding: 0;
+}
+
+footer{
+	border-top: 10px solid #00004d;
+	border-bottom: 10px solid #00004d;
+}
+
+/*button top*/
+
+a.on_top { 
+	opacity:0.6; display: none;
+}
+a.on_top:hover{
+	background-color: #007bb6;
+	color: #fff;
+	border: 1px solid #007bb6;
+	opacity:1;
+}
+a.on_top i{ font-size: 20px;}
+a.on_top {
+	border-radius: 6px;
+	background-color: #333333;
+	padding: 10px 15px;
+	white-space: nowrap; color: #fff;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	height: 40px;
+}
+/*QHCD*/
+.submit-ykien{
+	background-color: #d6e0f5;
+}
+
+/*Media Query*/
+@media (max-width: 992px){
+	/*HEADER*/
+
+	.header_logo_img img{
+		width: 100px;
+	}
+
+	.header_logo_title h2{
+		font-size: 20px;
+	}
+	.header_logo_title h5{
+		font-size: 15px;
+	}
+	.header_logo_title p{
+		font-size: 10px;
+	}
+
+
+}
+@media (max-width: 768px){	
+	/*HEADER*/
+
+	.header_logo_img img{
+		width: 100px;
+	}
+
+	.header_logo_title h2{
+		font-size: 20px;
+	}
+	.header_logo_title h5{
+		font-size: 15px;
+	}
+	.header_logo_title p{
+		font-size: 10px;
+	}
+	
+	.soffice img{
+		width: 20% !important;
+	}
+}
+@media (max-width: 576px){
+	/*HEADER	*/
+	.header_logo_img img{
+		width: 70px;
+	}
+
+	.header_logo_title h2{
+		font-size: 14px;
+	}
+	.header_logo_title h5{
+		font-size: 9px;
+		margin-bottom: 0;
+	}
+	.header_logo_title p{
+		font-size: 9px;
+	}
+	.navbar .LOGO{
+	width: 60px;
+}
+
+	/*CAROUSEL*/
+	.carousel-caption h1{
+		font-size: 20px;
+	}
+
+
+	.font_title{
+		font-size: 15px;
+		line-height: 1.2rem;
+	}
+	.font_link{
+		
+	}
+
+	.crop_text {
+		-webkit-line-clamp: 2;
+		overflow : hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+	}
+	.soffice img{
+		width: 40% !important;
+	}
+
+	/*---trang menu QHCD---*/
+	.QHCD .head h4{
+		font-size: 1.2rem;
+	}
+
+	.QHCD .scroll{
+		height: 10rem;
+		overflow:scroll;
+	}
+	.QHCD_breadcrumb li{
+	font-size: 1rem;
+	}
+}
+
+/*-------Trang menu QHCD-----*/
+
+
+.QHCD_breadcrumb{
+	background-color: #e9ecef;
+}
+
+
+.QHCD a{
+	color: #212529;
+}
+.QHCD a:hover{
+	color: rgb(0,0,77);
+}
+.QHCD .head{
+	border-bottom: 4px solid #000066;
+}
+
+.QHCD .scroll{
+	height: 20rem;
+	overflow:auto;
+}
+.QHCD .title_cbtt{
+	background-color: #e9ecef;
+}
+
