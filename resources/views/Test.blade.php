@@ -1,5 +1,1 @@
-
-@foreach ($data as $dt)
-    {{ $dt->id }} {{ $dt->name }}
-    <br>
-@endforeach
+<h1>Đây là trang Test lớn nằm trong view</h1>

@@ -10,10 +10,10 @@ class Menu extends Model
     public $timestamps = false;
 
     public function Menu(){
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class,'parent','id');
     }
 
     public function ChildMenu(){
-        return $this->hasMany(Menu::class)->with('Menu');
+        return $this->hasMany(Menu::class,'parent','id')->with('Menu');
     }
 }

@@ -1,6 +1,6 @@
 {{-- <!-- FOOTER --> --}}
 <footer class="main-footer">
-	<div class="text-center">
+	<div class="text-center text-dark">
 		<h6 class="font-weight-bold">BẢN QUYỀN &copy; THUỘC CÔNG TY CỔ PHẦN SÔNG BA</h6>
 		<p class="m-0">Địa chỉ: 573 Núi Thành, quận Hải Châu, thành phố Đà Nẵng
 			<br>
