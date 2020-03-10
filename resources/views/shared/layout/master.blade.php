@@ -22,7 +22,6 @@
 <body>
     @include('admin.layout.header')
     <section>
-        @include('admin.layout.breadcrumb')
         <div class="container">
             <div class="row">
                 @include('admin.layout.sidebar')
@@ -49,4 +48,6 @@
 	{{-- <!-- Custom scripts for all pages--> --}}
 	{{-- <!-- CUSTOM SCRIPT---------------- --> --}}
 	<script type="text/javascript" src="admin_asset/js/my.js"></script>
+
+	@yield('script')
 </body>

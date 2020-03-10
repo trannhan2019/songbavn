@@ -12,6 +12,6 @@ class TestController extends Controller
     {
         // $data = Menu::whereNull('parent')->get();
         // return view('Test',compact('data'));
-        return view('admin.pages.test');
+        return view('shared.pages.test');
     }
 }
