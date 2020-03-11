@@ -14,7 +14,7 @@ class CreateThsxTable extends Migration
     public function up()
     {
         Schema::create('thsxs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('factory_id')->unsigned();
             $table->foreign('factory_id')->references('id')->on('factorys');
             $table->integer('user_id')->unsigned();

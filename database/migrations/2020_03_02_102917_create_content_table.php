@@ -14,7 +14,7 @@ class CreateContentTable extends Migration
     public function up()
     {
         Schema::create('contents', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('menu_id')->unsigned();
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->integer('user_id')->unsigned();

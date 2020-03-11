@@ -32,5 +32,6 @@
     <script src="admin_asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     {{-- <!-- AdminLTE App --> --}}
     <script src="admin_asset/dist/js/adminlte.min.js"></script>
+    @yield('script')
 </body>
 </html>

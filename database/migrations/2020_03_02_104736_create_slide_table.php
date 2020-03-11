@@ -15,7 +15,7 @@ class CreateSlideTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('content_id')->unsigned()->nullable();
+            $table->bigInteger('content_id')->unsigned()->nullable();
             $table->foreign('content_id')->references('id')->on('contents');
             $table->mediumText('title');
             $table->text('image');

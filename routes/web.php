@@ -33,5 +33,6 @@ Route::group(['prefix' => 'admin'], function () {
     //Menu
     Route::group(['prefix' => 'menu'], function () {
         Route::get('danhsach', 'MenuController@getDanhsach');
+        Route::post('them','MenuController@postThem');
     });
 });
