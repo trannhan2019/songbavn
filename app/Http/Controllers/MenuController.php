@@ -10,7 +10,7 @@ use App\Menu;
 class MenuController extends Controller
 {
     public function getDanhsach(){
-        $menus = Menu::whereNull('parent')->with('ChildMenu')->get();
+        $menus = Menu::whereNull('parent')->where('status',1)->with('ChildMenu')->get();
         return view('admin.pages.danhmuc.danhsach',compact('menus'));
     }
     public function postThem(Request $request){

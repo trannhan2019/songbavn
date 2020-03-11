@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Starter Page</h1>
+                        <h1 class="m-0 text-dark">Quản lý danh mục</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
+                            <li class="breadcrumb-item active">Danh mục</li>
                         </ol>
                     </div>
                 </div>
@@ -35,16 +35,14 @@
                             </div>
             
                             <form action="" method="POST">
-                                @csrf
-                                {{--  @method('PUT')  --}}          
+                                @csrf        
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" value="" placeholder="Tên danh mục" required>
+                                        <input type="text" name="name" class="form-control" value="" placeholder="Tên danh mục">
                                     </div>
                                 </div>
-            
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     <button type="submit" class="btn btn-primary">Sửa</button>
                                 </div>
                             </form>
@@ -66,7 +64,7 @@
                                         <div class="d-flex justify-content-between">
                                             {{ $menu->name }}      
                                             <div class="button-group d-flex">
-                                                <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}">Sửa</button>
+                                                <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}" data-status="{{ $menu->status }}">Sửa</button>
             
                                                 <form action="" method="POST">
                                                     @csrf   
@@ -83,7 +81,7 @@
                                                     {{ $child->name }}
             
                                                     <div class="button-group d-flex">
-                                                        <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}">Sửa</button>
+                                                        <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}" data-status="{{ $child->status }}">Sửa</button>
             
                                                         <form action="" method="POST">
                                                             @csrf          
@@ -101,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-            
+            {{--  PHẦN TẠO MỚI DANH MỤC  --}}
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">
@@ -116,13 +114,18 @@
                                             <option value="">Chọn danh mục</option>
             
                                             @foreach ($menus as $menu)
-                                            <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                                            <option value="{{ $menu->id }}">- {{ $menu->name }}</option>
+                                            @if ($menu->ChildMenu)
+                                                @foreach ($menu->ChildMenu as $child)
+                                                <option value="{{ $child->id }}">---- {{ $child->name }}</option>
+                                                @endforeach
+                                            @endif
                                             @endforeach
                                         </select>
                                     </div>
             
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Điền tên danh mục" required>
+                                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Điền tên danh mục">
                                     </div>
                                     
                                     <div class="form-group">
@@ -150,4 +153,18 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $('.edit-menu').on('click', function() {
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var status = $(this).data('status');
+        var url = "admin/menu/sua/" + id;
+
+        $('#editMenuModal form').attr('action', url);
+        $('#editMenuModal form input[name="name"]').val(name);
+        });
+    </script>
 @endsection

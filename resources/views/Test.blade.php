@@ -1,1 +1,5 @@
-<h1>Đây là trang Test lớn nằm trong view</h1>
+{{ $name }}
+<br>
+{{ $id }}
+<br>
+{{ $status }}
