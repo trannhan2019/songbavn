@@ -10,7 +10,7 @@ use App\Menu;
 class MenuController extends Controller
 {
     public function getDanhsach(){
-        $menus = Menu::whereNull('parent')->where('status',1)->with('ChildMenu')->get();
+        $menus = Menu::whereNull('parent')->with('ChildMenu')->get();
         return view('admin.pages.danhmuc.danhsach',compact('menus'));
     }
     public function postThem(Request $request){
@@ -26,8 +26,9 @@ class MenuController extends Controller
         $menu->name = $request->name;
         $menu->slug = str::slug($request->name,'-');
         $menu->status = $request->status;
+        $menu->position = $request->position;
         $menu->parent = $request->parent;
         $menu->save();
-        return redirect('admin/menu/danhsach');
+        return redirect('admin/menu/danhsach')->with('thongbao','Tạo danh mục thành công !');
     }
 }

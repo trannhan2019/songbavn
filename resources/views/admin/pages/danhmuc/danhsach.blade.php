@@ -59,7 +59,7 @@
                             </div>
                             <div class="card-body">
                                 <ul class="list-group">
-                                    @foreach ($menus as $menu)
+                                    @foreach ($menus->sortBy('position') as $menu)
                                     <li class="list-group-item">
                                         <div class="d-flex justify-content-between">
                                             {{ $menu->name }}      
@@ -75,7 +75,7 @@
             
                                         @if ($menu->ChildMenu)
                                         <ul class="list-group mt-2">
-                                            @foreach ($menu->ChildMenu as $child)
+                                            @foreach ($menu->ChildMenu->sortBy('position') as $child)
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
                                                     {{ $child->name }}
@@ -101,8 +101,23 @@
                     </div>
             {{--  PHẦN TẠO MỚI DANH MỤC  --}}
                     <div class="col-md-4">
+                    @if (session('thongbao'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('thongbao') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if (count($errors)>0)
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $err)
+                                {{ $err }}<br>
+                            @endforeach
+                        </div>
+                     @endif
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header bg-primary">
                                 <h3>Tạo danh mục mới</h3>
                             </div>
             
@@ -113,11 +128,11 @@
                                         <select class="form-control" name="parent">
                                             <option value="">Chọn danh mục</option>
             
-                                            @foreach ($menus as $menu)
+                                            @foreach ($menus->sortBy('position') as $menu)
                                             <option value="{{ $menu->id }}">- {{ $menu->name }}</option>
                                             @if ($menu->ChildMenu)
-                                                @foreach ($menu->ChildMenu as $child)
-                                                <option value="{{ $child->id }}">---- {{ $child->name }}</option>
+                                                @foreach ($menu->ChildMenu->sortBy('position') as $child)
+                                                <option value="{{ $child->id }}">----- {{ $child->name }}</option>
                                                 @endforeach
                                             @endif
                                             @endforeach
@@ -141,8 +156,11 @@
                                             </label>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
+                                        <p class="mb-0"><label>Chọn vị trí <small>(Giới hạn từ 01 - 10)</small></label></p>
+                                        <input class="form-control-sm" type="number" name="position" value="1" min="1" max="10" step="1"/>
+                                    </div>                                    
+                                    <div class="form-group mt-3">
                                         <button type="submit" class="btn btn-primary">Tạo mới</button>
                                     </div>
                                 </form>
@@ -166,5 +184,8 @@
         $('#editMenuModal form').attr('action', url);
         $('#editMenuModal form input[name="name"]').val(name);
         });
+    </script>
+    <script>
+        $("input[type='number']").inputSpinner()
     </script>
 @endsection

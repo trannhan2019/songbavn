@@ -32,6 +32,8 @@
     <script src="admin_asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     {{-- <!-- AdminLTE App --> --}}
     <script src="admin_asset/dist/js/adminlte.min.js"></script>
+    {{--  Bootstrap input spinner  --}}
+    <script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
     @yield('script')
 </body>
 </html>

@@ -18,6 +18,7 @@ class CreateMenuTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->tinyInteger('status');
+            $table->integer('position')->unsigned()->default(1);
             $table->integer('parent')->unsigned()->nullable();
             $table->foreign('parent')->references('id')->on('menus');   
         });
