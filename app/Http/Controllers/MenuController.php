@@ -13,14 +13,17 @@ class MenuController extends Controller
         $menus = Menu::whereNull('parent')->with('ChildMenu')->get();
         return view('admin.pages.danhmuc.danhsach',compact('menus'));
     }
+
     public function postThem(Request $request){
         $this->validate($request,[
-            'name'=> 'required|min:3|max:32'
+            'name'=> 'required|min:3|max:32',
+            'position'=>'required'
         ],
         [
             'name.required'=>'Bạn chưa nhập tên danh mục',
-            'name.min'=>'tên danh mục phải có ít nhất 3 ký tự',
-            'name.max'=>'tên danh mục không nhiều hơn 255 ký tự'
+            'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
+            'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
+            'position.required'=>'Chưa chọn vị trí của danh mục'
         ]);
         $menu = new Menu();
         $menu->name = $request->name;
@@ -30,5 +33,25 @@ class MenuController extends Controller
         $menu->parent = $request->parent;
         $menu->save();
         return redirect('admin/menu/danhsach')->with('thongbao','Tạo danh mục thành công !');
+    }
+
+    public function postSua(Request $request, $id){
+        $menu = Menu::find($id);
+        $this->validate($request,[
+            'name'=> 'required|min:3|max:32',
+            'position'=>'required'
+        ],
+        [
+            'name.required'=>'Bạn chưa nhập tên danh mục',
+            'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
+            'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
+            'position.required'=>'Chưa chọn vị trí của danh mục'
+        ]);
+        $menu->name = $request->name;
+        $menu->slug = str::slug($request->name,'-');
+        $menu->status = $request->status;
+        $menu->position = $request->position;
+        $menu->save();
+        return redirect('admin/menu/danhsach')->with('thongbao','Sửa danh mục thành công !');
     }
 }

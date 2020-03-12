@@ -23,6 +23,23 @@
         {{-- <!-- /.content-header --> --}}
         <div class="content">
             <div class="container-fluid">
+                @if (session('thongbao'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('thongbao') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                
+                @if (count($errors)>0)
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        @foreach ($errors->all() as $err)
+                            - {{ $err }}<br>
+                        @endforeach
+                    </div>
+                @endif
                 {{--  Phan modal sửa thông tin  --}}
                 <div class="modal" tabindex="-1" role="dialog" id="editMenuModal">
                     <div class="modal-dialog" role="document">
@@ -39,6 +56,24 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" value="" placeholder="Tên danh mục">
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="mb-0"><label>Cho phép hiển thị</label></p>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" checked name="status" value="1">Cho phép hiển thị
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="status" value="0">Không hiển thị
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p class="mb-0"><label>Chọn vị trí <small>(Giới hạn từ 01 - 10)</small></label></p>
+                                        <input class="form-control-sm" type="number" name="position" value="" min="1" max="10" step="1"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -62,9 +97,16 @@
                                     @foreach ($menus->sortBy('position') as $menu)
                                     <li class="list-group-item">
                                         <div class="d-flex justify-content-between">
-                                            {{ $menu->name }}      
+                                            <p class="mb-0">
+                                                {{ $menu->name }}
+                                                @if ($menu->status == 1)
+                                                    <span class="right badge badge-primary">Acitve</span>
+                                                @else
+                                                    <span class="right badge badge-secondary">Not active</span>
+                                                @endif
+                                            </p>                                         
                                             <div class="button-group d-flex">
-                                                <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}" data-status="{{ $menu->status }}">Sửa</button>
+                                                <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}" data-position="{{ $menu->position }}">Sửa</button>
             
                                                 <form action="" method="POST">
                                                     @csrf   
@@ -78,10 +120,16 @@
                                             @foreach ($menu->ChildMenu->sortBy('position') as $child)
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
-                                                    {{ $child->name }}
-            
+                                                    <p class="mb-0">
+                                                        {{ $child->name }}
+                                                        @if ($child->status == 1)
+                                                            <span class="right badge badge-primary">Acitve</span>
+                                                        @else
+                                                            <span class="right badge badge-secondary">Not active</span>
+                                                        @endif
+                                                    </p>          
                                                     <div class="button-group d-flex">
-                                                        <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}" data-status="{{ $child->status }}">Sửa</button>
+                                                        <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}" data-position="{{ $child->position }}">Sửa</button>
             
                                                         <form action="" method="POST">
                                                             @csrf          
@@ -99,39 +147,25 @@
                             </div>
                         </div>
                     </div>
-            {{--  PHẦN TẠO MỚI DANH MỤC  --}}
+                    {{--  PHẦN TẠO MỚI DANH MỤC  --}}
                     <div class="col-md-4">
-                    @if (session('thongbao'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('thongbao') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-                    @if (count($errors)>0)
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $err)
-                                {{ $err }}<br>
-                            @endforeach
-                        </div>
-                     @endif
-                        <div class="card">
+                        
+                        <div class="card">  
                             <div class="card-header bg-primary">
                                 <h3>Tạo danh mục mới</h3>
                             </div>
-            
                             <div class="card-body">
+                                
                                 <form action="admin/menu/them" method="POST">
                                     @csrf          
                                     <div class="form-group">
                                         <select class="form-control" name="parent">
                                             <option value="">Chọn danh mục</option>
             
-                                            @foreach ($menus->sortBy('position') as $menu)
+                                            @foreach ($menus->where('status',1)->sortBy('position') as $menu)
                                             <option value="{{ $menu->id }}">- {{ $menu->name }}</option>
                                             @if ($menu->ChildMenu)
-                                                @foreach ($menu->ChildMenu->sortBy('position') as $child)
+                                                @foreach ($menu->ChildMenu->where('status',1)->sortBy('position') as $child)
                                                 <option value="{{ $child->id }}">----- {{ $child->name }}</option>
                                                 @endforeach
                                             @endif
@@ -167,6 +201,7 @@
                             </div>
                         </div>
                     </div>
+                    {{--  PHẦN TẠO MỚI DANH MỤC  --}}
                 </div>
             </div>
         </div>
@@ -176,13 +211,14 @@
 @section('script')
     <script type="text/javascript">
         $('.edit-menu').on('click', function() {
-        var id = $(this).data('id');
-        var name = $(this).data('name');
-        var status = $(this).data('status');
-        var url = "admin/menu/sua/" + id;
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var position = $(this).data('position');
+            var url = "admin/menu/sua/" + id;
 
-        $('#editMenuModal form').attr('action', url);
-        $('#editMenuModal form input[name="name"]').val(name);
+            $('#editMenuModal form').attr('action', url);
+            $('#editMenuModal form input[name="name"]').val(name);
+            $('#editMenuModal form input[name="position"]').val(position);
         });
     </script>
     <script>
