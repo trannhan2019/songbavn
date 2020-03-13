@@ -32,8 +32,14 @@ Route::get('/test','TestController@index');
 Route::group(['prefix' => 'admin'], function () {
     //Menu
     Route::group(['prefix' => 'menu'], function () {
-        Route::get('danhsach', 'MenuController@getDanhsach');
-        Route::post('them','MenuController@postThem');
-        Route::post('sua/{id}','MenuController@postSua');
+        Route::get('danhsach', 'MenuController@getDanhsach')->name('admin.menu.danhsach');
+        Route::post('them','MenuController@postThem')->name('admin.menu.them');
+        Route::post('sua/{id}','MenuController@postSua')->name('admin.menu.sua');
+        Route::post('xoa/{id}','MenuController@postXoa')->name('admin.menu.xoa');
+    });
+
+    //Users
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('danhsach','UserController@getDanhsach')->name('admin.user.danhsach');
     });
 });

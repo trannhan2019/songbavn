@@ -15,7 +15,7 @@ class CreateContentTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('menu_id')->unsigned();
+            $table->integer('menu_id')->unsigned()->nullable();
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

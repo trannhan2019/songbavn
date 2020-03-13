@@ -19,15 +19,27 @@
       {{-- <!-- Sidebar Menu --> --}}
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {{--  Quản lý danh mục - Menu  --}}
           <li class="nav-item">
-            <a href="admin/menu/danhsach" class="nav-link">
+            <a href="{{ route('admin.menu.danhsach') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý danh mục
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>    
+          </li>
+          {{--  Quản lý người dùng - User  --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.menu.danhsach') }}" class="nav-link">
+              <i class="nav-icon fas fa-users-cog"></i>
+              <p>
+                Quản lý người dùng
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>

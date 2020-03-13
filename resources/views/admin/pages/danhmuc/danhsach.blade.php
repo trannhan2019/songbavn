@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="content-wrapper">
-        {{-- <!-- Content Header (Page header) --> --}}
+        {{-- Content Header (Page header)--}}
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -20,12 +20,14 @@
                 </div>
             </div>
         </div>
-        {{-- <!-- /.content-header --> --}}
+        {{-- content-header --}}
         <div class="content">
             <div class="container-fluid">
                 @if (session('thongbao'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('thongbao') }}
+                        <h5 class="alert-heading">Thành công!</h5>
+                        <hr>
+                        <p>{{ session('thongbao') }}</p>                        
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -34,7 +36,9 @@
                 
                 @if (count($errors)>0)
                     <div class="alert alert-danger alert-dismissible fade show">
+                        <h5 class="alert-heading">Lỗi!</h5>
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <hr>
                         @foreach ($errors->all() as $err)
                             - {{ $err }}<br>
                         @endforeach
@@ -76,20 +80,43 @@
                                         <input class="form-control-sm" type="number" name="position" value="" min="1" max="10" step="1"/>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <div class="modal-footer">                                
                                     <button type="submit" class="btn btn-primary">Sửa</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                 </div>
                             </form>
                         </div>                      
                     </div>
                 </div>
                 {{--  Kết thúc phần modal  --}}
-                
+                {{--  Phan modal Xóa thong tin  --}}
+                <div class="modal" tabindex="-1" role="dialog" id="deletedMenuModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Xóa danh mục</h5>          
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="" method="POST">
+                            @csrf        
+                                <div class="modal-body">
+                                    <h6>Bạn chắc chắn muốn xóa danh mục này ?</h6>
+                                </div>
+                                <div class="modal-footer">                                
+                                    <button type="submit" class="btn btn-danger">Xóa</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{--  Phan danh sach  --}}
                 <div class="row">
                     <div class="col-md-8">         
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header bg-primary">
                                 <h3>Danh mục</h3>
                             </div>
                             <div class="card-body">
@@ -107,17 +134,15 @@
                                             </p>                                         
                                             <div class="button-group d-flex">
                                                 <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}" data-position="{{ $menu->position }}">Sửa</button>
-            
-                                                <form action="" method="POST">
-                                                    @csrf   
-                                                    <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
-                                                </form>
+
+                                                <button type="submit" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $menu->id }}">Xóa</button>
+ 
                                             </div>
                                         </div>
             
                                         @if ($menu->ChildMenu)
                                         <ul class="list-group mt-2">
-                                            @foreach ($menu->ChildMenu->sortBy('position') as $child)
+                                            @foreach ($menu->ChildMenus->sortBy('position') as $child)
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
                                                     <p class="mb-0">
@@ -131,10 +156,7 @@
                                                     <div class="button-group d-flex">
                                                         <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}" data-position="{{ $child->position }}">Sửa</button>
             
-                                                        <form action="" method="POST">
-                                                            @csrf          
-                                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
-                                                        </form>
+                                                        <button type="submit" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $child->id }}">Xóa</button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -147,16 +169,16 @@
                             </div>
                         </div>
                     </div>
-                    {{--  PHẦN TẠO MỚI DANH MỤC  --}}
+                    
                     <div class="col-md-4">
                         
                         <div class="card">  
-                            <div class="card-header bg-primary">
-                                <h3>Tạo danh mục mới</h3>
+                            <div class="card-header bg-info">
+                                <h5>Tạo danh mục mới</h5>
                             </div>
                             <div class="card-body">
                                 
-                                <form action="admin/menu/them" method="POST">
+                                <form action="{{ route('admin.menu.them') }}" method="POST">
                                     @csrf          
                                     <div class="form-group">
                                         <select class="form-control" name="parent">
@@ -164,8 +186,8 @@
             
                                             @foreach ($menus->where('status',1)->sortBy('position') as $menu)
                                             <option value="{{ $menu->id }}">- {{ $menu->name }}</option>
-                                            @if ($menu->ChildMenu)
-                                                @foreach ($menu->ChildMenu->where('status',1)->sortBy('position') as $child)
+                                            @if ($menu->ChildMenus)
+                                                @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $child)
                                                 <option value="{{ $child->id }}">----- {{ $child->name }}</option>
                                                 @endforeach
                                             @endif
@@ -201,7 +223,7 @@
                             </div>
                         </div>
                     </div>
-                    {{--  PHẦN TẠO MỚI DANH MỤC  --}}
+                    
                 </div>
             </div>
         </div>
@@ -219,6 +241,19 @@
             $('#editMenuModal form').attr('action', url);
             $('#editMenuModal form input[name="name"]').val(name);
             $('#editMenuModal form input[name="position"]').val(position);
+        });
+    </script>
+    <script type="text/javascript">
+        $('.deleted-menu').on('click', function() {
+            var id = $(this).data('id');
+            var url = "admin/menu/xoa/" + id;
+
+            $('#deletedMenuModal form').attr('action', url);
+        });
+    </script>
+    <script>
+        $(".alert").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
         });
     </script>
     <script>

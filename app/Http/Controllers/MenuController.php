@@ -10,7 +10,7 @@ use App\Menu;
 class MenuController extends Controller
 {
     public function getDanhsach(){
-        $menus = Menu::whereNull('parent')->with('ChildMenu')->get();
+        $menus = Menu::whereNull('parent')->with('ChildMenus')->get();
         return view('admin.pages.danhmuc.danhsach',compact('menus'));
     }
 
@@ -32,7 +32,7 @@ class MenuController extends Controller
         $menu->position = $request->position;
         $menu->parent = $request->parent;
         $menu->save();
-        return redirect('admin/menu/danhsach')->with('thongbao','Tạo danh mục thành công !');
+        return redirect()->route('admin.menu.danhsach')->with('thongbao','Tạo danh mục thành công !');
     }
 
     public function postSua(Request $request, $id){
@@ -53,5 +53,33 @@ class MenuController extends Controller
         $menu->position = $request->position;
         $menu->save();
         return redirect('admin/menu/danhsach')->with('thongbao','Sửa danh mục thành công !');
+    }
+
+    public function postXoa($id){
+        $menu = Menu::find($id);
+
+        if ($menu->ChildMenus) {
+            foreach ($menu->ChildMenus as $child) {
+                if ($child->Content) {
+                    foreach ($child->Content as $content) {
+                        $content->menu_id = NULL;
+                        $content->save();
+                    }
+                }
+            }
+            
+            $menu->ChildMenu()->delete();
+        }
+
+        if ($menu->Content) {
+            foreach ($menu->Content as $content) {
+                $content->menu_id = NULL;
+                $content->save();
+            }
+        }
+
+        $menu->delete();
+
+        return redirect()->route('admin.menu.danhsach')->with('thongbao','Xóa danh mục thành công !');
     }
 }

@@ -40,8 +40,27 @@ class User extends Authenticatable
 
     protected $table = 'users';
     public $timestamps = true;
-    //lay thong tin user co bao nhieu comment
-    public function Comment(){
-        return $this->hasMany(Comment::class);
+    protected $dates = ['deleted_at'];
+    
+    //Quan he voi Content
+    public function Contents(){
+        return $this->hasMany(Content::class,'user_id');
     }
+    //lay thong tin user co bao nhieu comment
+    public function Comments(){
+        return $this->hasMany(Comment::class,'user_id');
+    }
+
+    public function Thsxs(){
+        return $this->hasMany(Thsx::class,'user_id');
+    }
+
+    public function Traloicodongs(){
+        return $this->hasMany(Traloicodong::class,'user_id');
+    }
+
+    public function Ykiencodongs(){
+        return $this->hasMany(Ykiencodong::class,'user_id');
+    }
+
 }

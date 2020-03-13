@@ -15,7 +15,7 @@ class CreateYkiencodongTable extends Migration
     {
         Schema::create('ykiencodongs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('menu_id')->unsigned();
+            $table->integer('menu_id')->unsigned()->nullable();
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
