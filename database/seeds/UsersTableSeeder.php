@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'fullname'=> 'Công ty Cổ phần Sông Ba',
             'username'=> 'admin',
             'email'=>'sba2007@songba.vn',
-            'quyen'=>1,
+            'role'=>1,
             'password'=>bcrypt('123456'),
             'phone'=>'02363653592',
             'active'=>1

@@ -41,5 +41,8 @@ Route::group(['prefix' => 'admin'], function () {
     //Users
     Route::group(['prefix' => 'user'], function () {
         Route::get('danhsach','UserController@getDanhsach')->name('admin.user.danhsach');
+        //Ajax lay du lieu datatable
+        Route::get('datatable','UserController@getDatatable')->name('admin.user.datatable');
+        Route::get('detail','UserController@getChitiet')->name('admin.user.detail');
     });
 });

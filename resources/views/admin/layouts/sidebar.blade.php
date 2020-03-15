@@ -31,7 +31,7 @@
           </li>
           {{--  Quản lý người dùng - User  --}}
           <li class="nav-item">
-            <a href="{{ route('admin.menu.danhsach') }}" class="nav-link">
+            <a href="{{ route('admin.user.danhsach') }}" class="nav-link">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
                 Quản lý người dùng

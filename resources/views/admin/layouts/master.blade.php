@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="admin_asset/plugins/fontawesome-free/css/all.min.css">
     {{-- <!-- Theme style --> --}}
     <link rel="stylesheet" href="admin_asset/dist/css/adminlte.min.css">
+    {{--  datatable  --}}
+    <link rel="stylesheet" type="text/css" href="admin_asset/plugins/DataTables/datatables.min.css"/>
+    {{--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>  --}}
     {{-- <!-- Google Font: Source Sans Pro --> --}}
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{--  icon web  --}}
@@ -34,6 +37,9 @@
     <script src="admin_asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     {{-- <!-- AdminLTE App --> --}}
     <script src="admin_asset/dist/js/adminlte.min.js"></script>
+    {{--  Datatable js  --}}
+    <script type="text/javascript" src="admin_asset/plugins/DataTables/datatables.min.js"></script>
+    {{--  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>  --}}
     {{--  Bootstrap input spinner  --}}
     <script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
     @yield('script')
