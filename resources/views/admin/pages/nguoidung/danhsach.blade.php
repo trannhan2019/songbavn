@@ -24,6 +24,7 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
+        <a href="{{ route('admin.user.them') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i>Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
@@ -50,21 +51,22 @@
                 @endif
                 {{--  Ket thuc phan thong bao  --}}
             </div>
-            
-            <table class="table table-responsive table-hover table-sm" id="table-users">
-                <thead class="thead-light">
-                    <tr>
-                        <th>STT</th>
-                        <th>Họ và tên</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Quyền</th>
-                        <th>Trạng thái</th>
-                        <th>Chi tiết</th>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-responsive-sm">
+                <table class="table table-hover table-sm" id="table-users">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Quyền</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                            <th>Sửa</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
         {{--  Ket thuc Phan noi dung  --}}
     </div>

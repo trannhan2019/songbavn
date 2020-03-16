@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Datatables;
+// use
 use App\User;
 
 class UserController extends Controller
@@ -54,6 +55,13 @@ class UserController extends Controller
         })
         ->rawColumns(['detail','edit','delete'])
         ->make(true);
+    }
+    //Thêm
+    public function getThem(){
+        return view('admin.pages.nguoidung.them');
+    }
+    public function postThem(Request $request){
+
     }
     //chi tiet nguoi dung
     public function getChitiet(){

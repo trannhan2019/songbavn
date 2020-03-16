@@ -16,6 +16,8 @@
     {{--  datatable  --}}
     <link rel="stylesheet" type="text/css" href="admin_asset/plugins/DataTables/datatables.min.css"/>
     {{--  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>  --}}
+    {{--  <!-- datetimepicker  --}}
+	<link rel="stylesheet" href="admin_asset/plugins/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
     {{-- <!-- Google Font: Source Sans Pro --> --}}
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     {{--  icon web  --}}
@@ -40,6 +42,11 @@
     {{--  Datatable js  --}}
     <script type="text/javascript" src="admin_asset/plugins/DataTables/datatables.min.js"></script>
     {{--  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>  --}}
+    
+    <script src="admin_asset/plugins/tempusdominus/js/moment.min.js" type="text/javascript" charset="utf-8" async defer></script>
+	{{--  <!-- DATERANGEPICKER-------------- -->  --}}
+	<script src="admin_asset/plugins/tempusdominus/js/tempusdominus-bootstrap-4.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="admin_asset/plugins/tempusdominus/js/locale/vi.js" type="text/javascript" charset="utf-8" async defer></script>
     {{--  Bootstrap input spinner  --}}
     <script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
     @yield('script')
