@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Nhập lại mật khẩu <span class="text-danger">(*)</span></label>
-                                        <input type="password" name="passwordAgain" class="form-control" placeholder="Nhập lại mật khẩu">
+                                        <input type="password" name="password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputFile">Ảnh đại diện</label>

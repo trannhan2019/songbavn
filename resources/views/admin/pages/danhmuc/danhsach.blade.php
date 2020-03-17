@@ -24,26 +24,9 @@
         <div class="content">
             <div class="container-fluid">
                 @if (session('thongbao'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h5 class="alert-heading">Thành công!</h5>
-                        <hr>
-                        <p>{{ session('thongbao') }}</p>                        
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    @include('admin.layouts.thongbao')
                 @endif
                 
-                @if (count($errors)>0)
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <h5 class="alert-heading">Lỗi!</h5>
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <hr>
-                        @foreach ($errors->all() as $err)
-                            - {{ $err }}<br>
-                        @endforeach
-                    </div>
-                @endif
                 {{--  Phan modal sửa thông tin  --}}
                 <div class="modal" tabindex="-1" role="dialog" id="editMenuModal">
                     <div class="modal-dialog" role="document">
@@ -60,6 +43,9 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" value="" placeholder="Tên danh mục">
+                                        @if ($errors->has('name'))
+                                            <p class="text-danger mb-0">{{ $errors->first('name') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <p class="mb-0"><label>Cho phép hiển thị</label></p>
@@ -78,6 +64,9 @@
                                     <div class="form-group">
                                         <p class="mb-0"><label>Chọn vị trí <small>(Giới hạn từ 01 - 10)</small></label></p>
                                         <input class="form-control-sm" type="number" name="position" value="" min="1" max="10" step="1"/>
+                                        @if ($errors->has('position'))
+                                            <p class="text-danger mb-0">{{ $errors->first('position') }}</p>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="modal-footer">                                
@@ -197,6 +186,9 @@
             
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Điền tên danh mục">
+                                        @if ($errors->has('name'))
+                                            <p class="text-danger mb-0">{{ $errors->first('name') }}</p>
+                                        @endif
                                     </div>
                                     
                                     <div class="form-group">
@@ -215,6 +207,9 @@
                                     <div class="form-group">
                                         <p class="mb-0"><label>Chọn vị trí <small>(Giới hạn từ 01 - 10)</small></label></p>
                                         <input class="form-control-sm" type="number" name="position" value="1" min="1" max="10" step="1"/>
+                                        @if ($errors->has('position'))
+                                            <p class="text-danger mb-0">{{ $errors->first('position') }}</p>
+                                        @endif
                                     </div>                                    
                                     <div class="form-group mt-3">
                                         <button type="submit" class="btn btn-primary">Tạo mới</button>

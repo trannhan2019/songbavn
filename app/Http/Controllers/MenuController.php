@@ -16,14 +16,16 @@ class MenuController extends Controller
 
     public function postThem(Request $request){
         $this->validate($request,[
-            'name'=> 'required|min:3|max:32',
-            'position'=>'required'
+            'name'=> 'required|unique:menus,name|min:3|max:32',
+            'position'=>'required|integer'
         ],
         [
             'name.required'=>'Bạn chưa nhập tên danh mục',
+            'name.unique'=>'Tên danh mục đã có',
             'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
             'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
-            'position.required'=>'Chưa chọn vị trí của danh mục'
+            'position.required'=>'Chưa chọn vị trí của danh mục',
+            'position.integer'=>'Vị trí phải là số nguyên'
         ]);
         $menu = new Menu();
         $menu->name = $request->name;
@@ -38,14 +40,16 @@ class MenuController extends Controller
     public function postSua(Request $request, $id){
         $menu = Menu::find($id);
         $this->validate($request,[
-            'name'=> 'required|min:3|max:32',
-            'position'=>'required'
+            'name'=> 'required|unique:menus,name|min:3|max:32',
+            'position'=>'required|integer'
         ],
         [
             'name.required'=>'Bạn chưa nhập tên danh mục',
+            'name.unique'=>'Tên danh mục đã có',
             'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
             'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
-            'position.required'=>'Chưa chọn vị trí của danh mục'
+            'position.required'=>'Chưa chọn vị trí của danh mục',
+            'position.integer'=>'Vị trí phải là số nguyên'
         ]);
         $menu->name = $request->name;
         $menu->slug = str::slug($request->name,'-');

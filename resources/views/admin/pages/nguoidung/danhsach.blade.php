@@ -24,19 +24,12 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-        <a href="{{ route('admin.user.them') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i>Thêm mới</a>
+        <a href="{{ route('admin.user.them') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <h5 class="alert-heading">Thành công!</h5>
-                        <hr>
-                        <p>{{ session('thongbao') }}</p>                        
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    @include('admin.layouts.thongbao')
                 @endif
                 
                 @if (count($errors)>0)
