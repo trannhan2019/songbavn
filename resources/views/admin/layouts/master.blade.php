@@ -49,6 +49,18 @@
 	<script src="admin_asset/plugins/tempusdominus/js/locale/vi.js" type="text/javascript" charset="utf-8" async defer></script>
     {{--  Bootstrap input spinner  --}}
     <script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
+
+    {{--  Tự động đóng alert sau khoảng thời gian  --}}
+    <script type="text/javascript">
+        $(".alert").delay(3000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+    </script>
+
+    {{--  Sử dụng input thêm số   --}}
+    <script type="text/javascript">
+        $("input[type='number']").inputSpinner()
+    </script>
     @yield('script')
 </body>
 </html>

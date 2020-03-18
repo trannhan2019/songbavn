@@ -3,6 +3,7 @@
     Thêm người dùng
 @endsection
 @section('content')
+
     <div class="content-wrapper">
         {{-- Content Header (Page header)--}}
         <div class="content-header">
@@ -30,28 +31,43 @@
                             <div class="card-header">
                               <h3 class="card-title">Thêm mới người dùng</h3>
                             </div>
-                            <form action="{{ route('admin.user.them') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.user.them') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Họ và tên <span class="text-danger">(*)</span></label>
                                         <input type="text" name="fullname" class="form-control" placeholder="Họ và tên">
+                                        @if ($errors->has('fullname'))
+                                            <p class="text-danger mb-0">{{ $errors->first('fullname') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Tên đăng nhập <span class="text-danger">(*)</span></label>
                                         <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập">
+                                        @if ($errors->has('username'))
+                                            <p class="text-danger mb-0">{{ $errors->first('username') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ email<span class="text-danger">(*)</span></label>
                                         <input type="email" name="email" class="form-control" placeholder="Email">
+                                        @if ($errors->has('email'))
+                                            <p class="text-danger mb-0">{{ $errors->first('email') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Mật khẩu <span class="text-danger">(*)</span></label>
                                         <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
+                                        @if ($errors->has('password'))
+                                            <p class="text-danger mb-0">{{ $errors->first('password') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Nhập lại mật khẩu <span class="text-danger">(*)</span></label>
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu">
+                                        @if ($errors->has('password_confirmation'))
+                                            <p class="text-danger mb-0">{{ $errors->first('password_confirmation') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputFile">Ảnh đại diện</label>
@@ -64,15 +80,21 @@
                                             <span class="input-group-text" id="">Upload</span>
                                           </div>
                                         </div>
+                                        @if ($errors->has('image'))
+                                            <p class="text-danger mb-0">{{ $errors->first('image') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Chọn quyền <span class="text-danger">(*)</span></label>
                                         <select class="form-control" name="role">
                                             <option value="0">Chọn quyền</option>
                                             <option value="1">Quản trị</option>
-                                            <option value="2">Quyền edit THSX</option>
+                                            <option value="2">Quyền cập nhât THSX</option>
                                             <option value="3">Quyền cổ đông</option>
                                         </select>
+                                        @if ($errors->has('role'))
+                                            <p class="text-danger mb-0">{{ $errors->first('role') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <p class="mb-0"><label>Trạng thái</label></p>
@@ -86,6 +108,9 @@
                                                 <input type="radio" class="form-check-input" name="active" value="0">Không hiển thị
                                             </label>
                                         </div>
+                                        @if ($errors->has('active'))
+                                            <p class="text-danger mb-0">{{ $errors->first('active') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Số điện thoại </label>
@@ -102,7 +127,7 @@
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker-day" data-toggle="datetimepicker" data-target="#datetimepicker-day"/>
+                                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker-day" data-toggle="datetimepicker" data-target="#datetimepicker-day" name="created_at"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>

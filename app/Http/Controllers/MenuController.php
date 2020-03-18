@@ -20,12 +20,15 @@ class MenuController extends Controller
             'position'=>'required|integer'
         ],
         [
-            'name.required'=>'Bạn chưa nhập tên danh mục',
-            'name.unique'=>'Tên danh mục đã có',
-            'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
-            'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
-            'position.required'=>'Chưa chọn vị trí của danh mục',
-            'position.integer'=>'Vị trí phải là số nguyên'
+            'required'=>'Bạn chưa nhập :attribute',
+            'unique'=>'Tên danh mục đã tồn tại',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự',
+            'integer'=>':attribute phải là số nguyên'
+        ],
+        [
+            'name'=>'Tên danh mục',
+            'position'=>'Vị trí'
         ]);
         $menu = new Menu();
         $menu->name = $request->name;
@@ -40,20 +43,23 @@ class MenuController extends Controller
     public function postSua(Request $request, $id){
         $menu = Menu::find($id);
         $this->validate($request,[
-            'name'=> 'required|min:3|max:32',
-            'position'=>'required|integer'
+            'names'=> 'required|min:3|max:32',
+            'positions'=>'required|integer'
         ],
         [
-            'name.required'=>'Bạn chưa nhập tên danh mục',
-            'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
-            'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
-            'position.required'=>'Chưa chọn vị trí của danh mục',
-            'position.integer'=>'Vị trí phải là số nguyên'
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự',
+            'integer'=>':attribute phải là số nguyên'
+        ],
+        [
+            'names'=>'Tên danh mục',
+            'positions'=>'Vị trí'
         ]);
-        $menu->name = $request->name;
-        $menu->slug = str::slug($request->name,'-');
+        $menu->name = $request->names;
+        $menu->slug = str::slug($request->names,'-');
         $menu->status = $request->status;
-        $menu->position = $request->position;
+        $menu->position = $request->positions;
         $menu->save();
         return redirect('admin/menu/danhsach')->with('thongbao','Sửa danh mục thành công !');
     }

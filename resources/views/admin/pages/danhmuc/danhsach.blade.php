@@ -3,6 +3,7 @@
     Quản lý danh mục
 @endsection
 @section('content')
+
     <div class="content-wrapper">
         {{-- Content Header (Page header)--}}
         <div class="content-header">
@@ -42,9 +43,9 @@
                                 @csrf        
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" value="" placeholder="Tên danh mục">
-                                        @if ($errors->has('name'))
-                                            <p class="text-danger mb-0">{{ $errors->first('name') }}</p>
+                                        <input type="text" name="names" class="form-control" value="" placeholder="Tên danh mục">
+                                        @if ($errors->has('names'))
+                                            <p class="text-danger mb-0">{{ $errors->first('names') }}</p>
                                         @endif
                                     </div>
                                     <div class="form-group">
@@ -63,9 +64,9 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Chọn vị trí <small>(Giới hạn từ 01 - 10)</small></label></p>
-                                        <input class="form-control-sm" type="number" name="position" value="" min="1" max="10" step="1"/>
-                                        @if ($errors->has('position'))
-                                            <p class="text-danger mb-0">{{ $errors->first('position') }}</p>
+                                        <input class="form-control-sm" type="number" name="positions" value="" min="1" max="10" step="1"/>
+                                        @if ($errors->has('positions'))
+                                            <p class="text-danger mb-0">{{ $errors->first('positions') }}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -101,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                {{--  Phan danh sach  --}}
+                
                 <div class="row">
                     <div class="col-md-8">         
                         <div class="card">
@@ -234,8 +235,8 @@
             var url = "admin/menu/sua/" + id;
 
             $('#editMenuModal form').attr('action', url);
-            $('#editMenuModal form input[name="name"]').val(name);
-            $('#editMenuModal form input[name="position"]').val(position);
+            $('#editMenuModal form input[name="names"]').val(name);
+            $('#editMenuModal form input[name="positions"]').val(position);
         });
     </script>
     <script type="text/javascript">
@@ -246,12 +247,9 @@
             $('#deletedMenuModal form').attr('action', url);
         });
     </script>
-    <script>
-        $(".alert").delay(4000).slideUp(200, function() {
-            $(this).alert('close');
-        });
-    </script>
-    <script>
-        $("input[type='number']").inputSpinner()
+    <script type="text/javascript">
+        @if (count($errors) > 0)
+            $('#editMenuModal').modal('show');
+        @endif
     </script>
 @endsection
