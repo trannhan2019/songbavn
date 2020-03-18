@@ -40,12 +40,11 @@ class MenuController extends Controller
     public function postSua(Request $request, $id){
         $menu = Menu::find($id);
         $this->validate($request,[
-            'name'=> 'required|unique:menus,name|min:3|max:32',
+            'name'=> 'required|min:3|max:32',
             'position'=>'required|integer'
         ],
         [
             'name.required'=>'Bạn chưa nhập tên danh mục',
-            'name.unique'=>'Tên danh mục đã có',
             'name.min'=>'Tên danh mục phải có ít nhất 3 ký tự',
             'name.max'=>'Tên danh mục không nhiều hơn 255 ký tự',
             'position.required'=>'Chưa chọn vị trí của danh mục',

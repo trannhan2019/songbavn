@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
             
-                                        @if ($menu->ChildMenu)
+                                        @if ($menu->ChildMenus)
                                         <ul class="list-group mt-2">
                                             @foreach ($menu->ChildMenus->sortBy('position') as $child)
                                             <li class="list-group-item">
