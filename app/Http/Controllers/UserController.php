@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Datatables;
 // use
 use App\User;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -62,6 +63,7 @@ class UserController extends Controller
         return view('admin.pages.nguoidung.them');
     }
     public function postThem(Request $request){
+
         $this->validate($request,
         [
             'fullname'=> 'required|min:3|max:255',
@@ -101,7 +103,7 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
-            $hinh = Str::random(4).'_'.$name;
+            $hinh = $name;
             while(file_exists('admin_asset/images/user/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
@@ -115,7 +117,15 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->info = $request->info;
-        $user->created_at = $request->created_at;
+        $user->timestamps = false;
+        if ($request->created_at) {
+            $r = str_replace('/','-',$request->created_at);
+            $ThoigianTao = strtotime($r);
+            $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
+        } else {
+            $user->created_at = null;
+        }
+        
         $user->save();
         return redirect('admin/user/danhsach')->with('thongbao','Tạo tài khoản thành công !');
     }

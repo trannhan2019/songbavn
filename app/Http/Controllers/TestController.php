@@ -14,4 +14,7 @@ class TestController extends Controller
         // return view('Test',compact('data'));
         return view('shared.pages.test');
     }
+    public function testdt(Request $request){
+        dd($request->created_at)->format("Y-m-d H:i:s");
+    }
 }

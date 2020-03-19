@@ -27,6 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test','TestController@index');
+Route::post('/testdt','TestController@testdt');
 
 // Nhom Admin
 Route::group(['prefix' => 'admin'], function () {
