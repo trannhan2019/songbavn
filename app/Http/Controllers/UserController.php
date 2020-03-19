@@ -8,6 +8,8 @@ use Datatables;
 // use
 use App\User;
 use Carbon\Carbon;
+use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -22,22 +24,21 @@ class UserController extends Controller
         ->addIndexColumn()
         ->addColumn('detail', function ($user) {
             return
-            '<a href="admin/user/detail" class="btn btn-success btn-sm btn-detail">
+            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-success btn-sm btn-detail">
             <i class="fas fa-search"></i> Chi tiết
             </a>';
         })
         ->addColumn('edit', function ($user) {
             return
-            '<button type="button" class="btn btn-warning btn-sm btn-edit" >
+            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
             <i class="far fa-edit"></i> Sửa
-            </button>';
+            </a>';
         })
         ->addColumn('delete', function ($user) {
             return
-            '<button type="button" class="btn btn-danger btn-sm btn-delete">
-            <i class="far fa-trash-alt"></i>
-            Xóa
-            </button>';
+            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-danger btn-sm btn-delete">
+            <i class="far fa-trash-alt"></i> Xóa
+            </a>';
         })
         ->editColumn('role',function($user){
             if($user->role ==1){
@@ -53,9 +54,15 @@ class UserController extends Controller
             return 'không có quyền';
         })
         ->editColumn('active',function($user){
-            return $user->active == 1 ? 'Đang hoạt động' : 'Không hoạt động'; 
+            // return $user->active == 1 ? 'Đang hoạt động' : 'Không hoạt động'; 
+            if ($user->active == 1) {
+                return '<span class="text-primary">Đang hoạt động</span>';
+            } else {
+                return '<span class="text=secondary"> Không hoạt động </span>';
+            }
+             
         })
-        ->rawColumns(['detail','edit','delete'])
+        ->rawColumns(['active','detail','edit','delete'])
         ->make(true);
     }
     //Thêm
@@ -108,16 +115,20 @@ class UserController extends Controller
             {
                 $hinh = Str::random(4)."_".$name;
             }
+            
+            // if(Storage::exists(public_path('admin_asset/images/user/'.$hinh))){
+            //     $hinh = Str::random(4)."_".$name;
+            // }
             $file->move('admin_asset/images/user/',$hinh);
             $user->image = $hinh;
         } else {
-            $user->image = 'img_avatar.png';
+            $user->image = null;
         }
         $user->active = $request->active;
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->info = $request->info;
-        $user->timestamps = false;
+        // $user->timestamps = false;
         if ($request->created_at) {
             $r = str_replace('/','-',$request->created_at);
             $ThoigianTao = strtotime($r);
@@ -130,7 +141,18 @@ class UserController extends Controller
         return redirect('admin/user/danhsach')->with('thongbao','Tạo tài khoản thành công !');
     }
     //chi tiet nguoi dung
-    public function getChitiet(){
-        return view('admin.pages.nguoidung.chitiet');
+    public function getChitiet($id){
+        $user = User::find($id);
+        return view('admin.pages.nguoidung.chitiet',compact('user'));
+    }
+    //sua
+    public function getSua($id)
+    {
+        $user = User::find($id);
+        return view('admin.pages.nguoidung.sua',compact('user'));
+    }
+    public function postSua(Request $request,$id)
+    {
+        
     }
 }

@@ -48,6 +48,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('them','UserController@getThem')->name('admin.user.them');
         Route::post('them','UserController@postThem')->name('admin.user.them');
 
-        Route::get('detail','UserController@getChitiet')->name('admin.user.detail');
+        Route::get('detail/{id}','UserController@getChitiet')->name('admin.user.detail');
+
+        Route::get('sua/{$id}','UserController@getSua')->name('admin.user.sua');
+        Route::post('sua/{$id}','UserController@postSua')->name('admin.user.sua');
     });
 });

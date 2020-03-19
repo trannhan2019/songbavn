@@ -31,17 +31,6 @@
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
-                
-                @if (count($errors)>0)
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <h5 class="alert-heading">Lỗi!</h5>
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <hr>
-                        @foreach ($errors->all() as $err)
-                            - {{ $err }}<br>
-                        @endforeach
-                    </div>
-                @endif
                 {{--  Ket thuc phan thong bao  --}}
             </div>
             <div class="table-responsive-sm">
@@ -81,7 +70,24 @@
                 { data: 'detail', name: 'detail' },
                 { data: 'edit', name: 'edit' },
                 { data: 'delete', name: 'delete' }
-            ]
+            ],
+            "language": {
+                "sProcessing":   "Đang xử lý...",
+                "sLengthMenu":   "Xem _MENU_ mục",
+                "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+                "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix":  "",
+                "sSearch":       "Tìm:",
+                "sUrl":          "",
+                "oPaginate": {
+                    "sFirst":    "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext":     "Tiếp",
+                    "sLast":     "Cuối"
+                }
+            }
         });
         
     });
