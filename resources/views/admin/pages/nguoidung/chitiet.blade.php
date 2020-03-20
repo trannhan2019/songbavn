@@ -46,7 +46,15 @@
                                         <p class="card-text mb-1">Email: <span>{{ $user->email }}</span></p>
                                         <p class="card-text mb-1">Điện thoại: <span>{{ $user->phone }}</span></p>
                                         <p class="card-text mb-1">Địa chỉ: <span>{{ $user->address }}</span></p>
-                                        <p class="card-text mb-1">Ngày khởi tạo: <span>{{ $user->created_at->format('d/m/Y H:i') }}</span></p>
+                                        <p class="card-text mb-1">Ngày khởi tạo: 
+                                            <span>
+                                                @if ($user->created_at)
+                                                {{ $user->created_at->format('d/m/Y H:i') }}
+                                                @else
+                                                    {{ '' }}
+                                                @endif
+                                            </span>
+                                        </p>
                                         <p class="card-text mb-1">Thông tin khác: <span>{{ $user->info }}</span></p>
                                     </div>
                                     <div class="col-5 text-center">

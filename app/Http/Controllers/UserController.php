@@ -30,7 +30,7 @@ class UserController extends Controller
         })
         ->addColumn('edit', function ($user) {
             return
-            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
+            '<a href="' . route('admin.user.sua', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
             <i class="far fa-edit"></i> Sửa
             </a>';
         })
@@ -153,6 +153,75 @@ class UserController extends Controller
     }
     public function postSua(Request $request,$id)
     {
-        
+        $this->validate($request,
+        [
+            'fullname'=> 'required|min:3|max:255'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'fullname'=>'Họ và tên'
+        ]);
+        $user = User::find($id);
+        $user->fullname = $request->fullname;
+        if ($request->changePassword == "on") {
+            $this->validate($request,
+            [
+                'password'=>'required|min:6|max:255',
+                'password_confirmation'=>'required|same:password|min:6|max:255'
+            ],
+            [
+                'required'=>'Bạn chưa nhập :attribute',
+                'min'=>':attribute phải có ít nhất :min ký tự',
+                'max'=>':attribute tối đa :max ký tự',
+                'same'=>':attribute chưa khớp'
+            ],
+            [
+                'password'=>'Mật khẩu',
+                'password_confirmation'=>'Mật khẩu nhập lại'
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+        if($request->hasFile('image')){
+            $this->validate($request,
+            [
+                'image'=>'image'
+            ],
+            [
+                'image'=>':attribute không đúng định dạng'
+            ],
+            [
+                'image'=>'Ảnh đại diện'
+                
+            ]);
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('admin_asset/images/user/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('admin_asset/images/user/',$hinh);
+            unlink('admin_asset/images/user/'.$user->image);
+            $user->image = $hinh;
+            
+        }
+        $user->role = $request->role;
+        $user->active = $request->active;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->info = $request->info;
+        if ($request->created_at) {
+            $dt = str_replace('/','-',$request->created_at);
+            $ThoigianTao = strtotime($dt);
+            $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
+        } else {
+            $user->created_at = null;
+        }
+        $user->save();
+        return redirect('admin/user/danhsach')->with('thongbao','Sửa tài khoản thành công !');
     }
 }
