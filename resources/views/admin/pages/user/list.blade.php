@@ -24,7 +24,10 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-        <a href="{{ route('admin.user.them') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
+        {{--  Phan modal Xóa thong tin  --}}
+        
+        {{--  Them moi  --}}
+        <a href="{{ route('admin.user.add') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
@@ -51,45 +54,47 @@
             </div>
         </div>
         {{--  Ket thuc Phan noi dung  --}}
+       
     </div>
+    
 @endsection
 
 @section('script')
-<script>
-    $(function() {
-        $('#table-users').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('admin.user.datatable') }}',
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                { data: 'fullname', name: 'fullname' },
-                { data: 'username', name: 'username' },
-                { data: 'role', name: 'role' },
-                { data: 'active', name: 'active' },
-                { data: 'detail', name: 'detail' },
-                { data: 'edit', name: 'edit' },
-                { data: 'delete', name: 'delete' }
-            ],
-            "language": {
-                "sProcessing":   "Đang xử lý...",
-                "sLengthMenu":   "Xem _MENU_ mục",
-                "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-                "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix":  "",
-                "sSearch":       "Tìm:",
-                "sUrl":          "",
-                "oPaginate": {
-                    "sFirst":    "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext":     "Tiếp",
-                    "sLast":     "Cuối"
+    <script type="text/javascript">
+        $(function() {
+            $('#table-users').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('admin.user.datatable') }}',
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    { data: 'fullname', name: 'fullname' },
+                    { data: 'username', name: 'username' },
+                    { data: 'role', name: 'role' },
+                    { data: 'active', name: 'active' },
+                    { data: 'detail', name: 'detail', orderable: false, searchable: false },
+                    { data: 'edit', name: 'edit', orderable: false, searchable: false },
+                    { data: 'delete', name: 'delete', orderable: false, searchable: false }
+                ],
+                "language": {
+                    "sProcessing":   "Đang xử lý...",
+                    "sLengthMenu":   "Xem _MENU_ mục",
+                    "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+                    "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                    "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+                    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Tìm:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Đầu",
+                        "sPrevious": "Trước",
+                        "sNext":     "Tiếp",
+                        "sLast":     "Cuối"
+                    }
                 }
-            }
+            });
+            
         });
-        
-    });
-</script>
+    </script>
 @endsection

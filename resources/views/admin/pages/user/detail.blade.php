@@ -14,7 +14,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.user.danhsach') }}">Người dùng</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.user.list') }}">Người dùng</a></li>
                             <li class="breadcrumb-item active">Chi tiết</li>
                         </ol>
                     </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                <a href="{{ route('admin.user.danhsach') }}" class="btn btn-primary">
+                                <a href="{{ route('admin.user.list') }}" class="btn btn-primary">
                                     <i class="fas fa-long-arrow-alt-left"></i> Quay lại
                                 </a>
                                 </div>

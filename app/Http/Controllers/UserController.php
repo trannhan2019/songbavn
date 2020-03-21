@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function getDanhsach(){
-        return view('admin.pages.nguoidung.danhsach');
+    public function getList(){
+        return view('admin.pages.user.list');
     }
     // lay du lieu do ra datatable
     public function getDatatable(){
@@ -30,13 +30,13 @@ class UserController extends Controller
         })
         ->addColumn('edit', function ($user) {
             return
-            '<a href="' . route('admin.user.sua', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
+            '<a href="' . route('admin.user.edit', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
             <i class="far fa-edit"></i> Sửa
             </a>';
         })
         ->addColumn('delete', function ($user) {
             return
-            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-danger btn-sm btn-delete">
+            '<a href="' . route('admin.user.delete', $user->id) .'" class="btn btn-danger btn-sm btn-detete" >
             <i class="far fa-trash-alt"></i> Xóa
             </a>';
         })
@@ -66,11 +66,10 @@ class UserController extends Controller
         ->make(true);
     }
     //Thêm
-    public function getThem(){
-        return view('admin.pages.nguoidung.them');
+    public function getAdd(){
+        return view('admin.pages.user.add');
     }
-    public function postThem(Request $request){
-
+    public function postAdd(Request $request){
         $this->validate($request,
         [
             'fullname'=> 'required|min:3|max:255',
@@ -110,15 +109,11 @@ class UserController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
-            $hinh = $name;
+            $hinh = Str::random(4)."_".$name;
             while(file_exists('admin_asset/images/user/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            
-            // if(Storage::exists(public_path('admin_asset/images/user/'.$hinh))){
-            //     $hinh = Str::random(4)."_".$name;
-            // }
             $file->move('admin_asset/images/user/',$hinh);
             $user->image = $hinh;
         } else {
@@ -130,29 +125,31 @@ class UserController extends Controller
         $user->info = $request->info;
         // $user->timestamps = false;
         if ($request->created_at) {
-            $r = str_replace('/','-',$request->created_at);
-            $ThoigianTao = strtotime($r);
-            $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
+            // $r = str_replace('/','-',$request->created_at);
+            // $ThoigianTao = strtotime($r);
+            // $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
+            $user->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $user->created_at = null;
         }
         
         $user->save();
-        return redirect('admin/user/danhsach')->with('thongbao','Tạo tài khoản thành công !');
+        return redirect('admin/user/list')->with('thongbao','Tạo tài khoản thành công !');
     }
     //chi tiet nguoi dung
-    public function getChitiet($id){
+    public function getDetail($id){
         $user = User::find($id);
-        return view('admin.pages.nguoidung.chitiet',compact('user'));
+        return view('admin.pages.user.detail',compact('user'));
     }
     //sua
-    public function getSua($id)
+    public function getEdit($id)
     {
         $user = User::find($id);
-        return view('admin.pages.nguoidung.sua',compact('user'));
+        return view('admin.pages.user.edit',compact('user'));
     }
-    public function postSua(Request $request,$id)
+    public function postEdit(Request $request,$id)
     {
+        // dd($request->all());
         $this->validate($request,
         [
             'fullname'=> 'required|min:3|max:255'
@@ -205,7 +202,10 @@ class UserController extends Controller
                 $hinh = Str::random(4)."_".$name;
             }
             $file->move('admin_asset/images/user/',$hinh);
-            unlink('admin_asset/images/user/'.$user->image);
+            if($user->image){
+                unlink('admin_asset/images/user/'.$user->image);
+            }
+            
             $user->image = $hinh;
             
         }
@@ -215,13 +215,38 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->info = $request->info;
         if ($request->created_at) {
-            $dt = str_replace('/','-',$request->created_at);
-            $ThoigianTao = strtotime($dt);
-            $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
-        } else {
-            $user->created_at = null;
+            $user->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         }
         $user->save();
-        return redirect('admin/user/danhsach')->with('thongbao','Sửa tài khoản thành công !');
+        return redirect('admin/user/list')->with('thongbao','Sửa tài khoản thành công !');
+    }
+    //xoa
+    public function getDelete( $id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        
+        return redirect()->route('admin.user.list')->with('thongbao','Xóa người dùng thành công !');
+    }
+    //TRASH
+    public function getTrash(){
+        $users = User::orderBy('id','desc')->onlyTrashed()->get();
+        return view('admin.pages.user.trash',compact('users'));
+    }
+    
+    public function getRestore($id)
+    {
+        $user = User::withTrashed()->find($id);
+        $user->restore();
+        return redirect()->route('admin.user.trash')->with('thongbao','Khôi phục người dùng thành công !');
+    }
+    public function postForcedelete($id)
+    {       
+        $user = User::withTrashed()->find($id);
+        $user->forceDelete();
+        if($user->image){
+            unlink('admin_asset/images/user/'.$user->image);
+        }
+        return redirect()->route('admin.user.trash')->with('thongbao','Xóa vĩnh viễn người dùng thành công !');
     }
 }

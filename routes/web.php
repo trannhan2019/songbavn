@@ -33,24 +33,34 @@ Route::post('/testdt','TestController@testdt');
 Route::group(['prefix' => 'admin'], function () {
     //Menu
     Route::group(['prefix' => 'menu'], function () {
-        Route::get('danhsach', 'MenuController@getDanhsach')->name('admin.menu.danhsach');
-        Route::post('them','MenuController@postThem')->name('admin.menu.them');
-        Route::post('sua/{id}','MenuController@postSua')->name('admin.menu.sua');
-        Route::post('xoa/{id}','MenuController@postXoa')->name('admin.menu.xoa');
+        Route::get('list', 'MenuController@getList')->name('admin.menu.list');
+        Route::post('add','MenuController@postAdd')->name('admin.menu.add');
+        Route::post('edit/{id}','MenuController@postEdit')->name('admin.menu.edit');
+        Route::post('delete/{id}','MenuController@postDelete')->name('admin.menu.delete');
     });
 
     //Users
     Route::group(['prefix' => 'user'], function () {
-        Route::get('danhsach','UserController@getDanhsach')->name('admin.user.danhsach');
+        Route::get('list','UserController@getList')->name('admin.user.list');
         //Ajax lay du lieu datatable
         Route::get('datatable','UserController@getDatatable')->name('admin.user.datatable');
 
-        Route::get('them','UserController@getThem')->name('admin.user.them');
-        Route::post('them','UserController@postThem')->name('admin.user.them');
+        Route::get('add','UserController@getAdd')->name('admin.user.add');
+        Route::post('add','UserController@postAdd')->name('admin.user.add');
 
-        Route::get('detail/{id}','UserController@getChitiet')->name('admin.user.detail');
+        Route::get('detail/{id}','UserController@getDetail')->name('admin.user.detail');
 
-        Route::get('sua/{id}','UserController@getSua')->name('admin.user.sua');
-        Route::post('sua/{id}','UserController@postSua')->name('admin.user.sua');
+        Route::get('edit/{id}','UserController@getEdit')->name('admin.user.edit');
+        Route::post('edit/{id}','UserController@postEdit')->name('admin.user.edit');
+        //Xoa
+        Route::get('delete/{id}','UserController@getDelete')->name('admin.user.delete');
+        //thùng rác
+        Route::get('trash','UserController@getTrash')->name('admin.user.trash');
+        //Ajax lay du lieu datatable
+        //Route::get('trashlist','UserController@getTrashlist')->name('admin.user.trashlist');
+        //Restore
+        Route::get('restore/{id}','UserController@getRestore')->name('admin.user.restore');
+        Route::post('forcedelete/{id}','UserController@postForcedelete')->name('admin.user.forcedelete');
     });
+
 });

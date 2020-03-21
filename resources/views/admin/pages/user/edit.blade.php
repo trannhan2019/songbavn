@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.user.danhsach') }}">Người dùng</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.user.list') }}">Người dùng</a></li>
                             <li class="breadcrumb-item active">Sửa thông tin</li>
                         </ol>
                     </div>
@@ -31,7 +31,7 @@
                             <div class="card-header">
                               <h3 class="card-title">Sửa thông tin người dùng</h3>
                             </div>
-                            <form action="{{ route('admin.user.sua',$user->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.user.edit',$user->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -131,17 +131,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker-user" data-toggle="datetimepicker" data-target="#datetimepicker-user" name="created_at" value="{{ $user->created_at->format('d/m/Y H:i') }}" />
-                                            <div class="input-group-append">
+                                        <div class="input-group date" id="datetimepickerEditu" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditu" data-toggle="datetimepicker" name="created_at" value="{{ $user->created_at ? $user->created_at->format('d/m/Y H:h'):''}}"/>
+                                            <div class="input-group-append" data-target="#datetimepickerEditu" >
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                    <button type="submit" class="btn btn-primary">Sửa</button>
                                     <button type="reset" class="btn btn-default float-right">Reset</button>
                                 </div>
                             </form>
@@ -159,14 +159,15 @@
             $('.custom-file-label').html(fileName);
         });
     </script>
+
     <script type="text/javascript">
-		$(function () {
-			$('#datetimepicker-user').datetimepicker({
-                format: 'YYYY-MM-DD HH:MM:SS',
-                locale: 'vi',
+        $(function () {
+            $('#datetimepickerEditu').datetimepicker({
+                locale: 'vi'
 			});
         });
     </script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $("#changePassword").change(function(){

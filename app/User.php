@@ -40,7 +40,11 @@ class User extends Authenticatable
 
     protected $table = 'users';
     public $timestamps = true;
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'created_at', 
+        'update_at', 
+        'delete_at', 
+    ];
     
     //Quan he voi Content
     public function Contents(){

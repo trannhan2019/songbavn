@@ -125,7 +125,7 @@
                                             <div class="button-group d-flex">
                                                 <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $menu->id }}" data-name="{{ $menu->name }}" data-position="{{ $menu->position }}">Sửa</button>
 
-                                                <button type="submit" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $menu->id }}">Xóa</button>
+                                                <button type="button" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $menu->id }}">Xóa</button>
  
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                                     <div class="button-group d-flex">
                                                         <button type="button" class="btn btn-sm btn-primary mr-1 edit-menu" data-toggle="modal" data-target="#editMenuModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}" data-position="{{ $child->position }}">Sửa</button>
             
-                                                        <button type="submit" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $child->id }}">Xóa</button>
+                                                        <button type="button" class="btn btn-sm btn-danger deleted-menu" data-toggle="modal" data-target="#deletedMenuModal" data-id="{{ $child->id }}">Xóa</button>
                                                     </div>
                                                 </div>
                                             </li>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="card-body">
                                 
-                                <form action="{{ route('admin.menu.them') }}" method="POST">
+                                <form action="{{ route('admin.menu.add') }}" method="POST">
                                     @csrf          
                                     <div class="form-group">
                                         <select class="form-control" name="parent">
@@ -232,7 +232,7 @@
             var id = $(this).data('id');
             var name = $(this).data('name');
             var position = $(this).data('position');
-            var url = "admin/menu/sua/" + id;
+            var url = "admin/menu/edit/" + id;
 
             $('#editMenuModal form').attr('action', url);
             $('#editMenuModal form input[name="names"]').val(name);
@@ -242,8 +242,7 @@
     <script type="text/javascript">
         $('.deleted-menu').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/menu/xoa/" + id;
-
+            var url = "admin/menu/detete/" + id;
             $('#deletedMenuModal form').attr('action', url);
         });
     </script>

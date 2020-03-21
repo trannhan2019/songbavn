@@ -21,7 +21,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           {{--  Quản lý danh mục - Menu  --}}
           <li class="nav-item">
-            <a href="{{ route('admin.menu.danhsach') }}" class="nav-link">
+            <a href="{{ route('admin.menu.list') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lý danh mục
@@ -31,7 +31,7 @@
           </li>
           {{--  Quản lý người dùng - User  --}}
           <li class="nav-item">
-            <a href="{{ route('admin.user.danhsach') }}" class="nav-link">
+            <a href="{{ route('admin.user.list') }}" class="nav-link">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
                 Quản lý người dùng
@@ -40,7 +40,38 @@
             </a>
           </li>
 
-          <li class="nav-header">EXAMPLES</li>
+          {{--  thùng rác--------------  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="far fa-trash-alt nav-icon"></i>
+              <p>
+                THÙNG RÁC
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="{{ route('admin.user.trash') }}" class="nav-link">
+                  <i class="fas fa-user-slash nav-icon"></i>
+                  <p>Người dùng đã xóa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/mailbox/compose.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compose</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Read</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-header"><i class="far fa-trash-alt"></i> THÙNG RÁC</li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>

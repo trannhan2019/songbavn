@@ -9,12 +9,12 @@ use App\Menu;
 
 class MenuController extends Controller
 {
-    public function getDanhsach(){
+    public function getList(){
         $menus = Menu::whereNull('parent')->with('ChildMenus')->get();
-        return view('admin.pages.danhmuc.danhsach',compact('menus'));
+        return view('admin.pages.menu.list',compact('menus'));
     }
 
-    public function postThem(Request $request){
+    public function postAdd(Request $request){
         $this->validate($request,[
             'name'=> 'required|unique:menus,name|min:3|max:32',
             'position'=>'required|integer'
@@ -37,10 +37,10 @@ class MenuController extends Controller
         $menu->position = $request->position;
         $menu->parent = $request->parent;
         $menu->save();
-        return redirect()->route('admin.menu.danhsach')->with('thongbao','Tạo danh mục thành công !');
+        return redirect()->route('admin.menu.list')->with('thongbao','Tạo danh mục thành công !');
     }
 
-    public function postSua(Request $request, $id){
+    public function postEdit(Request $request, $id){
         $menu = Menu::find($id);
         $this->validate($request,[
             'names'=> 'required|min:3|max:32',
@@ -61,10 +61,10 @@ class MenuController extends Controller
         $menu->status = $request->status;
         $menu->position = $request->positions;
         $menu->save();
-        return redirect('admin/menu/danhsach')->with('thongbao','Sửa danh mục thành công !');
+        return redirect('admin/menu/list')->with('thongbao','Sửa danh mục thành công !');
     }
 
-    public function postXoa($id){
+    public function postDelete($id){
         $menu = Menu::find($id);
 
         if ($menu->ChildMenus) {
@@ -89,6 +89,6 @@ class MenuController extends Controller
 
         $menu->delete();
 
-        return redirect()->route('admin.menu.danhsach')->with('thongbao','Xóa danh mục thành công !');
+        return redirect()->route('admin.menu.list')->with('thongbao','Xóa danh mục thành công !');
     }
 }
