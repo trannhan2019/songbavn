@@ -39,10 +39,38 @@
               </p>
             </a>
           </li>
-
+          {{--  QUẢN LÝ NỘI DUNG  --}}
+          <li class="nav-header pt-2"> <h6 class="mb-0">QUẢN LÝ NỘI DUNG</h6></li>
+          {{--  {{dd($menus->where('slug','lien-he')->ChildMenus->get)}}  --}}
+          @foreach ($menus->where('status',1)->sortBy('position') as $menu)
+          <li class="nav-item {{ count($menu->ChildMenus)>0 ? 'has-treeview': '' }}">
+            <a href="{{ $menu->slug =='lien-he' ? 'admin/content/lienhe':'#' }}" class="nav-link">
+              <i class=" nav-icon fas fa-bars"></i>
+              <p>
+                {{ $menu->name }}
+                @if (count($menu->ChildMenus)>0)
+                  <i class="fas fa-angle-left right"></i>
+                @endif
+              </p>
+            </a>
+            @if ($menu->ChildMenus)
+            <ul class="nav nav-treeview" style="display: none;">
+              @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $child)
+              <li class="nav-item">
+                <a href="{{ $child->slug=='y-kien-tra-loi' ? 'admin/content/y-kien-tra-loi': "admin/content/{{ $menu->slug }}" }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $child->name }}</p>
+                </a>
+              </li>
+              @endforeach
+            </ul>
+            @endif
+          </li>
+          @endforeach
+          <hr class="border-light bg-white my-2">
           {{--  thùng rác--------------  --}}
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="far fa-trash-alt nav-icon"></i>
               <p>
                 THÙNG RÁC
