@@ -64,6 +64,6 @@ Route::group(['prefix' => 'admin'], function () {
     });
     //Content
     Route::group(['prefix' => 'content'], function () {
-
+        Route::get('{id}/gioi-thieu.html','ContentController@getAdminGioithieu');
     });
 });
