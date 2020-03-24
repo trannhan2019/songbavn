@@ -62,5 +62,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('restore/{id}','UserController@getRestore')->name('admin.user.restore');
         Route::post('forcedelete/{id}','UserController@postForcedelete')->name('admin.user.forcedelete');
     });
+    //Content
+    Route::group(['prefix' => 'content'], function () {
 
+    });
 });

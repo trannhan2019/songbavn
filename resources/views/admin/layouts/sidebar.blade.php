@@ -40,11 +40,11 @@
             </a>
           </li>
           {{--  QUẢN LÝ NỘI DUNG  --}}
-          <li class="nav-header pt-2"> <h6 class="mb-0">QUẢN LÝ NỘI DUNG</h6></li>
+          <li class="nav-header pt-2"> <h6 class="mb-0">QUẢN TRỊ NỘI DUNG</h6></li>
           {{--  {{dd($menus->where('slug','lien-he')->ChildMenus->get)}}  --}}
           @foreach ($menus->where('status',1)->sortBy('position') as $menu)
           <li class="nav-item {{ count($menu->ChildMenus)>0 ? 'has-treeview': '' }}">
-            <a href="{{ $menu->slug =='lien-he' ? 'admin/content/lienhe':'#' }}" class="nav-link">
+            <a href="{{ $menu->slug =='lien-he' ? 'admin/content/lienhe/'.$menu->id:'#' }}" class="nav-link">
               <i class=" nav-icon fas fa-bars"></i>
               <p>
                 {{ $menu->name }}
@@ -57,7 +57,7 @@
             <ul class="nav nav-treeview" style="display: none;">
               @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $child)
               <li class="nav-item">
-                <a href="{{ $child->slug=='y-kien-tra-loi' ? 'admin/content/y-kien-tra-loi': "admin/content/{{ $menu->slug }}" }}" class="nav-link">
+                <a href="{{ $child->slug=='y-kien-tra-loi' ? 'admin/content/y-kien-tra-loi/'.$child->id: 'admin/content/'.$menu->slug.'/'.$child->id}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $child->name }}</p>
                 </a>
