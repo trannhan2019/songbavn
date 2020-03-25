@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Datatables;
 // use
 use App\User;
@@ -248,5 +249,43 @@ class UserController extends Controller
             unlink('admin_asset/images/user/'.$user->image);
         }
         return redirect()->route('admin.user.trash')->with('thongbao','Xóa vĩnh viễn người dùng thành công !');
+    }
+    //Đăng nhập
+    public function getDangnhap()
+    {
+        return view('shared.pages.dangnhap');
+    }
+    public function postDangnhap(Request $request)
+    {
+        $this->validate($request,
+        [
+            'username'=> 'required|min:3|max:32',
+            'password'=>'required|min:6|max:255',
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'username'=>'Tên đăng nhập',
+            'password'=>'Mật khẩu'
+            
+        ]);
+        $username = $request->username;
+        $password = $request->password;
+        if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1]))
+        {
+            return redirect()->route('trangchu');
+        }
+        else
+        {
+            return redirect('dangnhap')->with('loi','Đăng nhập không thành công');
+        }
+    }
+    public function getDangxuat()
+    { 
+        Auth::logout();
+        return redirect()->route('trangchu');
     }
 }

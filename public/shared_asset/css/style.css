@@ -38,18 +38,6 @@ a:hover{
 	position: relative;
 	display: inline-block;
 }
-/*sub-menu*/
-/*.navbar .dropdown-content{
-	display: none;
-	position: absolute;
-	z-index: 1;
-	list-style: none;
-}
-
-.dropdown:hover .dropdown-content{
-	display: block;
-
-}*/
 
 /*Carousel*/
 .carousel-inner img{
@@ -64,13 +52,6 @@ a:hover{
 .content a{
 	color: #212529;
 }
-/*.content .set-height{
-	height: 35rem;
-}*/
-/*.content_scroll{
-	overflow: auto;
-	/*height: 35rem;
-	}*/
 
 .headline{
 	border-bottom: 3px solid #00004d;
@@ -132,40 +113,39 @@ a.on_top {
 
 
 
-	/*CAROUSEL*/
-	.carousel-caption h1{
-		font-size: 20px;
-	}
+/*CAROUSEL*/
+.carousel-caption h1{
+	font-size: 20px;
+}
 
 
-	.font_title{
-		font-size: 15px;
-		line-height: 1.2rem;
-	}
+.font_title{
+	font-size: 15px;
+	line-height: 1.2rem;
+}
 
-	.crop_text {
-		-webkit-line-clamp: 2;
-		overflow : hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-	}
-	.soffice img{
-		width: 40% !important;
-	}
+.crop_text {
+	-webkit-line-clamp: 2;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+.soffice img{
+	width: 40% !important;
+}
 
-	/*---trang menu QHCD---*/
-	.QHCD .head h4{
-		font-size: 1.2rem;
-	}
+/*---trang menu QHCD---*/
+.QHCD .head h4{
+	font-size: 1.2rem;
+}
 
-	.QHCD .scroll{
-		height: 10rem;
-		overflow:scroll;
-	}
-	.QHCD_breadcrumb li{
-	font-size: 1rem;
-	}
+.QHCD .scroll{
+	height: 10rem;
+	overflow:scroll;
+}
+.QHCD_breadcrumb li{
+font-size: 1rem;
 }
 
 /*-------Trang menu QHCD-----*/
@@ -198,38 +178,11 @@ a.on_top {
 @media (max-width: 992px){
 	/*HEADER*/
 
-	.header_logo_img img{
-		width: 100px;
-	}
-
-	.header_logo_title h2{
-		font-size: 20px;
-	}
-	.header_logo_title h5{
-		font-size: 15px;
-	}
-	.header_logo_title p{
-		font-size: 10px;
-	}
-
 
 }
 @media (max-width: 768px){	
 	/*HEADER*/
 
-	.header_logo_img img{
-		width: 100px;
-	}
-
-	.header_logo_title h2{
-		font-size: 20px;
-	}
-	.header_logo_title h5{
-		font-size: 15px;
-	}
-	.header_logo_title p{
-		font-size: 10px;
-	}
 	
 	.soffice img{
 		width: 20% !important;
@@ -237,21 +190,8 @@ a.on_top {
 }
 @media (max-width: 576px){
 	/*HEADER	*/
-	.header_logo_img img{
-		width: 70px;
-	}
 
-	.header_logo_title h2{
-		font-size: 14px;
-	}
-	.header_logo_title h5{
-		font-size: 9px;
-		margin-bottom: 0;
-	}
-	.header_logo_title p{
-		font-size: 9px;
-	}
 	.navbar .LOGO{
 	width: 60px;
+	}
 }
-

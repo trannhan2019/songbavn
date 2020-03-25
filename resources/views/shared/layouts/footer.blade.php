@@ -1,5 +1,5 @@
 {{-- <!-- FOOTER --> --}}
-	<footer class="mt-3">
+	<footer>
 		<div class="container-fluid">
 			<div class="row p-3">
 				<div class="col-md-12 text-center">

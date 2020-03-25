@@ -3,23 +3,30 @@
         <div class="container text-right align-middle p-1">
             <ul class="list-inline mb-0">
                 <li class="list-inline-item">
-                    <a href="#" title="Trang chủ">
+                    <a href="{{ route('trangchu') }}" title="Trang chủ">
                         <i class="fas fa-home"></i>
                     </a>
                 </li>
                 <li class="list-inline-item header_login_divide">|</li>
-                <li class="list-inline-item">
-                    <a href="#" title="Đăng nhập">
+				@if (Auth::check())
+				<li class="list-inline-item">
+					{{ Auth::user()->fullname }}
+				</li>
+				@else
+				<li class="list-inline-item">
+                    <a href="{{ route('dangnhap') }}" title="Đăng nhập">
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </li>
-                <li class="list-inline-item header_login_divide">|</li>
+				@endif
+				
+                {{--  <li class="list-inline-item header_login_divide">|</li>
                 <li class="list-inline-item">
                     <a href="#" title="Đăng xuất">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
-                <li class="list-inline-item header_login_divide">|</li>
+                <li class="list-inline-item header_login_divide">|</li>  --}}
             </ul>
         </div>
     </div>
@@ -31,7 +38,7 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top">
 	<div class="container-fluid">
 		<a href="Trangchu.html" class="navbar-brand p-0" title="Home">
-			<img src="admin_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">
+			<img src="shared_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>

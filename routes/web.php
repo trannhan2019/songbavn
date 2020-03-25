@@ -24,7 +24,11 @@ Auth::routes([
     'reset' => false
   ]);
 
-Route::get('/', 'PagesController@getTrangchu');
+Route::get('/', 'PagesController@getTrangchu')->name('trangchu');
+
+Route::get('dangnhap', 'UserController@getDangnhap')->name('dangnhap');
+Route::post('dangnhap', 'UserController@postDangnhap')->name('dangnhap');
+Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 // Nhom Admin
 Route::group(['prefix' => 'admin'], function () {
