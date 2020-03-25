@@ -16,18 +16,15 @@
 
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-// Auth::routes([
-//     'register' => false,
-//     'verify' => false,
-//     'reset' => false
-//   ]);
+Auth::routes([
+    'register' => false,
+    'verify' => false,
+    'reset' => false
+  ]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/test','TestController@index');
-Route::post('/testdt','TestController@testdt');
+Route::get('/', 'PagesController@getTrangchu');
 
 // Nhom Admin
 Route::group(['prefix' => 'admin'], function () {
