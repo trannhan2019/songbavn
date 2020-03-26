@@ -4,18 +4,11 @@ a:hover{
 }
 
 /*Header*/
-.header_login{
-	color: #00001a;
-}
-.header_login i{
-	color: #00001a;
-	font-size: 15px;
+.header{
+	background-color: #000066c9;
+	border-bottom: 2px solid #D68528;
 }
 
-/*Header-Navigation*/
-.navbar {
-	background: rgba(158, 183, 245, 0.2) !important;
-}
 .navbar .LOGO{
 	width: 85px;
 }

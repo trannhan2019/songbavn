@@ -1,73 +1,55 @@
-<div class="header">
+<div class="header p-2">
     <div class="header_login">
-        <div class="container text-right align-middle">
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-					<small>
-						<a href="{{ route('trangchu') }}" title="Trang chủ">
-							<i class="fas fa-home"></i>
-						</a>
-					</small>
-					
-                </li>
-                <li class="list-inline-item header_login_divide">|</li>
-				@if (Auth::check())
-				<li class="list-inline-item dropdown">
-
-					<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+        <div class="container">
+			<div class="row text-white">
+				<div class="col-md-6 d-none d-md-block text-left">
+					{{ $dt }}
+				</div>
+				<div class="col-md-6 text-right">
+					@if (Auth::check())
+					<button type="button" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown">
 						{{ Auth::user()->fullname }}
 					</button>
+					<div class="dropdown-menu">
+						@if (Auth::user()->role ==1)
+						<a class="dropdown-item" href="{{ route('admin.user.list') }}">Quản trị hệ thống</a>
+						@endif
+						@if (Auth::user()->role ==2)
+						<a class="dropdown-item" href="#">Cập nhật tình hình sản xuất</a>
+						@endif
+						@if (Auth::user()->role ==3)
+						<a class="dropdown-item" href="#">Ý kiến - Góp ý</a>
+						@endif
+						<a class="dropdown-item" href="#">Thay đổi thông tin</a>
+						<a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a>
+					</div>
 
-					@if (Auth::user()->role ==1)
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="{{ route('admin.user.list') }}">Quản trị hệ thống</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a>
-						</div>
-					@endif
-					@if (Auth::user()->role ==2)
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Cập nhật tình hình sản xuất</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a>
-						</div>
-					@endif
-					@if (Auth::user()->role ==3)
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Ý kiến - Góp ý</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a>
-						</div>
-					@endif
-				</li>
-				
-				@else
-				<li class="list-inline-item">
-                    <a href="{{ route('dangnhap') }}" title="Đăng nhập" class="btn btn-default btn-sm">
-						<i class="fas fa-sign-in-alt"></i>
-						Đăng nhập
+					@else
+					<a href="{{ route('dangnhap') }}" title="Đăng nhập" class="btn btn-outline-light btn-sm">
+						<i class="fas fa-user"></i> 
+						Đăng nhập/ Đăng ký
                     </a>
-                </li>
-				@endif
-            </ul>
+					@endif
+				</div>
+			</div>
         </div>
     </div>
 </div>
 {{-- <!-- header --> --}}
 {{-- <!-- Navigation --> --}}
 
-<nav class="navbar navbar-expand-xl")">
-	<div class="container-fluid">
+<nav class="navbar navbar-expand-xl navbar-dark">
+	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
 			<img src="shared_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
+		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
 			<ul class="navbar-nav m-auto">
 				{{--  <!-- Dropdown -->  --}}
-				<li class="nav-item dropdown ml-2">
+				<li class="nav-item dropdown mx-3">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 						Giới thiệu
 					</a>
@@ -84,7 +66,7 @@
 						<!-- <a class="dropdown-item" href="#">Điều lệ Công ty</a> -->
 					</div>
 				</li>
-				<li class="nav-item dropdown ml-2">
+				<li class="nav-item dropdown mx-3">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 						Tin tức
 					</a>
@@ -98,7 +80,7 @@
 						<!-- <a class="dropdown-item px-3" href="#">Kỷ niệm SBA</a> -->
 					</div>
 				</li>
-				<li class="nav-item dropdown ml-2">
+				<li class="nav-item dropdown mx-3">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 						Quan hệ cổ đông
 					</a>
@@ -130,7 +112,7 @@
 						<a class="dropdown-item px-3" href="#">Vận hành lũ</a>
 					</div>
 				</li>  --}}
-				<li class="nav-item dropdown ml-2">
+				<li class="nav-item dropdown mx-3">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 						Tuyển dụng
 					</a>
@@ -141,10 +123,10 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link mx-2" href="#">Liên hệ</a>
+					<a class="nav-link mx-3" href="#">Liên hệ</a>
 				</li>
 
-				<form class="form-inline ml-2 ml-lg-3" action="#">
+				<form class="form-inline mx-3 ml-lg-3" action="#">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
 						<div class="input-group-append">
