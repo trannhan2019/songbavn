@@ -274,7 +274,8 @@ class UserController extends Controller
         ]);
         $username = $request->username;
         $password = $request->password;
-        if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1]))
+        $remember = $request->has('remember')? true:false;
+        if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1],$remember))
         {
             return redirect()->route('trangchu');
         }

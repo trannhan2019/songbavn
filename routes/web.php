@@ -31,7 +31,7 @@ Route::post('dangnhap', 'UserController@postDangnhap')->name('dangnhap');
 Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 // Nhom Admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     //Menu
     Route::group(['prefix' => 'menu'], function () {
         Route::get('list', 'MenuController@getList')->name('admin.menu.list');
