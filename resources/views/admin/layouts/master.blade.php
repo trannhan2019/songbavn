@@ -50,6 +50,9 @@
     {{--  Bootstrap input spinner  --}}
     <script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
 
+    {{-- nhung ckeditor --}}
+    <script src="{{ asset('admin_asset/plugins/ckeditor/ckeditor.js') }}"></script>
+
     {{--  Tự động đóng alert sau khoảng thời gian  --}}
     <script type="text/javascript">
         $(".alert").delay(3000).slideUp(200, function() {

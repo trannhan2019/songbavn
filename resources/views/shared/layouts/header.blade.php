@@ -2,10 +2,8 @@
     <div class="header_login">
         <div class="container">
 			<div class="row text-white">
-				<div class="col-md-6 d-none d-md-block text-left">
-					{{ $dt }}
-				</div>
-				<div class="col-md-6 text-right">
+				
+				<div class="col text-right">
 					@if (Auth::check())
 					<button type="button" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown">
 						{{ Auth::user()->fullname }}

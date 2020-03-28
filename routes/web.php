@@ -65,6 +65,11 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     });
     //Content
     Route::group(['prefix' => 'content'], function () {
+        //giới thiệu
         Route::get('{id}/gioi-thieu.html','ContentController@getAdminGioithieu');
+        Route::get('addGioithieu/{menu_id}','ContentController@getAdminAddGioithieu');
+        Route::post('addGioithieu/{menu_id}','ContentController@postAdminAddGioithieu');
+        Route::get('editGioithieu/{menu_id}/{content_id}','ContentController@getAdminEditGioithieu');
+        Route::post('editGioithieu/{menu_id}/{content_id}','ContentController@postAdminEditGioithieu');
     });
 });
