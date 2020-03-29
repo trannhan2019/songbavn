@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Tạo mới nội dung
+    Sửa nội dung
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -9,13 +9,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Tạo nội dung {{ $menu_gioithieu->name }}</h1>
+                    <h1 class="m-0 text-dark">Sửa nội dung {{ $menu_gioithieu->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
                         <li class="breadcrumb-item"><a href="#">Nội dung</a></li>
-                        <li class="breadcrumb-item active">Giới thiệu</li>
+                        <li class="breadcrumb-item"><a href="#">Giới thiệu</a></li>
+                        <li class="breadcrumb-item active">{{ $menu_gioithieu->name }}</li>
                     </ol>
                 </div>
             </div>
@@ -42,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nội dung</label>
-                            <textarea name="content" id="ckeditor_gt" cols="30" rows="20">{{ $content->content }}</textarea>  
+                            <textarea name="content" id="ckeditor_gt" cols="30" rows="50">{{ $content->content }}</textarea>  
                         </div>
                         <div class="form-group">
                             <p class="mb-0"><label>Trạng thái</label></p>

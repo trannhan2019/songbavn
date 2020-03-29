@@ -34,7 +34,7 @@
                             <i class="fas fa-plus"></i> Tạo mới
                         </a>
                     @else
-                        <a href="admin/content/editGioithieu/{{ $menu_gioithieu->id }}/{{ $content_gioithieu->id }}" class="btn btn-sm btn-outline-danger">
+                        <a href="admin/content/editGioithieu/{{ $menu_gioithieu->id }}/{{ $content_gioithieu->id }}" class="btn btn-sm btn-outline-warning">
                             <i class="fas fa-edit"></i> Sửa
                         </a>
                     @endif

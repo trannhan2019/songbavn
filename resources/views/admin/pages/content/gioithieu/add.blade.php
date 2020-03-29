@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nội dung</label>
-                            <textarea name="content" id="ckeditor_gt" cols="30" rows="20"></textarea>  
+                            <textarea name="content" id="ckeditor_gt" cols="30" rows="50"></textarea>  
                         </div>
                         <div class="form-group">
                             <p class="mb-0"><label>Trạng thái</label></p>

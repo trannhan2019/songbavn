@@ -71,5 +71,8 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::post('addGioithieu/{menu_id}','ContentController@postAdminAddGioithieu');
         Route::get('editGioithieu/{menu_id}/{content_id}','ContentController@getAdminEditGioithieu');
         Route::post('editGioithieu/{menu_id}/{content_id}','ContentController@postAdminEditGioithieu');
+        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminCocautochuc');
+        Route::get('{menu_id}/co-cau-to-chuc-phongban.html', 'ContentController@getAdminCocautochuc_phongban');
+        
     });
 });
