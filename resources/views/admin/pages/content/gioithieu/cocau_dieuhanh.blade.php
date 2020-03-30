@@ -42,15 +42,15 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
                                     </div>
                                     <div class="col-md-8 pl-4">
-                                        <h6 class="card-title mt-3 mt-md-0">Ông Đinh Châu Hiếu Thiện</h6>
+                                        <h6 class="card-title mt-3 mt-md-0 font-weight-bold">Ông Đinh Châu Hiếu Thiện</h6>
                                         <br>
-                                        <h6 class="card-title">Chủ tịch Hội đồng quản trị</h6>
+                                        <h6 class="card-title font-weight-bold">Chủ tịch Hội đồng quản trị</h6>
                                         <p class="card-text mb-1">Sinh năm: 1966</p>
                                         <p class="card-text mb-1">Quốc tịch: Việt Nam</p>
                                         <p class="card-text mb-1">Trình độ chuyên môn: ThS QTKD, KS Điện</p>
@@ -64,13 +64,14 @@
                     <hr >
                     <div class="row my-3">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
                                     </div>
                                     <div class="col-md-8 pl-4">
                                         <h6 class="card-title mt-3 mt-md-0">Ông Thái Văn Thắng</h6>
+                                        <br>
                                         <h6 class="card-title"> Phó Chủ tịch Hội đồng quản trị</h6>
                                         <p class="card-text mb-1">Sinh năm: 1966</p>
                                         <p class="card-text mb-1">Quốc tịch: Việt Nam</p>
@@ -85,13 +86,14 @@
                     <hr >
                     <div class="row my-3">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
                                     </div>
                                     <div class="col-md-8 pl-4">
                                         <h6 class="card-title mt-3 mt-md-0">Ông Phạm Phong</h6>
+                                        <br>
                                         <h6 class="card-title"> Thành viên Hội đồng quản trị - TGĐ Công ty</h6>
                                         <p class="card-text mb-1">Sinh năm: 1966</p>
                                         <p class="card-text mb-1">Quốc tịch: Việt Nam</p>

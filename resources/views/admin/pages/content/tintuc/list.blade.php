@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Người dùng đã xóa
+    {{ $menu_tintuc->name }}
 @endsection
 
 @section('content')
@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Người dùng đã xóa</h1>
+                        <h1 class="m-0 text-dark">Tin tức: <small>{{ $menu_tintuc->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Thùng rác</a></li>
-                            <li class="breadcrumb-item active">Người dùng đã xóa</li>
+                            <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
+                            <li class="breadcrumb-item active">{{ $menu_tintuc->name }}</li>
                         </ol>
                     </div>
                 </div>
@@ -24,7 +24,8 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-        <div class="modal" tabindex="-1" role="dialog" id="deletedUserModal">
+        {{--  modal xóa  --}}
+        <div class="modal" tabindex="-1" role="dialog" id="deletedTintucModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -45,49 +46,57 @@
                     </form>
                 </div>
             </div>
-        </div>  
+        </div>
+        {{--  Them moi  --}}
+        <a href="admin/content/{{ $menu_tintuc->id }}/add-tin-tuc.html" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
+                {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
-                <div class="table-responsive-sm">
-                    <table class="table table-hover table-sm" id="trash-users">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>STT</th>
-                                <th>Họ và tên</th>
-                                <th>Tên đăng nhập</th>  
-                                <th>Email</th>
-                                <th>Quyền</th>
-                                <th>Phục hồi</th>
-                                <th>Xóa vĩnh viễn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $i=1;
-                            @endphp
-                            @foreach ($users as $user)
-                            <tr>
-                                <td class="text-center">{{ $i++ }}</td>
-                                <td>{{ $user->fullname }}</td>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    {{ $user->role==0?'Không có quyền':'' }}
-                                    {{ $user->role==1?'Quyền quản trị':'' }}
-                                    {{ $user->role==2?'Quyền chỉnh sửa THSX':'' }}
-                                    {{ $user->role==3?'Quyền cổ đông':'' }}
-                                </td>
-                                <td><a href="{{ route('admin.user.restore', $user->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i> Phục hồi</a></td>
-                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $user->id }}" data-toggle="modal" data-target="#deletedUserModal"><i class="far fa-trash-alt"></i> Delete</button></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div> 
+                {{--  Ket thuc phan thong bao  --}}
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table table-hover table-sm" id="table-tintucs">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>STT</th>
+                            <th>Danh mục</th>
+                            <th>Tiêu đề</th>  
+                            <th>Trạng thái</th>
+                            <th>Lượt xem</th>
+                            <th>Nổi bật</th>
+                            <th>Người tạo</th>
+                            <th>Sửa</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $i=1;
+                        @endphp
+                        @foreach ($content_tintuc as $tintuc)
+                        <tr>
+                            <td class="text-center">{{ $i++ }}</td>
+                            <td>{{ $menu_tintuc->name }}</td>
+                            <td>
+                                <a href="#">{{ $tintuc->title }}</a>
+                            </td>
+                            <td>
+                                {{ $tintuc->status==1 ? 'Đang hoạt động':'Không hoạt động' }}
+                                {{--  {!! $tintuc->status==1 ? '<span class="text-primary">Đang hoạt động</span>':'<span class="text=secondary">Không hoạt động</span>' !!}  --}}
+                            </td>
+                            <td>{{ $tintuc->views }}</td>
+                            <td>{{ $tintuc->highlights==1 ? 'Có':'Không' }}</td>
+                            <td>{{ $tintuc->User()->fullname }}</td>
+                            <td><a href="{{ route('admin.user.restore', $user->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $user->id }}" data-toggle="modal" data-target="#deletedUserModal"><i class="far fa-trash-alt"></i></button></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
         {{--  Ket thuc Phan noi dung  --}}
        
@@ -97,8 +106,8 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#trash-users').DataTable({
+        $(function() {
+            $('#table-tintucs').DataTable({
                 
                 "language": {
                     "sProcessing":   "Đang xử lý...",
@@ -118,13 +127,7 @@
                     }
                 }
             });
-        } );
-    </script>
-    <script type="text/javascript">
-        $('.btn-detete').on('click', function() {
-            var id = $(this).data('id');
-            var url = "admin/user/forcedelete/" + id;
-            $('#deletedUserModal form').attr('action', url);
+            
         });
     </script>
 @endsection

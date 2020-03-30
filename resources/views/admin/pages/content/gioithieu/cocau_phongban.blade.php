@@ -42,7 +42,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
@@ -64,7 +64,7 @@
                     <hr >
                     <div class="row my-3">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
@@ -95,7 +95,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">
@@ -117,7 +117,7 @@
                     <hr >
                     <div class="row my-3">
                         <div class="col-md-10 offset-md-1">
-                            <div class="card border-0">
+                            <div class="card border-0 shadow-none">
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <img class="img-fluid" src="https://via.placeholder.com/200x250" alt="">

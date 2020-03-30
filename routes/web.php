@@ -67,12 +67,15 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     Route::group(['prefix' => 'content'], function () {
         //giới thiệu
         Route::get('{id}/gioi-thieu.html','ContentController@getAdminGioithieu');
-        Route::get('addGioithieu/{menu_id}','ContentController@getAdminAddGioithieu');
-        Route::post('addGioithieu/{menu_id}','ContentController@postAdminAddGioithieu');
-        Route::get('editGioithieu/{menu_id}/{content_id}','ContentController@getAdminEditGioithieu');
-        Route::post('editGioithieu/{menu_id}/{content_id}','ContentController@postAdminEditGioithieu');
+        Route::get('{menu_id}/add-gioi-thieu.html','ContentController@getAdminAddGioithieu');
+        Route::post('{menu_id}/add-gioi-thieu.html','ContentController@postAdminAddGioithieu');
+        Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');
+        Route::post('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@postAdminEditGioithieu');
         Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminCocautochuc');
         Route::get('{menu_id}/co-cau-to-chuc-phongban.html', 'ContentController@getAdminCocautochuc_phongban');
-        
+        //Tin tức
+        Route:: get('{menu_id}/tin-tuc.html','ContentController@getAdminTintuc');
+        Route:: get('{menu_id}/add-tin-tuc.html','ContentController@getAdminAddTintuc');
+        Route:: post('{menu_id}/add-tin-tuc.html','ContentController@postAdminAddTintuc');
     });
 });

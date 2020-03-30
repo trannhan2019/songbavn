@@ -10,6 +10,7 @@ use App\Content;
 
 class ContentController extends Controller
 {
+    //Giới thiệu
     public function getAdminGioithieu($id)
     {
         $menu_gioithieu = Menu::find($id);
@@ -93,5 +94,71 @@ class ContentController extends Controller
     {
         $menu_gioithieu = Menu::find($menu_id);
         return view('admin.pages.content.gioithieu.cocau_phongban',compact('menu_gioithieu'));
+    }
+
+    //Tin tức
+    public function getAdminTintuc($menu_id)
+    {
+        $menu_tintuc = Menu::find($menu_id);
+        $content_tintuc = $menu_tintuc->Contents()->where('status',1)->get();
+        return view('admin.pages.content.tintuc.list',compact('menu_tintuc','content_tintuc'));
+    }
+    public function getAdminAddTintuc($menu_id)
+    {
+        $menu_tintuc = Menu::find($menu_id);
+        return view('admin.pages.content.tintuc.add',compact('menu_tintuc'));
+    }
+    public function postAdminAddTintuc(Request $request, $menu_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'imageorfile'=>'image',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'image'=>':attribute không đúng định dạng'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'imageorfile'=>'Hình minh họa',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $content = new Content;
+        $content->menu_id = $menu_id;
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->abstract = $request->abstract;
+        $content->highlights = $request->highlights;
+        $content->notification = $request->notification;
+        if ($request->hasFile('imageorfile')) {
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('admin_asset/images/content/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('admin_asset/images/content/',$hinh);
+            $content->imageorfile = $hinh;
+        } else {
+            $content->imageorfile = null;
+        }
+        $content->author = $request->author;
+        $content->source = $request->source;
+        $content->status = $request->status;
+        if ($request->created_at) {
+            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $content->created_at = null;
+        }
+        $content->content = $request->content;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/{{$menu_id}}/tin-tuc.html')->with('thongbao','Thêm tin tức thành công !');
+        
     }
 }

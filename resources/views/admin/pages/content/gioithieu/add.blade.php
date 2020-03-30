@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="admin/content/addGioithieu/{{ $menu_gioithieu->id }}" method="post">
+                    <form action="admin/content/{{ $menu_gioithieu->id }}/add-gioi-thieu.html" method="post">
                         @csrf
 
                         <div class="form-group">

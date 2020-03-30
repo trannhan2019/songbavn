@@ -30,11 +30,11 @@
             <div class="row">
                 <div class="col">
                     @if (empty($content_gioithieu->content))
-                        <a href="admin/content/addGioithieu/{{ $menu_gioithieu->id }}" class="btn btn-sm btn-outline-primary">
+                        <a href="admin/content/{{ $menu_gioithieu->id }}/add-gioi-thieu.html" class="btn btn-sm btn-outline-primary">
                             <i class="fas fa-plus"></i> Tạo mới
                         </a>
                     @else
-                        <a href="admin/content/editGioithieu/{{ $menu_gioithieu->id }}/{{ $content_gioithieu->id }}" class="btn btn-sm btn-outline-warning">
+                        <a href="admin/content/{{ $menu_gioithieu->id }}/{{ $content_gioithieu->id }}/edit-gioi-thieu.html" class="btn btn-sm btn-outline-warning">
                             <i class="fas fa-edit"></i> Sửa
                         </a>
                     @endif
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 offset-md-2 ">
+                <div class="col-md-12 ">
                     @if (!empty($content_gioithieu->content))
                     {!! $content_gioithieu->content !!}
                     @endif
