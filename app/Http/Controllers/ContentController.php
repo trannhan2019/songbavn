@@ -100,7 +100,7 @@ class ContentController extends Controller
     public function getAdminTintuc($menu_id)
     {
         $menu_tintuc = Menu::find($menu_id);
-        $content_tintuc = $menu_tintuc->Contents()->where('status',1)->get();
+        $content_tintuc = $menu_tintuc->Contents->sortByDesc('created_at');
         return view('admin.pages.content.tintuc.list',compact('menu_tintuc','content_tintuc'));
     }
     public function getAdminAddTintuc($menu_id)
@@ -138,11 +138,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('admin_asset/images/content/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('admin_asset/images/content/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -158,7 +158,66 @@ class ContentController extends Controller
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
         $content->save();
-        return redirect('admin/content/{{$menu_id}}/tin-tuc.html')->with('thongbao','Thêm tin tức thành công !');
-        
+        return redirect('admin/content/'.$menu_id.'/tin-tuc.html')->with('thongbao','Thêm tin tức thành công !');
+    }
+    public function getAdminDetailTintuc($tintuc_id)
+    {
+        $content = Content::find($tintuc_id);
+        return view('admin.pages.content.tintuc.detail',compact('content'));
+    }
+
+    public function getAdminEditTintuc($tintuc_id)
+    {
+        $tintuc = Content::find($tintuc_id);
+        return view('admin.pages.content.tintuc.edit',compact('tintuc'));
+    }
+    public function postAdminEditTintuc(Request $request,$tintuc_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $tintuc = Content::find($tintuc_id);
+        $tintuc->title = $request->title;
+        $tintuc->slug = str::slug($request->title,'-');
+        $tintuc->abstract = $request->abstract;
+        $tintuc->highlights = $request->highlights;
+        $tintuc->notification = $request->notification;
+        if($request->hasFile('imageorfile')){
+            $this->validate($request,
+            [
+                'imageorfile'=>'image'
+            ],
+            [
+                'imageorfile'=>':attribute không đúng định dạng'
+            ],
+            [
+                'imageorfile'=>'Ảnh minh họa'
+                
+            ]);
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('shared_asset/upload/images/content/',$hinh);
+            if($tintuc->imageorfile){
+                unlink('shared_asset/upload/images/content/'.$tintuc->imageorfile);
+            }
+            
+            $tintuc->imageorfile = $hinh;
+        }
     }
 }

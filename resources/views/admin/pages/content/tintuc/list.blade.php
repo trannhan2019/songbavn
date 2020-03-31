@@ -81,17 +81,16 @@
                             <td class="text-center">{{ $i++ }}</td>
                             <td>{{ $menu_tintuc->name }}</td>
                             <td>
-                                <a href="#">{{ $tintuc->title }}</a>
+                                <a href="admin/content/{{ $tintuc->id }}/detail-tin-tuc.html">{{ $tintuc->title }}</a>
                             </td>
                             <td>
-                                {{ $tintuc->status==1 ? 'Đang hoạt động':'Không hoạt động' }}
-                                {{--  {!! $tintuc->status==1 ? '<span class="text-primary">Đang hoạt động</span>':'<span class="text=secondary">Không hoạt động</span>' !!}  --}}
+                                 {!! $tintuc->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
                             </td>
                             <td>{{ $tintuc->views }}</td>
                             <td>{{ $tintuc->highlights==1 ? 'Có':'Không' }}</td>
-                            <td>{{ $tintuc->User()->fullname }}</td>
-                            <td><a href="{{ route('admin.user.restore', $user->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $user->id }}" data-toggle="modal" data-target="#deletedUserModal"><i class="far fa-trash-alt"></i></button></td>
+                            <td>{{ $tintuc->User->fullname }}</td>
+                            <td><a href="admin/content/{{ $tintuc->id }}/edit-tin-tuc.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="" data-toggle="modal" data-target="#deletedUserModal"><i class="far fa-trash-alt"></i></button></td>
                         </tr>
                         @endforeach
                     </tbody>
