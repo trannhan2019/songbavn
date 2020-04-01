@@ -68,6 +68,7 @@
                             <th>Lượt xem</th>
                             <th>Nổi bật</th>
                             <th>Người tạo</th>
+                            <th>Thời gian tạo</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -89,6 +90,7 @@
                             <td>{{ $tintuc->views }}</td>
                             <td>{{ $tintuc->highlights==1 ? 'Có':'Không' }}</td>
                             <td>{{ $tintuc->User->fullname }}</td>
+                            <td>{{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y H:h'):'' }}</td>
                             <td><a href="admin/content/{{ $tintuc->id }}/edit-tin-tuc.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                             <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $tintuc->id }}" data-toggle="modal" data-target="#deletedTintucModal"><i class="far fa-trash-alt"></i></button></td>
                         </tr>

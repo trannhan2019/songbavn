@@ -81,5 +81,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{tintuc_id}/edit-tin-tuc.html','ContentController@getAdminEditTintuc');
         Route:: post('{tintuc_id}/edit-tin-tuc.html','ContentController@postAdminEditTintuc');
         Route:: post('{tintuc_id}/delete-tin-tuc.html','ContentController@postAdminDeleteTintuc');
+
+        //Đã xóa
+        Route::get('trash','ContentController@getTrash');
+        Route::get('restore/{id}','ContentController@getRestore');
+        Route::post('forcedelete/{id}','ContentController@postForcedelete');
     });
 });

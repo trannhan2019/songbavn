@@ -101,7 +101,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="admin/content/trash" class="nav-link">
                   <i class="fas fa-eraser nav-icon"></i>
                   <p>Các nội dung đã xóa</p>
                 </a>

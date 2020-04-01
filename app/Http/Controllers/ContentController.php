@@ -218,19 +218,20 @@ class ContentController extends Controller
             }
             
             $tintuc->imageorfile = $hinh;
-            $tintuc->author = $request->author;
-            $tintuc->source = $request->source;
-            $tintuc->status = $request->status;
-            if ($request->created_at) {
-                $tintuc->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
-            } else {
-                $tintuc->created_at = null;
-            }
-            $tintuc->content = $request->content;
-            $tintuc->user_id = Auth::user()->id;
-            $tintuc->save();
-            return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Sửa tin tức thành công !');
+            
         }
+        $tintuc->author = $request->author;
+        $tintuc->source = $request->source;
+        $tintuc->status = $request->status;
+        if ($request->created_at) {
+            $tintuc->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $tintuc->created_at = null;
+        }
+        $tintuc->content = $request->content;
+        $tintuc->user_id = Auth::user()->id;
+        $tintuc->save();
+        return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Sửa tin tức thành công !');
     }
     public function postAdminDeleteTintuc($tintuc_id)
     {
@@ -238,5 +239,27 @@ class ContentController extends Controller
         $tintuc->delete();
         
         return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Xóa tin tức thành công !');
+    }
+
+    //Đã xóa
+    public function getTrash()
+    {
+        $contents = Content::orderByDesc('created_at')->onlyTrashed()->get();
+        return view('admin.pages.content.trash',compact('contents'));
+    }
+    public function getRestore($id)
+    {
+        $content = Content::withTrashed()->find($id);
+        $content->restore();
+        return redirect('admin/content/trash')->with('thongbao','Khôi phục nội dung thành công !');
+    }
+    public function postForcedelete($id)
+    {
+        $content = Content::withTrashed()->find($id);
+        $content->forceDelete();
+        if($content->imageorfile){
+            unlink('admin_asset/images/user/'.$content->imageorfile);
+        }
+        return redirect('admin/content/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
 }
