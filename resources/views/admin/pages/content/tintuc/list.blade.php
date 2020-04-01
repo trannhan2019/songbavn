@@ -29,7 +29,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Xóa người dùng</h5>          
+                        <h5 class="modal-title">Xóa tin tức</h5>          
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -37,7 +37,7 @@
                     <form action="" method="POST">
                     @csrf        
                         <div class="modal-body">
-                            <h6>Bạn chắc chắn muốn xóa người dùng này ?</h6>
+                            <h6>Bạn chắc chắn muốn xóa tin tức này ?</h6>
                         </div>
                         <div class="modal-footer">                                
                             <button type="submit" class="btn btn-danger">Xóa</button>
@@ -90,7 +90,7 @@
                             <td>{{ $tintuc->highlights==1 ? 'Có':'Không' }}</td>
                             <td>{{ $tintuc->User->fullname }}</td>
                             <td><a href="admin/content/{{ $tintuc->id }}/edit-tin-tuc.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="" data-toggle="modal" data-target="#deletedUserModal"><i class="far fa-trash-alt"></i></button></td>
+                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $tintuc->id }}" data-toggle="modal" data-target="#deletedTintucModal"><i class="far fa-trash-alt"></i></button></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -127,6 +127,13 @@
                 }
             });
             
+        });
+    </script>
+    <script type="text/javascript">
+        $('.btn-detete').on('click', function() {
+            var id = $(this).data('id');
+            var url = "admin/content/"+ id +"/delete-tin-tuc.html";
+            $('#deletedTintucModal form').attr('action', url);
         });
     </script>
 @endsection

@@ -101,9 +101,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
+                <a href="#" class="nav-link">
+                  <i class="fas fa-eraser nav-icon"></i>
+                  <p>Các nội dung đã xóa</p>
                 </a>
               </li>
               <li class="nav-item">

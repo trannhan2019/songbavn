@@ -37,7 +37,10 @@
                         <i class="far fa-comments"></i> 0
                     </small>
                 </p>
-                {!! $content->content !!}
+                <div class="bg-white">
+                    {!! $content->content !!}
+                </div>
+                
             </div>
         </div>
     </div>

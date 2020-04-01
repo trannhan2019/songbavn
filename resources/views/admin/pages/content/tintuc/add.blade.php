@@ -25,7 +25,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8 col offset-md-2">
+                    <div class="col-12">
                         <div class="card card-primary">
                             <div class="card-header">
                               <h3 class="card-title">Thêm tin tức mới</h3>
@@ -177,7 +177,8 @@
             filebrowserFlashBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html?type=Flash') }}',
             filebrowserUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
             filebrowserImageUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
-            filebrowserFlashUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+            filebrowserFlashUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}',
+            height: '600px'
         }); 
     </script>
 @endsection

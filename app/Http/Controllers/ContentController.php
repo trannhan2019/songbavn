@@ -218,6 +218,25 @@ class ContentController extends Controller
             }
             
             $tintuc->imageorfile = $hinh;
+            $tintuc->author = $request->author;
+            $tintuc->source = $request->source;
+            $tintuc->status = $request->status;
+            if ($request->created_at) {
+                $tintuc->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            } else {
+                $tintuc->created_at = null;
+            }
+            $tintuc->content = $request->content;
+            $tintuc->user_id = Auth::user()->id;
+            $tintuc->save();
+            return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Sửa tin tức thành công !');
         }
+    }
+    public function postAdminDeleteTintuc($tintuc_id)
+    {
+        $tintuc = Content::find($tintuc_id);
+        $tintuc->delete();
+        
+        return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Xóa tin tức thành công !');
     }
 }
