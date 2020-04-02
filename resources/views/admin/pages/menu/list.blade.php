@@ -89,7 +89,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="" method="POST">
+                            <form action="" method="post">
                             @csrf        
                                 <div class="modal-body">
                                     <h6>Bạn chắc chắn muốn xóa danh mục này ?</h6>
@@ -242,7 +242,7 @@
     <script type="text/javascript">
         $('.deleted-menu').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/menu/detete/" + id;
+            var url = "admin/menu/delete/" + id;
             $('#deletedMenuModal form').attr('action', url);
         });
     </script>

@@ -165,7 +165,8 @@
     <script type="text/javascript">
 		$(function () {
 			$('#datetimepickerCreattt').datetimepicker({
-                locale: 'vi'
+                locale: 'vi',
+                format: 'DD/MM/YYYY HH:mm'
 			});
         });
     </script>

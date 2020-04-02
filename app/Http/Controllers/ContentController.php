@@ -241,6 +241,150 @@ class ContentController extends Controller
         return redirect('admin/content/'.$tintuc->menu_id.'/tin-tuc.html')->with('thongbao','Xóa tin tức thành công !');
     }
 
+    //Quan hệ cổ đông
+    public function getAdminCodong($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $codong = $menu->Contents->sortByDesc('created_at');
+        return view('admin.pages.content.codong.list',compact('menu','codong'));
+    }
+    public function getAdminAddCodong($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        return view('admin.pages.content.codong.add',compact('menu'));
+    }
+    public function postAdminAddCodong(Request $request, $menu_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'imageorfile'=>'image',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'image'=>':attribute không đúng định dạng'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'imageorfile'=>'Hình minh họa',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $content = new Content;
+        $content->menu_id = $menu_id;
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->abstract = $request->abstract;
+        $content->highlights = $request->highlights;
+        $content->notification = $request->notification;
+        if ($request->hasFile('imageorfile')) {
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('shared_asset/upload/images/content/',$hinh);
+            $content->imageorfile = $hinh;
+        } else {
+            $content->imageorfile = null;
+        }
+        $content->author = $request->author;
+        $content->source = $request->source;
+        $content->status = $request->status;
+        if ($request->created_at) {
+            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $content->created_at = null;
+        }
+        $content->content = $request->content;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$menu_id.'/quan-he-co-dong.html')->with('thongbao','Thêm thông tin thành công !');
+    }
+    public function getAdminDetailCodong($content_id)
+    {
+        $content = Content::find($content_id);
+        return view('admin.pages.content.codong.detail',compact('content'));
+    }
+    public function getAdminEditCodong($content_id)
+    {
+        $content = Content::find($content_id);
+        return view('admin.pages.content.codong.edit',compact('content'));
+    }
+    public function postAdminEditCodong(Request $request,$content_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $content = Content::find($content_id);
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->abstract = $request->abstract;
+        $content->highlights = $request->highlights;
+        $content->notification = $request->notification;
+        if($request->hasFile('imageorfile')){
+            $this->validate($request,
+            [
+                'imageorfile'=>'image'
+            ],
+            [
+                'imageorfile'=>':attribute không đúng định dạng'
+            ],
+            [
+                'imageorfile'=>'Ảnh minh họa'
+                
+            ]);
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('shared_asset/upload/images/content/',$hinh);
+            if($content->imageorfile){
+                unlink('shared_asset/upload/images/content/'.$content->imageorfile);
+            }
+            
+            $content->imageorfile = $hinh;
+            
+        }
+        $content->author = $request->author;
+        $content->source = $request->source;
+        $content->status = $request->status;
+        if ($request->created_at) {
+            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $content->created_at = null;
+        }
+        $content->content = $request->content;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$content->menu_id.'/quan-he-co-dong.html')->with('thongbao','Sửa thông tin thành công !');
+    }
+    public function postAdminDeleteCodong($content_id)
+    {
+        $content = Content::find($content_id);
+        $content->delete();
+        
+        return redirect('admin/content/'.$content->menu_id.'/quan-he-co-dong.html')->with('thongbao','Xóa thông tin thành công !');
+    }
+
     //Đã xóa
     public function getTrash()
     {

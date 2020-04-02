@@ -81,6 +81,14 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{tintuc_id}/edit-tin-tuc.html','ContentController@getAdminEditTintuc');
         Route:: post('{tintuc_id}/edit-tin-tuc.html','ContentController@postAdminEditTintuc');
         Route:: post('{tintuc_id}/delete-tin-tuc.html','ContentController@postAdminDeleteTintuc');
+        //Quan hệ cổ đông
+        Route:: get('{menu_id}/quan-he-co-dong.html','ContentController@getAdminCodong');
+        Route:: get('{menu_id}/add-quan-he-co-dong.html','ContentController@getAdminAddCodong');
+        Route:: post('{menu_id}/add-quan-he-co-dong.html','ContentController@postAdminAddCodong');
+        Route:: get('{content_id}/detail-quan-he-co-dong.html','ContentController@getAdminDetailCodong');
+        Route:: get('{content_id}/edit-quan-he-co-dong.html','ContentController@getAdminEditCodong');
+        Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
+        Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
 
         //Đã xóa
         Route::get('trash','ContentController@getTrash');

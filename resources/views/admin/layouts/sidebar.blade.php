@@ -41,20 +41,20 @@
           </li>
           {{--  QUẢN LÝ NỘI DUNG  --}}
           <li class="nav-header pt-2"> <h6 class="mb-0">QUẢN TRỊ NỘI DUNG</h6></li>
-          @foreach ($menus->where('status',1)->sortBy('position') as $menu)
-          <li class="nav-item {{ count($menu->ChildMenus)>0 ? 'has-treeview': '' }}">
-            <a href="{{ $menu->slug =='lien-he' ? 'admin/content/'.$menu->id.'/lien-he.html':'#' }}" class="nav-link">
+          @foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
+          <li class="nav-item {{ count($dm->ChildMenus)>0 ? 'has-treeview': '' }}">
+            <a href="{{ $dm->slug =='lien-he' ? 'admin/content/'.$dm->id.'/lien-he.html':'#' }}" class="nav-link">
               <i class=" nav-icon fas fa-bars"></i>
               <p>
-                {{ $menu->name }}
-                @if (count($menu->ChildMenus)>0)
+                {{ $dm->name }}
+                @if (count($dm->ChildMenus)>0)
                   <i class="fas fa-angle-left right"></i>
                 @endif
               </p>
             </a>
-            @if (count($menu->ChildMenus)>0)
+            @if (count($dm->ChildMenus)>0)
             <ul class="nav nav-treeview" style="display: none;">
-              @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $child)
+              @foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)
                 @if ($child->slug=='co-cau-to-chuc')
                 <li class="nav-item">
                   <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">
@@ -71,7 +71,7 @@
                 </li>
                 @else
                 <li class="nav-item">
-                  <a href="admin/content/{{ $child->id }}/{{ $menu->slug }}.html" class="nav-link">
+                  <a href="admin/content/{{ $child->id }}/{{ $dm->slug }}.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{ $child->name }}</p>
                   </a>

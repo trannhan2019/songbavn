@@ -66,29 +66,16 @@ class MenuController extends Controller
 
     public function postDelete($id){
         $menu = Menu::find($id);
-
+        var_dump($menu);
         if ($menu->ChildMenus) {
             foreach ($menu->ChildMenus as $child) {
-                if ($child->Content) {
-                    foreach ($child->Content as $content) {
-                        $content->menu_id = NULL;
-                        $content->save();
-                    }
-                }
-            }
+                $child->delete(); 
+            }  
             
-            $menu->ChildMenu()->delete();
-        }
-
-        if ($menu->Content) {
-            foreach ($menu->Content as $content) {
-                $content->menu_id = NULL;
-                $content->save();
-            }
         }
 
         $menu->delete();
 
-        return redirect()->route('admin.menu.list')->with('thongbao','Xóa danh mục thành công !');
+        return redirect('admin/menu/list')->with('thongbao','Xóa danh mục thành công !');
     }
 }

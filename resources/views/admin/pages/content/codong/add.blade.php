@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{ $menu_tintuc->name }}
+    {{ $menu->name }}
 @endsection
 
 @section('content')
@@ -10,13 +10,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Tin tức: <small>{{ $menu_tintuc->name }}</small></h1>
+                        <h1 class="m-0 text-dark">{{ $menu->Parent->name }}: <small>{{ $menu->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                            <li class="breadcrumb-item active">{{ $menu_tintuc->name }}</li>
+                            <li class="breadcrumb-item"><a href="#">Nội dung</a></li>
+                            <li class="breadcrumb-item"><a href="#">{{ $menu->Parent->name }}</a></li>
+                            <li class="breadcrumb-item active">{{ $menu->name }}</li>
                         </ol>
                     </div>
                 </div>
@@ -28,14 +29,14 @@
                     <div class="col-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                              <h3 class="card-title">Thêm tin tức mới</h3>
+                              <h3 class="card-title">Thêm nội dung mới</h3>
                             </div>
-                            <form action="admin/content/{{ $menu_tintuc->id }}/add-tin-tuc.html" method="post" enctype="multipart/form-data">
+                            <form action="admin/content/{{ $menu->id }}/add-quan-he-co-dong.html" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Thuộc danh mục</label>
-                                        <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu_tintuc->name }}">
+                                        <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu->name }}">
                                     </div>
 
                                     <div class="form-group">
@@ -85,13 +86,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputFile">Ảnh minh họa</label>
                                         <div class="input-group">
-                                          <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="imageorfile" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
-                                          </div>
-                                          {{--  <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
-                                          </div>  --}}
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="imageorfile" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                                            </div>
+
                                         </div>
                                         @if ($errors->has('imageorfile'))
                                             <p class="text-danger mb-0">{{ $errors->first('imageorfile') }}</p>
@@ -130,9 +129,9 @@
 
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
-                                        <div class="input-group date" id="datetimepickerCreattt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattt" data-toggle="datetimepicker" name="created_at"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreattt" >
+                                        <div class="input-group date" id="datetimepickerCreatcd" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatcd" data-toggle="datetimepicker" name="created_at"/>
+                                            <div class="input-group-append" data-target="#datetimepickerCreatcd" >
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>                                        
@@ -140,7 +139,7 @@
 
                                     <div class="form-group">
                                         <label>Nội dung bài viết</label>
-                                        <textarea name="content" id="ckeditor_tt" cols="30" rows="50"></textarea>  
+                                        <textarea name="content" id="ckeditor_cd" cols="30" rows="50"></textarea>  
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -165,14 +164,14 @@
     </script>
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreattt').datetimepicker({
+			$('#datetimepickerCreatcd').datetimepicker({
                 locale: 'vi',
                 format: 'DD/MM/YYYY HH:mm'
 			});
         });
     </script>
     <script> 
-        CKEDITOR.replace('ckeditor_tt',{
+        CKEDITOR.replace('ckeditor_cd',{
             filebrowserBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html') }}',
             filebrowserImageBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html?type=Images') }}',
             filebrowserFlashBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html?type=Flash') }}',
