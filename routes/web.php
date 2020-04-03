@@ -89,6 +89,16 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{content_id}/edit-quan-he-co-dong.html','ContentController@getAdminEditCodong');
         Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
         Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
+        //Tuyển dụng
+        Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
+        Route:: get('{menu_id}/add-tuyen-dung.html','ContentController@getAdminAddTuyendung');
+        Route:: post('{menu_id}/add-tuyen-dung.html','ContentController@postAdminAddTuyendung');
+        Route:: get('{content_id}/detail-tuyen-dung.html','ContentController@getAdminDetailTuyendung');
+        Route:: get('{content_id}/edit-tuyen-dung.html','ContentController@getAdminEditTuyendung');
+        Route:: post('{content_id}/edit-tuyen-dung.html','ContentController@postAdminEditTuyendung');
+        Route:: post('{content_id}/delete-tuyen-dung.html','ContentController@postAdminDeleteTuyendung');
+        //Liên hệ
+        Route:: get('{menu_id}/lien-he.html','ContentController@getAdminLienhe');
 
         //Đã xóa
         Route::get('trash','ContentController@getTrash');

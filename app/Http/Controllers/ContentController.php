@@ -138,11 +138,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/tintuc/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/',$hinh);
+            $file->move('shared_asset/upload/images/content/tintuc/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -208,13 +208,13 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/tintuc/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/',$hinh);
+            $file->move('shared_asset/upload/images/content/tintu/c',$hinh);
             if($tintuc->imageorfile){
-                unlink('shared_asset/upload/images/content/'.$tintuc->imageorfile);
+                unlink('shared_asset/upload/images/content/tintuc/'.$tintuc->imageorfile);
             }
             
             $tintuc->imageorfile = $hinh;
@@ -283,11 +283,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/codong/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/',$hinh);
+            $file->move('shared_asset/upload/images/content/codong/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -352,13 +352,13 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/codong/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/',$hinh);
+            $file->move('shared_asset/upload/images/content/codong/',$hinh);
             if($content->imageorfile){
-                unlink('shared_asset/upload/images/content/'.$content->imageorfile);
+                unlink('shared_asset/upload/images/content/codong/'.$content->imageorfile);
             }
             
             $content->imageorfile = $hinh;
@@ -383,6 +383,156 @@ class ContentController extends Controller
         $content->delete();
         
         return redirect('admin/content/'.$content->menu_id.'/quan-he-co-dong.html')->with('thongbao','Xóa thông tin thành công !');
+    }
+
+    //Tuyển dụng
+    public function getAdminTuyendung($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents->sortByDesc('created_at');
+        return view('admin.pages.content.tuyendung.list',compact('menu','content'));
+    }
+    public function getAdminAddTuyendung($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        return view('admin.pages.content.tuyendung.add',compact('menu'));
+    }
+    public function postAdminAddTuyendung(Request $request, $menu_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'imageorfile'=>'image',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'image'=>':attribute không đúng định dạng'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'imageorfile'=>'Hình minh họa',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $content = new Content;
+        $content->menu_id = $menu_id;
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->abstract = $request->abstract;
+        $content->highlights = $request->highlights;
+        $content->notification = $request->notification;
+        if ($request->hasFile('imageorfile')) {
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('shared_asset/upload/images/content/tuyendung/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('shared_asset/upload/images/content/tuyendung/',$hinh);
+            $content->imageorfile = $hinh;
+        } else {
+            $content->imageorfile = null;
+        }
+        $content->author = $request->author;
+        $content->source = $request->source;
+        $content->status = $request->status;
+        if ($request->created_at) {
+            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $content->created_at = null;
+        }
+        $content->content = $request->content;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$menu_id.'/tuyen-dung.html')->with('thongbao','Thêm thông tin thành công !');
+    }
+    public function getAdminDetailTuyendung($content_id)
+    {
+        $content = Content::find($content_id);
+        return view('admin.pages.content.tuyendung.detail',compact('content'));
+    }
+    public function getAdminEditTuyendung($content_id)
+    {
+        $content = Content::find($content_id);
+        return view('admin.pages.content.tuyendung.edit',compact('content'));
+    }
+    public function postAdminEditTuyendung(Request $request,$content_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required',
+            'abstract'=> 'required',
+            'author'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'abstract'=>'Trích yếu',
+            'author'=>'Tác giả bài viết'
+        ]);
+        $content = Content::find($content_id);
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->abstract = $request->abstract;
+        $content->highlights = $request->highlights;
+        $content->notification = $request->notification;
+        if($request->hasFile('imageorfile')){
+            $this->validate($request,
+            [
+                'imageorfile'=>'image'
+            ],
+            [
+                'imageorfile'=>':attribute không đúng định dạng'
+            ],
+            [
+                'imageorfile'=>'Ảnh minh họa'
+                
+            ]);
+            $file = $request->file('imageorfile');
+            $name = $file->getClientOriginalName();
+            $hinh = Str::random(4)."_".$name;
+            while(file_exists('shared_asset/upload/images/content/tuyendung/'.$hinh))
+            {
+                $hinh = Str::random(4)."_".$name;
+            }
+            $file->move('shared_asset/upload/images/content/tuyendung/',$hinh);
+            if($content->imageorfile){
+                unlink('shared_asset/upload/images/content/tuyendung/'.$content->imageorfile);
+            }
+            
+            $content->imageorfile = $hinh;
+            
+        }
+        $content->author = $request->author;
+        $content->source = $request->source;
+        $content->status = $request->status;
+        if ($request->created_at) {
+            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+        } else {
+            $content->created_at = null;
+        }
+        $content->content = $request->content;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$content->menu_id.'/tuyen-dung.html')->with('thongbao','Sửa thông tin thành công !');
+    }
+    public function postAdminDeleteTuyendung($content_id)
+    {
+        $content = Content::find($content_id);
+        $content->delete();
+        
+        return redirect('admin/content/'.$content->menu_id.'/tuyen-dung.html')->with('thongbao','Xóa thông tin thành công !');
+    }
+
+    //LIÊN HỆ
+    public function getAdminLienhe($menu_id)
+    {
+        
     }
 
     //Đã xóa
