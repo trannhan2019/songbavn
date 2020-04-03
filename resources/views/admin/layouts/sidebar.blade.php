@@ -19,6 +19,16 @@
       {{-- <!-- Sidebar Menu --> --}}
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          {{-- Dashboard --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
           {{--  Quản lý danh mục - Menu  --}}
           <li class="nav-item">
             <a href="{{ route('admin.menu.list') }}" class="nav-link">
@@ -77,7 +87,6 @@
                   </a>
                 </li>
                 @endif
-              {{-- <a href="{{ $child->slug=='y-kien-tra-loi' ? 'admin/content/'.$child->id.'/y-kien-tra-loi.html': 'admin/content/'.$child->id.'/'.$menu->slug.'.html'}}" class="nav-link"> --}}
               @endforeach
             </ul>
             @endif
@@ -86,7 +95,7 @@
           <hr class="border-light bg-white my-2">
           {{--  thùng rác--------------  --}}
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="far fa-trash-alt nav-icon"></i>
               <p>
                 THÙNG RÁC
@@ -106,77 +115,8 @@
                   <p>Các nội dung đã xóa</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
+              
             </ul>
-          </li>
-
-          <li class="nav-header"><i class="far fa-trash-alt"></i> THÙNG RÁC</li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="display: none;">
-              <li class="nav-item">
-                <a href="pages/mailbox/mailbox.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
           </li>
         </ul>
       </nav>

@@ -64,6 +64,19 @@
     <script type="text/javascript">
         $("input[type='number']").inputSpinner()
     </script>
+
+    {{-- Click thêm class active vào sidemenu --}}
+    <script type="text/javascript">
+        var url = window.location;
+        const allLinks = document.querySelectorAll('.nav-item a');
+        const currentLink = [...allLinks].filter(e => {
+        return e.href == url;
+        });
+    
+        currentLink[0].classList.add("active");
+        currentLink[0].closest(".nav-treeview").style.display="block";
+        currentLink[0].closest(".has-treeview").classList.add("menu-open");
+    </script>
     @yield('script')
 </body>
 </html>

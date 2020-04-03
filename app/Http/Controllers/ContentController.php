@@ -532,7 +532,8 @@ class ContentController extends Controller
     //LIÊN HỆ
     public function getAdminLienhe($menu_id)
     {
-        
+        $menu = Menu::find($menu_id);
+        return view('admin.pages.content.lienhe',compact('menu'));
     }
 
     //Đã xóa
