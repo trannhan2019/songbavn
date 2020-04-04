@@ -10,7 +10,7 @@
 					</button>
 					<div class="dropdown-menu">
 						@if (Auth::user()->role ==1)
-						<a class="dropdown-item" href="{{ route('admin.user.list') }}">Quản trị hệ thống</a>
+						<a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a>
 						@endif
 						@if (Auth::user()->role ==2)
 						<a class="dropdown-item" href="#">Cập nhật tình hình sản xuất</a>

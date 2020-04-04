@@ -32,6 +32,7 @@ Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 // Nhom Admin
 Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
+    Route::get('dashboard','PagesController@getDashboard')->name('admin.dashboard');
     //Menu
     Route::group(['prefix' => 'menu'], function () {
         Route::get('list', 'MenuController@getList')->name('admin.menu.list');
@@ -104,5 +105,13 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('trash','ContentController@getTrash');
         Route::get('restore/{id}','ContentController@getRestore');
         Route::post('forcedelete/{id}','ContentController@postForcedelete');
+    });
+    Route::group(['prefix' => 'slide'], function () {
+        Route:: get('list','SlideController@getAdminList')->name('admin.slide.list');
+        Route:: get('add','SlideController@getAdminAdd')->name('admin.slide.add');
+        Route:: post('add','SlideController@postAdminAdd')->name('admin.slide.add');
+        Route:: get('edit/{id}','SlideController@getAdminEdit')->name('admin.slide.edit');
+        Route:: post('edit/{id}','SlideController@postAdminEdit')->name('admin.slide.edit');
+        Route:: post('delete/{id}','SlideController@postAdminDelete')->name('admin.slide.delete');
     });
 });

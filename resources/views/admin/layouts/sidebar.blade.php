@@ -21,10 +21,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           {{-- Dashboard --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Dashboard
+                Trang tổng quan
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
@@ -92,6 +92,17 @@
             @endif
           </li>
           @endforeach
+          <hr class="border-light bg-white my-2">
+          {{--  Quản lý Slide  --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.slide.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-sliders-h"></i>
+              <p>
+                Quản lý Slide
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
           <hr class="border-light bg-white my-2">
           {{--  thùng rác--------------  --}}
           <li class="nav-item has-treeview">
