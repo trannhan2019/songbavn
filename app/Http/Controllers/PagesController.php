@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Slide;
 
 class PagesController extends Controller
 {
@@ -14,6 +15,7 @@ class PagesController extends Controller
     }
     public function getTrangchu()
     {
-        return view('shared.pages.trangchu');
+        $slide = Slide::where('Active',1)->orderBy('location')->get();
+        return view('shared.pages.trangchu',compact('slide'));
     }
 }

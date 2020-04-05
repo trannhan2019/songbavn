@@ -1,46 +1,41 @@
 <div id="slides" class="carousel slide" data-ride="carousel">
     {{--  <!-- indicators -->  --}}
     <ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0" class=""></li>
-        <li data-target="#slides" data-slide-to="1" class=""></li>
-        <li data-target="#slides" data-slide-to="2" class=""></li>
-        <li data-target="#slides" data-slide-to="3" class="active"></li>
+        @php
+            $i = 0;
+        @endphp
+        @foreach ($slide as $sl)
+            <li data-target="#slides" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active':'' }}"></li>
+            @php
+                $i++;
+            @endphp
+        @endforeach
     </ul>
     {{--  <!-- indicators -->  --}}
     {{--  <!-- The slideshow -->  --}}
     <div class="carousel-inner">
-        <div class="carousel-item">
-            <a href="#">
-                <img src="img/Slide_TongQuanKD.jpg" alt="" class="d-block">
-            </a>
-            
-            <div class="carousel-caption">
-                <h1>CÔNG NGHỆ VẬN HÀNH XẢ LŨ SBA</h1>
-                <button type="button" class="btn btn-outline-light btn-lg">
-                    XEM CHI TIẾT
-                </button>
+        @php
+            $i = 0;
+        @endphp
+        @foreach ($slide as $sl)
+            @if ($sl->content_id)
+            <div class="carousel-item {{ $i == 0 ? 'active':'' }}">
+                <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="{{ $sl->title }}" class="d-block">
+                <div class="carousel-caption">
+                    <a href="#" class="btn btn-outline-light btn-lg">
+                       {{ $sl->title }}
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <div class="carousel-item">
-            <a href="#">
-                <img src="img/Slide_DapKN.jpg" alt="" class="d-block">
-            </a>
-        </div>
-
-        <div class="carousel-item">
-            <a href="#">
-                <img src="img/Slide_XaluKN.jpg" alt="" class="d-block">
-            </a>
-            
-        </div>
-
-        <div class="carousel-item active">
-            <a href="#">
-                <img src="img/Slide_TBiQT_1768.jpg" alt="" class="d-block">
-            </a>
-            
-        </div>
+            @else
+                <div class="carousel-item {{ $i == 0 ? 'active':'' }}">
+                    <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="{{ $sl->title }}" class="d-block">
+                </div>
+            @endif
+            @php
+                $i++;
+            @endphp
+        @endforeach
     </div>
     {{--  <!-- The slideshow -->  --}}
 

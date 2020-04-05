@@ -22,7 +22,7 @@
           {{-- Dashboard --}}
           <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-th text-danger"></i>
               <p>
                 Trang tổng quan
                 <span class="right badge badge-danger">New</span>
@@ -32,7 +32,7 @@
           {{--  Quản lý danh mục - Menu  --}}
           <li class="nav-item">
             <a href="{{ route('admin.menu.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-th text-danger"></i>
               <p>
                 Quản lý danh mục
                 <span class="right badge badge-danger">New</span>
@@ -42,7 +42,7 @@
           {{--  Quản lý người dùng - User  --}}
           <li class="nav-item">
             <a href="{{ route('admin.user.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-users-cog"></i>
+              <i class="nav-icon fas fa-users-cog text-danger"></i>
               <p>
                 Quản lý người dùng
                 <span class="right badge badge-danger">New</span>
@@ -50,11 +50,11 @@
             </a>
           </li>
           {{--  QUẢN LÝ NỘI DUNG  --}}
-          <li class="nav-header pt-2"> <h6 class="mb-0">QUẢN TRỊ NỘI DUNG</h6></li>
+          <li class="nav-header pt-2"> <h6 class="mb-0"><strong>QUẢN TRỊ NỘI DUNG</strong></h6></li>
           @foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
           <li class="nav-item {{ count($dm->ChildMenus)>0 ? 'has-treeview': '' }}">
             <a href="{{ $dm->slug =='lien-he' ? 'admin/content/'.$dm->id.'/lien-he.html':'#' }}" class="nav-link">
-              <i class=" nav-icon fas fa-bars"></i>
+              <i class=" nav-icon fas fa-bars text-primary"></i>
               <p>
                 {{ $dm->name }}
                 @if (count($dm->ChildMenus)>0)
@@ -93,10 +93,34 @@
           </li>
           @endforeach
           <hr class="border-light bg-white my-2">
+          {{--  Quản lý tình hình sản xuất  --}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie text-danger"></i>
+              <p>
+                Tình hình sản xuất
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="{{ route('admin.factory.list') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thông số Nhà máy</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cập nhật THSX</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           {{--  Quản lý Slide  --}}
           <li class="nav-item">
             <a href="{{ route('admin.slide.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-sliders-h"></i>
+              <i class="nav-icon fas fa-sliders-h text-danger"></i>
               <p>
                 Quản lý Slide
                 <span class="right badge badge-danger">New</span>
@@ -107,7 +131,7 @@
           {{--  thùng rác--------------  --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="far fa-trash-alt nav-icon"></i>
+              <i class="far fa-trash-alt nav-icon text-warning"></i>
               <p>
                 THÙNG RÁC
                 <i class="fas fa-angle-left right"></i>
@@ -124,6 +148,12 @@
                 <a href="admin/content/trash" class="nav-link">
                   <i class="fas fa-eraser nav-icon"></i>
                   <p>Các nội dung đã xóa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin/slide/trash" class="nav-link">
+                  <i class="fas fa-sliders-h nav-icon"></i>
+                  <p>Các slide đã xóa</p>
                 </a>
               </li>
               

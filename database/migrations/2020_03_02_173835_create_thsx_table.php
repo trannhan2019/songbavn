@@ -20,7 +20,7 @@ class CreateThsxTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('date');
-            $table->float('power',2,1);
+            $table->float('power');
             $table->float('quantity');
             $table->float('MNH');
             $table->float('rain');

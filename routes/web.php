@@ -106,6 +106,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('restore/{id}','ContentController@getRestore');
         Route::post('forcedelete/{id}','ContentController@postForcedelete');
     });
+    //Slide
     Route::group(['prefix' => 'slide'], function () {
         Route:: get('list','SlideController@getAdminList')->name('admin.slide.list');
         Route:: get('add','SlideController@getAdminAdd')->name('admin.slide.add');
@@ -113,5 +114,23 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('edit/{id}','SlideController@getAdminEdit')->name('admin.slide.edit');
         Route:: post('edit/{id}','SlideController@postAdminEdit')->name('admin.slide.edit');
         Route:: post('delete/{id}','SlideController@postAdminDelete')->name('admin.slide.delete');
+        //Đã xóa
+        Route::get('trash','SlideController@getTrash')->name('admin.slide.trash');
+        Route::get('restore/{id}','SlideController@getRestore')->name('admin.slide.restore');
+        Route::post('forcedelete/{id}','SlideController@postForcedelete')->name('admin.slide.forcedelete');
     });
+    //Nhà máy
+    Route::group(['prefix' => 'factory'], function () {
+        Route:: get('list','FactoryController@getAdminList')->name('admin.factory.list');
+        Route:: get('add','FactoryController@getAdminAdd')->name('admin.factory.add');
+        Route:: post('add','FactoryController@postAdminAdd')->name('admin.factory.add');
+        Route:: get('edit/{id}','FactoryController@getAdminEdit')->name('admin.factory.edit');
+        Route:: post('edit/{id}','FactoryController@postAdminEdit')->name('admin.factory.edit');
+        Route:: post('delete/{id}','FactoryController@postAdminDelete')->name('admin.factory.delete');
+    });
+    //Tình hình sản xuất
+    Route::group(['prefix' => 'thsx'], function () {
+
+    });
+
 });

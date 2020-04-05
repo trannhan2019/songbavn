@@ -25,6 +25,7 @@ class CreateContentTable extends Migration
             $table->text('imageorfile')->nullable();
             $table->longText('content')->nullable();
             $table->tinyInteger('highlights')->default(0);
+            $table->tinyInteger('notification')->default(0);
             $table->integer('views')->unsigned()->default(0)->nullable();
             $table->tinyInteger('status');
             $table->mediumText('author')->nullable();

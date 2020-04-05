@@ -58,7 +58,7 @@ class SlideController extends Controller
         if($request->content_id){
             $content_slug = str::slug($request->content_id,'-');
             $content = Content::where('slug',$content_slug)->first();
-            if(count($content)>0){
+            if($content){
                 $slide->content_id = $content->id;
             }
             else{
@@ -87,25 +87,34 @@ class SlideController extends Controller
         $this->validate($request,
         [
             'title'=>'required',
-            'image'=> 'required|image',
             'location'=> 'required|integer'
         ],
         [
             'required'=>'Bạn chưa nhập :attribute',
-            'image'=>':attribute không đúng định dạng',
             'integer'=>':attribute không phải kiểu số nguyên'
         ],
         [
             'title'=>'Tiêu đề',
-            'location'=>'Vị trí',
-            'image'=>'Hình ảnh'
+            'location'=>'Vị trí'
         ]);
-        $slide = new Slide;
+        $slide = Slide::find($id);
         $slide->title = $request->title;
         
         $slide->location = $request->location;
         $slide->Active = $request->status;
+        
         if ($request->hasFile('image')) {
+            $this->validate($request,
+            [
+                'image'=>'image'
+            ],
+            [
+                'image'=>':attribute không đúng định dạng'
+            ],
+            [
+                'image'=>'Hình ảnh'
+                
+            ]);
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
@@ -114,15 +123,16 @@ class SlideController extends Controller
                 $hinh = Str::random(4)."_".$name;
             }
             $file->move('shared_asset/upload/images/slide/',$hinh);
+            if($slide->image){
+                unlink('shared_asset/upload/images/slide/'.$slide->image);
+            }
             $slide->image = $hinh;
-        } else {
-            $slide->image = null;
         }
 
         if($request->content_id){
             $content_slug = str::slug($request->content_id,'-');
             $content = Content::where('slug',$content_slug)->first();
-            if(count($content)>0){
+            if($content){
                 $slide->content_id = $content->id;
             }
             else{
@@ -139,10 +149,34 @@ class SlideController extends Controller
             $slide->created_at = null;
         }
         $slide->save();
-        return redirect('admin/slide/list')->with('thongbao','Thêm thông tin thành công !');
+        return redirect('admin/slide/list')->with('thongbao','Sửa thông tin thành công !');
     }
     public function postAdminDelete($id)
     {
+        $slide = Slide::find($id);
+        $slide->delete();
         
+        return redirect()->route('admin.slide.list')->with('thongbao','Xóa thông tin thành công !');
+    }
+    //Đã xóa
+    public function getTrash()
+    {
+        $slide = Slide::orderByDesc('created_at')->onlyTrashed()->get();
+        return view('admin.pages.slide.trash',compact('slide'));
+    }
+    public function getRestore($id)
+    {
+        $slide = Slide::withTrashed()->find($id);
+        $slide->restore();
+        return redirect('admin/slide/trash')->with('thongbao','Khôi phục nội dung thành công !');
+    }
+    public function postForcedelete($id)
+    {
+        $slide = Slide::withTrashed()->find($id);
+        $slide->forceDelete();
+        if($slide->image){
+            unlink('shared_asset/upload/images/slide/'.$slide->image);
+        }
+        return redirect('admin/slide/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
 }
