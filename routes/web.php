@@ -122,11 +122,19 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     //Nhà máy
     Route::group(['prefix' => 'factory'], function () {
         Route:: get('list','FactoryController@getAdminList')->name('admin.factory.list');
-        Route:: get('add','FactoryController@getAdminAdd')->name('admin.factory.add');
         Route:: post('add','FactoryController@postAdminAdd')->name('admin.factory.add');
         Route:: get('edit/{id}','FactoryController@getAdminEdit')->name('admin.factory.edit');
         Route:: post('edit/{id}','FactoryController@postAdminEdit')->name('admin.factory.edit');
         Route:: post('delete/{id}','FactoryController@postAdminDelete')->name('admin.factory.delete');
+    });
+    //Mục tiêu SX năm
+    Route::group(['prefix' => 'muctieu'], function () {
+        Route:: get('list','MuctieunamController@getAdminList')->name('admin.muctieu.list');
+        Route:: get('add','MuctieunamController@getAdminAdd')->name('admin.muctieu.add');
+        Route:: post('add','MuctieunamController@postAdminAdd')->name('admin.muctieu.add');
+        Route:: get('edit/{id}','MuctieunamController@getAdminEdit')->name('admin.muctieu.edit');
+        Route:: post('edit/{id}','MuctieunamController@postAdminEdit')->name('admin.muctieu.edit');
+        Route:: post('delete/{id}','MuctieunamController@postAdminDelete')->name('admin.muctieu.delete');
     });
     //Tình hình sản xuất
     Route::group(['prefix' => 'thsx'], function () {

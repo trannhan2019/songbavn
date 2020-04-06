@@ -18,9 +18,6 @@ class CreateFactoryTable extends Migration
             $table->string('name');
             $table->string('alias');
             $table->tinyInteger('status');
-            $table->float('ratedpower');
-            $table->float('MNHlowest');
-            $table->float('MNHnormal');
         });
     }
 

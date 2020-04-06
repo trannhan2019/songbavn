@@ -57,48 +57,49 @@
                     @include('admin.layouts.thongbao')
                 @endif
                 {{--  Ket thuc phan thong bao  --}}
+                <div class="table-responsive-sm">
+                    <table class="table table-hover table-sm" id="table-codongs">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Danh mục</th>
+                                <th>Tiêu đề</th>  
+                                <th>Trạng thái</th>
+                                <th>Lượt xem</th>
+                                <th>Nổi bật</th>
+                                <th>Người tạo</th>
+                                <th>Thời gian tạo</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach ($codong as $cd)
+                            <tr>
+                                <td class="text-center">{{ $i++ }}</td>
+                                <td>{{ $menu->name }}</td>
+                                <td>
+                                    <a href="admin/content/{{ $cd->id }}/detail-quan-he-co-dong.html">{{ $cd->title }}</a>
+                                </td>
+                                <td>
+                                     {!! $cd->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
+                                </td>
+                                <td class="text-center">{{ $cd->views }}</td>
+                                <td>{{ $cd->highlights==1 ? 'Có':'Không' }}</td>
+                                <td>{{ $cd->User->fullname }}</td>
+                                <td>{{ $cd->created_at ? $cd->created_at->format('d/m/Y H:h'):'' }}</td>
+                                <td><a href="admin/content/{{ $cd->id }}/edit-quan-he-co-dong.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $cd->id }}" data-toggle="modal" data-target="#deletedCodongModal"><i class="far fa-trash-alt"></i></button></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="table-responsive-sm">
-                <table class="table table-hover table-sm" id="table-codongs">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>STT</th>
-                            <th>Danh mục</th>
-                            <th>Tiêu đề</th>  
-                            <th>Trạng thái</th>
-                            <th>Lượt xem</th>
-                            <th>Nổi bật</th>
-                            <th>Người tạo</th>
-                            <th>Thời gian tạo</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $i=1;
-                        @endphp
-                        @foreach ($codong as $cd)
-                        <tr>
-                            <td class="text-center">{{ $i++ }}</td>
-                            <td>{{ $menu->name }}</td>
-                            <td>
-                                <a href="admin/content/{{ $cd->id }}/detail-quan-he-co-dong.html">{{ $cd->title }}</a>
-                            </td>
-                            <td>
-                                 {!! $cd->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
-                            </td>
-                            <td class="text-center">{{ $cd->views }}</td>
-                            <td>{{ $cd->highlights==1 ? 'Có':'Không' }}</td>
-                            <td>{{ $cd->User->fullname }}</td>
-                            <td>{{ $cd->created_at ? $cd->created_at->format('d/m/Y H:h'):'' }}</td>
-                            <td><a href="admin/content/{{ $cd->id }}/edit-quan-he-co-dong.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $cd->id }}" data-toggle="modal" data-target="#deletedCodongModal"><i class="far fa-trash-alt"></i></button></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
         {{--  Ket thuc Phan noi dung  --}}
        

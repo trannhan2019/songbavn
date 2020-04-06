@@ -8,8 +8,8 @@ class Factory extends Model
 {
     protected $table = 'factorys';
     public $timestamps = false;
-    public function THSX()
+    public function Muctieunam()
     {
-        return $this->hasMany(Thsx::class,'factory_id');
+        return $this->hasMany(Muctieunam::class,'factory_id');
     }
 }

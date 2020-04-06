@@ -47,53 +47,100 @@
                 </div>
             </div>
         </div>
-        {{--  Them moi  --}}
-        <a href="{{ route('admin.factory.add') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
+        
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
-                
                 {{--  Ket thuc phan thong bao  --}}
-            </div>
-            <div class="table-responsive-sm">
-                <table class="table table-hover table-sm" id="table-factorys">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên nhà máy</th>
-                            <th>Ký hiệu</th>                          
-                            <th>Trạng thái</th>
-                            <th>Công suất định mức</th>
-                            <th>MNC</th>
-                            <th>MNDBT</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $i=1;
-                        @endphp
-                        @foreach ($factory as $f)
-                        <tr>
-                            <td class="text-center">{{ $i++ }}</td>
-                            <td>{{ $f->name }}</td>
-                            <td >{{ $f->alias }}</td>
-                            <td>
-                                {!! $f->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
-                           </td>      
-                            <td>{{ number_format($f->ratedpower, 1, ',', '.')}}</td>
-                            <td>{{ number_format($f->MNHlowest, 2, ',', '.')}}</td>
-                            <td>{{ number_format($f->MNHnormal, 2, ',', '.')}}</td>
-                            <td><a href="{{ route('admin.factory.edit',$f->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $f->id }}" data-toggle="modal" data-target="#deletedFactoryModal"><i class="far fa-trash-alt"></i></button></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header bg-primary">
+                                <h5>Danh sách</h5>
+                            </div>
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-sm" id="table-factorys">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên nhà máy</th>
+                                            <th>Ký hiệu</th>                          
+                                            <th>Trạng thái</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $i=1;
+                                        @endphp
+                                        @foreach ($factory as $f)
+                                        <tr>
+                                            <td class="text-center">{{ $i++ }}</td>
+                                            <td>{{ $f->name }}</td>
+                                            <td >{{ $f->alias }}</td>
+                                            <td>
+                                                {!! $f->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
+                                           </td>
+                                            <td><a href="{{ route('admin.factory.edit',$f->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $f->id }}" data-toggle="modal" data-target="#deletedFactoryModal"><i class="far fa-trash-alt"></i></button></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">  
+                            <div class="card-header bg-info">
+                                <h5>Tạo thông tin mới</h5>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('admin.factory.add') }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Tên nhà máy <span class="text-danger">(*)</label>
+                                        <input type="text" name="name" class="form-control">
+                                        @if ($errors->has('name'))
+                                            <p class="text-danger mb-0">{{ $errors->first('name') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Ký hiệu <span class="text-danger">(*)</label>
+                                        <input type="text" name="alias" class="form-control">
+                                        @if ($errors->has('alias'))
+                                            <p class="text-danger mb-0">{{ $errors->first('alias') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p class="mb-0"><label>Trạng thái <span class="text-danger">(*)</span></label></p>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" checked name="status" value="1">Cho phép hiển thị
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="status" value="0">Không hiển thị
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-3">
+                                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
         {{--  Ket thuc Phan noi dung  --}}
@@ -103,31 +150,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        $(function() {
-            $('#table-factorys').DataTable({
-                
-                "language": {
-                    "sProcessing":   "Đang xử lý...",
-                    "sLengthMenu":   "Xem _MENU_ mục",
-                    "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-                    "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                    "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-                    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                    "sInfoPostFix":  "",
-                    "sSearch":       "Tìm:",
-                    "sUrl":          "",
-                    "oPaginate": {
-                        "sFirst":    "Đầu",
-                        "sPrevious": "Trước",
-                        "sNext":     "Tiếp",
-                        "sLast":     "Cuối"
-                    }
-                }
-            });
-            
-        });
-    </script>
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');

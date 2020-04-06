@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{ $menu->name }}
+    Mục tiêu sản xuất
 @endsection
 
 @section('content')
@@ -10,14 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">{{ $menu->Parent->name }}: <small>{{ $menu->name }}</small></h1>
+                        <h1 class="m-0 text-dark">Danh sách: <small>Mục tiêu sản xuất</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Nội dung</a></li>
-                            <li class="breadcrumb-item"><a href="#">{{ $menu->Parent->name }}</a></li>
-                            <li class="breadcrumb-item active">{{ $menu->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                            <li class="breadcrumb-item"><a href="#">Tình hình SX</a></li>
+                            <li class="breadcrumb-item active">Mục tiêu năm</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +25,7 @@
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
         {{--  modal xóa  --}}
-        <div class="modal" tabindex="-1" role="dialog" id="deletedTuyendungModal">
+        <div class="modal" tabindex="-1" role="dialog" id="deletedMuctieuModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -49,26 +48,26 @@
             </div>
         </div>
         {{--  Them moi  --}}
-        <a href="admin/content/{{ $menu->id }}/add-tuyen-dung.html" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
+        <a href="{{ route('admin.muctieu.add') }}" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
+                
                 {{--  Ket thuc phan thong bao  --}}
                 <div class="table-responsive-sm">
-                    <table class="table table-hover table-sm" id="table-tuyendungs">
+                    <table class="table table-hover table-sm" id="table-muctieus">
                         <thead class="thead-light">
                             <tr>
                                 <th>STT</th>
-                                <th>Danh mục</th>
-                                <th>Tiêu đề</th>  
+                                <th>Tiêu đề</th>
+                                <th>Công suất (MW)</th>
+                                <th>Sản lượng (triệu kWh)</th>
+                                <th>MNC (m)</th>
+                                <th>MNDBT (m)</th>
                                 <th>Trạng thái</th>
-                                <th>Lượt xem</th>
-                                <th>Nổi bật</th>
-                                <th>Người tạo</th>
-                                <th>Thời gian tạo</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
@@ -77,22 +76,19 @@
                             @php
                                 $i=1;
                             @endphp
-                            @foreach ($content as $ct)
+                            @foreach ($muctieu as $m)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                <td>{{ $menu->name }}</td>
+                                <td>{{ $m->title }}</td>
+                                <td>{{ number_format($m->ratedpower, 1, ',', '.')}}</td>
+                                <td>{{ number_format($m->quantity, 3, ',', '.')}}</td>
+                                <td>{{ number_format($m->MNHlowest, 2, ',', '.')}}</td>
+                                <td>{{ number_format($m->MNHnormal, 2, ',', '.')}}</td>
                                 <td>
-                                    <a href="admin/content/{{ $ct->id }}/detail-tuyen-dung.html">{{ $ct->title }}</a>
-                                </td>
-                                <td>
-                                     {!! $ct->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
-                                </td>
-                                <td class="text-center">{{ $ct->views }}</td>
-                                <td>{{ $ct->highlights==1 ? 'Có':'Không' }}</td>
-                                <td>{{ $ct->User->fullname }}</td>
-                                <td>{{ $ct->created_at ? $ct->created_at->format('d/m/Y H:h'):'' }}</td>
-                                <td><a href="admin/content/{{ $ct->id }}/edit-tuyen-dung.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $ct->id }}" data-toggle="modal" data-target="#deletedTuyendungModal"><i class="far fa-trash-alt"></i></button></td>
+                                    {!! $m->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
+                               </td>
+                                <td><a href="{{ route('admin.muctieu.edit',$m->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $m->id }}" data-toggle="modal" data-target="#deletedMuctieuModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -110,7 +106,7 @@
 @section('script')
     <script type="text/javascript">
         $(function() {
-            $('#table-tuyendungs').DataTable({
+            $('#table-muctieus').DataTable({
                 
                 "language": {
                     "sProcessing":   "Đang xử lý...",
@@ -136,8 +132,8 @@
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/content/"+ id +"/delete-tuyen-dung.html";
-            $('#deletedTuyendungModal form').attr('action', url);
+            var url = "admin/muctieu/delete/"+ id;
+            $('#deletedMuctieuModal form').attr('action', url);
         });
     </script>
 @endsection

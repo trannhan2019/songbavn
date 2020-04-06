@@ -59,44 +59,45 @@
                     @include('admin.layouts.loi')
                 @endif
                 {{--  Ket thuc phan thong bao  --}}
+                <div class="table-responsive-sm">
+                    <table class="table table-hover table-sm" id="table-slides">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Hình ảnh</th>
+                                <th>Vị trí</th>                          
+                                <th>Trạng thái</th>
+                                <th>Liên kết</th>
+                                <th>Thời gian tạo</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach ($slide as $sl)
+                            <tr>
+                                <td class="text-center">{{ $i++ }}</td>
+                                <td>
+                                    <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="" style="width: 150px" class="img-fluid">
+                                </td>
+                                <td class="text-center">{{ $sl->location }}</td>
+                                <td>
+                                    {!! $sl->Active==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
+                               </td>      
+                                <td>{{ $sl->Content ?  $sl->Content->title : '' }}</td>
+                                <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:h'):'' }}</td>
+                                <td><a href="{{ route('admin.slide.edit',$sl->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedSlideModal"><i class="far fa-trash-alt"></i></button></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="table-responsive-sm">
-                <table class="table table-hover table-sm" id="table-slides">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>STT</th>
-                            <th>Hình ảnh</th>
-                            <th>Vị trí</th>                          
-                            <th>Trạng thái</th>
-                            <th>Liên kết</th>
-                            <th>Thời gian tạo</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $i=1;
-                        @endphp
-                        @foreach ($slide as $sl)
-                        <tr>
-                            <td class="text-center">{{ $i++ }}</td>
-                            <td>
-                                <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="" style="width: 150px" class="img-fluid">
-                            </td>
-                            <td class="text-center">{{ $sl->location }}</td>
-                            <td>
-                                {!! $sl->Active==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
-                           </td>      
-                            <td>{{ $sl->Content ?  $sl->Content->title : '' }}</td>
-                            <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:h'):'' }}</td>
-                            <td><a href="{{ route('admin.slide.edit',$sl->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
-                            <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedSlideModal"><i class="far fa-trash-alt"></i></button></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
         {{--  Ket thuc Phan noi dung  --}}
        
