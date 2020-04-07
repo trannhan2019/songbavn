@@ -2,18 +2,66 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DataTables;
+use App\Thsx;
 use App\Muctieunam;
-use App\Factory;
 
-class MuctieunamController extends Controller
+class SanxuatController extends Controller
 {
     public function getAdminList()
     {
-        $muctieu = Muctieunam::orderBy('year','desc')->get();
-        return view('admin.pages.thsx.muctieunam.list',compact('muctieu'));
+        return view('admin.pages.thsx.sanxuat.list');
+    }
+    //Ajax lấy dữ liệu cho Datatable
+    public function getDatatable(){
+        $sanxuat = Thsx::orderBy('date','desc')->get();
+        return Datatables::of($sanxuat)
+        // them cot stt
+        ->addIndexColumn()
+        ->addColumn('detail', function ($user) {
+            return
+            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-success btn-sm btn-detail">
+            <i class="fas fa-search"></i> Chi tiết
+            </a>';
+        })
+        ->addColumn('edit', function ($user) {
+            return
+            '<a href="' . route('admin.user.edit', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
+            <i class="far fa-edit"></i> Sửa
+            </a>';
+        })
+        ->addColumn('delete', function ($user) {
+            return
+            '<a href="' . route('admin.user.delete', $user->id) .'" class="btn btn-danger btn-sm btn-detete" >
+            <i class="far fa-trash-alt"></i> Xóa
+            </a>';
+        })
+        ->editColumn('role',function($user){
+            if($user->role ==1){
+                return 'admin';
+            }
+            elseif($user->role ==2){
+                return 'editer';
+            }
+            elseif($user->role ==3){
+                return 'cổ đông';
+            }
+            else
+            return 'không có quyền';
+        })
+        ->editColumn('active',function($user){
+            // return $user->active == 1 ? 'Đang hoạt động' : 'Không hoạt động'; 
+            if ($user->active == 1) {
+                return '<span class="text-primary">Đang hoạt động</span>';
+            } else {
+                return '<span class="text=secondary"> Không hoạt động </span>';
+            }
+             
+        })
+        ->rawColumns(['active','detail','edit','delete'])
+        ->make(true);
     }
     public function getAdminAdd()
     {

@@ -116,7 +116,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.sanxuat.list') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cập nhật THSX</p>
                 </a>
@@ -137,7 +137,7 @@
           {{--  thùng rác--------------  --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="far fa-trash-alt nav-icon text-warning"></i>
+              <i class="far fa-trash-alt nav-icon text-white"></i>
               <p>
                 THÙNG RÁC
                 <i class="fas fa-angle-left right"></i>
@@ -160,6 +160,12 @@
                 <a href="admin/slide/trash" class="nav-link">
                   <i class="fas fa-sliders-h nav-icon"></i>
                   <p>Các slide đã xóa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin/muctieu/trash" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>Các mục tiêu SX đã xóa</p>
                 </a>
               </li>
               

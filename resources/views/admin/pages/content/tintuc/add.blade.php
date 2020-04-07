@@ -131,11 +131,11 @@
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
                                         <div class="input-group date" id="datetimepickerCreattt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattt" data-toggle="datetimepicker" name="created_at"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreattt" >
-                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattt" name="created_at"/>
+                                            <div class="input-group-append" data-target="#datetimepickerCreattt" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                             </div>
-                                        </div>                                        
+                                        </div>                                       
                                     </div>
 
                                     <div class="form-group">

@@ -135,10 +135,23 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('edit/{id}','MuctieunamController@getAdminEdit')->name('admin.muctieu.edit');
         Route:: post('edit/{id}','MuctieunamController@postAdminEdit')->name('admin.muctieu.edit');
         Route:: post('delete/{id}','MuctieunamController@postAdminDelete')->name('admin.muctieu.delete');
+        //Đã xóa
+        Route::get('trash','MuctieunamController@getTrash')->name('admin.muctieu.trash');
+        Route::get('restore/{id}','MuctieunamController@getRestore')->name('admin.muctieu.restore');
+        Route::post('forcedelete/{id}','MuctieunamController@postForcedelete')->name('admin.muctieu.forcedelete');
     });
     //Tình hình sản xuất
-    Route::group(['prefix' => 'thsx'], function () {
-
+    Route::group(['prefix' => 'sanxuat'], function () {
+        Route:: get('list','SanxuatController@getAdminList')->name('admin.sanxuat.list');
+        Route:: get('add','SanxuatController@getAdminAdd')->name('admin.sanxuat.add');
+        Route:: post('add','SanxuatController@postAdminAdd')->name('admin.sanxuat.add');
+        Route:: get('edit/{id}','SanxuatController@getAdminEdit')->name('admin.sanxuat.edit');
+        Route:: post('edit/{id}','SanxuatController@postAdminEdit')->name('admin.sanxuat.edit');
+        Route:: post('delete/{id}','SanxuatController@postAdminDelete')->name('admin.sanxuat.delete');
+        //Đã xóa
+        Route::get('trash','SanxuatController@getTrash')->name('admin.sanxuat.trash');
+        Route::get('restore/{id}','SanxuatController@getRestore')->name('admin.sanxuat.restore');
+        Route::post('forcedelete/{id}','SanxuatController@postForcedelete')->name('admin.sanxuat.forcedelete');
     });
 
 });

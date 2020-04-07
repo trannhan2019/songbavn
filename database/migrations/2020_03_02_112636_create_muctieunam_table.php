@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMuctieunameTable extends Migration
+class CreateMuctieunamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,11 +18,11 @@ class CreateMuctieunameTable extends Migration
             $table->integer('factory_id')->unsigned();
             $table->foreign('factory_id')->references('id')->on('factorys');
             $table->string('title');
-            $table->date('year');
-            $table->float('ratedpower');
-            $table->float('MNHlowest');
-            $table->float('MNHnormal');
-            $table->float('quantity');
+            $table->integer('year')->unsigned();
+            $table->float('ratedpower',8,2)->unsigned();
+            $table->float('MNHlowest',8,2)->unsigned();
+            $table->float('MNHnormal',8,2)->unsigned();
+            $table->float('quantity',8,3)->unsigned();
             $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();

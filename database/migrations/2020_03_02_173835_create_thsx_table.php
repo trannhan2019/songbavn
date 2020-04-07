@@ -20,10 +20,10 @@ class CreateThsxTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('date');
-            $table->float('power');
-            $table->float('quantity');
-            $table->float('MNH');
-            $table->float('rain');
+            $table->float('power',8,2)->default(0);
+            $table->float('quantity',8,3)->default(0);
+            $table->float('MNH',8,2)->unsigned();
+            $table->float('rain',8,1)->default(0);
             $table->string('device');
             $table->tinyInteger('status');
             $table->softDeletes();

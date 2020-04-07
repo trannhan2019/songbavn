@@ -57,9 +57,9 @@ class UserController extends Controller
         ->editColumn('active',function($user){
             // return $user->active == 1 ? 'Đang hoạt động' : 'Không hoạt động'; 
             if ($user->active == 1) {
-                return '<span class="text-primary">Đang hoạt động</span>';
+                return '<span class="badge badge-primary">Đang hoạt động</span>';
             } else {
-                return '<span class="text=secondary"> Không hoạt động </span>';
+                return '<span class="badge badge-secondary"> Không hoạt động </span>';
             }
              
         })

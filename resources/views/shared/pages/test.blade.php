@@ -91,3 +91,20 @@
 </div>
 {{-- <!-- /.content-wrapper --> --}}
 @endsection
+<div class="form-group">
+  
+  <div class="input-group date" id="datetimepickerCreatmt" data-target-input="nearest">
+      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatmt" data-toggle="datetimepicker" name="year"/>
+      <div class="input-group-append" data-target="#datetimepickerCreatmt" >
+          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+      </div>
+  </div>                                    
+</div>
+<div class="form-group">
+  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+      <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
+  </div>
+</div>
