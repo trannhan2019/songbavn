@@ -9,9 +9,9 @@ class Thsx extends Model
 {
     use SoftDeletes;
     protected $table = 'thsxs';
-    public function Factory()
+    public function Muctieunam()
     {
-        return $this->belongsTo(Factory::class,'factory_id');
+        return $this->belongsTo(Muctieunam::class,'muctieunam_id');
     }
     public function User()
     {

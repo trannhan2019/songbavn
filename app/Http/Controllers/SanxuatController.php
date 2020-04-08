@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DataTables;
 use App\Thsx;
 use App\Muctieunam;
@@ -17,93 +18,101 @@ class SanxuatController extends Controller
     //Ajax lấy dữ liệu cho Datatable
     public function getDatatable(){
         $sanxuat = Thsx::orderBy('date','desc')->get();
+
         return Datatables::of($sanxuat)
         // them cot stt
         ->addIndexColumn()
-        ->addColumn('detail', function ($user) {
-            return
-            '<a href="' . route('admin.user.detail', $user->id) .'" class="btn btn-success btn-sm btn-detail">
-            <i class="fas fa-search"></i> Chi tiết
-            </a>';
+        
+        ->editColumn('muctieunam_id',function($sanxuat){
+            return $sanxuat->Muctieunam->title;
         })
-        ->addColumn('edit', function ($user) {
-            return
-            '<a href="' . route('admin.user.edit', $user->id) .'" class="btn btn-warning btn-sm btn-edit" >
-            <i class="far fa-edit"></i> Sửa
-            </a>';
+        
+        ->editColumn('date',function($sanxuat){
+            return date('d/m/Y', strtotime($sanxuat->date));
+
         })
-        ->addColumn('delete', function ($user) {
-            return
-            '<a href="' . route('admin.user.delete', $user->id) .'" class="btn btn-danger btn-sm btn-detete" >
-            <i class="far fa-trash-alt"></i> Xóa
-            </a>';
+        
+        ->editColumn('power',function($sanxuat){
+            return number_format($sanxuat->power, 1, ',', '.');
         })
-        ->editColumn('role',function($user){
-            if($user->role ==1){
-                return 'admin';
-            }
-            elseif($user->role ==2){
-                return 'editer';
-            }
-            elseif($user->role ==3){
-                return 'cổ đông';
-            }
-            else
-            return 'không có quyền';
+        ->editColumn('quantity',function($sanxuat){
+            return number_format($sanxuat->quantity, 3, ',', '.');
         })
-        ->editColumn('active',function($user){
-            // return $user->active == 1 ? 'Đang hoạt động' : 'Không hoạt động'; 
-            if ($user->active == 1) {
-                return '<span class="text-primary">Đang hoạt động</span>';
+        ->editColumn('MNH',function($sanxuat){
+            return number_format($sanxuat->MNH, 2, ',', '.');
+        })
+        ->editColumn('rain',function($sanxuat){
+            return number_format($sanxuat->rain, 1, ',', '.');
+        })
+        
+        ->editColumn('status',function($sanxuat){
+
+            if ($sanxuat->status == 1) {
+                return '<span class="badge badge-primary">Hoạt động</span>';
             } else {
-                return '<span class="text=secondary"> Không hoạt động </span>';
+                return '<span class="badge badge-secondary"> Không hoạt động </span>';
             }
              
         })
-        ->rawColumns(['active','detail','edit','delete'])
+        
+        ->addColumn('edit', function ($sanxuat) {
+            return
+            '<a href="' . route('admin.sanxuat.edit', $sanxuat->id) .'" class="btn btn-warning btn-sm btn-edit" >
+            <i class="far fa-edit"></i>
+            </a>';
+        })
+        ->addColumn('delete', function ($sanxuat) {
+            return
+            '<a href="' . route('admin.sanxuat.delete', $sanxuat->id) .'" class="btn btn-danger btn-sm btn-detete" >
+            <i class="far fa-trash-alt"></i>
+            </a>';
+        })
+        
+        ->rawColumns(['status','edit','delete'])
         ->make(true);
     }
     public function getAdminAdd()
     {
-        $factory = Factory::all();
-        return view('admin.pages.thsx.muctieunam.add',compact('factory'));
+        $muctieu = Muctieunam::orderBy('year','desc')->get();
+        return view('admin.pages.thsx.sanxuat.add',compact('muctieu'));
     }
     public function postAdminAdd(Request $request)
     {
+        // dd($request);
         $this->validate($request,
         [
-            'year'=>'required|integer',
-            'ratedpower'=> 'required|numeric',
-            'MNHlowest'=> 'required|numeric',
-            'MNHnormal'=> 'required|numeric',
-            'quantity'=> 'required|numeric'
+            'date'=>'required',
+            'power'=> 'required|numeric',
+            'quantity'=> 'required|numeric',
+            'MNH'=> 'required|numeric',
+            'rain'=> 'required|numeric',
+            'device'=> 'required'
         ],
         [
             'required'=>'Bạn chưa nhập :attribute',
-            'integer'=>':attribute chưa đúng định dạng',
-            'max'=>':attribute tối đa :max ký tự',
             'numeric'=>':attribute phải là kiểu số'
         ],
         [
-            'year'=>'Năm',
+            'date'=>'Ngày',
             'quantity'=>'Sản lượng',
-            'ratedpower'=> 'Công suất',
-            'MNHlowest'=> 'MNC',
-            'MNHnormal'=> 'MNDBT'
+            'power'=> 'Công suất',
+            'MNH'=> 'Mực nước hồ',
+            'rain'=> 'Lượng mưa',
+            'device'=>'Tình trạng thiết bị'
         ]);
-        $muctieu = new Muctieunam;
-        $muctieu->factory_id = $request->factory_id;
-        $muctieu->year = $request->year;
-        $factory = Factory::find($request->factory_id);
-        $muctieu->title = $factory->name.' năm '.$request->year;
-        $muctieu->ratedpower = $request->ratedpower;
-        $muctieu->quantity = $request->quantity;
-        $muctieu->MNHlowest = $request->MNHlowest;
-        $muctieu->MNHnormal = $request->MNHnormal;
-        $muctieu->status = $request->status;
+        $sanxuat = new Thsx;
+        $sanxuat->muctieunam_id = $request->muctieunam_id;
+        $sanxuat->date = date('Y-m-d',strtotime(str_replace('/','-',$request->date)));
+        $sanxuat->power = $request->power;
+        $sanxuat->quantity = $request->quantity;
+        $sanxuat->MNH = $request->MNH;
+        $sanxuat->rain = $request->rain;
+        $sanxuat->device = $request->device;
+        $sanxuat->status = $request->status;
+        $sanxuat->user_id = Auth::user()->id;
         
-        $muctieu->save();
-        return redirect('admin/muctieu/list')->with('thongbao','Thêm thông tin thành công !');
+        $sanxuat->save();
+        return redirect('admin/sanxuat/list')->with('thongbao','Thêm thông tin thành công !');
     }
     public function getAdminEdit($id)
     {

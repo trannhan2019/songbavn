@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Mục tiêu sản xuất
+    Cập nhật tình hình sản xuất
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Thêm: <small>Mục tiêu sản xuất năm</small></h1>
+                        <h1 class="m-0 text-dark">Thêm: <small>Thông tin sản xuất</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -30,63 +30,71 @@
                             <div class="card-header">
                               <h3 class="card-title">Thêm nội dung mới</h3>
                             </div>
-                            <form action="{{ route('admin.muctieu.add') }}" method="post">
+                            <form action="{{ route('admin.sanxuat.add') }}" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Nhà máy <span class="text-danger">(*)</span></label>
-                                        <select class="form-control" name="factory_id">
-                                            @foreach ($factory as $f)
-                                            <option value="{{$f->id}}">{{ $f->name }}</option>
+                                        <select class="form-control" name="muctieunam_id">
+                                            @foreach ($muctieu as $m)
+                                            <option value="{{$m->id}}">{{ $m->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Năm <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerCreatmt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatmt" name="year"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreatmt" data-toggle="datetimepicker">
+                                        <label>Ngày <span class="text-danger">(*)</span></label>
+                                        <div class="input-group date" id="datetimepickerCreatsx" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatsx" name="date"/>
+                                            <div class="input-group-append" data-target="#datetimepickerCreatsx" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                             </div>
                                         </div>
-                                        @if ($errors->has('year'))
-                                            <p class="text-danger mb-0">{{ $errors->first('year') }}</p>
+                                        @if ($errors->has('date'))
+                                            <p class="text-danger mb-0">{{ $errors->first('date') }}</p>
                                         @endif                                     
                                     </div>
 
                                     <div class="form-group">
-                                        <p class="mb-0"><label>Công suất định mức (MW) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="ratedpower" value="" min="0" max="500" step="0.1" data-decimals="2"/>
-                                        @if ($errors->has('ratedpower'))
-                                            <p class="text-danger mb-0">{{ $errors->first('ratedpower') }}</p>
+                                        <p class="mb-0"><label>Công suất (MW) <span class="text-danger">(*)</span></label></p>
+                                        <input class="form-control-sm" type="number" name="power" value="" min="0" max="500" step="0.1" data-decimals="2"/>
+                                        @if ($errors->has('power'))
+                                            <p class="text-danger mb-0">{{ $errors->first('power') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Sản lượng (triệu kWh) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="quantity" value="" min="0" max="500" step="0.01" data-decimals="3"/>
+                                        <input class="form-control-sm" type="number" name="quantity" value="" min="0" max="500" step="0.001" data-decimals="3"/>
                                         @if ($errors->has('quantity'))
                                             <p class="text-danger mb-0">{{ $errors->first('quantity') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group">
-                                        <p class="mb-0"><label>Mực nước chết (m) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="MNHlowest" value="" min="0" max="500" step="0.01" data-decimals="2"/>
-                                        @if ($errors->has('MNHlowest'))
-                                            <p class="text-danger mb-0">{{ $errors->first('MNHlowest') }}</p>
+                                        <p class="mb-0"><label>Mực nước hồ (m) <span class="text-danger">(*)</span></label></p>
+                                        <input class="form-control-sm" type="number" name="MNH" value="" min="0" max="500" step="0.01" data-decimals="2"/>
+                                        @if ($errors->has('MNH'))
+                                            <p class="text-danger mb-0">{{ $errors->first('MNH') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group">
-                                        <p class="mb-0"><label>Mực nước dâng bình thường (m) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="MNHnormal" value="" min="0" max="500" data-decimals="2" step="0.01"/>
-                                        @if ($errors->has('MNHnormal'))
-                                            <p class="text-danger mb-0">{{ $errors->first('MNHnormal') }}</p>
+                                        <p class="mb-0"><label>Lượng mưa (mm) <span class="text-danger">(*)</span></label></p>
+                                        <input class="form-control-sm" type="number" name="rain" value="" min="0" max="500" data-decimals="1" step="0.01"/>
+                                        @if ($errors->has('rain'))
+                                            <p class="text-danger mb-0">{{ $errors->first('rain') }}</p>
                                         @endif
                                     </div>
                                     
+                                    <div class="form-group">
+                                        <label>Tình trạng thiết bị <span class="text-danger">(*)</label>
+                                        <input type="text" name="device" class="form-control">
+                                        @if ($errors->has('device'))
+                                            <p class="text-danger mb-0">{{ $errors->first('device') }}</p>
+                                        @endif
+                                    </div>
+
                                     <div class="form-group">
                                         <p class="mb-0"><label>Trạng thái <span class="text-danger">(*)</span></label></p>
                                         <div class="form-check-inline">
@@ -118,11 +126,11 @@
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreatmt').datetimepicker({
+			$('#datetimepickerCreatsx').datetimepicker({
+                
                 locale: 'vi',
-                viewMode: 'years',
-                format: 'YYYY',
-                date: moment()
+                format: 'DD/MM/YYYY'
+
 			});
         });
     </script>

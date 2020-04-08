@@ -143,6 +143,8 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     //Tình hình sản xuất
     Route::group(['prefix' => 'sanxuat'], function () {
         Route:: get('list','SanxuatController@getAdminList')->name('admin.sanxuat.list');
+        //Ajax lay du lieu datatable
+        Route::get('datatable','SanxuatController@getDatatable')->name('admin.sanxuat.datatable');
         Route:: get('add','SanxuatController@getAdminAdd')->name('admin.sanxuat.add');
         Route:: post('add','SanxuatController@postAdminAdd')->name('admin.sanxuat.add');
         Route:: get('edit/{id}','SanxuatController@getAdminEdit')->name('admin.sanxuat.edit');
