@@ -81,7 +81,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Lượng mưa (mm) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="rain" value="" min="0" max="500" data-decimals="1" step="0.01"/>
+                                        <input class="form-control-sm" type="number" name="rain" value="" min="0" max="500" data-decimals="1" step="0.1"/>
                                         @if ($errors->has('rain'))
                                             <p class="text-danger mb-0">{{ $errors->first('rain') }}</p>
                                         @endif

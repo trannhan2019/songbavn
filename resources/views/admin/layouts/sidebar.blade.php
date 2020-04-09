@@ -168,6 +168,12 @@
                   <p>Các mục tiêu SX đã xóa</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="admin/sanxuat/trash" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>Tình hình sản xuất</p>
+                </a>
+              </li>
               
             </ul>
           </li>

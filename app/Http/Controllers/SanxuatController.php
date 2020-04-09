@@ -116,70 +116,71 @@ class SanxuatController extends Controller
     }
     public function getAdminEdit($id)
     {
-        $factory = Factory::all();
-        $muctieu = Muctieunam::find($id);
-        return view('admin.pages.thsx.muctieunam.edit',compact('muctieu','factory'));
+        $muctieu = Muctieunam::all();
+        $sanxuat = Thsx::find($id);
+        return view('admin.pages.thsx.sanxuat.edit',compact('muctieu','sanxuat'));
     }
     public function postAdminEdit(Request $request, $id)
     {
         $this->validate($request,
         [
-            'year'=>'required|integer',
-            'ratedpower'=> 'required|numeric',
-            'MNHlowest'=> 'required|numeric',
-            'MNHnormal'=> 'required|numeric',
-            'quantity'=> 'required|numeric'
+            'date'=>'required',
+            'power'=> 'required|numeric',
+            'quantity'=> 'required|numeric',
+            'MNH'=> 'required|numeric',
+            'rain'=> 'required|numeric',
+            'device'=> 'required'
         ],
         [
             'required'=>'Bạn chưa nhập :attribute',
-            'integer'=>':attribute chưa đúng định dạng',
             'numeric'=>':attribute phải là kiểu số'
         ],
         [
-            'year'=>'Năm',
+            'date'=>'Ngày',
             'quantity'=>'Sản lượng',
-            'ratedpower'=> 'Công suất',
-            'MNHlowest'=> 'MNC',
-            'MNHnormal'=> 'MNDBT'
+            'power'=> 'Công suất',
+            'MNH'=> 'Mực nước hồ',
+            'rain'=> 'Lượng mưa',
+            'device'=>'Tình trạng thiết bị'
         ]);
-        $muctieu = Muctieunam::find($id);
-        $muctieu->factory_id = $request->factory_id;
-        $muctieu->year = $request->year;
-        $factory = Factory::find($request->factory_id);
-        $muctieu->title = $factory->name.' năm '.$request->year;
-        $muctieu->ratedpower = $request->ratedpower;
-        $muctieu->quantity = $request->quantity;
-        $muctieu->MNHlowest = $request->MNHlowest;
-        $muctieu->MNHnormal = $request->MNHnormal;
-        $muctieu->status = $request->status;
-
-        $muctieu->save();
-        return redirect('admin/muctieu/list')->with('thongbao','Sửa thông tin thành công !');
-    }
-    public function postAdminDelete($id)
-    {
-        $muctieu = Muctieunam::find($id);
-        $muctieu->delete();
+        $sanxuat = Thsx::find($id);
+        $sanxuat->muctieunam_id = $request->muctieunam_id;
+        $sanxuat->date = date('Y-m-d',strtotime(str_replace('/','-',$request->date)));
+        $sanxuat->power = $request->power;
+        $sanxuat->quantity = $request->quantity;
+        $sanxuat->MNH = $request->MNH;
+        $sanxuat->rain = $request->rain;
+        $sanxuat->device = $request->device;
+        $sanxuat->status = $request->status;
+        $sanxuat->user_id = Auth::user()->id;
         
-        return redirect()->route('admin.muctieu.list')->with('thongbao','Xóa thông tin thành công !');
+        $sanxuat->save();
+        return redirect('admin/sanxuat/list')->with('thongbao','Sửa thông tin thành công !');
+    }
+    public function getAdminDelete($id)
+    {
+        $sanxuat = Thsx::find($id);
+        $sanxuat->delete();
+        
+        return redirect()->route('admin.sanxuat.list')->with('thongbao','Xóa thông tin thành công !');
     }
     //Đã xóa
     public function getTrash()
     {
-        $muctieu = Muctieunam::orderByDesc('year')->onlyTrashed()->get();
-        return view('admin.pages.thsx.muctieunam.trash',compact('muctieu'));
+        $sanxuat = Thsx::orderByDesc('date')->onlyTrashed()->get();
+        return view('admin.pages.thsx.sanxuat.trash',compact('sanxuat'));
     }
     public function getRestore($id)
     {
-        $muctieu = Muctieunam::withTrashed()->find($id);
-        $muctieu->restore();
-        return redirect('admin/muctieu/trash')->with('thongbao','Khôi phục nội dung thành công !');
+        $sanxuat = Thsx::withTrashed()->find($id);
+        $sanxuat->restore();
+        return redirect('admin/sanxuat/trash')->with('thongbao','Khôi phục nội dung thành công !');
     }
     public function postForcedelete($id)
     {
-        $muctieu = Muctieunam::withTrashed()->find($id);
-        $muctieu->forceDelete();
+        $sanxuat = Thsx::withTrashed()->find($id);
+        $sanxuat->forceDelete();
         
-        return redirect('admin/muctieu/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
+        return redirect('admin/sanxuat/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
 }

@@ -149,7 +149,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('add','SanxuatController@postAdminAdd')->name('admin.sanxuat.add');
         Route:: get('edit/{id}','SanxuatController@getAdminEdit')->name('admin.sanxuat.edit');
         Route:: post('edit/{id}','SanxuatController@postAdminEdit')->name('admin.sanxuat.edit');
-        Route:: post('delete/{id}','SanxuatController@postAdminDelete')->name('admin.sanxuat.delete');
+        Route:: get('delete/{id}','SanxuatController@getAdminDelete')->name('admin.sanxuat.delete');
         //Đã xóa
         Route::get('trash','SanxuatController@getTrash')->name('admin.sanxuat.trash');
         Route::get('restore/{id}','SanxuatController@getRestore')->name('admin.sanxuat.restore');
