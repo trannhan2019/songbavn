@@ -22,7 +22,7 @@
           {{-- Dashboard --}}
           <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-th text-danger"></i>
+              <i class="nav-icon fas fa-th text-warning"></i>
               <p>
                 Trang tổng quan
                 <span class="right badge badge-danger">New</span>
@@ -32,7 +32,7 @@
           {{--  Quản lý danh mục - Menu  --}}
           <li class="nav-item">
             <a href="{{ route('admin.menu.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-th text-danger"></i>
+              <i class="nav-icon fas fa-th text-warning"></i>
               <p>
                 Quản lý danh mục
                 <span class="right badge badge-danger">New</span>
@@ -42,7 +42,7 @@
           {{--  Quản lý người dùng - User  --}}
           <li class="nav-item">
             <a href="{{ route('admin.user.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-users-cog text-danger"></i>
+              <i class="nav-icon fas fa-users-cog text-warning"></i>
               <p>
                 Quản lý người dùng
                 <span class="right badge badge-danger">New</span>
@@ -96,7 +96,7 @@
           {{--  Quản lý tình hình sản xuất  --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie text-danger"></i>
+              <i class="nav-icon fas fa-chart-pie text-warning"></i>
               <p>
                 Tình hình sản xuất
                 <i class="right fas fa-angle-left"></i>
@@ -126,7 +126,7 @@
           {{--  Quản lý Slide  --}}
           <li class="nav-item">
             <a href="{{ route('admin.slide.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-sliders-h text-danger"></i>
+              <i class="nav-icon fas fa-sliders-h text-warning"></i>
               <p>
                 Quản lý Slide
                 <span class="right badge badge-danger">New</span>
