@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Menu;
 use App\Content;
+use App\Ykiencodong;
 
 class ContentController extends Controller
 {
@@ -383,6 +384,13 @@ class ContentController extends Controller
         $content->delete();
         
         return redirect('admin/content/'.$content->menu_id.'/quan-he-co-dong.html')->with('thongbao','Xóa thông tin thành công !');
+    }
+    //Ý kiến 
+    public function getAdminYkien ($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $ykien = Ykiencodong::orderBy('created_at','desc')->get();
+        return view('admin.pages.content.codong.list_ykien',compact('menu','ykien'));
     }
 
     //Tuyển dụng

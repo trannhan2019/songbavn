@@ -1,4 +1,4 @@
-<div class="header p-2">
+<div class="header p-1">
     <div class="header_login">
         <div class="container">
 			<div class="row text-white">
@@ -36,7 +36,7 @@
 {{-- <!-- header --> --}}
 {{-- <!-- Navigation --> --}}
 
-<nav class="navbar navbar-expand-xl navbar-light">
+<nav class="navbar navbar-expand-xl navbar-light" style="border-bottom: 2px solid #D68528;">
 	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
 			<img src="shared_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">
@@ -45,7 +45,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
-			<ul class="navbar-nav m-auto">
+			<ul class="navbar-nav">
 				{{--  <!-- Dropdown -->  --}}
 				@foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
 				
@@ -68,11 +68,11 @@
 					@endif
 				@endforeach
 
-				<form class="form-inline mx-3 ml-lg-3" action="#">
+				<form class="form-inline ml-3" action="#">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
+						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
 						<div class="input-group-append">
-							<button class="btn btn-outline-primary" type="submit">
+							<button class="btn btn-sm btn-outline-primary" type="submit">
 								<i class="fas fa-search"></i>
 							</button>
 						</div>

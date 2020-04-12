@@ -90,6 +90,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{content_id}/edit-quan-he-co-dong.html','ContentController@getAdminEditCodong');
         Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
         Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
+        //Ý kiến nhà đầu tư
+        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','ContentController@getAdminYkien');
+
+        Route:: get('add-danh-muc-y-kien.html','ContentController@getAdminDanhmucYkien');
         //Tuyển dụng
         Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
         Route:: get('{menu_id}/add-tuyen-dung.html','ContentController@getAdminAddTuyendung');
