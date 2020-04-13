@@ -19,6 +19,8 @@
 	{{-- <!-- CUSTOM CSS------------------------ --> --}}
 	<link rel="stylesheet" href="shared_asset/css/style.css">
 	{{--  <link rel="stylesheet" href="{!! asset('shared_asset/css/style.css') !!}">  --}}
+	{{--  Tuy chinh khi print noi dung website  --}}
+	<link rel="stylesheet" type="text/css" href="shared_asset/css/print.css" media="print" />
 
 </head>
 <body>
