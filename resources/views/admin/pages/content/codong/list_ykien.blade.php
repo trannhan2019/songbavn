@@ -47,27 +47,25 @@
                 </div>
             </div>
         </div>
-        {{--  Them moi  --}}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-6">
-                    <a href="{{ route('admin.muctieu.add') }}" class="btn btn-outline-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
-                </div>
-                <div class="col-6 text-right">
-                    <a href="#" class="btn btn-outline-success mb-3"> Quản lý Danh mục</a>
-                </div>
-            </div>
-        </div>
+        
         
         <div class="content">
             <div class="container-fluid">
+                <div class="row bg-light p-1">
+                    <div class="col-6">
+                        <a href="{{ route('admin.muctieu.add') }}" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="admin/content/danh-muc-y-kien.html" class="btn btn-outline-success"> Quản lý Danh mục</a>
+                    </div>
+                </div>
                 {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
                 
                 {{--  Ket thuc phan thong bao  --}}
-                <div class="table-responsive-sm">
+                <div class="table-responsive-sm mt-3">
                     <table class="table table-hover table-sm" id="table-ykiens">
                         <thead class="thead-light">
                             <tr>

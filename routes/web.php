@@ -93,7 +93,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         //Ý kiến nhà đầu tư
         Route:: get('{menu_id}/y-kien-nha-dau-tu.html','ContentController@getAdminYkien');
 
-        Route:: get('add-danh-muc-y-kien.html','ContentController@getAdminDanhmucYkien');
+        Route:: get('danh-muc-y-kien.html','ContentController@getAdminDanhmucYkien');
+        Route:: post('add-danh-muc-y-kien.html','ContentController@postAdminAddDanhmucYkien');
+        Route:: post('{dm_id}/edit-danh-muc-y-kien.html','ContentController@postAdminEditDanhmucYkien');
+        Route:: post('{dm_id}/delete-danh-muc-y-kien.html','ContentController@postAdminDeleteDanhmucYkien');
         //Tuyển dụng
         Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
         Route:: get('{menu_id}/add-tuyen-dung.html','ContentController@getAdminAddTuyendung');

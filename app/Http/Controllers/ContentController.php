@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Menu;
 use App\Content;
+use App\Danhmucykien;
 use App\Ykiencodong;
 
 class ContentController extends Controller
@@ -391,6 +392,61 @@ class ContentController extends Controller
         $menu = Menu::find($menu_id);
         $ykien = Ykiencodong::orderBy('created_at','desc')->get();
         return view('admin.pages.content.codong.list_ykien',compact('menu','ykien'));
+    }
+    public function getAdminDanhmucYkien()
+    {
+        $listdanhmuc = Danhmucykien::all();
+        return view('admin.pages.content.codong.danhmuc',compact('listdanhmuc'));
+    }
+    public function postAdminAddDanhmucYkien(Request $request)
+    {
+        $this->validate($request,[
+            'name'=> 'required|min:3|max:255',
+            'status'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'name'=>'Tên danh mục',
+            'status'=>'Trạng thái'
+        ]);
+        $dmykien = new Danhmucykien();
+        $dmykien->name = $request->name;
+        $dmykien->slug = str::slug($request->name,'-');
+        $dmykien->status = $request->status;
+        $dmykien->save();
+        return redirect('admin/content/danh-muc-y-kien.html')->with('thongbao','Tạo danh mục thành công !');
+    }
+    public function postAdminEditDanhmucYkien(Request $request, $dm_id)
+    {
+        $this->validate($request,[
+            'name'=> 'required|min:3|max:255',
+            'status'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'name'=>'Tên danh mục',
+            'status'=>'Trạng thái'
+        ]);
+        $dmykien = Danhmucykien::find($dm_id);
+        $dmykien->name = $request->name;
+        $dmykien->slug = str::slug($request->name,'-');
+        $dmykien->status = $request->status;
+        $dmykien->save();
+        return redirect('admin/content/danh-muc-y-kien.html')->with('thongbao','Sửa danh mục thành công !');
+    }
+    public function postAdminDeleteDanhmucYkien($dm_id)
+    {
+        $dmykien = Danhmucykien::find($dm_id);
+        $dmykien->delete();
+        return redirect('admin/content/danh-muc-y-kien.html')->with('thongbao','Xóa danh mục thành công !');
     }
 
     //Tuyển dụng

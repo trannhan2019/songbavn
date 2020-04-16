@@ -16,7 +16,7 @@ class MenuController extends Controller
 
     public function postAdd(Request $request){
         $this->validate($request,[
-            'name'=> 'required|unique:menus,name|min:3|max:32',
+            'name'=> 'required|unique:menus,name|min:3|max:255',
             'position'=>'required|integer'
         ],
         [
