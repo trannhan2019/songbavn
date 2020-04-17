@@ -22,7 +22,7 @@ class CreateContentTable extends Migration
             $table->text('title')->nullable();
             $table->text('slug')->nullable();
             $table->text('abstract')->nullable();
-            $table->text('imageorfile')->nullable();
+            $table->string('imageorfile')->nullable();
             $table->longText('content')->nullable();
             $table->tinyInteger('highlights')->default(0);
             $table->tinyInteger('notification')->default(0);

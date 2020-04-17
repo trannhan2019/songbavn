@@ -39,6 +39,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::post('add','MenuController@postAdd')->name('admin.menu.add');
         Route::post('edit/{id}','MenuController@postEdit')->name('admin.menu.edit');
         Route::post('delete/{id}','MenuController@postDelete')->name('admin.menu.delete');
+        //Trash
+        Route::get('trash','MenuController@getTrash')->name('admin.menu.trash');
+        Route::get('restore/{id}','MenuController@getRestore')->name('admin.menu.restore');
+        //Route::post('forcedelete/{id}','MenuController@postForcedelete')->name('admin.menu.forcedelete');
     });
 
     //Users

@@ -66,7 +66,7 @@ class MenuController extends Controller
 
     public function postDelete($id){
         $menu = Menu::find($id);
-        var_dump($menu);
+        //var_dump($menu);
         if ($menu->ChildMenus) {
             foreach ($menu->ChildMenus as $child) {
                 $child->delete(); 
@@ -78,4 +78,23 @@ class MenuController extends Controller
 
         return redirect('admin/menu/list')->with('thongbao','Xóa danh mục thành công !');
     }
+    //TRASH
+    public function getTrash(){
+        $menutrash = Menu::orderBy('parent')->onlyTrashed()->get();
+        //$menus = Menu::whereNull('parent')->with('ChildMenus')->get();
+        return view('admin.pages.menu.trash',compact('menutrash'));
+    }
+    
+    public function getRestore($id)
+    {
+        $menutrash = Menu::withTrashed()->find($id);
+        $menutrash->restore();
+        return redirect()->route('admin.menu.trash')->with('thongbao','Khôi phục thông tin thành công !');
+    }
+    // public function postForcedelete($id)
+    // {       
+    //     $menutrash = Menu::withTrashed()->find($id);
+    //     $menutrash->forceDelete();
+    //     return redirect()->route('admin.menu.trash')->with('thongbao','Xóa vĩnh viễn thông tin thành công !');
+    // }
 }

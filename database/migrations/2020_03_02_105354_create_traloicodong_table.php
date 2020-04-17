@@ -17,6 +17,8 @@ class CreateTraloicodongTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('ykiencodong_id')->unsigned()->nullable();
+            $table->foreign('ykiencodong_id')->references('id')->on('ykiencodongs');
             $table->mediumText('reply_content')->nullable();
             $table->tinyInteger('status');
             $table->string('author');

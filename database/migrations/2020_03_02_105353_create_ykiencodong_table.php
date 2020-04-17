@@ -19,8 +19,6 @@ class CreateYkiencodongTable extends Migration
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->integer('danhmucykien_id')->unsigned()->nullable();
             $table->foreign('danhmucykien_id')->references('id')->on('danhmucykiens');
-            $table->integer('traloicodong_id')->unsigned()->nullable();
-            $table->foreign('traloicodong_id')->references('id')->on('traloicodongs');
             $table->string('fullname');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

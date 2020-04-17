@@ -20,7 +20,9 @@ class CreateMenuTable extends Migration
             $table->tinyInteger('status');
             $table->integer('position')->unsigned()->default(1);
             $table->integer('parent')->unsigned()->nullable();
-            $table->foreign('parent')->references('id')->on('menus');   
+            $table->foreign('parent')->references('id')->on('menus');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

@@ -145,6 +145,13 @@
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
+                <a href="{{ route('admin.menu.trash') }}" class="nav-link">
+                  <i class="fas fa-ban nav-icon"></i>
+                  <p>Danh mục đã xóa</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('admin.user.trash') }}" class="nav-link">
                   <i class="fas fa-user-slash nav-icon"></i>
                   <p>Người dùng đã xóa</p>

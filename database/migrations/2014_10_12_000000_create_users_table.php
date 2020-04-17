@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->tinyInteger('role');
             $table->string('password');
-            $table->text('image')->nullable();
+            $table->string('image')->nullable();
             $table->string('phone')->nullable();
             $table->mediumText('address')->nullable();
             $table->tinyInteger('active');

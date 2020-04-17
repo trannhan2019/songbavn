@@ -18,6 +18,8 @@ class CreateDanhmucykienTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->tinyInteger('status');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
