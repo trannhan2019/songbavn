@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Mục tiêu sản xuất
+    Thông số nhà máy
 @endsection
 
 @section('content')
@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Danh sách: <small>Mục tiêu sản xuất đã xóa</small></h1>
+                        <h1 class="m-0 text-dark">Danh sách: <small>Thông số nhà máy đã xóa</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
                             <li class="breadcrumb-item"><a href="#">Tình hình SX</a></li>
-                            <li class="breadcrumb-item active">Danh sách</li>
+                            <li class="breadcrumb-item active">Danh sách đã xóa</li>
                         </ol>
                     </div>
                 </div>
@@ -32,18 +32,14 @@
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
-                
                 {{--  Ket thuc phan thong bao  --}}
                 <div class="table-responsive-sm">
-                    <table class="table table-hover table-sm" id="table-muctieus">
+                    <table class="table table-hover table-sm" id="table-trashfactorys">
                         <thead class="thead-light">
                             <tr>
                                 <th>STT</th>
-                                <th>Tiêu đề</th>
-                                <th>Công suất (MW)</th>
-                                <th>Sản lượng (triệu kWh)</th>
-                                <th>MNC (m)</th>
-                                <th>MNDBT (m)</th>
+                                <th>Tên nhà máy</th>
+                                <th>Ký hiệu</th>
                                 <th>Phục hồi</th>
                             </tr>
                         </thead>
@@ -51,15 +47,12 @@
                             @php
                                 $i=1;
                             @endphp
-                            @foreach ($muctieu as $m)
+                            @foreach ($factory as $f)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                <td>{{ $m->title }}</td>
-                                <td>{{ number_format($m->ratedpower, 1, ',', '.')}}</td>
-                                <td>{{ number_format($m->quantity, 3, ',', '.')}}</td>
-                                <td>{{ number_format($m->MNHlowest, 2, ',', '.')}}</td>
-                                <td>{{ number_format($m->MNHnormal, 2, ',', '.')}}</td>
-                                <td><a href="{{ route('admin.muctieu.restore',$m->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
+                                <td>{{ $f->name }}</td>
+                                <td>{{ $f->alias }}</td>
+                                <td><a href="{{ route('admin.factory.restore',$f->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -77,7 +70,7 @@
 @section('script')
     <script type="text/javascript">
         $(function() {
-            $('#table-muctieus').DataTable({
+            $('#table-trashfactorys').DataTable({
                 
                 "language": {
                     "sProcessing":   "Đang xử lý...",

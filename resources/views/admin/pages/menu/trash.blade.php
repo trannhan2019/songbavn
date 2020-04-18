@@ -38,8 +38,8 @@
                     <table class="table table-hover table-sm" id="table-menutrash">
                         <thead class="thead-light">
                             <tr>
-                                <th>STT</th>
-                                <th>Danh mục cha</th>
+                                <th class="text-center"STT</th>
+                                <th>Thuộc danh mục</th>  
                                 <th>Tên danh mục</th>                          
                                 <th class="text-center">Khôi phục</th>
                                 
@@ -50,10 +50,11 @@
                                 $i=1;
                             @endphp
                             @foreach ($menutrash as $mt)
-                           {{--  {{ var_dump($mt) }}  --}}
+                           {{-- {{ dd($mt->ParentTrash) }} --}}
+                           {{-- {{ dd($mt) }} --}}
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                {{--  <td>{{ $mt->parent ? $menutrash->find($mt->parent) : 'Danh mục gốc' }}</td>  --}}
+                                <td>{{ $mt->parent == null ? 'Danh mục gốc' : $mt->ParentTrash->name }}</td> 
                                 <td>{{ $mt->name }}</td>
                                 <td class="text-center"><a href="{{ route('admin.menu.restore',$mt->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
                                 

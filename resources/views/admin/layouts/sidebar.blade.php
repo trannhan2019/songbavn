@@ -7,16 +7,16 @@
       <span class="brand-text font-weight-bold">SBA</span>
     </a>
 
-    {{-- <!-- Sidebar --> --}}
+    {{--  Sidebar  --}}
     <div class="sidebar">
-      {{-- <!-- Sidebar user panel (optional) --> --}}
+      {{--  Sidebar user panel (optional) --}}
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
           <a href="#" class="d-block font-weight-bold">QUẢN TRỊ HỆ THỐNG</a>
         </div>
       </div>
 
-      {{-- <!-- Sidebar Menu --> --}}
+      {{-- Sidebar Menu  --}}
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           {{-- Dashboard --}}
@@ -50,7 +50,7 @@
             </a>
           </li>
           {{--  QUẢN LÝ NỘI DUNG  --}}
-          <li class="nav-header pt-2"> <h6 class="mb-0"><strong>QUẢN TRỊ NỘI DUNG</strong></h6></li>
+          <li class="nav-header pt-2"> QUẢN TRỊ NỘI DUNG </li>
           @foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
           <li class="nav-item {{ count($dm->ChildMenus)>0 ? 'has-treeview': '' }}">
             <a href="{{ $dm->slug =='lien-he' ? 'admin/content/'.$dm->id.'/lien-he.html':'#' }}" class="nav-link">
@@ -134,56 +134,64 @@
             </a>
           </li>
           <hr class="border-light bg-white my-2">
-          {{--  thùng rác--------------  --}}
+          {{--  THÙNG RÁC  --}}
+          <li class="nav-header">NỘI DUNG ĐÃ XÓA</li>
+          {{-- Danh mục đã xóa --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.menu.trash') }}" class="nav-link">
+              <i class="fas fa-ban nav-icon"></i>
+              <p>Danh mục đã xóa</p>
+            </a>
+          </li>
+          {{-- Người dùng đã xóa --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.user.trash') }}" class="nav-link">
+              <i class="fas fa-user-slash nav-icon"></i>
+              <p>Người dùng đã xóa</p>
+            </a>
+          </li>
+          {{-- Bài viết đã xóa --}}
+          <li class="nav-item">
+            <a href="admin/content/trash" class="nav-link">
+              <i class="fas fa-eraser nav-icon"></i>
+              <p>Các bài viết đã xóa</p>
+            </a>
+          </li>
+          {{-- Các slide đã xóa --}}
+          <li class="nav-item">
+            <a href="admin/slide/trash" class="nav-link">
+              <i class="fas fa-sliders-h nav-icon"></i>
+              <p>Các slide đã xóa</p>
+            </a>
+          </li>
+          {{-- tình hình sx --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="far fa-trash-alt nav-icon text-white"></i>
-              <p>
-                THÙNG RÁC
-                <i class="fas fa-angle-left right"></i>
-              </p>
+              <i class="nav-icon fas fa-industry"></i>
+              <p> Tình hình sản xuất <i class="fas fa-angle-left right"></i> </p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="{{ route('admin.menu.trash') }}" class="nav-link">
-                  <i class="fas fa-ban nav-icon"></i>
-                  <p>Danh mục đã xóa</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ route('admin.user.trash') }}" class="nav-link">
-                  <i class="fas fa-user-slash nav-icon"></i>
-                  <p>Người dùng đã xóa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="admin/content/trash" class="nav-link">
-                  <i class="fas fa-eraser nav-icon"></i>
-                  <p>Các nội dung đã xóa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="admin/slide/trash" class="nav-link">
-                  <i class="fas fa-sliders-h nav-icon"></i>
-                  <p>Các slide đã xóa</p>
+                <a href="admin/factory/trash" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>Thông số nhà máy</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="admin/muctieu/trash" class="nav-link">
                   <i class="fas fa-bullseye nav-icon"></i>
-                  <p>Các mục tiêu SX đã xóa</p>
+                  <p>Mục tiêu sản xuất</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="admin/sanxuat/trash" class="nav-link">
                   <i class="fas fa-bullseye nav-icon"></i>
-                  <p>Tình hình sản xuất</p>
+                  <p>Chi tiết sản xuất</p>
                 </a>
               </li>
-              
             </ul>
           </li>
+
         </ul>
       </nav>
       {{-- <!-- /.sidebar-menu --> --}}

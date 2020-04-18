@@ -81,7 +81,7 @@ class MenuController extends Controller
     //TRASH
     public function getTrash(){
         $menutrash = Menu::orderBy('parent')->onlyTrashed()->get();
-        //$menus = Menu::whereNull('parent')->with('ChildMenus')->get();
+        //$menutrash = Menu::all();
         return view('admin.pages.menu.trash',compact('menutrash'));
     }
     

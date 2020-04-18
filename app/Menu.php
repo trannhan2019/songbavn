@@ -24,6 +24,11 @@ class Menu extends Model
         return $this->belongsTo(Menu::class,'parent','id');
     }
 
+    public function ParentTrash()
+    {
+        return $this->belongsTo(Menu::class,'parent','id')->withTrashed();
+    }
+
     public function Contents(){
         return $this->hasMany(Content::class,'menu_id','id');
     }

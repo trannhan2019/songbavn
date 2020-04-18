@@ -137,6 +137,9 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('edit/{id}','FactoryController@getAdminEdit')->name('admin.factory.edit');
         Route:: post('edit/{id}','FactoryController@postAdminEdit')->name('admin.factory.edit');
         Route:: post('delete/{id}','FactoryController@postAdminDelete')->name('admin.factory.delete');
+        //Đã xóa
+        Route::get('trash','FactoryController@getTrash')->name('admin.factory.trash');
+        Route::get('restore/{id}','FactoryController@getRestore')->name('admin.factory.restore');
     });
     //Mục tiêu SX năm
     Route::group(['prefix' => 'muctieu'], function () {
@@ -149,7 +152,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         //Đã xóa
         Route::get('trash','MuctieunamController@getTrash')->name('admin.muctieu.trash');
         Route::get('restore/{id}','MuctieunamController@getRestore')->name('admin.muctieu.restore');
-        Route::post('forcedelete/{id}','MuctieunamController@postForcedelete')->name('admin.muctieu.forcedelete');
+        //Route::post('forcedelete/{id}','MuctieunamController@postForcedelete')->name('admin.muctieu.forcedelete');
     });
     //Tình hình sản xuất
     Route::group(['prefix' => 'sanxuat'], function () {

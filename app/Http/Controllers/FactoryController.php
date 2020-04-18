@@ -71,4 +71,16 @@ class FactoryController extends Controller
         
         return redirect()->route('admin.factory.list')->with('thongbao','Xóa thông tin thành công !');
     }
+    //Đã xóa
+    public function getTrash()
+    {
+        $factory = Factory::orderBy('name')->onlyTrashed()->get();
+        return view('admin.pages.thsx.factory.trash',compact('factory'));
+    }
+    public function getRestore($id)
+    {
+        $factory = Factory::withTrashed()->find($id);
+        $factory->restore();
+        return redirect('admin/factory/trash')->with('thongbao','Khôi phục thông tin thành công !');
+    }
 }

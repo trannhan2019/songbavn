@@ -118,11 +118,11 @@ class MuctieunamController extends Controller
         $muctieu->restore();
         return redirect('admin/muctieu/trash')->with('thongbao','Khôi phục nội dung thành công !');
     }
-    public function postForcedelete($id)
-    {
-        $muctieu = Muctieunam::withTrashed()->find($id);
-        $muctieu->forceDelete();
+    // public function postForcedelete($id)
+    // {
+    //     $muctieu = Muctieunam::withTrashed()->find($id);
+    //     $muctieu->forceDelete();
         
-        return redirect('admin/muctieu/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
-    }
+    //     return redirect('admin/muctieu/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
+    // }
 }
