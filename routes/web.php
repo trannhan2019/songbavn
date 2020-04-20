@@ -98,6 +98,8 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getAdminYkien');
         Route:: get('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@getAdminAddYkien');
         Route:: post('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@postAdminAddYkien');
+        Route:: get('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@getAdminEditYkien');
+        Route:: post('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@postAdminEditYkien');
 
         //Danh mục ý kiến
         Route:: get('danh-muc-y-kien.html','DanhmucykienController@getAdminDanhmucYkien');

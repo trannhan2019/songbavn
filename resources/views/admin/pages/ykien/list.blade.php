@@ -93,7 +93,7 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
-                                -webkit-box-orient: vertical;">{{ $y->ask_content }}</td>
+                                -webkit-box-orient: vertical;">{!! $y->ask_content !!}</td>
                                 <td>{{ $y->Danhmuc->name}}</td>
                                 <td>{{ $y->fullname}}</td>
                                 <td>{{ $y->email}}</td>
@@ -105,7 +105,7 @@
                                <td>
                                     {!! $y->traloicodong_id==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
                                 </td>
-                                <td><a href="{{ route('admin.muctieu.edit',$y->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                <td><a href="admin/content/{{ $y->id }}/edit-y-kien-nha-dau-tu.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $y->id }}" data-toggle="modal" data-target="#deletedYkienModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
                             @endforeach
@@ -150,7 +150,7 @@
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/muctieu/delete/"+ id;
+            var url = "#"+ id;
             $('#deletedYkienModal form').attr('action', url);
         });
     </script>
