@@ -164,6 +164,28 @@
               <p>Các slide đã xóa</p>
             </a>
           </li>
+          {{-- Ý kiến nhà đầu tư--}}
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-lightbulb"></i>
+              <p> Ý kiến nhà đầu tư <i class="fas fa-angle-left right"></i> </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="admin/content/danh-muc-y-kien-trash.html" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>Danh mục đã xóa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>Ý kiến đã xóa</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
           {{-- tình hình sx --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

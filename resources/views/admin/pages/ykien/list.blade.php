@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row bg-light p-1">
                     <div class="col-6">
-                        <a href="{{ route('admin.muctieu.add') }}" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+                        <a href="admin/content/{{ $menu->id }}/add-y-kien-nha-dau-tu.html" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Thêm mới</a>
                     </div>
                     <div class="col-6 text-right">
                         <a href="admin/content/danh-muc-y-kien.html" class="btn btn-outline-success"> Quản lý Danh mục</a>
@@ -69,14 +69,15 @@
                     <table class="table table-hover table-sm" id="table-ykiens">
                         <thead class="thead-light">
                             <tr>
-                                <th>STT</th>
+                                <th class="text-center">STT</th>
                                 <th>Nội dung hỏi</th>
+                                <th>Thuộc danh mục</th>
                                 <th>Người gửi</th>
                                 <th>Email</th>
-                                <th>Địa chỉ</th>
                                 <th>Ngày gửi</th>
-                                <th>Trả lời</th>
+                                
                                 <th>Trạng thái</th>
+                                <th>Trả lời</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
@@ -93,16 +94,17 @@
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
                                 -webkit-box-orient: vertical;">{{ $y->ask_content }}</td>
+                                <td>{{ $y->Danhmuc->name}}</td>
                                 <td>{{ $y->fullname}}</td>
                                 <td>{{ $y->email}}</td>
-                                <td>{{ $y->address}}</td>
                                 <td>{{ date("d/m/Y H:i", strtotime( $y->created_at))}}</td>
-                                <td>
-                                    {!! $y->traloicodong_id==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
-                               </td>
+                                
                                 <td>
                                     {!! $y->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
                                </td>
+                               <td>
+                                    {!! $y->traloicodong_id==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
+                                </td>
                                 <td><a href="{{ route('admin.muctieu.edit',$y->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $y->id }}" data-toggle="modal" data-target="#deletedYkienModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>

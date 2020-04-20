@@ -88,7 +88,7 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Tình trạng thiết bị <span class="text-danger">(*)</label>
+                                        <label>Tình trạng thiết bị <span class="text-danger">(*)</span></label>
                                         <input type="text" name="device" class="form-control">
                                         @if ($errors->has('device'))
                                             <p class="text-danger mb-0">{{ $errors->first('device') }}</p>

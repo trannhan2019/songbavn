@@ -95,12 +95,19 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
         Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
         //Ý kiến nhà đầu tư
-        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','ContentController@getAdminYkien');
+        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getAdminYkien');
+        Route:: get('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@getAdminAddYkien');
+        Route:: post('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@postAdminAddYkien');
 
-        Route:: get('danh-muc-y-kien.html','ContentController@getAdminDanhmucYkien');
-        Route:: post('add-danh-muc-y-kien.html','ContentController@postAdminAddDanhmucYkien');
-        Route:: post('{dm_id}/edit-danh-muc-y-kien.html','ContentController@postAdminEditDanhmucYkien');
-        Route:: post('{dm_id}/delete-danh-muc-y-kien.html','ContentController@postAdminDeleteDanhmucYkien');
+        //Danh mục ý kiến
+        Route:: get('danh-muc-y-kien.html','DanhmucykienController@getAdminDanhmucYkien');
+        Route:: post('add-danh-muc-y-kien.html','DanhmucykienController@postAdminAddDanhmucYkien');
+        Route:: post('{dm_id}/edit-danh-muc-y-kien.html','DanhmucykienController@postAdminEditDanhmucYkien');
+        Route:: post('{dm_id}/delete-danh-muc-y-kien.html','DanhmucykienController@postAdminDeleteDanhmucYkien');
+        //Danh mục ý kiến Đã xóa
+        Route::get('danh-muc-y-kien-trash.html','DanhmucykienController@getTrash');
+        Route::get('{id}/danh-muc-y-kien-restore.html','DanhmucykienController@getRestore');
+
         //Tuyển dụng
         Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
         Route:: get('{menu_id}/add-tuyen-dung.html','ContentController@getAdminAddTuyendung');

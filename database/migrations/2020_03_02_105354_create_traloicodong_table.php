@@ -20,7 +20,6 @@ class CreateTraloicodongTable extends Migration
             $table->integer('ykiencodong_id')->unsigned()->nullable();
             $table->foreign('ykiencodong_id')->references('id')->on('ykiencodongs');
             $table->mediumText('reply_content')->nullable();
-            $table->tinyInteger('status');
             $table->string('author');
             $table->softDeletes();
             $table->timestamps();
