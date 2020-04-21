@@ -58,7 +58,7 @@ class YkiencodongController extends Controller
         if ($request->created_at) {
             $ykien->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $ykien->created_at = Carbon::now();;
+            $ykien->created_at = Carbon::now();
         }
         $ykien->save();
         return redirect('admin/content/'.$menu_id.'/y-kien-nha-dau-tu.html')->with('thongbao','Thêm thông tin thành công !');
@@ -76,8 +76,7 @@ class YkiencodongController extends Controller
             'danhmucykien_id'=> 'required',
             'fullname'=>'required|min:3|max:255',
             'email'=>'email|required',
-            'ask_content'=>'required',
-            'created_at'=> 'required'
+            'ask_content'=>'required'
         ],
         [
             'required'=>'Bạn chưa nhập :attribute',
@@ -89,8 +88,7 @@ class YkiencodongController extends Controller
             'danhmucykien_id'=>'Tên chuyên mục',
             'fullname'=>'Họ và tên',
             'email'=>'Địa chỉ email',
-            'ask_content'=>'Nội dung hỏi',
-            'created_at'=>'Thời gian khởi tạo'
+            'ask_content'=>'Nội dung hỏi'
         ]);
         $ykien = Ykiencodong::find($ykien_id);
         $ykien->danhmucykien_id = $request->danhmucykien_id;
@@ -103,12 +101,31 @@ class YkiencodongController extends Controller
         if ($request->created_at) {
             $ykien->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $ykien->created_at = null;
+            $ykien->created_at = Carbon::now();
         }
         $ykien->status = $request->status;
         $ykien->save();
         //Phần thêm trả lời
-        if($request->reply_content !=null){
+        if (empty($ykien->Traloi)) {
+            if (!empty($request->author) || !empty($request->reply_content)) {
+                $this->validate($request,[
+                    'author'=>'required'
+                ],
+                [
+                    'required'=>'Bạn chưa nhập :attribute'
+                ],
+                [
+                    'author'=>'Tác giả'
+                ]);
+                $traloi = new Traloicodong();
+                $traloi->user_id = Auth::user()->id;
+                $traloi->ykiencodong_id = $ykien_id;
+                $traloi->author = $request->author;
+                $traloi->reply_content = $request->reply_content;
+                $traloi->save();
+            } 
+            
+        } else {
             $this->validate($request,[
                 'author'=>'required',
                 'reply_content'=>'required'
@@ -120,13 +137,13 @@ class YkiencodongController extends Controller
                 'author'=>'Tác giả',
                 'reply_content'=>'Nội dung trả lời'
             ]);
-            $traloi = new Traloicodong();
+            $traloi = Traloicodong::find($ykien->Traloi->id);
             $traloi->user_id = Auth::user()->id;
-            $traloi->ykiencodong_id = $ykien_id;
             $traloi->author = $request->author;
             $traloi->reply_content = $request->reply_content;
             $traloi->save();
         }
+        
         return redirect('admin/content/'.$ykien->Menu->id.'/y-kien-nha-dau-tu.html')->with('thongbao','Sửa thông tin thành công !');
     }
     public function postAdminDeleteYkien($ykien_id)
