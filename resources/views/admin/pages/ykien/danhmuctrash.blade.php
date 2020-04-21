@@ -24,7 +24,29 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-
+        {{--  modal phục hồi  --}}
+        <div class="modal" tabindex="-1" role="dialog" id="restoreDMYkienModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Phục hồi thông tin</h5>          
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="" method="POST">
+                    @csrf        
+                        <div class="modal-body">
+                            <h6>Khôi phục thông tin này ?</h6>
+                        </div>
+                        <div class="modal-footer">                                
+                            <button type="submit" class="btn btn-primary">Khôi phục</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <div class="content">
             <div class="container-fluid">
@@ -52,7 +74,7 @@
                                 <td class="text-center">{{ $i++ }}</td>
                                 <td>{{ $d->name }}</td>
                                 <td>{{ $d->slug }}</td>
-                                <td><a href="admin/content/{{ $d->id }}/danh-muc-y-kien-restore.html" class="btn btn-sm btn-primary">Phục hồi <i class="fas fa-trash-restore"></i></a></td>
+                                <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $d->id }}" data-toggle="modal" data-target="#restoreDMYkienModal"><i class="fas fa-trash-restore"></i></button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -93,5 +115,12 @@
             
         });
     </script>
-
+    
+    <script type="text/javascript">
+        $('.btn-restore').on('click', function() {
+            var id = $(this).data('id');
+            var url = "admin/content/"+ id +"/danh-muc-y-kien-restore.html";
+            $('#restoreDMYkienModal form').attr('action', url);
+        });
+    </script>
 @endsection

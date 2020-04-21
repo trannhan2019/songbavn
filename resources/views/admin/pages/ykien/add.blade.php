@@ -54,7 +54,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>Địa chỉ email </label>
+                                        <label>Địa chỉ email <span class="text-danger">(*)</span></label>
                                         <input type="text" name="email" class="form-control">
                                         @if ($errors->has('email'))
                                             <p class="text-danger mb-0">{{ $errors->first('email') }}</p>
@@ -71,7 +71,7 @@
 
                                     <div class="form-group">
                                         <label>Nội dung hỏi <span class="text-danger">(*)</span></label>
-                                        <textarea name="ask_content" rows="5" class="ckeditor"></textarea>
+                                        <textarea name="ask_content" rows="5" id="ckeditor_ykien"></textarea>
                                         @if ($errors->has('ask_content'))
                                             <p class="text-danger mb-0">{{ $errors->first('ask_content') }}</p>
                                         @endif
@@ -128,5 +128,14 @@
 
 			});
         });
+    </script>
+    <script type="text/javascript">
+        var basic = [
+            ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', '-']
+        ];
+        
+        CKEDITOR.replace('ckeditor_ykien', {
+            toolbar: basic
+          });
     </script>
 @endsection

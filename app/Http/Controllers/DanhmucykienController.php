@@ -71,7 +71,7 @@ class DanhmucykienController extends Controller
         $danhmucykien = Danhmucykien::orderBy('created_at')->onlyTrashed()->get();
         return view('admin.pages.ykien.danhmuctrash',compact('danhmucykien'));
     }
-    public function getRestore($id)
+    public function postRestore($id)
     {
         $danhmucykien = Danhmucykien::withTrashed()->find($id);
         $danhmucykien->restore();

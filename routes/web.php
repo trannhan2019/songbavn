@@ -100,6 +100,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@postAdminAddYkien');
         Route:: get('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@getAdminEditYkien');
         Route:: post('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@postAdminEditYkien');
+        Route:: post('{ykien_id}/delete-y-kien-nha-dau-tu.html','YkiencodongController@postAdminDeleteYkien');
 
         //Danh mục ý kiến
         Route:: get('danh-muc-y-kien.html','DanhmucykienController@getAdminDanhmucYkien');
@@ -108,7 +109,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{dm_id}/delete-danh-muc-y-kien.html','DanhmucykienController@postAdminDeleteDanhmucYkien');
         //Danh mục ý kiến Đã xóa
         Route::get('danh-muc-y-kien-trash.html','DanhmucykienController@getTrash');
-        Route::get('{id}/danh-muc-y-kien-restore.html','DanhmucykienController@getRestore');
+        Route::post('{id}/danh-muc-y-kien-restore.html','DanhmucykienController@postRestore');
 
         //Tuyển dụng
         Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
@@ -148,7 +149,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('delete/{id}','FactoryController@postAdminDelete')->name('admin.factory.delete');
         //Đã xóa
         Route::get('trash','FactoryController@getTrash')->name('admin.factory.trash');
-        Route::get('restore/{id}','FactoryController@getRestore')->name('admin.factory.restore');
+        Route::post('restore/{id}','FactoryController@postRestore')->name('admin.factory.restore');
     });
     //Mục tiêu SX năm
     Route::group(['prefix' => 'muctieu'], function () {
@@ -160,7 +161,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('delete/{id}','MuctieunamController@postAdminDelete')->name('admin.muctieu.delete');
         //Đã xóa
         Route::get('trash','MuctieunamController@getTrash')->name('admin.muctieu.trash');
-        Route::get('restore/{id}','MuctieunamController@getRestore')->name('admin.muctieu.restore');
+        Route::post('restore/{id}','MuctieunamController@postRestore')->name('admin.muctieu.restore');
         //Route::post('forcedelete/{id}','MuctieunamController@postForcedelete')->name('admin.muctieu.forcedelete');
     });
     //Tình hình sản xuất

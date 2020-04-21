@@ -77,7 +77,7 @@ class FactoryController extends Controller
         $factory = Factory::orderBy('name')->onlyTrashed()->get();
         return view('admin.pages.thsx.factory.trash',compact('factory'));
     }
-    public function getRestore($id)
+    public function postRestore($id)
     {
         $factory = Factory::withTrashed()->find($id);
         $factory->restore();

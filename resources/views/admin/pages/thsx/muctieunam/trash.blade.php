@@ -23,6 +23,29 @@
             </div>
         </div>
         {{-- content-header --}}
+        {{--  modal phục hồi  --}}
+        <div class="modal" tabindex="-1" role="dialog" id="restoreMuctieuModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Phục hồi thông tin</h5>          
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="" method="POST">
+                    @csrf        
+                        <div class="modal-body">
+                            <h6>Khôi phục thông tin này ?</h6>
+                        </div>
+                        <div class="modal-footer">                                
+                            <button type="submit" class="btn btn-primary">Khôi phục</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         {{--  Phan noi dung  --}}
 
         
@@ -59,7 +82,7 @@
                                 <td>{{ number_format($m->quantity, 3, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHlowest, 2, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHnormal, 2, ',', '.')}}</td>
-                                <td><a href="{{ route('admin.muctieu.restore',$m->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
+                                <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $m->id }}" data-toggle="modal" data-target="#restoreMuctieuModal"><i class="fas fa-trash-restore"></i></button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -100,5 +123,11 @@
             
         });
     </script>
-
+    <script type="text/javascript">
+        $('.btn-restore').on('click', function() {
+            var id = $(this).data('id');
+            var url = "admin/muctieu/restore/"+ id;
+            $('#restoreMuctieuModal form').attr('action', url);
+        });
+    </script>
 @endsection

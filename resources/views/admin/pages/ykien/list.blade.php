@@ -70,8 +70,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center">STT</th>
-                                <th>Nội dung hỏi</th>
-                                <th>Thuộc danh mục</th>
+                                <th style="width: 300px !important;">Nội dung hỏi</th>
+                                <th style="width: 200px !important;">Thuộc danh mục</th>
                                 <th>Người gửi</th>
                                 <th>Email</th>
                                 <th>Ngày gửi</th>
@@ -93,17 +93,18 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
-                                -webkit-box-orient: vertical;">{!! $y->ask_content !!}</td>
-                                <td>{{ $y->Danhmuc->name}}</td>
+                                -webkit-box-orient: vertical;
+                                ">{!! $y->ask_content !!}</td>
+                                <td >{{ $y->Danhmuc->name}}</td>
                                 <td>{{ $y->fullname}}</td>
                                 <td>{{ $y->email}}</td>
                                 <td>{{ date("d/m/Y H:i", strtotime( $y->created_at))}}</td>
                                 
                                 <td>
-                                    {!! $y->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
+                                    {!! $y->status==1 ? '<span class="badge badge-primary">Hiển thị</span>':'<span class="badge badge-secondary">Không hiển thị</span>' !!} 
                                </td>
                                <td>
-                                    {!! $y->traloicodong_id==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
+                                    {!! $y->Traloi==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
                                 </td>
                                 <td><a href="admin/content/{{ $y->id }}/edit-y-kien-nha-dau-tu.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $y->id }}" data-toggle="modal" data-target="#deletedYkienModal"><i class="far fa-trash-alt"></i></button></td>
@@ -144,13 +145,12 @@
                     }
                 }
             });
-            
         });
     </script>
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "#"+ id;
+            var url = "admin/content/"+ id +"/delete-y-kien-nha-dau-tu.html";
             $('#deletedYkienModal form').attr('action', url);
         });
     </script>

@@ -112,7 +112,7 @@ class MuctieunamController extends Controller
         $muctieu = Muctieunam::orderByDesc('year')->onlyTrashed()->get();
         return view('admin.pages.thsx.muctieunam.trash',compact('muctieu'));
     }
-    public function getRestore($id)
+    public function postRestore($id)
     {
         $muctieu = Muctieunam::withTrashed()->find($id);
         $muctieu->restore();
