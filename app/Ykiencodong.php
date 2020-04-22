@@ -25,4 +25,8 @@ class Ykiencodong extends Model
     public function Traloi(){
         return $this->hasOne(Traloicodong::class,'ykiencodong_id','id');
     }
+
+    public function Traloi_trash(){
+        return $this->hasOne(Traloicodong::class,'ykiencodong_id','id')->withTrashed();
+    }
 }

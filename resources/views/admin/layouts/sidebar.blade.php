@@ -178,7 +178,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="admin/content/trash-y-kien-nha-dau-tu.html" class="nav-link">
                   <i class="fas fa-bullseye nav-icon"></i>
                   <p>Ý kiến đã xóa</p>
                 </a>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Tình hình sản xuất
+    Ý kiến đã xóa
 @endsection
 
 @section('content')
@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Danh sách: <small>Tình hình sản xuất đã xóa</small></h1>
+                        <h1 class="m-0 text-dark">Danh sách: <small>Ý kiến đã xóa</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tình hình SX</a></li>
-                            <li class="breadcrumb-item active">Danh sách</li>
+                            <li class="breadcrumb-item"><a href="#">Quan hệ cổ đông</a></li>
+                            <li class="breadcrumb-item active">Ý kiến cổ đông đã xóa</li>
                         </ol>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-        <div class="modal" tabindex="-1" role="dialog" id="restoreSanxuatModal">
+        <div class="modal" tabindex="-1" role="dialog" id="restoreYkienModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -47,7 +47,7 @@
             </div>
         </div>
         {{--  modal xóa  --}}
-        <div class="modal" tabindex="-1" role="dialog" id="deletedSanxuatModal">
+        <div class="modal" tabindex="-1" role="dialog" id="deletedYkienModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -59,7 +59,7 @@
                     <form action="" method="POST">
                     @csrf        
                         <div class="modal-body">
-                            <h6>Bạn chắc chắn muốn xóa vĩnh viễn nội dung này ?</h6>
+                            <h6>Bạn chắc chắn muốn xóa thông tin này ?</h6>
                         </div>
                         <div class="modal-footer">                                
                             <button type="submit" class="btn btn-danger">Xóa</button>
@@ -70,6 +70,7 @@
             </div>
         </div>
         
+        
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
@@ -78,17 +79,16 @@
                 @endif
                 
                 {{--  Ket thuc phan thong bao  --}}
-                <div class="table-responsive-sm">
-                    <table class="table table-hover table-sm" id="table-sanxuats">
+                <div class="table-responsive-sm mt-3">
+                    <table class="table table-hover table-sm" id="table_trashykien">
                         <thead class="thead-light">
                             <tr>
-                                <th>STT</th>
-                                <th>Nhà máy</th>
-                                <th>Ngày</th>
-                                <th>Công suất (MW)</th>
-                                <th>Sản lượng (triệu kWh)</th>
-                                <th>Mực nước hồ (m)</th>
-                                <th>Lượng mưa (mm)</th>
+                                <th class="text-center">STT</th>
+                                <th style="width: 300px !important;">Nội dung hỏi</th>
+                                <th>Thuộc danh mục</th>
+                                <th>Người gửi</th>
+                                <th>Ngày gửi</th>
+                                <th>Trả lời</th>
                                 <th>Phục hồi</th>
                                 <th>Xóa vĩnh viễn</th>
                             </tr>
@@ -97,18 +97,24 @@
                             @php
                                 $i=1;
                             @endphp
-                            @foreach ($sanxuat as $sx)
+                            @foreach ($ykien as $y)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                <td>{{ $sx->Muctieunam->title }}</td>
-                                <td>{{ date("d/m/Y", strtotime($sx->date)) }}</td>
-                                <td>{{ number_format($sx->power, 2, ',', '.')}}</td>
-                                <td>{{ number_format($sx->quantity, 3, ',', '.')}}</td>
-                                <td>{{ number_format($sx->MNH, 2, ',', '.')}}</td>
-                                <td>{{ number_format($sx->rain, 1, ',', '.')}}</td>
-                                {{-- <td><a href="{{ route('admin.sanxuat.restore',$sx->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td> --}}
-                                <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $sx->id }}" data-toggle="modal" data-target="#restoreSanxuatModal"><i class="fas fa-trash-restore"></i></button></td>
-                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sx->id }}" data-toggle="modal" data-target="#deletedSanxuatModal"><i class="far fa-trash-alt"></i></button></td>
+                                <td style="-webkit-line-clamp: 4;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                ">{!! $y->ask_content !!}</td>
+                                <td >{{ $y->Danhmuc->name}}</td>
+                                <td>{{ $y->fullname}}</td>
+                                <td>{{ date("d/m/Y H:i", strtotime( $y->created_at))}}</td>
+
+                               <td>
+                                    {!! $y->Traloi_trash == null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
+                                </td>
+                                <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $y->id }}" data-toggle="modal" data-target="#restoreYkienModal"><i class="fas fa-trash-restore"></i></button></td>
+                                <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $y->id }}" data-toggle="modal" data-target="#deletedYkienModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -126,7 +132,7 @@
 @section('script')
     <script type="text/javascript">
         $(function() {
-            $('#table-sanxuats').DataTable({
+            $('#table-ykiens').DataTable({
                 
                 "language": {
                     "sProcessing":   "Đang xử lý...",
@@ -146,21 +152,20 @@
                     }
                 }
             });
-            
         });
     </script>
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/sanxuat/forcedelete/"+ id;
-            $('#deletedSanxuatModal form').attr('action', url);
+            var url = "admin/content/"+ id +"/forcedelete-y-kien-nha-dau-tu.html";
+            $('#deletedYkienModal form').attr('action', url);
         });
     </script>
     <script type="text/javascript">
         $('.btn-restore').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/sanxuat/restore/"+ id;
-            $('#restoreSanxuatModal form').attr('action', url);
+            var url = "admin/content/"+ id + "/restore-y-kien-nha-dau-tu.html";
+            $('#restoreYkienModal form').attr('action', url);
         });
     </script>
 @endsection

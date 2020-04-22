@@ -101,6 +101,9 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@getAdminEditYkien');
         Route:: post('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@postAdminEditYkien');
         Route:: post('{ykien_id}/delete-y-kien-nha-dau-tu.html','YkiencodongController@postAdminDeleteYkien');
+        Route::get('trash-y-kien-nha-dau-tu.html','YkiencodongController@getTrash');
+        Route::post('{id}/restore-y-kien-nha-dau-tu.html','YkiencodongController@postRestore');
+        Route::post('{id}/forcedelete-y-kien-nha-dau-tu.html','YkiencodongController@postForcedelete');
 
         //Danh mục ý kiến
         Route:: get('danh-muc-y-kien.html','DanhmucykienController@getAdminDanhmucYkien');
@@ -176,7 +179,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: get('delete/{id}','SanxuatController@getAdminDelete')->name('admin.sanxuat.delete');
         //Đã xóa
         Route::get('trash','SanxuatController@getTrash')->name('admin.sanxuat.trash');
-        Route::get('restore/{id}','SanxuatController@getRestore')->name('admin.sanxuat.restore');
+        Route::post('restore/{id}','SanxuatController@postRestore')->name('admin.sanxuat.restore');
         Route::post('forcedelete/{id}','SanxuatController@postForcedelete')->name('admin.sanxuat.forcedelete');
     });
 

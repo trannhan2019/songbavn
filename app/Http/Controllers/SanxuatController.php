@@ -170,7 +170,7 @@ class SanxuatController extends Controller
         $sanxuat = Thsx::orderByDesc('date')->onlyTrashed()->get();
         return view('admin.pages.thsx.sanxuat.trash',compact('sanxuat'));
     }
-    public function getRestore($id)
+    public function postRestore($id)
     {
         $sanxuat = Thsx::withTrashed()->find($id);
         $sanxuat->restore();

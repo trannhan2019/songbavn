@@ -149,12 +149,39 @@ class YkiencodongController extends Controller
     public function postAdminDeleteYkien($ykien_id)
     {
         $ykien = Ykiencodong::find($ykien_id);
-        if($ykien->Traloi != null){
+        if(!empty($ykien->Traloi)){
             $Traloi = Traloicodong::find($ykien->Traloi->id);
             $Traloi->delete();
         }
         $ykien->delete();
         
         return redirect()->back()->with('thongbao','Xóa thông tin thành công !');
+    }
+    //Đã xóa
+    public function getTrash()
+    {
+        $ykien = Ykiencodong::orderByDesc('created_at')->onlyTrashed()->get();
+        return view('admin.pages.ykien.trash',compact('ykien'));
+    }
+    public function postRestore($id)
+    {
+        $ykien = Ykiencodong::withTrashed()->find($id);
+        if(!empty($ykien->Traloi_trash)){
+            $traloi = Traloicodong::withTrashed()->find($ykien->Traloi_trash->id);
+            $traloi->restore();
+        }
+        $ykien->restore();
+        return redirect()->back()->with('thongbao','Khôi phục nội dung thành công !');
+    }
+    public function postForcedelete($id)
+    {
+        $ykien = Ykiencodong::withTrashed()->find($id);
+        if(!empty($ykien->Traloi_trash)){
+            $traloi = Traloicodong::withTrashed()->find($ykien->Traloi_trash->id);
+            $traloi->forceDelete();
+        }
+        $ykien->forceDelete();
+        
+        return redirect()->back()->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
 }
