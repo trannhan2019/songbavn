@@ -36,7 +36,7 @@
 {{-- <!-- header --> --}}
 {{-- <!-- Navigation --> --}}
 
-<nav class="navbar navbar-expand-xl navbar-light" style="border-bottom: 2px solid #D68528;">
+<nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528; z-index: 1;">
 	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
 			<img src="shared_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">

@@ -72,6 +72,20 @@
                     <p>{{ $child->name }}</p>
                   </a>
                 </li>
+                @elseif($child->slug=='cac-nha-may')
+                <li class="nav-item">
+                  <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{ $child->name }}</p>
+                  </a>
+                </li>
+                @elseif($child->slug=='cac-du-an')
+                <li class="nav-item">
+                  <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{ $child->name }}</p>
+                  </a>
+                </li>
                 @elseif($child->slug=='y-kien-nha-dau-tu')
                 <li class="nav-item">
                   <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">

@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     //Content
     Route::group(['prefix' => 'content'], function () {
         //giới thiệu
-        Route::get('{id}/gioi-thieu.html','ContentController@getAdminGioithieu');
+        Route::get('{menu_id}/gioi-thieu.html','ContentController@getAdminGioithieu');
         Route::get('{menu_id}/add-gioi-thieu.html','ContentController@getAdminAddGioithieu');
         Route::post('{menu_id}/add-gioi-thieu.html','ContentController@postAdminAddGioithieu');
         Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');

@@ -13,9 +13,9 @@ use App\Ykiencodong;
 class ContentController extends Controller
 {
     //Giới thiệu
-    public function getAdminGioithieu($id)
+    public function getAdminGioithieu($menu_id)
     {
-        $menu_gioithieu = Menu::find($id);
+        $menu_gioithieu = Menu::find($menu_id);
         $content_gioithieu = $menu_gioithieu->Contents()->where('status',1)->first();
         return view('admin.pages.content.gioithieu.detail',compact('menu_gioithieu','content_gioithieu'));
     }
