@@ -19,7 +19,7 @@
     {{--  <!-- datetimepicker  --}}
 	<link rel="stylesheet" href="admin_asset/plugins/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
     {{-- <!-- Google Font: Source Sans Pro --> --}}
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {{--  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">  --}}
     {{--  icon web  --}}
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 </head>
