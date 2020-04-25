@@ -87,20 +87,20 @@ class ContentController extends Controller
         $content->save();
         return redirect('admin/content/'.$menu_id. '/gioi-thieu.html')->with('thongbao','Tạo thông tin thành công !');
     }
-    //Giới thiệu ->Cơ cấu tổ chức
-    public function getAdminCocautochuc($menu_id)
+    //Giới thiệu ->sub
+    public function getAdminSubgioithieu($menu_id)
     {
         $menu = Menu::find($menu_id);
         $content = $menu->Contents()->orderBy('created_at')->get();
         $sub_content = $menu->Contents()->orderBy('created_at')->first();
-        return view('admin.pages.content.gioithieu.cocau',compact('menu','content','sub_content'));
+        return view('admin.pages.content.gioithieu.sub',compact('menu','content','sub_content'));
     }
-    public function getAdminAddCocautochuc($menu_id)
+    public function getAdminAddSubgioithieu($menu_id)
     {
         $menu = Menu::find($menu_id);
-        return view('admin.pages.content.gioithieu.addcocau',compact('menu'));
+        return view('admin.pages.content.gioithieu.addsub',compact('menu'));
     }
-    public function postAdminAddCocautochuc(Request $request, $menu_id)
+    public function postAdminAddSubgioithieu(Request $request, $menu_id)
     {
         $this->validate($request,
         [
@@ -133,21 +133,21 @@ class ContentController extends Controller
         $content->save();
         return redirect('admin/content/'.$menu_id. '/'.$menu->slug.'.html')->with('thongbao','Tạo thông tin thành công !');
     }
-    public function getAdminDetailCocautochuc($menu_id,$content_id)
+    public function getAdminDetailSubgioithieu($menu_id,$content_id)
     {
         $menu = Menu::find($menu_id);
         $content = $menu->Contents()->orderBy('created_at')->get();
         $sub_content = Content::find($content_id);
-        return view('admin.pages.content.gioithieu.cocau',compact('menu','content','sub_content'));
+        return view('admin.pages.content.gioithieu.sub',compact('menu','content','sub_content'));
     }
 
-    public function getAdminEditCocautochuc($menu_id,$content_id)
+    public function getAdminEditSubgioithieu($menu_id,$content_id)
     {
         $menu = Menu::find($menu_id);
         $sub_content = Content::find($content_id);
-        return view('admin.pages.content.gioithieu.editcocau',compact('menu','sub_content'));
+        return view('admin.pages.content.gioithieu.editsub',compact('menu','sub_content'));
     }
-    public function postAdminEditCocautochuc(Request $request,$menu_id,$content_id)
+    public function postAdminEditSubgioithieu(Request $request,$menu_id,$content_id)
     {
         $this->validate($request,
         [
@@ -179,99 +179,7 @@ class ContentController extends Controller
         $content->save();
         return redirect('admin/content/'.$menu_id. '/'.$menu->slug.'.html')->with('thongbao','Sửa thông tin thành công !');
     }
-    //Giới thiệu-> Nhà máy
-    public function getAdminNhamay($menu_id)
-    {
-        $menu = Menu::find($menu_id);
-        $content = $menu->Contents()->orderBy('created_at')->get();
-        $sub_content = $menu->Contents()->orderBy('created_at')->first();
-        return view('admin.pages.content.gioithieu.nhamay',compact('menu','content','sub_content'));
-    }
-    public function getAdminAddNhamay($menu_id)
-    {
-        $menu = Menu::find($menu_id);
-        return view('admin.pages.content.gioithieu.addnhamay',compact('menu'));
-    }
-    public function postAdminAddNhamay(Request $request, $menu_id)
-    {
-        $this->validate($request,
-        [
-            'title'=> 'required|min:3|max:32',
-            'status'=>'required'
-        ],
-        [
-            'required'=>'Bạn chưa nhập :attribute',
-            'min'=>':attribute phải có ít nhất :min ký tự',
-            'max'=>':attribute tối đa :max ký tự'
-        ],
-        [
-            'title'=>'Tiêu đề',
-            'status'=>'Trạng thái'
-            
-        ]);
-        $content = new Content;
-        $menu = Menu::find($menu_id);
-        $content->menu_id = $menu_id;
-        $content->title = $request->title;
-        $content->slug = str::slug($request->title,'-');
-        $content->content = $request->content;
-        $content->status = $request->status;
-        if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
-        } else {
-            $content->created_at = Carbon::now();
-        }
-        $content->user_id = Auth::user()->id;
-        $content->save();
-        return redirect('admin/content/'.$menu_id. '/'.$menu->slug.'.html')->with('thongbao','Tạo thông tin thành công !');
-    }
-    public function getAdminDetailNhamay($menu_id,$content_id)
-    {
-        $menu = Menu::find($menu_id);
-        $content = $menu->Contents()->orderBy('created_at')->get();
-        $sub_content = Content::find($content_id);
-        return view('admin.pages.content.gioithieu.nhamay',compact('menu','content','sub_content'));
-    }
 
-    public function getAdminEditNhamay($menu_id,$content_id)
-    {
-        $menu = Menu::find($menu_id);
-        $sub_content = Content::find($content_id);
-        return view('admin.pages.content.gioithieu.editnhamay',compact('menu','sub_content'));
-    }
-    public function postAdminEditNhamay(Request $request,$menu_id,$content_id)
-    {
-        $this->validate($request,
-        [
-            'title'=> 'required|min:3|max:32',
-            'status'=>'required'
-        ],
-        [
-            'required'=>'Bạn chưa nhập :attribute',
-            'min'=>':attribute phải có ít nhất :min ký tự',
-            'max'=>':attribute tối đa :max ký tự'
-        ],
-        [
-            'title'=>'Tiêu đề',
-            'status'=>'Trạng thái'
-            
-        ]);
-        $content = Content::find($content_id);
-        $menu = Menu::find($menu_id);
-        $content->title = $request->title;
-        $content->slug = str::slug($request->title,'-');
-        $content->content = $request->content;
-        $content->status = $request->status;
-        if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
-        } else {
-            $content->created_at = Carbon::now();
-        }
-        $content->user_id = Auth::user()->id;
-        $content->save();
-        return redirect('admin/content/'.$menu_id. '/'.$menu->slug.'.html')->with('thongbao','Sửa thông tin thành công !');
-    }
-    
 
     //Tin tức
     public function getAdminTintuc($menu_id)

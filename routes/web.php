@@ -77,21 +77,26 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');
         Route::post('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@postAdminEditGioithieu');
         //Giới thiệu/Cơ cấu tổ chức
-        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminCocautochuc');
-        Route::get('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@getAdminAddCocautochuc');
-        Route::post('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@postAdminAddCocautochuc');
-        Route::get('{menu_id}/{content_id}/detail-co-cau-to-chuc.html', 'ContentController@getAdminDetailCocautochuc');
-        Route::get('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@getAdminEditCocautochuc');
-        Route::post('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@postAdminEditCocautochuc');
+        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminSubgioithieu');
+        Route::get('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@getAdminAddSubgioithieu');
+        Route::post('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@postAdminAddSubgioithieu');
+        Route::get('{menu_id}/{content_id}/detail-co-cau-to-chuc.html', 'ContentController@getAdminDetailSubgioithieu');
+        Route::get('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@getAdminEditSubgioithieu');
+        Route::post('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@postAdminEditSubgioithieu');
         //Giới thiệu/Các nhà máy
-        Route::get('{menu_id}/cac-nha-may.html', 'ContentController@getAdminNhamay');
-        Route::get('{menu_id}/add-cac-nha-may.html', 'ContentController@getAdminAddNhamay');
-        Route::post('{menu_id}/add-cac-nha-may.html', 'ContentController@postAdminAddNhamay');
-        Route::get('{menu_id}/{content_id}/detail-cac-nha-may.html', 'ContentController@getAdminDetailNhamay');
-        Route::get('{menu_id}/{content_id}/edit-cac-nha-may.html', 'ContentController@getAdminEditNhamay');
-        Route::post('{menu_id}/{content_id}/edit-cac-nha-may.html', 'ContentController@postAdminEditNhamay');
+        Route::get('{menu_id}/cac-nha-may.html', 'ContentController@getAdminSubgioithieu');
+        Route::get('{menu_id}/add-cac-nha-may.html', 'ContentController@getAdminAddSubgioithieu');
+        Route::post('{menu_id}/add-cac-nha-may.html', 'ContentController@postAdminAddSubgioithieu');
+        Route::get('{menu_id}/{content_id}/detail-cac-nha-may.html', 'ContentController@getAdminDetailSubgioithieu');
+        Route::get('{menu_id}/{content_id}/edit-cac-nha-may.html', 'ContentController@getAdminEditSubgioithieu');
+        Route::post('{menu_id}/{content_id}/edit-cac-nha-may.html', 'ContentController@postAdminEditSubgioithieu');
         //Giới thiệu/Các dự án
-        Route::get('{menu_id}/cac-du-an.html', 'ContentController@getAdminDuan');
+        Route::get('{menu_id}/cac-du-an.html', 'ContentController@getAdminSubgioithieu');
+        Route::get('{menu_id}/add-cac-du-an.html', 'ContentController@getAdminAddSubgioithieu');
+        Route::post('{menu_id}/add-cac-du-an.html', 'ContentController@postAdminAddSubgioithieu');
+        Route::get('{menu_id}/{content_id}/detail-cac-du-an.html', 'ContentController@getAdminDetailSubgioithieu');
+        Route::get('{menu_id}/{content_id}/edit-cac-du-an.html', 'ContentController@getAdminEditSubgioithieu');
+        Route::post('{menu_id}/{content_id}/edit-cac-du-an.html', 'ContentController@postAdminEditSubgioithieu');
         
         //Tin tức
         Route:: get('{menu_id}/tin-tuc.html','ContentController@getAdminTintuc');

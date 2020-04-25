@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Thêm thông tin Nhà máy</h1>
+                    <h1 class="m-0 text-dark">Thêm thông tin Cơ cấu tổ chức</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,13 +42,13 @@
                         </div>
                         <div class="form-group">
                             <label>Nội dung</label>
-                            <textarea name="content" id="ckeditor_nm" cols="30" rows="50"></textarea>  
+                            <textarea name="content" id="ckeditor_sub" cols="30" rows="50"></textarea>  
                         </div>
                         <div class="form-group">
                             <label>Thời gian khởi tạo</label>
-                            <div class="input-group date" id="datetimepickerCreatnm" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatnm" name="created_at"/>
-                                <div class="input-group-append" data-target="#datetimepickerCreatnm" data-toggle="datetimepicker">
+                            <div class="input-group date" id="datetimepickerCreatsub" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatsub" name="created_at"/>
+                                <div class="input-group-append" data-target="#datetimepickerCreatsub" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                 </div>
                             </div>                                       
@@ -83,7 +83,7 @@
 
 @section('script')
 <script> 
-    CKEDITOR.replace('ckeditor_nm',{
+    CKEDITOR.replace('ckeditor_sub',{
         filebrowserBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html') }}',
         filebrowserImageBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html?type=Images') }}',
         filebrowserFlashBrowseUrl: '{{ asset('admin_asset/plugins/ckfinder/ckfinder.html?type=Flash') }}',
@@ -95,7 +95,7 @@
 </script>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepickerCreatnm').datetimepicker({
+        $('#datetimepickerCreatsub').datetimepicker({
             locale: 'vi',
             format: 'DD/MM/YYYY HH:mm'
         });

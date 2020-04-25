@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{$menu->name}}
+    {{ $menu->name }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Các Nhà máy</h1>
+                    <h1 class="m-0 text-dark">{{ $menu->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
