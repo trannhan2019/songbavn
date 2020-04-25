@@ -620,7 +620,73 @@ class ContentController extends Controller
     public function getAdminLienhe($menu_id)
     {
         $menu = Menu::find($menu_id);
-        return view('admin.pages.content.lienhe',compact('menu'));
+        $content = $menu->Contents()->where('status',1)->first();
+        return view('admin.pages.content.lienhe.detail',compact('menu','content'));
+    }
+    public function getAdminAddLienhe($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        return view('admin.pages.content.lienhe.add',compact('menu'));
+    }
+    public function postAdminAddLienhe(Request $request, $menu_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required|min:3|max:32',
+            'status'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'status'=>'Trạng thái'
+            
+        ]);
+        $content = new Content;
+        $content->menu_id = $menu_id;
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->content = $request->content;
+        $content->status = $request->status;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$menu_id. '/lien-he.html')->with('thongbao','Tạo thông tin thành công !');
+    }
+    public function getAdminEditLienhe($menu_id,$content_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = Content::find($content_id);
+        return view('admin.pages.content.lienhe.edit',compact('menu','content'));
+    }
+    
+    public function postAdminEditLienhe(Request $request,$menu_id,$content_id)
+    {
+        $this->validate($request,
+        [
+            'title'=> 'required|min:3|max:32',
+            'status'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'title'=>'Tiêu đề',
+            'status'=>'Trạng thái'
+            
+        ]);
+        $content = Content::find($content_id);
+        $content->title = $request->title;
+        $content->slug = str::slug($request->title,'-');
+        $content->content = $request->content;
+        $content->status = $request->status;
+        $content->user_id = Auth::user()->id;
+        $content->save();
+        return redirect('admin/content/'.$menu_id. '/lien-he.html')->with('thongbao','Sửa thông tin thành công !');
     }
 
     //Đã xóa

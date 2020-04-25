@@ -49,6 +49,17 @@
               </p>
             </a>
           </li>
+          {{--  Quản lý Slide  --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.slide.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-sliders-h text-warning"></i>
+              <p>
+                Quản lý Slide
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <hr class="border-light bg-white my-2">
           {{--  QUẢN LÝ NỘI DUNG  --}}
           <li class="nav-header pt-2"> QUẢN TRỊ NỘI DUNG </li>
           @foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
@@ -137,17 +148,7 @@
               </li>
             </ul>
           </li>
-          {{--  Quản lý Slide  --}}
-          <li class="nav-item">
-            <a href="{{ route('admin.slide.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-sliders-h text-warning"></i>
-              <p>
-                Quản lý Slide
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <hr class="border-light bg-white my-2">
+          
           {{--  THÙNG RÁC  --}}
           <li class="nav-header">NỘI DUNG ĐÃ XÓA</li>
           {{-- Danh mục đã xóa --}}

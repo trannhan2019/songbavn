@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="content-wrapper">
-    
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -25,10 +25,10 @@
     <div class="content">
         <div class="container-fluid">
             @if (session('thongbao'))
-                    @include('admin.layouts.thongbao')
+                @include('admin.layouts.thongbao')
             @endif
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     @if (empty($content_gioithieu->content))
                         <a href="admin/content/{{ $menu_gioithieu->id }}/add-gioi-thieu.html" class="btn btn-sm btn-outline-primary">
                             <i class="fas fa-plus"></i> Tạo mới
@@ -38,7 +38,7 @@
                             <i class="fas fa-edit"></i> Sửa
                         </a>
                     @endif
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -46,7 +46,7 @@
                     @if (!empty($content_gioithieu->content))
                     {!! $content_gioithieu->content !!}
                     @endif
-                    
+
                 </div>
             </div>
         </div>

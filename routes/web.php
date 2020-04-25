@@ -144,6 +144,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{content_id}/delete-tuyen-dung.html','ContentController@postAdminDeleteTuyendung');
         //Liên hệ
         Route:: get('{menu_id}/lien-he.html','ContentController@getAdminLienhe');
+        Route:: get('{menu_id}/add-lien-he.html','ContentController@getAdminAddLienhe');
+        Route:: post('{menu_id}/add-lien-he.html','ContentController@postAdminAddLienhe');
+        Route:: get('{menu_id}/{content_id}/edit-lien-he.html','ContentController@getAdminEditLienhe');
+        Route:: post('{menu_id}/{content_id}/edit-lien-he.html','ContentController@postAdminEditLienhe');
 
         //Đã xóa
         Route::get('trash','ContentController@getTrash');
