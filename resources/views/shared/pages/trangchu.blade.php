@@ -7,147 +7,60 @@
     @include('shared.layouts.slide')
     <div class="container content">
 		<div class="row mt-3">
-			{{--  <!-- Noi dung chinh -->  --}}
+			{{--  Noi dung chinh  --}}
 			<div class="col-md-9 col-lg-9">
 				<div class="row">
-					{{--  <!-- Tin nổi bật, mới nhất chính -->  --}}
+					{{--   Tin nổi bật, mới nhất chính   --}}
+					@php
+					$tin_noibat_1 = $tin_noibat->shift();
+					@endphp
 					<div class="col-md-7 home-left h-100">
 						<div class="card">
 							<a href="#" title="">
-								<img src="img/img_bao_30_11.png" class="card-img-top w-100 img-fluid" alt="doanh thu/ sản lượng">
+								<img src="shared_asset/upload/images/content/{{ $tin_noibat_1['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
 							</a>						
 							<div class="card-body p-2">
 								<h6 class="card-title">
 									<a href="#" title="">
-										SBA hoàn thành kế hoạch sản lượng, doanh thu năm 2019
+										{{ $tin_noibat_1['title'] }}
 									</a>
 								</h6>
 								<p class="card-text mb-0">
 									<small class="text-muted">
-										<i class="far fa-calendar-alt"></i> 10/02/2020
+										<i class="far fa-calendar-alt"></i> {{ $tin_noibat_1['created_at'] ? $tin_noibat_1['created_at']->format('d/m/Y H:h'):'' }}
 										 
-										<i class="far fa-eye"></i> 100
+										<i class="far fa-eye"></i> {{ $tin_noibat_1['views'] }}
 										 
-										<i class="far fa-comments"></i> 5
+										<i class="far fa-comments"></i> 0
 									</small>
 								</p>
 								<p class="card-text mb-0">
-									Lúc 05h20 ngày 30/11/2019, SBA đã hoàn thành kế hoạch sản lượng, doanh thu phát điện năm 2019: Tổng sản lượng điện thương phẩm đạt 190,00/190,00 triệu kWh, doanh thu phát điện đạt 234,18/214,76 tỷ đồng, đạt 109% kế hoạch năm
+									{{ $tin_noibat_1['abstract'] }}
 								</p>
 							</div>
 						</div>
 					</div>
 					{{--  <!-- Tin nổi bật, tin mới slide -->  --}}
 					<div class="col-md-5 home-right overflow-auto" style="height: 443.203px;">
-						{{--  <!-- litsssssssssssssssss -->  --}}
+						@foreach ($tin_noibat->all() as $tnb)
 						<div class="card">
 							<div class="row no-gutters">
 								<div class="col-5">
 									<a href="#">
-										<img src="img/SBA-DTN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
+										<img src="shared_asset/upload/images/content/{{ $tnb['imageorfile'] }}" class="w-100 img-fluid" alt="">
 									</a>
 								</div>
 								<div class="col-7">
 									<div class="card-body p-1">
 										<h6 class="card-title mb-0">
-											<a href="#">
-											Đoàn Thanh niên SBA tổ chức Đại hội Chi đoàn nhiệm kỳ 2019 - 2020.</a>
+											<a href="#">{{ $tnb['title'] }}</a>
 										</h6>
 									</div>						
 								</div>
 							</div>
 						</div>
-						{{--  <!-- ------------------------ -->  --}}
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
-									<a href="#">
-										<img src="img/bantuvisu.png" class="w-100 img-fluid img-thumbnail" alt="">
-									</a>
-								</div>
-								<div class="col-7">
-									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
-											<a href="#">
-											Bán tự vi sư.</a>
-										</h6>
-									</div>						
-								</div>
-							</div>
-						</div>
-						{{--  <!-- ------------------------ -->  --}}
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
-									<a href="#">
-										<img src="img/Top50.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-									</a>
-								</div>
-								<div class="col-7">
-									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
-											<a href="#">
-											SBA đạt danh hiệu "Top 50 nhãn hiệu danh tiếng Việt Nam" năm 2019.</a>
-										</h6>
-									</div>						
-								</div>
-							</div>
-						</div>
-						{{--  <!-- ------------------------------ -->  --}}
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
-									<a href="#">
-										<img src="img/SBA-DTN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-									</a>
-								</div>
-								<div class="col-7">
-									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
-											<a href="#">
-											Đoàn Thanh niên SBA tổ chức Đại hội Chi đoàn nhiệm kỳ 2019 - 2020.</a>
-										</h6>
-									</div>						
-								</div>
-							</div>
-						</div>
-						{{--  <!-- ------------------------ -->  --}}
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
-									<a href="#">
-										<img src="img/bantuvisu.png" class="w-100 img-fluid img-thumbnail" alt="">
-									</a>
-								</div>
-								<div class="col-7">
-									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
-											<a href="#">
-											Bán tự vi sư.</a>
-										</h6>
-									</div>						
-								</div>
-							</div>
-						</div>
-						{{--  <!-- ------------------------ -->  --}}
-						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
-									<a href="#">
-										<img src="img/Top50.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-									</a>
-								</div>
-								<div class="col-7">
-									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
-											<a href="#">
-											SBA đạt danh hiệu "Top 50 nhãn hiệu danh tiếng Việt Nam" năm 2019.</a>
-										</h6>
-									</div>						
-								</div>
-							</div>
-						</div>
-						{{--  <!-- ------------------------------ -->  --}}
+						@endforeach
+						
 					</div>
 				</div>
 
@@ -160,210 +73,99 @@
 						</h6>
 					</div>
 
-					{{--  <!-- Báo cáo tài chính -->  --}}
-					<div class="col-6 col-lg-3">
+					{{--  Đại hội đồng cổ đông  --}}
+					<div class="col-12 col-md-4">
+						@php
+						$tin_dhdcd = $dhdcd->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title" href="#">BÁO CÁO TÀI CHÍNH</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $dhdcd->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
 
-						<img class="img-thumbnail img-fluid" src="img/BCTC-600x400.jpg" alt="">
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/dhdcd-600x400.jpg" alt="">
 
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
+								@foreach ($tin_dhdcd as $item)
 								<li class="font-weight-bold crop_text">
 									<a href="#">
-										Báo cáo Tài chính Quí III năm 2019
+										{{ $item->title }}
 									</a>
 								</li>
 								<li>
 									<hr class="my-1">
 								</li>
-
-								<li class="crop_text">
-									<a href="#">
-										Báo cáo Tài chính 06 tháng đầu năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-
-								<li class="crop_text">
-									<a href="#">
-										Báo cáo Tài chính 06 tháng đầu năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-
-								<li class="crop_text">
-									<a href="#">
-										Báo cáo Tài chính 06 tháng đầu năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-
-								<li class="crop_text">
-									<a href="#">
-										Báo cáo Tài chính 06 tháng đầu năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
+								@endforeach
 							</ul>
 
 						</div>
 
 					</div>
 					{{--  <!-- Công bố thông tin -->  --}}
-					<div class="col-6 col-lg-3">
+					<div class="col-12 col-md-4">
+						@php
+						$tin_cbtt = $cbtt->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title" href="#">CÔNG BỐ THÔNG TIN</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $cbtt->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
-						<img class="img-thumbnail img-fluid" src="img/CBTT-600x400.jpg" alt="">
-						<div class="mt-2">
-							<ul class="text-justify list-unstyled">
-								<li class="font-weight-bold crop_text">
-									<a href="#">Giải trình chênh lệch kết quả kinh doanh quý 3/2019 so với quý 3/2018.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Báo cáo kết quả giao dịch mua lại cổ phiếu/ bán cổ phiếu quỹ.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Báo cáo kết quả giao dịch mua lại cổ phiếu/ bán cổ phiếu quỹ.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Giải trình chênh lệch kết quả kinh doanh 6 tháng đầu năm 2019 so với 6 tháng đầu năm 2018.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Giải trình chênh lệch kết quả kinh doanh 6 tháng đầu năm 2019 so với 6 tháng đầu năm 2018.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-							</ul>
-						</div>
-					</div>
-					{{--  <!-- Đại hội đồng cổ đông -->  --}}
-					<div class="col-6 col-lg-3">
-						<div class="text-center mt-lg-3 mt-2">
-							<h6 class="py-1 m-0">
-								<a class="text-danger font_title" href="#">ĐẠI HỘI CỔ ĐÔNG</a>
-							</h6>
-							<hr class="m-0 mb-2">
-						</div>
-						<img class="img-thumbnail img-fluid" src="img/cophieu-600x400.jpg" alt="">
+
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/congbo-thongtin-600-400.jpg" alt="">
+
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
+								@foreach ($tin_cbtt as $item)
 								<li class="font-weight-bold crop_text">
-									<a href="#">Nghị quyết Đại hội đồng cổ đông thường niên năm 2019
+									<a href="#">
+										{{ $item->title }}
 									</a>
 								</li>
 								<li>
 									<hr class="my-1">
 								</li>
-								<li class="crop_text">
-									<a href="#">Tài liệu phục vụ họp Đại hội đồng cổ đông thường niên năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Nghị quyết Đại hội đồng cổ đông thường niên năm 2018
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Tài liệu phục vụ họp Đại hội đồng cổ đông thường niên năm 2018
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Báo cáo Tài chính Quí III năm 2019
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
+								@endforeach
 							</ul>
+
 						</div>
 
 					</div>
-					{{--  <!-- Ý kiến cổ đông -->  --}}
-					<div class="col-6 col-lg-3">
+					{{--  Báo cáo tài chính  --}}
+					<div class="col-12 col-md-4">
+						@php
+						$tin_bctc = $bctc->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title" href="#">Ý KIẾN - TRẢ LỜI</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $bctc->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
-						<img class="img-thumbnail img-fluid" src="img/q-a-600x400.jpg" alt="">
+
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/BCTC-600x400.jpg" alt="">
+
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
+								@foreach ($tin_bctc as $item)
 								<li class="font-weight-bold crop_text">
-									<a href="#">Đầu tiên cổ đông xin phép kính chúc BLĐ SBA nhiều sức khỏe, hạnh phúc và thắng lợi. Cổ đông xin được hỏi BLĐ SBA là giá bán điện của Nhà máy Krông HNăng là giờ cao điểm là bao nhiêu đ / kw, giờ bình thường là bao nhiêu đ / kw, giờ thấp điểm là bao nhiêu đ / kw? Xin trân trọng BLĐ SBA cảm ơn.
+									<a href="#">
+										{{ $item->title }}
 									</a>
 								</li>
 								<li>
 									<hr class="my-1">
 								</li>
-								<li class="crop_text">
-									<a href="#">Chào quý Cty SBA. Tôi hiện đang là cổ đông của quý cty, tôi đánh giá cao về sự minh bạch trong việc công bố thông tin cũng như hiệu quả kinh doanh của SBA. Hiện tôi đang có một số câu hỏi cần cty giải đáp. 1. Nhà máy Khe Diên dự kiến SCBD định kỳ lúc nào đưa trở lại hoạt động, hiện tiến độ nâng công suất cho nhà máy lên 15 MW đến lúc nào thì xong?. Phía Krong Năng có KH SCBD trong thời gian tới hay không? 2. KQKD Q3 này ước sẽ giảm so với cùng kỳ bao nhiêu? 3. Kế Hoạch DTLN trong quý 4 của quý cty ntn? 4. Các dự án Thủy điện mới như Sồng Tranh...dự kiến thời gian nào được triển khai? Nhờ quý cty giải đáp.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Chào quý Cty SBA. Tôi hiện đang là cổ đông của quý cty, tôi đánh giá cao về sự minh bạch trong việc công bố thông tin cũng như hiệu quả kinh doanh của SBA. Hiện tôi đang có một số câu hỏi cần cty giải đáp. 1. Nhà máy Khe Diên dự kiến SCBD định kỳ lúc nào đưa trở lại hoạt động, hiện tiến độ nâng công suất cho nhà máy lên 15 MW đến lúc nào thì xong?. Phía Krong Năng có KH SCBD trong thời gian tới hay không? 2. KQKD Q3 này ước sẽ giảm so với cùng kỳ bao nhiêu? 3. Kế Hoạch DTLN trong quý 4 của quý cty ntn? 4. Các dự án Thủy điện mới như Sồng Tranh...dự kiến thời gian nào được triển khai? Nhờ quý cty giải đáp.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-								<li class="crop_text">
-									<a href="#">Chào quý Cty SBA. Tôi hiện đang là cổ đông của quý cty, tôi đánh giá cao về sự minh bạch trong việc công bố thông tin cũng như hiệu quả kinh doanh của SBA. Hiện tôi đang có một số câu hỏi cần cty giải đáp. 1. Nhà máy Khe Diên dự kiến SCBD định kỳ lúc nào đưa trở lại hoạt động, hiện tiến độ nâng công suất cho nhà máy lên 15 MW đến lúc nào thì xong?. Phía Krong Năng có KH SCBD trong thời gian tới hay không? 2. KQKD Q3 này ước sẽ giảm so với cùng kỳ bao nhiêu? 3. Kế Hoạch DTLN trong quý 4 của quý cty ntn? 4. Các dự án Thủy điện mới như Sồng Tranh...dự kiến thời gian nào được triển khai? Nhờ quý cty giải đáp.
-									</a>
-								</li>
-								<li>
-									<hr class="my-1">
-								</li>
-							</ul>						
-							
+								@endforeach
+							</ul>
 						</div>
 					</div>
+					{{--  <!-- Ý kiến cổ đông -->  --}}
+					
 				</div>
 
 				{{--  <!-- TIN TỨC - SỰ KIỆN -->  --}}
@@ -376,233 +178,137 @@
 					</div>
 
 					{{--  <!-- THÔNG TIN HOẠT ĐỘNG -->  --}}
-					<div class="col-sm-6">
+					<div class="col-12 col-md-4">
+						@php
+						$tin_tthd = $thongtinhd->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_tthd_1 = $tin_tthd->shift();
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title" href="#">THÔNG TIN HOẠT ĐỘNG</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $thongtinhd->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="img/SK6T-2019-600x400.jpg" class="card-img-top w-100 img-thumbnail" alt="doanh thu/ sản lượng">
+							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="card-img-top w-100" alt="">
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									SBA tổ chức Hội nghị Sơ kết 6 tháng đầu năm và kế hoạch 6 tháng cuối năm 2019
+									{{ $tin_tthd_1['title'] }}
 								</h6>
-								<p class="card-text m-0">
-									Ngày 02/07/2019 tại Hội trường Công ty Cổ phần Sông Ba, SBA đã tổ chức Hội nghị sơ kết công tác 6 tháng đầu năm và kế hoạch 6 tháng cuối năm 2019
+								<p class="card-text m-0 crop_text">
+									{{ $tin_tthd_1['abstract'] }}
 								</p>
 								<a href="#" class="stretched-link"></a>
 							</div>
 						</div>
-
+						@foreach ($tin_tthd->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="#">
-									<img src="img/NMKN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
+									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
 									<a href="#" class="crop_text">
-										Chi nhánh Công ty Cổ phần Sông Ba - NMTĐ Krông Hnăng được Tổng Cục t...
+										{{ $tin['title'] }}
 									</a>
 								</h6>
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-
-						<div class="row my-1">
-							<div class="col-4">
-								<a href="#">
-									<img src="img/NMKD.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-								</a>
-							</div>
-
-							<div class="col-8 pl-0">
-								<h6 class="text-justify">
-									<a href="#" class="crop_text">
-										CBNV NHÀ MÁY THỦY ĐIỆN KHE DIÊN GIAO LƯU VỚI CÁC ĐƠN VỊ THANH NIÊN TRÊN ĐỊA BÀN HUYỆN NÔNG SƠN
-									</a>
-								</h6>
-							</div>
-						</div>
-						<hr class="m-0 mb-2">
-
+						@endforeach
 					</div>
 
 					{{--  <!-- ĐẢNG - ĐOÀN THỂ -->  --}}
-					<div class="col-sm-6">
+					<div class="col-12 col-md-4">
+						@php
+						$tin_dangdoan = $dangdoanthe->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_dangdoan_1 = $tin_dangdoan->shift();
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
-							<h6 class="py-1 m-0 font_title">
-								<a class="text-danger" href="#">ĐẢNG - ĐOÀN THỂ</a>
+							<h6 class="py-1 m-0">
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $dangdoanthe->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="img/Chibo-600x400.jpg" class="card-img-top w-100 img-thumbnail" alt="">
+							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="card-img-top w-100" alt="">
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									CHI ỦY SBA LÀM VIỆC VỚI ĐOÀN GIÁM SÁT UBKT ĐẢNG ỦY EVNCPC.
+									{{ $tin_dangdoan_1['title'] }}
 								</h6>
-								<p class="card-text m-0">
-									Sáng ngày 29 tháng 8 năm 2019 tại văn phòng Công ty, Chi ủy Công ty CP Sông Ba (SBA) đã tiếp và làm việc với Đoàn giám sát UBKT Đảng ủy Tổng công ty Điện
+								<p class="card-text m-0 crop_text">
+									{{ $tin_dangdoan_1['abstract'] }}
 								</p>
 								<a href="#" class="stretched-link"></a>
 							</div>
 						</div>
-
+						@foreach ($tin_dangdoan->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="#">
-									<img src="img/NMKN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
+									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
 									<a href="#" class="crop_text">
-										Chi nhánh Công ty Cổ phần Sông Ba - NMTĐ Krông Hnăng được Tổng Cục t...
+										{{ $tin['title'] }}
 									</a>
 								</h6>
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-
-						<div class="row my-1">
-							<div class="col-4">
-								<a href="#">
-									<img src="img/NMKD.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-								</a>
-							</div>
-
-							<div class="col-8 pl-0">
-								<h6 class="text-justify">
-									<a href="#" class="crop_text">
-										CBNV NHÀ MÁY THỦY ĐIỆN KHE DIÊN GIAO LƯU VỚI CÁC ĐƠN VỊ THANH NIÊN TRÊN ĐỊA BÀN HUYỆN NÔNG SƠN
-									</a>
-								</h6>
-							</div>
-						</div>
-						<hr class="m-0 mb-2">
-
+						@endforeach
 					</div>
 
 					{{--  <!-- BÀI VIẾT SBA -->  --}}
-					<div class="col-sm-6">
+					<div class="col-12 col-md-4">
+						@php
+						$tin_sba = $baivietsba->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_sba_1 = $tin_sba->shift();
+						@endphp
 						<div class="text-center mt-lg-3 mt-2">
-							<h6 class="py-1 m-0 font_title">
-								<a class="text-danger" href="#">BÀI VIẾT SBA</a>
+							<h6 class="py-1 m-0">
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $baivietsba->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="img/15NAM-600X400.jpg" class="card-img-top w-100 img-thumbnail" alt="">
+							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="card-img-top w-100" alt="">
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									SBA- CON ĐƯỜNG TÔI ĐANG ĐI.
+									{{ $tin_sba_1['title'] }}
 								</h6>
-								<p class="card-text m-0">
-									Mọi thứ xảy ra trong cuộc đời đều đó cái duyên, và tôi tin vào mối nhân duyên của tôi và SBA. Người ta thường nói “tốt nghiệp là thất nghiêp”, công ăn việc làm luôn luôn là nổi trăn trở, là khát khao cháy bỏng đối với những người mới bước chân vào xã hội.
+								<p class="card-text m-0 crop_text">
+									{{ $tin_sba_1['abstract'] }}
 								</p>
 								<a href="#" class="stretched-link"></a>
 							</div>
 						</div>
-
+						@foreach ($tin_sba->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="#">
-									<img src="img/NMKN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
+									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
 									<a href="#" class="crop_text">
-										Chi nhánh Công ty Cổ phần Sông Ba - NMTĐ Krông Hnăng được Tổng Cục t...
+										{{ $tin['title'] }}
 									</a>
 								</h6>
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-
-						<div class="row my-1">
-							<div class="col-4">
-								<a href="#">
-									<img src="img/NMKD.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-								</a>
-							</div>
-
-							<div class="col-8 pl-0">
-								<h6 class="text-justify">
-									<a href="#" class="crop_text">
-										CBNV NHÀ MÁY THỦY ĐIỆN KHE DIÊN GIAO LƯU VỚI CÁC ĐƠN VỊ THANH NIÊN TRÊN ĐỊA BÀN HUYỆN NÔNG SƠN
-									</a>
-								</h6>
-							</div>
-						</div>
-						<hr class="m-0 mb-2">
-					</div>
-
-					{{--  <!-- THÔNG TIN ĐẤU THẦU -->  --}}
-					<div class="col-sm-6">
-						<div class="text-center mt-lg-3 mt-2">
-							<h6 class="py-1 m-0 font_title">
-								<a class="text-danger" href="#">KỶ NIỆM SBA</a>
-							</h6>
-							<hr class="m-0 mb-2">
-						</div>
-						<div class="card">
-							<img src="img/15NAM-600X400.jpg" class="card-img-top w-100 img-thumbnail" alt="">
-							<div class="card-body p-2">
-								<h6 class="card-title">
-									SBA- CON ĐƯỜNG TÔI ĐANG ĐI.
-								</h6>
-								<p class="card-text m-0">
-									Mọi thứ xảy ra trong cuộc đời đều đó cái duyên, và tôi tin vào mối nhân duyên của tôi và SBA. Người ta thường nói “tốt nghiệp là thất nghiêp”, công ăn việc làm luôn luôn là nổi trăn trở, là khát khao cháy bỏng đối với những người mới bước chân vào xã hội.
-								</p>
-								<a href="#" class="stretched-link"></a>
-							</div>
-						</div>
-
-						<div class="row my-1">
-							<div class="col-4">
-								<a href="#">
-									<img src="img/NMKN.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-								</a>
-							</div>
-
-							<div class="col-8 pl-0">
-								<h6 class="text-justify">
-									<a href="#" class="crop_text">
-										Chi nhánh Công ty Cổ phần Sông Ba - NMTĐ Krông Hnăng được Tổng Cục t...
-									</a>
-								</h6>
-							</div>
-						</div>
-						<hr class="m-0 mb-2">
-
-						<div class="row my-1">
-							<div class="col-4">
-								<a href="#">
-									<img src="img/NMKD.jpg" class="w-100 img-fluid img-thumbnail" alt="">
-								</a>
-							</div>
-
-							<div class="col-8 pl-0">
-								<h6 class="text-justify">
-									<a href="#" class="crop_text">
-										CBNV NHÀ MÁY THỦY ĐIỆN KHE DIÊN GIAO LƯU VỚI CÁC ĐƠN VỊ THANH NIÊN TRÊN ĐỊA BÀN HUYỆN NÔNG SƠN
-									</a>
-								</h6>
-							</div>
-						</div>
-						<hr class="m-0 mb-2">
+						@endforeach
 					</div>
 				</div>
-				
-
 			</div>
 
 
@@ -615,46 +321,16 @@
 							THÔNG BÁO
 						</h5>
 						<ul class="list-unstyled text-justify">
+							@foreach ($tin_thongbao as $tin)
 							<li>
 								<a href="#">
-									Thông báo nhận cổ tức bằng tiền mặt năm 2018.
+									{{ $tin->title }}
 								</a>
 							</li>
 							<li>
 								<hr class="my-1">
 							</li>
-							<li>
-								<a href="#">
-									Thông báo Về ngày đăng ký cuối cùng thực hiện quyền chi trả cổ tức năm 2018 bằng tiền.
-								</a>
-							</li>
-							<li>
-								<hr class="my-1">
-							</li>
-							<li>
-								<a href="#">
-									Thông báo mời họp Đại hội đồng cổ đông thường niên năm 2019
-								</a>
-							</li>
-							<li>
-								<hr class="my-1">
-							</li>
-							<li>
-								<a href="#">
-									Thông báo mời họp Đại hội đồng cổ đông thường niên năm 2019
-								</a>
-							</li>
-							<li>
-								<hr class="my-1">
-							</li>
-							<li>
-								<a href="#">
-									Thông báo mời họp Đại hội đồng cổ đông thường niên năm 2019
-								</a>
-							</li>
-							<li>
-								<hr class="my-1">
-							</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
@@ -880,7 +556,14 @@
 					</div>
 				</div>
 
-				
+				<div class="row d-none d-lg-block">
+					<div class="col-12">
+						<h5 class="text-center p-2 banner_inside text-white">
+							THÔNG TIN WINDY
+						</h5>
+						<iframe width="100%" height="350" src="https://embed.windy.com/embed2.html?lat=16.069&lon=108.221&zoom=5&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=16.069&detailLon=108.221&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
+					</div>
+				</div>
 				{{--  <!-- LIÊN KẾT -->  --}}
 				<div class="row mt-3">
 					<div class="col-12">
@@ -889,7 +572,7 @@
 						</h5>
 						<div class="evncpc text-center">
 							<a href="https://cpc.vn/vi-vn/" target="_blank">
-							<img src="img/LOGO_EVNCPC.png" alt="">
+							<img src="shared_asset/upload/images/LOGO_EVNCPC.png" alt="">
 							<p>Tổng công ty Điện lực miền Trung</p>
 							</a>
 						</div>	
@@ -898,7 +581,7 @@
 					<div class="col-12 mt-3">
 						<div class="soffice text-center w-100">
 							<a href="http://office.songba.vn:8080/security/login.aspx" target="_blank">
-							<img src="img/LOGO.png" alt="" class="w-25">
+							<img src="shared_asset/upload/images/LOGO.png" alt="" class="w-25">
 							<p>S.Office nội bộ SBA</p>
 							</a>
 						</div>

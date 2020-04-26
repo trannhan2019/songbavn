@@ -223,11 +223,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/tintuc/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/tintuc/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -238,7 +238,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $content->created_at = null;
+            $content->created_at = Carbon::now();
         }
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
@@ -293,13 +293,13 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/tintuc/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/tintu/c',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             if($tintuc->imageorfile){
-                unlink('shared_asset/upload/images/content/tintuc/'.$tintuc->imageorfile);
+                unlink('shared_asset/upload/images/content/'.$tintuc->imageorfile);
             }
             
             $tintuc->imageorfile = $hinh;
@@ -311,7 +311,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $tintuc->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $tintuc->created_at = null;
+            $tintuc->created_at = Carbon::now();
         }
         $tintuc->content = $request->content;
         $tintuc->user_id = Auth::user()->id;
@@ -368,11 +368,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/codong/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/codong/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -383,7 +383,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $content->created_at = null;
+            $content->created_at = Carbon::now();
         }
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
@@ -437,13 +437,13 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/codong/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/codong/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             if($content->imageorfile){
-                unlink('shared_asset/upload/images/content/codong/'.$content->imageorfile);
+                unlink('shared_asset/upload/images/content/'.$content->imageorfile);
             }
             
             $content->imageorfile = $hinh;
@@ -455,7 +455,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $content->created_at = null;
+            $content->created_at = Carbon::now();
         }
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
@@ -514,11 +514,11 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/tuyendung/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/tuyendung/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             $content->imageorfile = $hinh;
         } else {
             $content->imageorfile = null;
@@ -529,7 +529,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $content->created_at = null;
+            $content->created_at = Carbon::now();
         }
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
@@ -583,13 +583,13 @@ class ContentController extends Controller
             $file = $request->file('imageorfile');
             $name = $file->getClientOriginalName();
             $hinh = Str::random(4)."_".$name;
-            while(file_exists('shared_asset/upload/images/content/tuyendung/'.$hinh))
+            while(file_exists('shared_asset/upload/images/content/'.$hinh))
             {
                 $hinh = Str::random(4)."_".$name;
             }
-            $file->move('shared_asset/upload/images/content/tuyendung/',$hinh);
+            $file->move('shared_asset/upload/images/content/',$hinh);
             if($content->imageorfile){
-                unlink('shared_asset/upload/images/content/tuyendung/'.$content->imageorfile);
+                unlink('shared_asset/upload/images/content/'.$content->imageorfile);
             }
             
             $content->imageorfile = $hinh;
@@ -601,7 +601,7 @@ class ContentController extends Controller
         if ($request->created_at) {
             $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $content->created_at = null;
+            $content->created_at = Carbon::now();
         }
         $content->content = $request->content;
         $content->user_id = Auth::user()->id;
