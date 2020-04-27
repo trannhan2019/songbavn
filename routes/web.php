@@ -30,6 +30,17 @@ Route::get('dangnhap', 'UserController@getDangnhap')->name('dangnhap');
 Route::post('dangnhap', 'UserController@postDangnhap')->name('dangnhap');
 Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
+//Nhóm nội dung
+Route::group(['prefix' => 'noidung'],function (){
+    //Giới thiệu
+    Route::get('{menu_id}/gioi-thieu.html','PagesController@getGioithieu');
+    Route::get('{menu_id}/co-cau-to-chuc.html', 'PagesController@getSubgioithieu');
+    Route::get('{menu_id}/cac-nha-may.html', 'PagesController@getSubgioithieu');
+    Route::get('{menu_id}/cac-du-an.html', 'PagesController@getSubgioithieu');
+    //Liên hệ
+    Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
+});
+
 // Nhom Admin
 Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     Route::get('dashboard','PagesController@getDashboard')->name('admin.dashboard');

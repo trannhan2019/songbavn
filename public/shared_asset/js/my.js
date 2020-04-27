@@ -27,4 +27,7 @@ $(document).ready(function(){
     $('#btn-toggle').click(function() {
         $('#sidebar-menu').toggleClass('d-none');
     });
+
 });
+//set button ẩn hiện sidebar menu
+$(document).ready(function(){$('#sidebarCollapse').on('click',function(){$('#sidebar').toggleClass('active');});});

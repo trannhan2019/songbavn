@@ -29,4 +29,19 @@ class PagesController extends Controller
 
         return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','thongtinhd','dangdoanthe','baivietsba','tin_thongbao'));
     }
+    //Nội dung từng menu
+    //Giới thiệu
+    public function getGioithieu($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents()->where('status',1)->first();
+        return view('shared.pages.noidung.gioithieu.chitiet',compact('menu','content'));
+    }
+    //Liên hệ
+    public function getLienhe($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents()->where('status',1)->first();
+        return view('shared.pages.noidung.lienhe',compact('menu','content'));
+    }
 }

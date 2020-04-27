@@ -50,21 +50,35 @@
 				@foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
 				
 					@if (count($dm->ChildMenus)>0)
-						<li class="nav-item dropdown mx-3">
-							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-								{{ $dm->name }}
-							</a>
-							<div class="dropdown-menu p-0 dropdown-content">
-								@foreach ($dm->ChildMenus as $Child)
-									<a class="dropdown-item px-3" href="#">{{ $Child->name }}</a>
-									<div class="dropdown-divider my-0"></div>
-								@endforeach
-							</div>
-						</li>
+					<li class="nav-item dropdown mx-3">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+							{{ $dm->name }}
+						</a>
+						<div class="dropdown-menu p-0 dropdown-content">
+							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)
+								@if ($child->slug=='co-cau-to-chuc')
+								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
+								<div class="dropdown-divider my-0"></div>
+								@elseif($child->slug=='cac-nha-may')
+								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
+								<div class="dropdown-divider my-0"></div>
+								@elseif($child->slug=='cac-du-an')
+								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
+								<div class="dropdown-divider my-0"></div>
+								@elseif($child->slug=='y-kien-nha-dau-tu')
+								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
+								<div class="dropdown-divider my-0"></div>
+								@else
+								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $dm->slug }}.html">{{ $child->name }}</a>
+								<div class="dropdown-divider my-0"></div>
+								@endif
+							@endforeach
+						</div>
+					</li>
 					@else
-						<li class="nav-item">
-							<a class="nav-link mx-3" href="#">{{ $dm->name }}</a>
-						</li>
+					<li class="nav-item">
+						<a class="nav-link mx-3" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
+					</li>
 					@endif
 				@endforeach
 
