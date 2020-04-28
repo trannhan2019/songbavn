@@ -49,12 +49,12 @@
                             <p class="mb-0"><label>Trạng thái</label></p>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" checked name="status" value="1">Cho phép hiển thị
+                                    <input type="radio" class="form-check-input" {{ $content->status==1 ? 'checked':'' }} name="status" value="1">Cho phép hiển thị
                                 </label>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" value="0">Không hiển thị
+                                    <input type="radio" class="form-check-input" {{ $content->status==0 ? 'checked':'' }} name="status" value="0">Không hiển thị
                                 </label>
                             </div>
                             @if ($errors->has('status'))
@@ -82,7 +82,9 @@
         filebrowserUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
         filebrowserImageUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
         filebrowserFlashUploadUrl: '{{ asset('admin_asset/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}',
-        height: '600px'
-    }); 
+        height: '600px',
+        
+    });
 </script>
+
 @endsection

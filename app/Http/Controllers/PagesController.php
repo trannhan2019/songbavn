@@ -30,12 +30,41 @@ class PagesController extends Controller
         return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','thongtinhd','dangdoanthe','baivietsba','tin_thongbao'));
     }
     //Nội dung từng menu
-    //Giới thiệu
+    //Giới thiệu và giới thiệu chung
     public function getGioithieu($menu_id)
     {
         $menu = Menu::find($menu_id);
-        $content = $menu->Contents()->where('status',1)->first();
+        if (empty($menu->Parent)) {
+            $gioithieuchung = Menu::where('slug','gioi-thieu-chung')->first();
+            
+            $content = $gioithieuchung->Contents->where('status',1)->first();
+        } else {
+            $content = $menu->Contents->where('status',1)->first();
+        }
         return view('shared.pages.noidung.gioithieu.chitiet',compact('menu','content'));
+    }
+    //Giới thiệu -> Cơ cấu tổ chức
+    public function getGioithieuCocau($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents()->orderBy('created_at')->get();
+        $sub_content = $menu->Contents()->orderBy('created_at')->first();
+        return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
+    }
+    public function getGioithieuSubCocau($menu_id,$content_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents()->orderBy('created_at')->get();
+        $sub_content = Content::find($content_id);
+        return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
+    }
+    //Giới thiệu -> Các nhà máy
+    public function getGioithieuTab($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents()->orderBy('created_at')->get();
+        $sub_content = $menu->Contents()->orderBy('created_at')->first();
+        return view('shared.pages.noidung.gioithieu.chitiet_tab',compact('menu','content','sub_content'));
     }
     //Liên hệ
     public function getLienhe($menu_id)

@@ -59,12 +59,12 @@
                                         <p class="mb-0"><label>Hiển thị tại trang chủ</label></p>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="highlights" value="1">Nổi bật đầu trang chủ
+                                                <input type="radio" class="form-check-input" {{ $content->highlights==1 ? 'checked':'' }} name="highlights" value="1">Nổi bật đầu trang chủ
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" checked name="highlights" value="0">Hiển thị tại danh mục
+                                                <input type="radio" class="form-check-input" {{ $content->highlights==0 ? 'checked':'' }} name="highlights" value="0">Hiển thị tại danh mục
                                             </label>
                                         </div>
                                     </div>
@@ -73,12 +73,12 @@
                                         <p class="mb-0"><label>Hiển thị tại trang Thông báo</label></p>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="notification" value="1">Có hiển thị
+                                                <input type="radio" class="form-check-input" {{ $content->notification==1 ? 'checked':'' }} name="notification" value="1">Có hiển thị
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" checked name="notification" value="0">Không hiển thị
+                                                <input type="radio" class="form-check-input" {{ $content->notification==0 ? 'checked':'' }} name="notification" value="0">Không hiển thị
                                             </label>
                                         </div>
                                     </div>
@@ -117,12 +117,12 @@
                                         <p class="mb-0"><label>Trạng thái</label></p>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" checked name="status" value="1">Cho phép hiển thị
+                                                <input type="radio" class="form-check-input" {{ $content->status==1 ? 'checked':'' }} name="status" value="1">Cho phép hiển thị
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="status" value="0">Không hiển thị
+                                                <input type="radio" class="form-check-input" {{ $content->status==0 ? 'checked':'' }} name="status" value="0">Không hiển thị
                                             </label>
                                         </div>
                                     </div>

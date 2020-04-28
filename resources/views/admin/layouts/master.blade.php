@@ -52,6 +52,8 @@
 
     {{-- nhung ckeditor --}}
     <script src="{{ asset('admin_asset/plugins/ckeditor/ckeditor.js') }}"></script>
+    {{--  responsive image trong ckeditor  --}}
+    <script src="admin_asset/plugins/ckeditor/ckeditor-responsive-images.js" type="text/javascript" charset="utf-8" async defer></script>
 
     {{--  Tự động đóng alert sau khoảng thời gian  --}}
     <script type="text/javascript">

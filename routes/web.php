@@ -33,10 +33,11 @@ Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 //Nhóm nội dung
 Route::group(['prefix' => 'noidung'],function (){
     //Giới thiệu
-    Route::get('{menu_id}/gioi-thieu.html','PagesController@getGioithieu');
-    Route::get('{menu_id}/co-cau-to-chuc.html', 'PagesController@getSubgioithieu');
-    Route::get('{menu_id}/cac-nha-may.html', 'PagesController@getSubgioithieu');
-    Route::get('{menu_id}/cac-du-an.html', 'PagesController@getSubgioithieu');
+    Route::get('{menu_id}/gioi-thieu.html','PagesController@getGioithieu')->name('noidung.gioithieu');
+    Route::get('{menu_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuCocau');
+    Route::get('{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
+    Route::get('{menu_id}/cac-nha-may.html', 'PagesController@getGioithieuTab');
+    Route::get('{menu_id}/cac-du-an.html', 'PagesController@getGioithieuTab');
     //Liên hệ
     Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
 });

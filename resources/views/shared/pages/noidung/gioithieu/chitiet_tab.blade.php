@@ -1,6 +1,5 @@
 @extends('shared.layouts.master')
 @section('title')
-{{-- {{ dd($menu) }} --}}
     {{ $menu->name }}
 @endsection
 @section('content')
@@ -28,35 +27,37 @@
                 </button>
                 <h5 class="d-inline py-3 ml-3 ml-md-0 text-uppercase">{{ $menu->name }}</h5>
             </div>
-            <div class="card p-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="border">
-                            <ul class="nav flex-column">
-                                @if (count($content)>0)
-                                    @foreach ($content as $ct)
-                                    <li class="nav-item">
-                                        <a href="noidung/{{ $menu->id }}/{{ $ct->id }}/{{ $menu->slug }}.html" class="nav-link" title="">{{ $ct->title }}</a>
-                                    </li>
-                                    <hr class="my-1 w-100">
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        @if (!empty($sub_content))
-                            <div class="row">
-                                <div class="col-12">
-                                    {!! $sub_content->content !!}
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <ul class="nav nav-tabs" role="tablist">
+                        @if (count($content)>0)
+                            @php
+                            $content1 = $content->shift();
+                            @endphp
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#{{ $content1['slug'] }}">{{ $content1['title'] }}</a>
+                            </li>
+                            @foreach ($content->all() as $ct)
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#{{ $ct['slug'] }}">{{ $ct['title'] }}</a>
+                            </li>
+                            @endforeach
                         @endif
-                    </div>
+                    </ul>
                 </div>
                 
+                <div class="col-12 tab-content">
+                    <div id="{{ $content1['slug'] }}" class="tab-pane active">
+                        {!! $content1['content'] !!}
+                    </div>
+                    @foreach ($content->all() as $ct)
+                    <div id="{{ $ct['slug'] }}" class="tab-pane fade">
+                        {!! $ct['content'] !!}
+                    </div>
+                    @endforeach
+                </div>
             </div>
-           
+
         </div>
     </div>
     

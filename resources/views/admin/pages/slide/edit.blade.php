@@ -67,12 +67,12 @@
                                         <p class="mb-0"><label>Trạng thái <span class="text-danger">(*)</span></label></p>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" checked name="status" value="1">Cho phép hiển thị
+                                                <input type="radio" class="form-check-input" {{ $slide->status==1 ? 'checked':'' }} name="status" value="1">Cho phép hiển thị
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="status" value="0">Không hiển thị
+                                                <input type="radio" class="form-check-input" {{ $slide->status==0 ? 'checked':'' }} name="status" value="0">Không hiển thị
                                             </label>
                                         </div>
                                     </div>

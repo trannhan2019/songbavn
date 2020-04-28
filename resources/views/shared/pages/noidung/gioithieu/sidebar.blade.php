@@ -1,58 +1,27 @@
-<nav id="sidebar" class="">
-	<ul class="list-unstyled components">
-		<li class="active">
-			<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="collapsed">
-				<i class="fa fa-home"></i>Home  
-			</a>
-			<ul class="list-unstyled collapse" id="homeSubmenu" style="">
-				<li>
-					<a href="#">Home 1</a>
-				</li>
-				<li>
-					<a href="#">Home 2</a>
-				</li>
-				<li>
-					<a href="#">Home 3</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="#">
-				<i class="fa fa-briefcase"></i> About
-			</a>
-			<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="collapsed">
-				<i class="fa fa-file"></i>Pages
-    
-			</a>
-			<ul class="list-unstyled collapse" id="pageSubmenu" style="">
-				<li>
-					<a href="#">Page 1</a>
-				</li>
-				<li>
-					<a href="#">Page 2</a>
-				</li>
-				<li>
-					<a href="#">Page 3</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="#">
-				<i class="fa fa-link"></i>  Portfolio
-    
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<i class="fa fa-paperclip"></i> FAQ
-    
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<i class="fa fa-send"></i> Contact
-    
-			</a>
-		</li>
+<div id="sidebar-menu" class="d-none d-md-inline border" style="width: 15rem">
+	<ul class="nav flex-column">
+        @if (!empty($menu->Parent))
+            @php
+            $gioithieu = $menu->Parent;
+            @endphp
+        @else
+            @php
+            $gioithieu = $menu;
+            @endphp
+        @endif
+            @foreach ($gioithieu->ChildMenus->where('status',1)->sortBy('position') as $child_menu)
+            <li class="nav-item">
+                @if ($child_menu->slug=='co-cau-to-chuc')
+                    <a href="noidung/{{ $child_menu->id }}/{{ $child_menu->slug }}.html" class="nav-link" title="">{{ $child_menu->name }}</a>
+                @elseif($child_menu->slug=='cac-nha-may')
+                    <a href="noidung/{{ $child_menu->id }}/{{ $child_menu->slug }}.html" class="nav-link" title="">{{ $child_menu->name }}</a>
+                @elseif($child_menu->slug=='cac-du-an')
+                    <a href="noidung/{{ $child_menu->id }}/{{ $child_menu->slug }}.html" class="nav-link" title="">{{ $child_menu->name }}</a>
+                @else
+                    <a href="noidung/{{ $child_menu->id }}/{{ $gioithieu->slug }}.html" class="nav-link" title="">{{ $child_menu->name }}</a>
+                @endif
+            </li>
+            <hr class="my-1 w-100">
+            @endforeach
 	</ul>
-</nav>
+</div>
