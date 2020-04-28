@@ -24,19 +24,18 @@
             <div class="navbar-header mb-2 bg-white p-2">
                 <button type="button" id="btn-toggle" class="btn btn-outline-secondary d-md-none">
                     <i class="fa fa-bars"></i>
-                    <span>Toggle Sidebar</span>
                 </button>
                 <h5 class="d-inline py-3 ml-3 ml-md-0 text-uppercase">{{ $menu->name }}</h5>
             </div>
             <div class="card p-3">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="border">
                             <ul class="nav flex-column">
                                 @if (count($content)>0)
                                     @foreach ($content as $ct)
                                     <li class="nav-item">
-                                        <a href="noidung/{{ $menu->id }}/{{ $ct->id }}/{{ $menu->slug }}.html" class="nav-link" title="">{{ $ct->title }}</a>
+                                        <a href="noidung/{{ $menu->id }}/{{ $ct->id }}/{{ $menu->slug }}.html" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
                                     </li>
                                     <hr class="my-1 w-100">
                                     @endforeach
@@ -44,7 +43,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         @if (!empty($sub_content))
                             <div class="row">
                                 <div class="col-12">

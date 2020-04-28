@@ -32,4 +32,8 @@ class Menu extends Model
     public function Contents(){
         return $this->hasMany(Content::class,'menu_id','id');
     }
+
+    public function Ykiens(){
+        return $this->hasMany(Ykiencodong::class,'menu_id','id');
+    }
 }

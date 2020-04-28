@@ -23,11 +23,16 @@ class PagesController extends Controller
         $dhdcd = Menu::where('slug','dai-hoi-dong-co-dong')->where('status',1)->first();
         $cbtt = Menu::where('slug','cong-bo-thong-tin')->where('status',1)->first();
         $bctc = Menu::where('slug','bao-cao-tai-chinh')->where('status',1)->first();
+        $bctn = Menu::where('slug','bao-cao-thuong-nien')->where('status',1)->first();
+        $thqt = Menu::where('slug','tinh-hinh-quan-tri')->where('status',1)->first();
+        $ykien_ndt = Menu::where('slug','y-kien-nha-dau-tu')->where('status',1)->first();
+        //$tin_ykien = $ykien_ndt->Ykiens->where('status',1)->sortByDesc('created_at')->take(5);
+        //dd($tin_ykien);
         $thongtinhd = Menu::where('slug','thong-tin-hoat-dong')->where('status',1)->first();
         $dangdoanthe = Menu::where('slug','dang-doan-the')->where('status',1)->first();
         $baivietsba = Menu::where('slug','bai-viet-sba')->where('status',1)->first();
 
-        return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','thongtinhd','dangdoanthe','baivietsba','tin_thongbao'));
+        return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','bctn','thqt','ykien_ndt','thongtinhd','dangdoanthe','baivietsba','tin_thongbao'));
     }
     //Nội dung từng menu
     //Giới thiệu và giới thiệu chung

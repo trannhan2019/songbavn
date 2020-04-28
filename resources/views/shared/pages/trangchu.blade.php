@@ -5,7 +5,7 @@
 
 @section('content')
     @include('shared.layouts.slide')
-    <div class="container-fluid content">
+    <div class="container content">
 		<div class="row mt-3">
 			{{--  Noi dung chinh  --}}
 			<div class="col-md-9 col-lg-9">
@@ -77,6 +77,7 @@
 					<div class="col-12 col-md-4">
 						@php
 						$tin_dhdcd = $dhdcd->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_dhdcd = $tin_dhdcd->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
@@ -89,8 +90,16 @@
 
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
-								@foreach ($tin_dhdcd as $item)
 								<li class="font-weight-bold crop_text">
+									<a href="#">
+										{{ $tin1_dhdcd['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_dhdcd->all() as $item)
+								<li class="crop_text">
 									<a href="#">
 										{{ $item->title }}
 									</a>
@@ -108,6 +117,7 @@
 					<div class="col-12 col-md-4">
 						@php
 						$tin_cbtt = $cbtt->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_cbtt = $tin_cbtt->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
@@ -120,10 +130,18 @@
 
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
-								@foreach ($tin_cbtt as $item)
 								<li class="font-weight-bold crop_text">
 									<a href="#">
-										{{ $item->title }}
+										{{ $tin1_cbtt['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_cbtt->all() as $item)
+								<li class="crop_text">
+									<a href="#">
+										{{ $item['title'] }}
 									</a>
 								</li>
 								<li>
@@ -139,6 +157,7 @@
 					<div class="col-12 col-md-4">
 						@php
 						$tin_bctc = $bctc->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_bctc = $tin_bctc->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
@@ -151,10 +170,94 @@
 
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
-								@foreach ($tin_bctc as $item)
 								<li class="font-weight-bold crop_text">
 									<a href="#">
-										{{ $item->title }}
+										{{ $tin1_bctc['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_bctc->all() as $item)
+								<li class="crop_text">
+									<a href="#">
+										{{ $item['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+					{{--  Báo cáo thường niên  --}}
+					<div class="col-12 col-md-4">
+						@php
+						$tin_bctn = $bctn->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_bctn = $tin_bctn->shift();
+						@endphp
+						<div class="text-center mt-lg-3 mt-2">
+							<h6 class="py-1 m-0">
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $bctn->name }}</a>
+							</h6>
+							<hr class="m-0 mb-2">
+						</div>
+
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/bctn-600x400.jpg" alt="">
+
+						<div class="mt-2">
+							<ul class="list-unstyled text-justify">
+								<li class="font-weight-bold crop_text">
+									<a href="#">
+										{{ $tin1_bctn['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_bctn->all() as $item)
+								<li class="crop_text">
+									<a href="#">
+										{{ $item['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
+					{{--  Tình hình quản trị  --}}
+					<div class="col-12 col-md-4">
+						@php
+						$tin_thqt = $thqt->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_thqt = $tin_thqt->shift();
+						@endphp
+						<div class="text-center mt-lg-3 mt-2">
+							<h6 class="py-1 m-0">
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $thqt->name }}</a>
+							</h6>
+							<hr class="m-0 mb-2">
+						</div>
+
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/thqt-600x400.jpg" alt="">
+
+						<div class="mt-2">
+							<ul class="list-unstyled text-justify">
+								<li class="font-weight-bold crop_text">
+									<a href="#">
+										{{ $tin1_thqt['title'] }}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_thqt->all() as $item)
+								<li class="crop_text">
+									<a href="#">
+										{{ $item['title'] }}
 									</a>
 								</li>
 								<li>
@@ -165,7 +268,43 @@
 						</div>
 					</div>
 					{{--  <!-- Ý kiến cổ đông -->  --}}
-					
+					<div class="col-12 col-md-4">
+						@php
+						$tin_ykien = $ykien_ndt->Ykiens->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin1_ykien = $tin_ykien->shift();
+						@endphp
+						<div class="text-center mt-lg-3 mt-2">
+							<h6 class="py-1 m-0">
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $ykien_ndt->name }}</a>
+							</h6>
+							<hr class="m-0 mb-2">
+						</div>
+
+						<img class="img-thumbnail img-fluid" src="shared_asset/upload/images/content/q-a-600x400.jpg" alt="">
+
+						<div class="mt-2">
+							<ul class="list-unstyled text-justify">
+								<li class="crop_text font-weight-bold">
+									<a href="#">
+										{!! $tin1_ykien['ask_content'] !!}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@foreach ($tin_ykien->all() as $item)
+								<li class="crop_text">
+									<a href="#">
+										{!! $item['ask_content'] !!}
+									</a>
+								</li>
+								<li>
+									<hr class="my-1">
+								</li>
+								@endforeach
+							</ul>
+						</div>
+					</div>
 				</div>
 
 				{{--  <!-- TIN TỨC - SỰ KIỆN -->  --}}

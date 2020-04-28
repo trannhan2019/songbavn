@@ -25,7 +25,6 @@
             <div class="navbar-header mb-2 bg-white p-2">
                 <button type="button" id="btn-toggle" class="btn btn-outline-secondary d-md-none">
                     <i class="fa fa-bars"></i>
-                    <span>Toggle Sidebar</span>
                 </button>
                 <h5 class="d-inline py-3 ml-3 ml-md-0 text-uppercase">{{ $menu->name }}</h5>
             </div>
