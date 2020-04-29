@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					{{--  <!-- Tin nổi bật, tin mới slide -->  --}}
-					<div class="col-md-5 home-right overflow-auto" style="height: 443.203px;">
+					<div class="col-md-5 home-right overflow-auto">
 						@foreach ($tin_noibat->all() as $tnb)
 						<div class="card">
 							<div class="row no-gutters">

@@ -1,7 +1,10 @@
 /*All*/
+
+
 /* a{
     color: #6f42c1 !important;
 } */
+
 a:hover {
     text-decoration: none;
 }
@@ -77,6 +80,7 @@ a:hover {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+
 .crop_text_4 {
     -webkit-line-clamp: 4;
     overflow: hidden;
@@ -85,15 +89,19 @@ a:hover {
     -webkit-box-orient: vertical;
 }
 
+
 /* tin tức */
-a{
-	color: #2c2c2c;
+
+a {
+    color: #2c2c2c;
 }
-a:hover{
-	color: rgb(2,139,255);
+
+a:hover {
+    color: rgb(2, 139, 255);
 }
-.head{
-	border-bottom: 4px solid #000066;
+
+.head {
+    border-bottom: 4px solid #000066;
 }
 
 .banner_inside {
@@ -183,28 +191,8 @@ a.on_top {
     font-size: 1.2rem;
 }
 
-.QHCD .scroll {
-    height: 10rem;
-    overflow: scroll;
-}
-
 .QHCD_breadcrumb li {
     font-size: 1rem;
-}
-
-
-/*-------Trang menu QHCD-----*/
-
-.QHCD_breadcrumb {
-    background-color: #e9ecef;
-}
-
-.QHCD a {
-    color: #212529;
-}
-
-.QHCD a:hover {
-    color: rgb(0, 0, 77);
 }
 
 .QHCD .head {
@@ -216,7 +204,7 @@ a.on_top {
     overflow: auto;
 }
 
-.QHCD .title_cbtt {
+.title_cbtt {
     background-color: #e9ecef;
 }
 

@@ -77,8 +77,9 @@ class PagesController extends Controller
     {
         $menu = Menu::find($menu_id);
         if (empty($menu->Parent)) {
-            
-            return view('shared.pages.noidung.tintuc.all',compact('menu'));
+            $tintuc_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
+            // dd($tintuc_view);
+            return view('shared.pages.noidung.tintuc.all',compact('menu','tintuc_view'));
         } else {
             $tintuc = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
             $tintuc_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();

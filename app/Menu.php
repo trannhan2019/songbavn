@@ -33,6 +33,10 @@ class Menu extends Model
         return $this->hasMany(Content::class,'menu_id','id');
     }
 
+    public function ParentContents(){
+        return $this->hasManyThrough(Content::class,Menu::class,'parent','menu_id');
+    }
+
     public function Ykiens(){
         return $this->hasMany(Ykiencodong::class,'menu_id','id');
     }

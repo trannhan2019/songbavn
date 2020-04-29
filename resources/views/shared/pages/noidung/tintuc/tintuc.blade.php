@@ -52,28 +52,29 @@
         </div>
         
         <div class="col-md-4">
-            
-            <div class="card">
-                <div class="card-header">
-                    <h6 class="card-title text-center m-0">BÀI VIẾT XEM NHIỀU NHẤT</h6>
-                </div>
-                @foreach ($tintuc_view as $ttv)
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <a href="#" title=""> {{ $ttv->title }}</a>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                <i class="far fa-calendar-alt"></i> {{ $tt->created_at ? $tt->created_at->format('d/m/Y H:h'):''}}
+            <div class="row">
+                <div class="border shadow col-12 p-0">
+                    <div class="text-center py-3" style="background-color: #e9ecef;">
+                        <h6 class="m-0">TIN BÀI ĐỌC NHIỀU</h6>
+                    </div>
+                    @foreach ($tintuc_view as $ttv)
+                    <div class="px-4 py-2 text-justify">
+                        <a href="#">
+                            <p class="m-0">
+                                {{ $ttv->title }}
+                            </p>
+                        </a>
+                        <p class="m-0">
+                            <small>
+                                <i class="far fa-calendar-alt"></i> {{ $ttv->created_at ? $ttv->created_at->format('d/m/Y H:h'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ttv->views }}
-                                &ensp;
                             </small>
                         </p>
-                    </li>
-                </ul>
-                @endforeach
-            </div> 
-            
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>
