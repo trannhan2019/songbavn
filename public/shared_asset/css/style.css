@@ -1,5 +1,7 @@
 /*All*/
-
+/* a{
+    color: #6f42c1 !important;
+} */
 a:hover {
     text-decoration: none;
 }
@@ -74,6 +76,24 @@ a:hover {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+.crop_text_4 {
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* tin tức */
+a{
+	color: #2c2c2c;
+}
+a:hover{
+	color: rgb(2,139,255);
+}
+.head{
+	border-bottom: 4px solid #000066;
 }
 
 .banner_inside {

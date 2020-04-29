@@ -71,6 +71,22 @@ class PagesController extends Controller
         $sub_content = $menu->Contents()->orderBy('created_at')->first();
         return view('shared.pages.noidung.gioithieu.chitiet_tab',compact('menu','content','sub_content'));
     }
+
+    //Tin tức
+    public function getTintuc($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        if (empty($menu->Parent)) {
+            
+            return view('shared.pages.noidung.tintuc.all',compact('menu'));
+        } else {
+            $tintuc = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+            $tintuc_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+            //dd($tintuc_view);
+            return view('shared.pages.noidung.tintuc.tintuc',compact('tintuc','tintuc_view','menu'));
+        }
+        
+    }
     //Liên hệ
     public function getLienhe($menu_id)
     {

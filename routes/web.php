@@ -38,6 +38,8 @@ Route::group(['prefix' => 'noidung'],function (){
     Route::get('{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
     Route::get('{menu_id}/cac-nha-may.html', 'PagesController@getGioithieuTab');
     Route::get('{menu_id}/cac-du-an.html', 'PagesController@getGioithieuTab');
+    //Tin tức
+    Route::get('{menu_id}/tin-tuc.html','PagesController@getTintuc')->name('noidung.tintuc');
     //Liên hệ
     Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
 });
