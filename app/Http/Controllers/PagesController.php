@@ -19,6 +19,7 @@ class PagesController extends Controller
     {
         $slide = Slide::where('Active',1)->orderBy('location')->get();
         $tin_noibat = Content::where('highlights',1)->where('status',1)->orderBy('created_at','desc')->take(10)->get();
+        //dd($tin_noibat_1->Menu->Parent->id);
         $tin_thongbao = Content::where('notification',1)->where('status',1)->orderBy('created_at','desc')->take(5)->get();
         $dhdcd = Menu::where('slug','dai-hoi-dong-co-dong')->where('status',1)->first();
         $cbtt = Menu::where('slug','cong-bo-thong-tin')->where('status',1)->first();
@@ -78,15 +79,19 @@ class PagesController extends Controller
         $menu = Menu::find($menu_id);
         if (empty($menu->Parent)) {
             $tintuc_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
-            // dd($tintuc_view);
+            //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
             return view('shared.pages.noidung.tintuc.all',compact('menu','tintuc_view'));
         } else {
             $tintuc = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
             $tintuc_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-            //dd($tintuc_view);
             return view('shared.pages.noidung.tintuc.tintuc',compact('tintuc','tintuc_view','menu'));
-        }
-        
+        }  
+    }
+    public function getDetailTintuc($menu_id,$content_id)
+    {
+        $menu = Menu::find($menu_id);
+        $tintuc = Content::find($content_id);
+        return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc'));
     }
     //Liên hệ
     public function getLienhe($menu_id)

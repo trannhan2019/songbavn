@@ -20,14 +20,14 @@
             <div class="card mb-2">
                 <div class="row no-gutters">
                     <div class="col-md-4 py-4">
-                        <a href="#" title="">
+                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $tt->id }}/{{ $tt->slug }}.html" title="">
                             <img src="shared_asset/upload/images/content/{{ $tt->imageorfile }}" class="img-fluid align-self-center" alt="">
                         </a>		
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h6 class="card-title">
-                                <a href="#" title="">{{ $tt->title }}</a>
+                                <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $tt->id }}/{{ $tt->slug }}.html" title="">{{ $tt->title }}</a>
                             </h6>
                             <p class="card-text mb-0 crop_text_4">{{ $tt->abstract }}</p>
                             <p class="card-text">
@@ -59,7 +59,7 @@
                     </div>
                     @foreach ($tintuc_view as $ttv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="#">
+                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ttv->id }}/{{ $ttv->slug }}.html">
                             <p class="m-0">
                                 {{ $ttv->title }}
                             </p>

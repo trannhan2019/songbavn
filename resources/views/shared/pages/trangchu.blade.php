@@ -7,7 +7,6 @@
     @include('shared.layouts.slide')
     <div class="container content">
 		<div class="row mt-3">
-			{{--  Noi dung chinh  --}}
 			<div class="col-md-9 col-lg-9">
 				<div class="row">
 					{{--   Tin nổi bật, mới nhất chính   --}}
@@ -16,12 +15,12 @@
 					@endphp
 					<div class="col-md-7 home-left h-100">
 						<div class="card">
-							<a href="#" title="">
+							<a href="noidung/{{ $tin_noibat_1->Menu->Parent->slug }}/{{ $tin_noibat_1->Menu->id }}/{{ $tin_noibat_1->id }}/{{ $tin_noibat_1->slug }}.html" title="">
 								<img src="shared_asset/upload/images/content/{{ $tin_noibat_1['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
 							</a>						
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									<a href="#" title="">
+									<a href="noidung/{{ $tin_noibat_1->Menu->Parent->slug }}/{{ $tin_noibat_1->Menu->id }}/{{ $tin_noibat_1->id }}/{{ $tin_noibat_1->slug }}.html" title="">
 										{{ $tin_noibat_1['title'] }}
 									</a>
 								</h6>
@@ -46,14 +45,14 @@
 						<div class="card">
 							<div class="row no-gutters">
 								<div class="col-5">
-									<a href="#">
+									<a href="noidung/{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">
 										<img src="shared_asset/upload/images/content/{{ $tnb['imageorfile'] }}" class="w-100 img-fluid" alt="">
 									</a>
 								</div>
 								<div class="col-7">
 									<div class="card-body p-1">
 										<h6 class="card-title mb-0">
-											<a href="#">{{ $tnb['title'] }}</a>
+											<a href="noidung/{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">{{ $tnb['title'] }}</a>
 										</h6>
 									</div>						
 								</div>
@@ -324,7 +323,7 @@
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $thongtinhd->name }}</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="noidung/{{ $thongtinhd->id }}/{{ $thongtinhd->Parent->slug }}.html">{{ $thongtinhd->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
@@ -337,20 +336,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_tthd_1['abstract'] }}
 								</p>
-								<a href="#" class="stretched-link"></a>
+								<a href="noidung/{{ $tin_tthd_1->Menu->Parent->slug }}/{{ $tin_tthd_1->Menu->id }}/{{ $tin_tthd_1->id }}/{{ $tin_tthd_1->slug }}.html" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_tthd->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="#">
+								<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="#" class="crop_text">
+									<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html" class="crop_text">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -368,7 +367,7 @@
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $dangdoanthe->name }}</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="noidung/{{ $dangdoanthe->id }}/{{ $dangdoanthe->Parent->slug }}.html">{{ $dangdoanthe->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
@@ -381,20 +380,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_dangdoan_1['abstract'] }}
 								</p>
-								<a href="#" class="stretched-link"></a>
+								<a href="noidung/{{ $tin_dangdoan_1->Menu->Parent->slug }}/{{ $tin_dangdoan_1->Menu->id }}/{{ $tin_dangdoan_1->id }}/{{ $tin_dangdoan_1->slug }}.html" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_dangdoan->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="#">
+								<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="#" class="crop_text">
+									<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html" class="crop_text">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -412,7 +411,7 @@
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
 							<h6 class="py-1 m-0">
-								<a class="text-danger font_title text-uppercase font-weight-bold" href="#">{{ $baivietsba->name }}</a>
+								<a class="text-danger font_title text-uppercase font-weight-bold" href="noidung/{{ $baivietsba->id }}/{{ $baivietsba->Parent->slug }}.html">{{ $baivietsba->name }}</a>
 							</h6>
 							<hr class="m-0 mb-2">
 						</div>
@@ -425,20 +424,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_sba_1['abstract'] }}
 								</p>
-								<a href="#" class="stretched-link"></a>
+								<a href="noidung/{{ $tin_sba_1->Menu->Parent->slug }}/{{ $tin_sba_1->Menu->id }}/{{ $tin_sba_1->id }}/{{ $tin_sba_1->slug }}.html" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_sba->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="#">
+								<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="#" class="crop_text">
+									<a href="noidung/{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->id }}/{{ $tin->id }}/{{ $tin->slug }}.html" class="crop_text">
 										{{ $tin['title'] }}
 									</a>
 								</h6>

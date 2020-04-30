@@ -13,14 +13,16 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             @if (!empty($menu->ChildMenus))
             @foreach ($menu->ChildMenus as $mn)
             <div class="row">
                 <div class="col-12">
                     <div class="head row mx-0 mb-3">
                         <div class="col-8">
-                            <h4>{{ $mn->name }}</h4>
+                            <h4>
+                                <a href="{{ route('noidung.tintuc',$mn->id) }}">{{ $mn->name }}</a> 
+                            </h4>
                         </div>
                         <div class="col-4 text-right">
                             <a class="text-primary" href="{{ route('noidung.tintuc',$mn->id) }}">Xem tất cả</a>
@@ -33,12 +35,12 @@
                         @endphp
                         <div class="col-md-7 home-left h-100">
                             <div class="card">
-                                <a href="#" title="">
+                                <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con->id }}/{{ $tin1_con->slug }}.html" title="">
                                     <img src="shared_asset/upload/images/content/{{ $tin1_con['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
                                 </a>
                                 <div class="card-body p-2">
                                     <h6 class="card-title">
-                                        <a href="#" title="">
+                                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con->id }}/{{ $tin1_con->slug }}.html" title="">
                                             {{ $tin1_con['title'] }}
                                         </a>
                                     </h6>
@@ -62,14 +64,14 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-5">
-                                        <a href="#">
+                                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
                                             <img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
                                         </a>
                                     </div>
                                     <div class="col-7">
                                         <div class="card-body p-1">
                                             <h6 class="card-title mb-0">
-                                                <a href="#">{{ $tin['title'] }}</a>
+                                                <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">{{ $tin['title'] }}</a>
                                             </h6>
                                         </div>
                                     </div>
@@ -84,7 +86,7 @@
             @endforeach
             @endif
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="row">
                 <div class="border shadow col-12 p-0">
                     <div class="text-center py-3" style="background-color: #e9ecef;">
@@ -92,7 +94,7 @@
                     </div>
                     @foreach ($tintuc_view as $ttv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="#">
+                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $ttv->id }}/{{ $ttv->slug }}.html">
                             <p class="m-0">
                                 {{ $ttv->title }}
                             </p>
