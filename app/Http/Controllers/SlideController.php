@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use App\Slide;
 use App\Content;
 
@@ -38,7 +39,7 @@ class SlideController extends Controller
         ]);
         $slide = new Slide;
         $slide->title = $request->title;
-        
+
         $slide->location = $request->location;
         $slide->Active = $request->status;
         if ($request->hasFile('image')) {
@@ -68,7 +69,7 @@ class SlideController extends Controller
         else{
             $slide->content_id = null;
         }
-        
+
         if ($request->created_at) {
             $slide->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
@@ -99,10 +100,10 @@ class SlideController extends Controller
         ]);
         $slide = Slide::find($id);
         $slide->title = $request->title;
-        
+
         $slide->location = $request->location;
         $slide->Active = $request->status;
-        
+
         if ($request->hasFile('image')) {
             $this->validate($request,
             [
@@ -113,7 +114,7 @@ class SlideController extends Controller
             ],
             [
                 'image'=>'Hình ảnh'
-                
+
             ]);
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
@@ -142,11 +143,11 @@ class SlideController extends Controller
         else{
             $slide->content_id = null;
         }
-        
+
         if ($request->created_at) {
             $slide->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $slide->created_at = null;
+            $slide->created_at = Carbon::now();
         }
         $slide->save();
         return redirect('admin/slide/list')->with('thongbao','Sửa thông tin thành công !');
@@ -155,7 +156,7 @@ class SlideController extends Controller
     {
         $slide = Slide::find($id);
         $slide->delete();
-        
+
         return redirect()->route('admin.slide.list')->with('thongbao','Xóa thông tin thành công !');
     }
     //Đã xóa
@@ -164,7 +165,7 @@ class SlideController extends Controller
         $slide = Slide::orderByDesc('created_at')->onlyTrashed()->get();
         return view('admin.pages.slide.trash',compact('slide'));
     }
-    public function getRestore($id)
+    public function postRestore($id)
     {
         $slide = Slide::withTrashed()->find($id);
         $slide->restore();

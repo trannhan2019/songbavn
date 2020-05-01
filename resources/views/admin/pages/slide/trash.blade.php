@@ -24,22 +24,44 @@
         </div>
         {{-- content-header --}}
         {{--  Phan noi dung  --}}
-        {{--  modal xóa  --}}
-        <div class="modal" tabindex="-1" role="dialog" id="deletedSlideModal">
+        <div class="modal" tabindex="-1" role="dialog" id="restoreTrashSlideModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Xóa thông tin</h5>          
+                        <h5 class="modal-title">Phục hồi thông tin</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <form action="" method="POST">
-                    @csrf        
+                    @csrf
+                        <div class="modal-body">
+                            <h6>Khôi phục thông tin này ?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Khôi phục</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{--  modal xóa  --}}
+        <div class="modal" tabindex="-1" role="dialog" id="deletedTrashSlideModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xóa thông tin</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="" method="POST">
+                    @csrf
                         <div class="modal-body">
                             <h6>Bạn chắc chắn muốn xóa thông tin này ?</h6>
                         </div>
-                        <div class="modal-footer">                                
+                        <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Xóa</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         </div>
@@ -47,14 +69,14 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
                 @if (session('thongbao'))
                     @include('admin.layouts.thongbao')
                 @endif
-                
+
                 {{--  Ket thuc phan thong bao  --}}
                 <div class="table-responsive-sm">
                     <table class="table table-hover table-sm" id="table-slides">
@@ -62,7 +84,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Hình ảnh</th>
-                                <th>Vị trí</th>                          
+                                <th>Vị trí</th>
                                 <th>Liên kết</th>
                                 <th>Thời gian tạo</th>
                                 <th>Khôi phục</th>
@@ -80,30 +102,30 @@
                                     <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="" style="width: 150px" class="img-fluid">
                                 </td>
                                 <td class="text-center">{{ $sl->location }}</td>
-                                     
+
                                 <td>{{ $sl->Content ?  $sl->Content->title : '' }}</td>
                                 <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:h'):'' }}</td>
-                                <td class="text-center"><a href="{{ route('admin.slide.restore',$sl->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
-                                <td class="text-center"><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedSlideModal"><i class="far fa-trash-alt"></i></button></td>
+                                <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#restoreTrashSlideModal"><i class="fas fa-trash-restore"></i></button></td>
+                                <td class="text-center"><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedTrashSlideModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            
+
         </div>
         {{--  Ket thuc Phan noi dung  --}}
-       
+
     </div>
-    
+
 @endsection
 
 @section('script')
     <script type="text/javascript">
         $(function() {
             $('#table-slides').DataTable({
-                
+
                 "language": {
                     "sProcessing":   "Đang xử lý...",
                     "sLengthMenu":   "Xem _MENU_ mục",
@@ -122,14 +144,21 @@
                     }
                 }
             });
-            
+
         });
     </script>
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
             var url = "admin/slide/forcedelete/"+ id;
-            $('#deletedSlideModal form').attr('action', url);
+            $('#deletedTrashSlideModal form').attr('action', url);
+        });
+    </script>
+    <script type="text/javascript">
+        $('.btn-restore').on('click', function() {
+            var id = $(this).data('id');
+            var url = "admin/slide/restore/"+ id;
+            $('#restoreTrashSlideModal form').attr('action', url);
         });
     </script>
 @endsection

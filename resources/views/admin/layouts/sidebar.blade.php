@@ -25,7 +25,7 @@
               <i class="nav-icon fas fa-th text-warning"></i>
               <p>
                 Trang tổng quan
-                <span class="right badge badge-danger">New</span>
+
               </p>
             </a>
           </li>
@@ -35,7 +35,7 @@
               <i class="nav-icon fas fa-th text-warning"></i>
               <p>
                 Quản lý danh mục
-                <span class="right badge badge-danger">New</span>
+
               </p>
             </a>
           </li>
@@ -45,7 +45,7 @@
               <i class="nav-icon fas fa-users-cog text-warning"></i>
               <p>
                 Quản lý người dùng
-                <span class="right badge badge-danger">New</span>
+
               </p>
             </a>
           </li>
@@ -55,7 +55,7 @@
               <i class="nav-icon fas fa-sliders-h text-warning"></i>
               <p>
                 Quản lý Slide
-                <span class="right badge badge-danger">New</span>
+
               </p>
             </a>
           </li>
@@ -118,6 +118,15 @@
           </li>
           @endforeach
           <hr class="border-light bg-white my-2">
+          {{--  Quản lý bình luận  --}}
+          <li class="nav-item">
+            <a href="{{ route('admin.comment.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-comments text-warning"></i>
+              <p>
+                Quản lý bình luận
+              </p>
+            </a>
+          </li>
           {{--  Quản lý tình hình sản xuất  --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -148,7 +157,7 @@
               </li>
             </ul>
           </li>
-          
+
           {{--  THÙNG RÁC  --}}
           <li class="nav-header">NỘI DUNG ĐÃ XÓA</li>
           {{-- Danh mục đã xóa --}}
@@ -179,6 +188,13 @@
               <p>Các slide đã xóa</p>
             </a>
           </li>
+          {{-- Các bình luận đã xóa --}}
+          <li class="nav-item">
+            <a href="admin/comment/trash" class="nav-link">
+              <i class="fas fa-comment-slash nav-icon"></i>
+              <p>Các bình luận đã xóa</p>
+            </a>
+          </li>
           {{-- Ý kiến nhà đầu tư--}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -198,7 +214,7 @@
                   <p>Ý kiến đã xóa</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
           {{-- tình hình sx --}}

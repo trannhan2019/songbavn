@@ -43,6 +43,8 @@ Route::group(['prefix' => 'noidung'],function (){
     Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTintuc');
     //Liên hệ
     Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
+    //Comment
+    Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('noidung.binhluan');
 });
 
 // Nhom Admin
@@ -169,6 +171,17 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('restore/{id}','ContentController@getRestore');
         Route::post('forcedelete/{id}','ContentController@postForcedelete');
     });
+    //Comment
+    Route::group(['prefix' => 'comment'], function () {
+        Route:: get('list','CommentController@getAdminList')->name('admin.comment.list');
+        Route:: get('edit/{id}','CommentController@getAdminEdit')->name('admin.comment.edit');
+        Route:: post('edit/{id}','CommentController@postAdminEdit')->name('admin.comment.edit');
+        Route:: post('delete/{id}','CommentController@postAdminDelete')->name('admin.comment.delete');
+        //Đã xóa
+        Route::get('trash','CommentController@getTrash')->name('admin.comment.trash');
+        Route::post('restore/{id}','CommentController@postRestore')->name('admin.comment.restore');
+        Route::post('forcedelete/{id}','CommentController@postForcedelete')->name('admin.comment.forcedelete');
+    });
     //Slide
     Route::group(['prefix' => 'slide'], function () {
         Route:: get('list','SlideController@getAdminList')->name('admin.slide.list');
@@ -179,7 +192,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('delete/{id}','SlideController@postAdminDelete')->name('admin.slide.delete');
         //Đã xóa
         Route::get('trash','SlideController@getTrash')->name('admin.slide.trash');
-        Route::get('restore/{id}','SlideController@getRestore')->name('admin.slide.restore');
+        Route::post('restore/{id}','SlideController@postRestore')->name('admin.slide.restore');
         Route::post('forcedelete/{id}','SlideController@postForcedelete')->name('admin.slide.forcedelete');
     });
     //Nhà máy

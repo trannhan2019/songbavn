@@ -148,9 +148,10 @@ a.on_top {
     white-space: nowrap;
     color: #fff;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 50px;
+    right: 15px;
     height: 40px;
+    z-index: 100;
 }
 
 

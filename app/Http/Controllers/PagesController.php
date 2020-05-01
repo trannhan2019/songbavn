@@ -6,6 +6,7 @@ use App\Content;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use App\Slide;
 use App\Menu;
 
@@ -90,8 +91,24 @@ class PagesController extends Controller
     public function getDetailTintuc($menu_id,$content_id)
     {
         $menu = Menu::find($menu_id);
+        
+        $tintucKey = 'tintuc_' . $content_id;
+
+        // Kiểm tra Session của sản phẩm có tồn tại hay không.
+        // Nếu không tồn tại, sẽ tự động tăng trường view_count lên 1 đồng thời tạo session lưu trữ key sản phẩm.
+        if (!Session::has($tintucKey)) {
+            Content::where('id', $content_id)->increment('views');
+            Session::put($tintucKey, 1);
+        }
+
+        // Sử dụng Eloquent để lấy ra sản phẩm theo id
         $tintuc = Content::find($content_id);
-        return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc'));
+
+        //bài viết liên quan và xem nhiều
+        $lienquan = $menu->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+        $xemnhieu = $menu->Contents->where('status',1)->sortByDesc('views')->take(5);
+        // Trả về view
+        return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
     //Liên hệ
     public function getLienhe($menu_id)

@@ -1,6 +1,11 @@
 @extends('shared.layouts.master')
+@section('recaptcha')
+    {!! htmlScriptTagJsApi([
+        'action' => 'homepage'
+]) !!}
+@endsection
 @section('title')
-{{--  {{ $menu->name }}  --}}
+{{ $menu->name }}
 @endsection
 @section('content')
 <div style="background-color: #e9ecef;">
@@ -14,6 +19,9 @@
     </nav>
 </div>
 <div class="container">
+    @if (session('thongbao'))
+        @include('shared.layouts.thongbao')
+    @endif
     <div class="row">
         <div class="col-md-8">
             <h4 class="mb-1">{{ $tintuc->title }}</h4>
@@ -25,72 +33,142 @@
                     &ensp;
                     <i class="far fa-eye"></i> {{ $tintuc->views }}
                     &ensp;
-                    <i class="far fa-comments"></i> đang cập nhật
+                    <i class="far fa-comments"></i> {{ count($tintuc->Comments->where('status',1)) }}
                 </small>
             </p>
             <div>
                 {!! $tintuc->content !!}
             </div>
-            <div class="card border-0 mt-3">
-                <div class="card-header bg-primary text-white">
+            <hr>
+            @if (count($tintuc->Comments->where('status',1))>0)
+            <div class="card mt-4">
+                <div class="card-header bg-info text-white">
                     <h6 class="card-title mb-0">
-                        THÔNG TIN PHẢN HỒI/ GÓP Ý
+                        THÔNG TIN GÓP Ý / BÌNH LUẬN
                     </h6>
                 </div>
                 <div class="card-body p-2">
-                    <div class="media border">
-                        <img src="img/img_avatar3.png" class="rounded-circle m-3" style="width: 60px" alt="">
-                        <div class="media-body">
-                            <h6 class="card-title mb-0">Trần Duy - tranduy216@gmail.com</h6>
-                            <p class="card-text mb-0">Sông Ba đang được biết đến như 1 doanh nghiệp Minh bạch, sáng tạo, hài hòa lợi ích của tất cả.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    @foreach ($tintuc->Comments->where('status',1)->sortByDesc('created_at') as $cm)
+                        @if (!empty($cm->user_id))
+                            @if ($cm->User->role==1)
+                            <div class="media pl-3">
+                                <div class="media-body">
+                                    <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
+                                    <p class="card-text mb-0">{!! $cm->content !!}</p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                                </div>
+                                <img src="admin_asset/images/user/{{ $cm->User->image }}" class="rounded-circle m-3" style="width: 60px" alt="">
+                            </div>
+                            <hr>
+                            @else
+                            <div class="media">
+                                <img src="shared_asset/upload/images/comment/img_avatar3.png" class="rounded-circle m-3" style="width: 60px" alt="">
+                                <div class="media-body">
+                                    <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
+                                    <p class="card-text mb-0">{!! $cm->content !!}</p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                                </div>
+                            </div>
+                            <hr>
+                            @endif
+                        @else
+                        <div class="media">
+                            <img src="shared_asset/upload/images/comment/img_avatar3.png" class="rounded-circle m-3" style="width: 60px" alt="">
+                            <div class="media-body">
+                                <h6 class="card-title">{{ $cm->sendername }} - {{ $cm->senderemail }}</h6>
+                                <div class="card-text mb-0">{!! $cm->content !!}</div>
+                                <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="media border">
-                        <img src="img/img_avatar3.png" class="rounded-circle m-3" style="width: 60px" alt="">
-                        <div class="media-body">
-                            <h6 class="card-title mb-0">Trần Duy - tranduy216@gmail.com</h6>
-                            <p class="card-text mb-0">Sông Ba đang được biết đến như 1 doanh nghiệp Minh bạch, sáng tạo, hài hòa lợi ích của tất cả.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="media border">
-                        <img src="img/img_avatar3.png" class="rounded-circle m-3" style="width: 60px" alt="">
-                        <div class="media-body">
-                            <h6 class="card-title mb-0">Trần Duy - tranduy216@gmail.com</h6>
-                            <p class="card-text mb-0">Sông Ba đang được biết đến như 1 doanh nghiệp Minh bạch, sáng tạo, hài hòa lợi ích của tất cả.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
+                        <hr>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-            <!-- gửi phản hồi/ góp ý -->
-            <div class="card border-0 mt-3">
-                <div class="card-header bg-primary text-white">
-                    <h6 class="card-title mb-0">GỬI PHẢN HỒI/ GÓP Ý</h6>							
+            @endif
+            {{--  <!-- gửi phản hồi/ góp ý -->  --}}
+            <div class="card mt-4">
+                <div class="card-header bg-info text-white">
+                    <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>							
                 </div>
                 <div class="card-body">
-                    <form action="Tintuc_Detail-v2_submit" method="get" accept-charset="utf-8">
+                    <form action="noidung/binh-luan/{{ $tintuc->id }}/{{ $tintuc->slug }}.html" method="post" accept-charset="utf-8">
+                        @csrf
+                        @if (!Auth::check())
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="uname">Họ và tên:</label>
-                                <input type="text" class="form-control" id="uname" placeholder="Điền họ và tên..." name="uname">
+                                <label>Họ và tên:</label>
+                                <input type="text" class="form-control" placeholder="Điền họ và tên..." name="sendername">
+                                @if ($errors->has('sendername'))
+                                <p class="text-danger mb-0">{{ $errors->first('sendername') }}</p>
+                                @endif
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="uname">Email:</label>
-                                <input type="email" class="form-control" id="uname" placeholder="Điền email..." name="email">
+                                <input type="email" class="form-control" placeholder="Điền email..." name="senderemail">
+                                @if ($errors->has('senderemail'))
+                                <p class="text-danger mb-0">{{ $errors->first('senderemail') }}</p>
+                                @endif
                             </div>
                         </div>
+                        @endif
+                        
                         <div class="form-group">
-                            <label for="comment">Nội dung phản hồi:</label>
-                            <textarea name="comment" class="form-control" rows="5" placeholder="Comment"></textarea>
-                        </div>
-                        <div>
-                            Google Catcha v2
+                            <label for="content">Nội dung bình luận:</label>
+                            <textarea name="content" class="form-control" rows="5" placeholder="Nội dung bình luận..."></textarea>
+                            @if ($errors->has('content'))
+                                <p class="text-danger mb-0">{{ $errors->first('content') }}</p>
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-success">Gửi phản hồi</button>
                     </form>
                 </div>
+            </div>
+        </div>
+        {{--  Tin liên quan  --}}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-title text-center m-0">BÀI VIẾT LIÊN QUAN</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($lienquan as $lq)
+                    <li class="list-group-item">
+                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:h'):''}}
+                                &ensp;
+                                <i class="far fa-eye"></i> {{ $lq->views }}
+                                &ensp;
+                                <i class="far fa-comments"></i> {{ count($lq->Comments->where('status',1)) }}
+                            </small>
+                        </p>									
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            {{--  <!-- BÀI VIẾT XEM NHIỀU -->  --}}
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6 class="card-title text-center m-0">BÀI VIẾT XEM NHIỀU</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    @foreach ($xemnhieu as $xn)
+                    <li class="list-group-item">
+                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $xn->id }}/{{ $xn->slug }}.html" title="" class="text-dark"> {{ $xn->title }}</a>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:h'):''}}
+                                &ensp;
+                                <i class="far fa-eye"></i> {{ $xn->views }}
+                                &ensp;
+                                <i class="far fa-comments"></i> {{ count($xn->Comments->where('status',1)) }}
+                            </small>
+                        </p>									
+                    </li> 
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
