@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('noidung.tintuc',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('noidung.quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
         </ol>
     </nav>
@@ -17,31 +17,29 @@
         {{-- <!-- list tin chính --> --}}
         <div class="col-md-8">
             @foreach ($content as $ct)
-            <div class="card mb-2">
-                <div class="row no-gutters">
-                    <div class="col-md-4 py-4">
-                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html" title="">
-                            <img src="shared_asset/upload/images/content/{{ $ct->imageorfile }}" class="img-fluid align-self-center" alt="">
-                        </a>		
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h6 class="card-title">
-                                <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html" title="">{{ $ct->title }}</a>
-                            </h6>
-                            <p class="card-text mb-0 crop_text_4">{{ $ct->abstract }}</p>
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    <i class="far fa-calendar-alt"></i> {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:h'):''}}
-                                    &ensp;
-                                    <i class="far fa-eye"></i> {{ $ct->views }}
-                                    &ensp;
-                                    <i class="far fa-comments"></i> {{ count($ct->Comments) }}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html">
+                        <p class="font-weight-bold m-0">{{ $ct->title }}</p>
+                    </a>
+                    <small>
+                        <p class="d-inline-block m-0">
+                            <i class="far fa-calendar-alt"></i>: {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:h'):''}}
+                        </p>
+                        <p class="d-inline-block m-0 pl-4">
+                            <i class="fas fa-user-tie"></i>: {{ $ct->author }}
+                        </p>
+                    </small>
+                    <small class="d-block">
+                        <p class="d-inline-block m-0">
+                            <i class="far fa-eye"></i>: {{ $ct->views }}
+                        </p>
+                        <p class="d-inline-block m-0 pl-4">
+                            <i class="far fa-comments"></i>: {{ $ct->views }}
+                        </p>
+                    </small>
                 </div>
+                <hr class="my-2 w-100 border">
             </div>
             @endforeach
             {{-- <!-- phan trang --> --}}

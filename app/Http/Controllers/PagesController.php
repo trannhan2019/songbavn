@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\Danhmucykien;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Slide;
 use App\Menu;
+use App\Ykiencodong;
 
 class PagesController extends Controller
 {
@@ -79,26 +81,26 @@ class PagesController extends Controller
     {
         $menu = Menu::find($menu_id);
         if (empty($menu->Parent)) {
-            $tintuc_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
+            $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
             //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
-            return view('shared.pages.noidung.tintuc.all',compact('menu','tintuc_view'));
+            return view('shared.pages.noidung.tintuc.all',compact('menu','content_view'));
         } else {
-            $tintuc = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
-            $tintuc_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-            return view('shared.pages.noidung.tintuc.tintuc',compact('tintuc','tintuc_view','menu'));
+            $content = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+            $content_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+            return view('shared.pages.noidung.tintuc.tintuc',compact('content','content_view','menu'));
         }  
     }
     public function getDetailTintuc($menu_id,$content_id)
     {
         $menu = Menu::find($menu_id);
         
-        $tintucKey = 'tintuc_' . $content_id;
+        $noidungKey = 'noidung_' . $content_id;
 
         // Kiểm tra Session của sản phẩm có tồn tại hay không.
         // Nếu không tồn tại, sẽ tự động tăng trường view_count lên 1 đồng thời tạo session lưu trữ key sản phẩm.
-        if (!Session::has($tintucKey)) {
+        if (!Session::has($noidungKey)) {
             Content::where('id', $content_id)->increment('views');
-            Session::put($tintucKey, 1);
+            Session::put($noidungKey, 1);
         }
 
         // Sử dụng Eloquent để lấy ra sản phẩm theo id
@@ -110,6 +112,43 @@ class PagesController extends Controller
         // Trả về view
         return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
+    //Quan hệ cổ đông
+    public function getQuanhecodong($menu_id)
+    {
+        $menu = Menu::find($menu_id);
+        if (empty($menu->Parent)) {
+            $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
+            //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
+            return view('shared.pages.noidung.quanhecodong.all',compact('menu','content_view'));
+        } else {
+            $content = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(7);
+            $content_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+            return view('shared.pages.noidung.quanhecodong.quanhecodong',compact('content','content_view','menu'));
+        }  
+    }
+    public function getDetailQuanhecodong($menu_id,$content_id)
+    {
+        $menu = Menu::find($menu_id);
+        
+        $noidungKey = 'noidung_' . $content_id;
+
+        // Kiểm tra Session của sản phẩm có tồn tại hay không.
+        // Nếu không tồn tại, sẽ tự động tăng trường view_count lên 1 đồng thời tạo session lưu trữ key sản phẩm.
+        if (!Session::has($noidungKey)) {
+            Content::where('id', $content_id)->increment('views');
+            Session::put($noidungKey, 1);
+        }
+
+        // Sử dụng Eloquent để lấy ra sản phẩm theo id
+        $tintuc = Content::find($content_id);
+
+        //bài viết liên quan và xem nhiều
+        $lienquan = $menu->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+        $xemnhieu = $menu->Contents->where('status',1)->sortByDesc('views')->take(5);
+        // Trả về view
+        return view('shared.pages.noidung.quanhecodong.detail',compact('menu','tintuc','lienquan','xemnhieu'));
+    }
+    
     //Liên hệ
     public function getLienhe($menu_id)
     {

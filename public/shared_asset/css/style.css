@@ -88,6 +88,13 @@ a:hover {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+.crop_text_3 {
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 
 
 /* tin tức */

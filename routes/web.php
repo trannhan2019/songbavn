@@ -41,6 +41,15 @@ Route::group(['prefix' => 'noidung'],function (){
     //Tin tức
     Route::get('{menu_id}/tin-tuc.html','PagesController@getTintuc')->name('noidung.tintuc');
     Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTintuc');
+    //Quan hệ cổ đông
+    Route::get('{menu_id}/quan-he-co-dong.html','PagesController@getQuanhecodong')->name('noidung.quanhecodong');
+    Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
+    Route::get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
+    Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
+    Route::get('{menu_id}/{ykien_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
+    //Tuyển dụng
+    Route::get('{menu_id}/tuyen-dung.html','PagesController@getTuyendung')->name('noidung.tuyendung');
+    Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');
     //Liên hệ
     Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
     //Comment

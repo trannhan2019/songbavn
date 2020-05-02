@@ -184,4 +184,36 @@ class YkiencodongController extends Controller
         
         return redirect()->back()->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
+    //phần shared
+    public function getYkiencodong($id)
+    {
+        $menu = Menu::find($id);
+        $ykien = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        $ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+        $danhmucykien = Danhmucykien::where('status',1)->get();
+        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','ykien_view','danhmucykien'));
+    }
+    public function postYkiencodong(Request $request,$menu_id)
+    {
+        $this->validate($request,[
+            'ask_content'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute'
+        ],
+        [
+            'ask_content'=>'Nội dung ý kiến'
+        ]);
+        $ykien = new Ykiencodong();
+        $ykien->menu_id = $menu_id;
+        $ykien->danhmucykien_id = $request->danhmucykien_id;
+        $ykien->fullname = Auth::user()->fullname;
+        $ykien->email = Auth::user()->email;
+        $ykien->phone = Auth::user()->phone;
+        $ykien->address = Auth::user()->address;
+        $ykien->ask_content = $request->ask_content;
+        $ykien->status = 0;
+        $ykien->save();
+        return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
+    }
 }

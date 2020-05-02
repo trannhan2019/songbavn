@@ -89,7 +89,7 @@
             {{--  <!-- gửi phản hồi/ góp ý -->  --}}
             <div class="card mt-4">
                 <div class="card-header bg-info text-white">
-                    <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>							
+                    <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>
                 </div>
                 <div class="card-body">
                     <form action="noidung/binh-luan/{{ $tintuc->id }}/{{ $tintuc->slug }}.html" method="post" accept-charset="utf-8">
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         @endif
-                        
+
                         <div class="form-group">
                             <label for="content">Nội dung bình luận:</label>
                             <textarea name="content" class="form-control" rows="5" placeholder="Nội dung bình luận..."></textarea>
@@ -128,7 +128,7 @@
         {{--  Tin liên quan  --}}
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background-color: #e9ecef;">
                     <h6 class="card-title text-center m-0">BÀI VIẾT LIÊN QUAN</h6>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -143,14 +143,14 @@
                                 &ensp;
                                 <i class="far fa-comments"></i> {{ count($lq->Comments->where('status',1)) }}
                             </small>
-                        </p>									
+                        </p>
                     </li>
                     @endforeach
                 </ul>
             </div>
             {{--  <!-- BÀI VIẾT XEM NHIỀU -->  --}}
             <div class="card mt-3">
-                <div class="card-header">
+                <div class="card-header" style="background-color: #e9ecef;">
                     <h6 class="card-title text-center m-0">BÀI VIẾT XEM NHIỀU</h6>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -165,8 +165,8 @@
                                 &ensp;
                                 <i class="far fa-comments"></i> {{ count($xn->Comments->where('status',1)) }}
                             </small>
-                        </p>									
-                    </li> 
+                        </p>
+                    </li>
                     @endforeach
                 </ul>
             </div>

@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-8">
             @if (!empty($menu->ChildMenus))
-            @foreach ($menu->ChildMenus as $mn)
+            @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $mn)
             <div class="row">
                 <div class="col-12">
                     <div class="head row mx-0 mb-3">
@@ -92,18 +92,18 @@
                     <div class="text-center py-3" style="background-color: #e9ecef;">
                         <h6 class="m-0">TIN BÀI ĐỌC NHIỀU</h6>
                     </div>
-                    @foreach ($tintuc_view as $ttv)
+                    @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $ttv->id }}/{{ $ttv->slug }}.html">
+                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $ctv->id }}/{{ $ctv->slug }}.html">
                             <p class="m-0">
-                                {{ $ttv->title }}
+                                {{ $ctv->title }}
                             </p>
                         </a>
                         <p class="m-0">
                             <small>
-                                <i class="far fa-calendar-alt"></i> {{ $ttv->created_at ? $ttv->created_at->format('d/m/Y H:h'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:h'):''}}
                                 &ensp;
-                                <i class="far fa-eye"></i> {{ $ttv->views }}
+                                <i class="far fa-eye"></i> {{ $ctv->views }}
                             </small>
                         </p>
                     </div>
