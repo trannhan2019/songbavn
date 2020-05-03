@@ -6,6 +6,7 @@ use App\Danhmucykien;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Menu;
 use App\Ykiencodong;
@@ -215,5 +216,17 @@ class YkiencodongController extends Controller
         $ykien->status = 0;
         $ykien->save();
         return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
+    }
+    public function getDetailYkiencodong($menu_id,$ykien_id)
+    {
+        $menu = Menu::find($menu_id);
+        $noidungKey = 'noidung_' . $ykien_id;
+        if (!Session::has($noidungKey)) {
+            Ykiencodong::where('id', $ykien_id)->increment('views');
+            Session::put($noidungKey, 1);
+        }
+        $ykien = Ykiencodong::find($ykien_id);
+        
+        return view('shared.pages.noidung.quanhecodong.detail_ykien',compact('menu','ykien'));
     }
 }

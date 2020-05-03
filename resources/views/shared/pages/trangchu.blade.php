@@ -284,7 +284,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="crop_text font-weight-bold">
-									<a href="#">
+									<a href="noidung/{{ $tin1_ykien->Menu->id }}/{{ $tin1_ykien->id }}/{{ $tin1_ykien->Menu->slug }}.html">
 										{!! $tin1_ykien['ask_content'] !!}
 									</a>
 								</li>
@@ -293,7 +293,7 @@
 								</li>
 								@foreach ($tin_ykien->all() as $item)
 								<li class="crop_text">
-									<a href="#">
+									<a href="noidung/{{ $item->Menu->id }}/{{ $item->id }}/{{ $item->Menu->slug }}.html">
 										{!! $item['ask_content'] !!}
 									</a>
 								</li>

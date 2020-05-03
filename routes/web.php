@@ -46,7 +46,7 @@ Route::group(['prefix' => 'noidung'],function (){
     Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
     Route::get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
     Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
-    Route::get('{menu_id}/{ykien_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
+    Route::get('{menu_id}/{ykien_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong');
     //Tuyển dụng
     Route::get('{menu_id}/tuyen-dung.html','PagesController@getTuyendung')->name('noidung.tuyendung');
     Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');

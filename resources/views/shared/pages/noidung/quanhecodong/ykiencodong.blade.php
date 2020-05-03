@@ -22,6 +22,14 @@
         @include('shared.layouts.thongbao')
     @endif
     <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Tất cả</a> 
+                @foreach ($danhmucykien as $dmyk)
+                <a href="#" class="list-group-item list-group-item-secondary">{{ $dmyk->name }}</a>  
+                @endforeach
+            </div>
+        </div>
         <div class="col-md-8">
             @foreach ($ykien as $yk)
             <div class="row">
@@ -39,7 +47,7 @@
                     </p>
                     <p class="font-weight-bold my-0">Trả lời: 
                     </p>
-                    <a href="#" class="text-primary">Xem chi tiết nội dung trả lời...</a>
+                    <a href="noidung/{{ $menu->id }}/{{ $yk->id }}/{{ $menu->slug }}.html" class="text-primary">Xem chi tiết nội dung trả lời...</a>
                 </div>
             </div>
             <hr class="w-100 border-secondary my-2">  
@@ -75,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="row">
                 <div class="border shadow col-12 p-0">
                     <div class="text-center py-3" style="background-color: #e9ecef;">
@@ -84,7 +92,7 @@
                     @foreach ($ykien_view as $yv)
                     <div class="px-4 py-2 text-justify">
                         <div class="crop_text_3">
-                            <a href="#">{!! $yv->ask_content !!}</a>
+                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
                         </div>
                         <p class="m-0">
                             <small>
@@ -99,7 +107,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
@@ -110,7 +118,8 @@
         ];
         
         CKEDITOR.replace('ckeditor_ykien', {
-            toolbar: basic
+            toolbar: basic,
+            height: 200
           });
     </script>
 @endsection
