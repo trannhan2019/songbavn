@@ -45,6 +45,7 @@ Route::group(['prefix' => 'noidung'],function (){
     Route::get('{menu_id}/quan-he-co-dong.html','PagesController@getQuanhecodong')->name('noidung.quanhecodong');
     Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
     Route::get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
+    Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong');
     Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
     Route::get('{menu_id}/{ykien_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong');
     //Tuyển dụng

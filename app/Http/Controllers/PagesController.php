@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Slide;
 use App\Menu;
 use App\Ykiencodong;
+use App\Factory;
 
 class PagesController extends Controller
 {
@@ -35,8 +36,11 @@ class PagesController extends Controller
         $thongtinhd = Menu::where('slug','thong-tin-hoat-dong')->where('status',1)->first();
         $dangdoanthe = Menu::where('slug','dang-doan-the')->where('status',1)->first();
         $baivietsba = Menu::where('slug','bai-viet-sba')->where('status',1)->first();
+        //tình hình sản xuất
+        $thsxkd = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->sortByDesc('date')->first();
+        $thsxkn = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->sortByDesc('date')->first();
 
-        return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','bctn','thqt','ykien_ndt','thongtinhd','dangdoanthe','baivietsba','tin_thongbao'));
+        return view('shared.pages.trangchu',compact('slide','tin_noibat','qhcd','dhdcd','cbtt','bctc','bctn','thqt','ykien_ndt','thongtinhd','dangdoanthe','baivietsba','tin_thongbao','thsxkd','thsxkn'));
     }
     //Nội dung từng menu
     //Giới thiệu và giới thiệu chung

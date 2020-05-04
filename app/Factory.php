@@ -14,4 +14,8 @@ class Factory extends Model
     {
         return $this->hasMany(Muctieunam::class,'factory_id');
     }
+    public function Thsx()
+    {
+    	return $this->hasManyThrough(Thsx::class,Muctieunam::class);
+    }
 }

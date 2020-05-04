@@ -190,9 +190,17 @@ class YkiencodongController extends Controller
     {
         $menu = Menu::find($id);
         $ykien = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
-        $ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+        //$ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
         $danhmucykien = Danhmucykien::where('status',1)->get();
-        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','ykien_view','danhmucykien'));
+        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','danhmucykien'));
+    }
+    public function getDanhmucYkiencodong($menu_id,$danhmucykien_id)
+    {
+        $menu = Menu::find($menu_id);
+        $danhmucykien = Danhmucykien::where('status',1)->get();
+        //$ykien = $danhmucykien->Ykiencodong->where('status',1)->sortByDesc('created_at')->paginate(5);
+        $ykien = Ykiencodong::where('danhmucykien_id',$danhmucykien_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','danhmucykien'));
     }
     public function postYkiencodong(Request $request,$menu_id)
     {

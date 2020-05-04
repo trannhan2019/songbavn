@@ -481,7 +481,7 @@
 						<div class="thsx">
 							<div class="thsx_kd">
 								<div class="thsx_kd_top text-center">
-									<h6 class="text-danger font-weight-bold">Ngày: 30/12/2019</h6>
+									<h6 class="text-danger font-weight-bold">Ngày: {{ date("d/m/Y", strtotime($thsxkd->date))}}</h6>
 									<h5 class="text-primary font-weight-bold">NHÀ MÁY KHE DIÊN</h5>
 								</div>
 								<div class="thsx_kd_info">
@@ -492,7 +492,9 @@
 													<span class="text-primary">Công suất (MW): </span>
 												</td>
 												<td class="text-danger text-right">
-													0,0<span class="text-dark"> / </span>9,0
+													<span class="text-danger">{{ number_format($thsxkd->power, 1, ',', '.') }}</span>
+													<span class="text-dark"> / </span>
+													<span class="text-danger">{{ number_format($thsxkd->Muctieunam->ratedpower,1,',','.') }}</span>
 												</td>
 											</tr>
 											<tr>
@@ -508,15 +510,24 @@
 													<span>Ngày: </span>
 												</td>
 												<td class="text-right">
-													<span class="text-danger">0,000</span>
+													<span class="text-danger">{{ number_format($thsxkd->quantity, 3, ',', '.') }}</span>
 												</td>
 											</tr>
+											@php
+											$month_kd = date("m", strtotime($thsxkd->date));
+											$year_kd = date("Y", strtotime($thsxkd->date));
+											$sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
+											->whereMonth('created_at', $month_kd)
+											->sum('quantity');
+											$sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)
+											->sum('quantity');
+											@endphp
 											<tr>
 												<td class="pl-3">
 													<span>Tháng: </span>
 												</td>
 												<td class="text-right">
-													<span class="text-danger">0,867</span>
+													<span class="text-danger">{{ number_format($sum_month_kd, 3, ',', '.') }}</span>
 												</td>
 											</tr>
 											<tr>	
@@ -524,7 +535,7 @@
 													<span>Năm: </span>
 												</td>
 												<td class="text-right text-danger">
-													<span>20,240</span><span class="text-dark"> / </span> <span>34</span>
+													<span>{{ number_format($sum_year_kd, 3, ',', '.') }}</span><span class="text-dark"> / </span> <span>{{number_format($thsxkd->Muctieunam->quantity,3,',','.') }}</span>
 												</td>
 											</tr>
 											<tr>
