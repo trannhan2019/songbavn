@@ -47,7 +47,7 @@
                     </p>
                     <p class="font-weight-bold my-0">Trả lời: 
                     </p>
-                    <a href="noidung/{{ $menu->id }}/{{ $yk->id }}/{{ $menu->slug }}.html" class="text-primary">Xem chi tiết nội dung trả lời...</a>
+                    <a href="noidung/{{ $menu->id }}/{{ $yk->id }}/detail-{{ $menu->slug }}.html" class="text-primary">Xem chi tiết nội dung trả lời...</a>
                 </div>
             </div>
             <hr class="w-100 border-secondary my-2">  

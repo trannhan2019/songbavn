@@ -24,6 +24,16 @@
     @endif
     <div class="row">
         <div class="col-md-8">
+            @if (Auth::check())
+                @if (Auth::user()->role == 1)
+                <div class="btn-group btn-group-sm mb-2">
+                    <a href="admin/content/{{ $menu->id }}/add-{{ $menu->Parent->slug }}.html" title="thêm" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                    <a href="admin/content/{{ $tintuc->id }}/edit-{{ $menu->Parent->slug }}.html" title="sửa" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                    <a href="admin/content/{{ $menu->id }}/{{ $menu->Parent->slug }}.html" title="quản lý" class="btn btn-outline-info"><i class="fas fa-cogs"></i></a>
+                </div> 
+                @endif
+            @endif
+            
             <h4 class="mb-1">{{ $tintuc->title }}</h4>
             <p>
                 <small>
@@ -87,7 +97,7 @@
             </div>
             @endif
             {{--  <!-- gửi phản hồi/ góp ý -->  --}}
-            <div class="card mt-4">
+            <div class="card my-4">
                 <div class="card-header bg-info text-white">
                     <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>
                 </div>

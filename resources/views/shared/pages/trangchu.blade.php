@@ -284,7 +284,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="crop_text font-weight-bold">
-									<a href="noidung/{{ $tin1_ykien->Menu->id }}/{{ $tin1_ykien->id }}/{{ $tin1_ykien->Menu->slug }}.html">
+									<a href="noidung/{{ $tin1_ykien->Menu->id }}/{{ $tin1_ykien->id }}/detail-{{ $tin1_ykien->Menu->slug }}.html">
 										{!! $tin1_ykien['ask_content'] !!}
 									</a>
 								</li>
@@ -293,7 +293,7 @@
 								</li>
 								@foreach ($tin_ykien->all() as $item)
 								<li class="crop_text">
-									<a href="noidung/{{ $item->Menu->id }}/{{ $item->id }}/{{ $item->Menu->slug }}.html">
+									<a href="noidung/{{ $item->Menu->id }}/{{ $item->id }}/detail-{{ $item->Menu->slug }}.html">
 										{!! $item['ask_content'] !!}
 									</a>
 								</li>
@@ -516,10 +516,11 @@
 											@php
 											$month_kd = date("m", strtotime($thsxkd->date));
 											$year_kd = date("Y", strtotime($thsxkd->date));
+											$muctieunam_kd = $thsxkd->Muctieunam->id;
 											$sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
-											->whereMonth('created_at', $month_kd)
+											->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
 											->sum('quantity');
-											$sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)
+											$sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
 											->sum('quantity');
 											@endphp
 											<tr>
@@ -537,45 +538,58 @@
 												<td class="text-right text-danger">
 													<span>{{ number_format($sum_year_kd, 3, ',', '.') }}</span><span class="text-dark"> / </span> <span>{{number_format($thsxkd->Muctieunam->quantity,3,',','.') }}</span>
 												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="text-primary">Mực nước hồ: </span>
-												</td>
-												<td class="text-right">
-													<span>(m)</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối thiểu:</span>
-												</td>
-												<td class="text-right">
-													<span>187,40</span>
-												</td>
-											</tr>
-											<tr class="text-danger">
-												<td class="pl-3">
-													<span>Hiện tại:</span>
-												</td>
-												<td class="text-right">
-													<span>203,87</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối đa:</span>
-												</td>
-												<td class="text-right">
-													<span>206,94</span>
-												</td>
-											</tr>
+											@if (Auth::check())
+												@if (Auth::user()->role==1 || Auth::user()->role==2)
+												</tr>
+												<tr>
+													<td>
+														<span class="text-primary">Mực nước hồ: </span>
+													</td>
+													<td class="text-right">
+														<span>(m)</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="pl-3">
+														<span>Tối thiểu:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkd->Muctieunam->MNHlowest,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr class="text-danger">
+													<td class="pl-3">
+														<span>Hiện tại:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkd->MNH,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="pl-3">
+														<span>Tối đa:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkd->Muctieunam->MNHnormal,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="text-primary">Lượng mưa (mm): </span>
+													</td>
+													<td class="text-right">
+														<span class="text-danger">{{number_format($thsxkd->rain,1,',','.') }}</span>
+													</td>
+												</tr>
+												@endif
+											@endif
+											
 											<tr>
 												<td>
 													<span class="text-primary">Tình trạng thiết bị: </span>
 												</td>
 												<td class="text-right">
-													<span>Tốt, dừng dự phòng</span>
+													<span>{{ $thsxkd->device }}</span>
 												</td>
 											</tr>
 										</tbody>
@@ -585,7 +599,7 @@
 							<hr class="my-3 bg-dark">
 							<div class="thsx_kn">
 								<div class="thsx_kn_top text-center">
-									<h6 class="text-danger font-weight-bold">Ngày: 30/12/2019</h6>
+									<h6 class="text-danger font-weight-bold">Ngày: {{ date("d/m/Y", strtotime($thsxkn->date))}}</h6>
 									<h5 class="text-primary font-weight-bold">NHÀ MÁY KRÔNG HNĂNG</h5>
 								</div>
 								<div class="thsx_kn_info">
@@ -596,7 +610,9 @@
 													<span class="text-primary">Công suất (MW): </span>
 												</td>
 												<td class="text-danger text-right">
-													0,0<span class="text-dark"> / </span>9,0
+													<span class="text-danger">{{ number_format($thsxkn->power, 1, ',', '.') }}</span>
+													<span class="text-dark"> / </span>
+													<span class="text-danger">{{ number_format($thsxkn->Muctieunam->ratedpower,1,',','.') }}</span>
 												</td>
 											</tr>
 											<tr>
@@ -612,15 +628,25 @@
 													<span>Ngày: </span>
 												</td>
 												<td class="text-right">
-													<span class="text-danger">0,000</span>
+													<span class="text-danger">{{ number_format($thsxkn->quantity, 3, ',', '.') }}</span>
 												</td>
 											</tr>
+											@php
+											$month_kn = date("m", strtotime($thsxkn->date));
+											$year_kn = date("Y", strtotime($thsxkn->date));
+											$muctieunam_kn = $thsxkn->Muctieunam->id;
+											$sum_month_kn = \App\Thsx::whereYear('created_at', $year_kn)
+											->whereMonth('created_at', $month_kn)->where('muctieunam_id',$muctieunam_kn)
+											->sum('quantity');
+											$sum_year_kn = \App\Thsx::whereYear('created_at', $year_kn)->where('muctieunam_id',$muctieunam_kn)
+											->sum('quantity');
+											@endphp
 											<tr>
 												<td class="pl-3">
 													<span>Tháng: </span>
 												</td>
 												<td class="text-right">
-													<span class="text-danger">0,867</span>
+													<span class="text-danger">{{ number_format($sum_month_kn, 3, ',', '.') }}</span>
 												</td>
 											</tr>
 											<tr>	
@@ -628,47 +654,60 @@
 													<span>Năm: </span>
 												</td>
 												<td class="text-right text-danger">
-													<span>20,240</span><span class="text-dark"> / </span> <span>34</span>
+													<span>{{ number_format($sum_year_kn, 3, ',', '.') }}</span><span class="text-dark"> / </span> <span>{{number_format($thsxkn->Muctieunam->quantity,3,',','.') }}</span>
 												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="text-primary">Mực nước hồ: </span>
-												</td>
-												<td class="text-right">
-													<span>(m)</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối thiểu:</span>
-												</td>
-												<td class="text-right">
-													<span>187,40</span>
-												</td>
-											</tr>
-											<tr class="text-danger">
-												<td class="pl-3">
-													<span>Hiện tại:</span>
-												</td>
-												<td class="text-right">
-													<span>203,87</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối đa:</span>
-												</td>
-												<td class="text-right">
-													<span>206,94</span>
-												</td>
-											</tr>
+											@if (Auth::check())
+												@if (Auth::user()->role==1 || Auth::user()->role==2)
+												</tr>
+												<tr>
+													<td>
+														<span class="text-primary">Mực nước hồ: </span>
+													</td>
+													<td class="text-right">
+														<span>(m)</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="pl-3">
+														<span>Tối thiểu:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkn->Muctieunam->MNHlowest,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr class="text-danger">
+													<td class="pl-3">
+														<span>Hiện tại:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkn->MNH,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="pl-3">
+														<span>Tối đa:</span>
+													</td>
+													<td class="text-right">
+														<span>{{number_format($thsxkn->Muctieunam->MNHnormal,2,',','.') }}</span>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="text-primary">Lượng mưa (mm): </span>
+													</td>
+													<td class="text-right">
+														<span class="text-danger">{{number_format($thsxkn->rain,1,',','.') }}</span>
+													</td>
+												</tr>
+												@endif
+											@endif
+											
 											<tr>
 												<td>
 													<span class="text-primary">Tình trạng thiết bị: </span>
 												</td>
 												<td class="text-right">
-													<span>Tốt, dừng dự phòng</span>
+													<span>{{ $thsxkn->device }}</span>
 												</td>
 											</tr>
 										</tbody>

@@ -16,6 +16,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @if (Auth::check())
+                @if (Auth::user()->role == 1)
+                <div class="btn-group btn-group-sm mb-2">
+                    <a href="admin/content/{{ $ykien->id }}/edit-{{ $menu->slug }}.html" title="sửa" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                    <a href="admin/content/{{ $menu->id }}/{{ $menu->slug }}.html" title="quản lý" class="btn btn-outline-info"><i class="fas fa-cogs"></i></a>
+                </div> 
+                @endif
+            @endif
             <div class="ykien-q">
                 <h5 class="font-weight-bold">Thông tin chi tiết</h5>
                 <p class="m-0">Người đăng: &ensp; {{ $ykien->fullname }}</p>
@@ -44,7 +52,7 @@
                     @foreach ($menu->Ykiens->where('status',1)->sortByDesc('created_at')->take(5) as $yv)
                     <div class="px-4 py-2 text-justify">
                         <div class="crop_text_3">
-                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
+                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
                         </div>
                         <p class="m-0">
                             <small>
@@ -66,7 +74,7 @@
                     @foreach ($menu->Ykiens->where('status',1)->sortByDesc('views')->take(5) as $yv)
                     <div class="px-4 py-2 text-justify">
                         <div class="crop_text_3">
-                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
+                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
                         </div>
                         <p class="m-0">
                             <small>

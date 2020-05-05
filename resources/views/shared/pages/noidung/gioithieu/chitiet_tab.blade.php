@@ -17,6 +17,13 @@
     </nav>
 </div>
 <div class="container">
+    @if (Auth::check())
+        @if (Auth::user()->role == 1)
+        <div class="btn-group btn-group-sm mb-2">
+            <a href="admin/content/{{ $menu->id }}/{{ $menu->slug }}.html" title="quản lý" class="btn btn-outline-info"><i class="fas fa-cogs"></i></a>
+        </div> 
+        @endif
+    @endif
     <div class="row">
         @include('shared.pages.noidung.gioithieu.sidebar')
         <div class="col">

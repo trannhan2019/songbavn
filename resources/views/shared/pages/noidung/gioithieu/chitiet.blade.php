@@ -18,6 +18,13 @@
     </nav>
 </div>
 <div class="container">
+    @if (Auth::check())
+        @if (Auth::user()->role == 1)
+        <div class="btn-group btn-group-sm mb-2">
+            <a href="admin/content/{{ $menu->id }}/{{ $content->id }}/edit-{{ $menu->Parent->slug }}.html" title="sửa" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+        </div> 
+        @endif
+    @endif
     <div class="row">
         @include('shared.pages.noidung.gioithieu.sidebar')
         <div class="col">
