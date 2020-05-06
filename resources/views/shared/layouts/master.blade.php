@@ -17,7 +17,8 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 	{{-- <!-- tempusdominus-datepicker css--------- --> --}}
 	<link rel="stylesheet" href="shared_asset/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
-
+	{{--  font Roboto Google  --}}
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	{{-- <!-- CUSTOM CSS------------------------ --> --}}
 	<link rel="stylesheet" href="shared_asset/css/style.css">
 	{{--  <link rel="stylesheet" href="{!! asset('shared_asset/css/style.css') !!}">  --}}

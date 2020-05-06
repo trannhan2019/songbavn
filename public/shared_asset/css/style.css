@@ -1,5 +1,7 @@
 /*All*/
-
+body {
+    font-family: 'Roboto', sans-serif;
+}
 
 /* a{
     color: #6f42c1 !important;
@@ -17,16 +19,16 @@ a:hover {
     border-bottom: 2px solid #D68528;
 }
 
-.navbar .LOGO {
-    width: 85px;
-}
 
-.navbar .nav-link {
+
+/* .navbar .nav-link {
     color: black !important;
-}
+} */
 
 .navbar .nav-link:hover {
-    color: #1a53ff !important;
+    color: white !important;
+    background-color: #D68528;
+    border-radius: 5px;
 }
 
 .navbar .dropdown-item {
@@ -109,6 +111,9 @@ a:hover {
 
 .head {
     border-bottom: 4px solid #000066;
+}
+.navbar .LOGO {
+    width: 400px;
 }
 
 .banner_inside {
@@ -233,6 +238,6 @@ a.on_top {
 @media (max-width: 576px) {
     /*HEADER	*/
     .navbar .LOGO {
-        width: 60px;
+        width: 200px;
     }
 }

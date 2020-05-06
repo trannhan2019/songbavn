@@ -1,45 +1,58 @@
-<div class="header p-1">
-    <div class="header_login">
-        <div class="container">
-			<div class="row text-white">
-				
-				<div class="col text-right">
-					@if (Auth::check())
-					<button type="button" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown">
+
+<div class="header_login py-1" style="background-color: #0099cc;">
+	<div class="container">
+		<div class="row">
+			<div class="col text-left p-1">
+				@if (Auth::check())
+				<small>
+					<a href="#" class="dropdown-toggle text-white" data-toggle="dropdown">
+						<i class="fas fa-user"></i> 
 						{{ Auth::user()->fullname }}
-					</button>
+					</a>
 					<div class="dropdown-menu">
 						@if (Auth::user()->role ==1)
-						<a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a>
+						<small><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a></small>
 						@endif
-						@if (Auth::user()->role ==2)
-						<a class="dropdown-item" href="#">Cập nhật tình hình sản xuất</a>
-						@endif
-						@if (Auth::user()->role ==3)
-						<a class="dropdown-item" href="#">Ý kiến - Góp ý</a>
-						@endif
-						<a class="dropdown-item" href="#">Thay đổi thông tin</a>
-						<a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a>
+						<small><a class="dropdown-item" href="#">Thay đổi thông tin</a></small>
+						<small><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></small>
 					</div>
-
-					@else
-					<a href="{{ route('dangnhap') }}" title="Đăng nhập" class="btn btn-outline-light btn-sm">
-						<i class="fas fa-user"></i> 
-						Đăng nhập/ Đăng ký
-                    </a>
-					@endif
-				</div>
+				</small>
+				
+				@else
+				<i class="fas fa-user text-white"></i> 
+				<small><a href="{{route('dangnhap') }}" class="text-white" title="Đăng nhập/ Đăng ký">Đăng nhập</a></small>
+				@endif
+				
 			</div>
-        </div>
-    </div>
+			<div class="col text-center d-none d-lg-block text-white p-1">
+				<i class="fas fa-phone"></i> &ensp;
+				<small> 0236.3653 592</small> 
+			</div>
+			<div class="col px-1">
+				<form class="form-inline float-right" action="#">
+					@csrf
+					<div class="input-group">
+						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
+						<div class="input-group-append">
+							<button class="btn btn-sm btn-outline-secondary" type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 </div>
+
 {{-- <!-- header --> --}}
 {{-- <!-- Navigation --> --}}
 
-<nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528; z-index: 1;">
+<nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528;border-top: 2px solid #D68528; z-index: 1;">
 	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
-			<img src="shared_asset/upload/images/LOGO.png" class="LOGO img-fluid" alt="LOGO_SBA">
+			<img src="shared_asset/upload/images/logo_v2.png" class="img-fluid LOGO" alt="LOGO_SBA">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>
@@ -50,8 +63,8 @@
 				@foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
 				
 					@if (count($dm->ChildMenus)>0)
-					<li class="nav-item dropdown mx-3">
-						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-uppercase" style="color: #6600ff;" href="#" data-toggle="dropdown">
 							{{ $dm->name }}
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
@@ -77,12 +90,12 @@
 					</li>
 					@else
 					<li class="nav-item">
-						<a class="nav-link mx-3" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
+						<a class="nav-link text-uppercase" style="color: #6600ff;" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach
 
-				<form class="form-inline ml-3" action="#">
+				{{--  <form class="form-inline ml-3" action="#">
 					<div class="input-group">
 						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
 						<div class="input-group-append">
@@ -91,7 +104,7 @@
 							</button>
 						</div>
 					</div>
-				</form>
+				</form>  --}}
 			</ul>
 		</div>
 	</div>
