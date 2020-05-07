@@ -1,10 +1,10 @@
-@extends('shared.layouts.master')
+@extends('shared_3.layouts.master')
 @section('title')
     Trang chủ
 @endsection
 
 @section('content')
-    @include('shared.layouts.slide')
+    @include('shared_3.layouts.slide')
     <div class="container content">
 		<div class="row mt-3">
 			<div class="col-md-9 col-lg-9">

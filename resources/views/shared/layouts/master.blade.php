@@ -13,9 +13,9 @@
 
 	<link rel="stylesheet" href="shared_asset/fontawesome-free/css/all.min.css">
 
-	{{-- <!-- ICON----------------------- --> --}}
+	{{--  ICON --}}
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-	{{-- <!-- tempusdominus-datepicker css--------- --> --}}
+	{{-- <!-- tempusdominus-datepicker css> --}}
 	<link rel="stylesheet" href="shared_asset/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
 	{{--  font Roboto Google  --}}
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
