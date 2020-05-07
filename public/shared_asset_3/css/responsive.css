@@ -12,7 +12,7 @@
     .pb-258 {
         padding-bottom: 168px;
     }
-    .deals-content > h2 {
+    .deals-content>h2 {
         font-size: 30px;
     }
     .banner-wrap {
@@ -30,10 +30,10 @@
     .main-menu ul li {
         padding-right: 35px;
     }
-    .main-menu nav > ul > li > ul.mega-menu > li {
+    .main-menu nav>ul>li>ul.mega-menu>li {
         padding-left: 20px;
     }
-    .main-menu nav > ul > li > ul.mega-menu {
+    .main-menu nav>ul>li>ul.mega-menu {
         padding: 33px 10px 30px 0;
     }
     .shorting-style select {
@@ -113,7 +113,7 @@
     .banner-wrap {
         margin-top: -42px;
     }
-    .deals-content > h2 {
+    .deals-content>h2 {
         font-size: 23px;
         margin: 5px 0 14px;
     }
@@ -138,7 +138,7 @@
         font-size: 37px;
         margin: 6px 0 15px;
     }
-    .overview-content-2 > h2 {
+    .overview-content-2>h2 {
         font-size: 30px;
     }
     .single-testimonial {
@@ -165,13 +165,13 @@
     .link-post {
         padding: 53px 30px 57px;
     }
-    .link-content > h3 {
+    .link-content>h3 {
         line-height: 30px;
     }
     .quote-post {
         padding: 54px 30px 57px 36px;
     }
-    .blog-content > h2 {
+    .blog-content>h2 {
         font-size: 24px;
     }
     .blog-wrapper .pagination-total-pages {
@@ -192,9 +192,9 @@
     .single-blog-wrapper.mb-80 {
         margin-bottom: 50px;
     }
-    .cart-shiping-update > a,
-    .cart-clear > button,
-    .cart-clear > a {
+    .cart-shiping-update>a,
+    .cart-clear>button,
+    .cart-clear>a {
         padding: 18px 25px 19px;
     }
     .grand-totall {
@@ -242,12 +242,10 @@
     .stick .header-cart {
         padding: 0px;
         transition: all .3s ease 0s;
-    }    
+    }
     .stick.header-bottom {
         padding: 15px 0;
-    }    
-    
-    
+    }
 }
 
 
@@ -257,10 +255,10 @@
     .mobile-menu-area {
         display: block;
     }
-    .welcome-area > p {
-        text-align: center;
+    .welcome-area>p {
+        text-align: left;
     }
-    .account-curr-lang-wrap > ul > li::before {
+    .account-curr-lang-wrap>ul>li::before {
         right: -5px;
     }
     .account-curr-lang-wrap ul li a {
@@ -274,7 +272,7 @@
         margin-right: 6px;
     }
     .account-curr-lang-wrap ul li:last-child ul {
-        left: -50px;
+        /* left: -50px; */
     }
     .main-menu {
         display: none;
@@ -286,17 +284,17 @@
     .header-bottom-right {
         justify-content: flex-start;
     }
-    .cart-text > span.digit {
+    .cart-text>span.digit {
         margin-bottom: 5px;
     }
-    .cart-text > span {
+    .cart-text>span {
         font-size: 13px;
     }
-    .header-cart > a .cart-icon span {
+    .header-cart>a .cart-icon span {
         bottom: -7px;
         line-height: 21px;
     }
-    .header-cart > a .cart-icon i {
+    .header-cart>a .cart-icon i {
         font-size: 30px;
     }
     .mean-container a.meanmenu-reveal {
@@ -305,10 +303,10 @@
         padding: 5px 6px 2px;
     }
     .logo {
-        margin: 0;
+        margin: 5px;
     }
     .header-bottom {
-        padding: 25px 0;
+        padding: 15px 0;
     }
     .mobile-menu .mean-nav ul.menu-overflow {
         height: 216px;
@@ -400,7 +398,7 @@
     .deals-content {
         margin-top: 30px;
     }
-    .deals-content > h2 {
+    .deals-content>h2 {
         font-size: 27px;
         margin: 5px 0 10px;
     }
@@ -419,7 +417,7 @@
     .pb-75 {
         padding-bottom: 50px;
     }
-    .new-year-offer-content > h3 {
+    .new-year-offer-content>h3 {
         font-size: 19px;
     }
     .payment-img.f-right {
@@ -427,7 +425,7 @@
         text-align: center;
         margin: 10px 0 0;
     }
-    .copyright > p {
+    .copyright>p {
         text-align: center;
     }
     .pb-70 {
@@ -439,7 +437,7 @@
     .account-curr-lang-wrap.f-right {
         display: flex;
         justify-content: center;
-        float: inherit;
+        float: right;
     }
     .pb-146 {
         padding-bottom: 56px;
@@ -459,7 +457,7 @@
     .single-brand-logo {
         text-align: center;
     }
-    .overview-content-2 > h2 {
+    .overview-content-2>h2 {
         font-size: 23px;
         line-height: 1;
     }
@@ -478,13 +476,13 @@
     .pt-75 {
         padding-top: 45px;
     }
-    .single-testimonial > p {
+    .single-testimonial>p {
         margin: 30px auto;
     }
-    .blog-content > h2 {
+    .blog-content>h2 {
         font-size: 18px;
     }
-    .importent-title > h4 {
+    .importent-title>h4 {
         font-size: 17px;
         line-height: 30px;
     }
@@ -507,7 +505,7 @@
         margin-bottom: 30px;
         margin-right: 0;
     }
-    .administrator-content > h4 {
+    .administrator-content>h4 {
         margin-bottom: 10px;
     }
     .single-comment-wrapper {
@@ -545,14 +543,14 @@
     .link-post {
         padding: 43px 25px 47px;
     }
-    .link-content > h3 {
+    .link-content>h3 {
         line-height: 30px;
         font-size: 17px;
     }
     .quote-post {
         padding: 43px 20px 47px 28px;
     }
-    .quote-content > h3 {
+    .quote-content>h3 {
         font-size: 16px;
     }
     .quote-post.mb-55 {
@@ -565,7 +563,7 @@
         line-height: 1;
         margin-left: 8px;
     }
-    .blog-social > span {
+    .blog-social>span {
         margin: 0 10px 0 0;
     }
     .pagination-total-pages {
@@ -602,9 +600,9 @@
         display: block;
         padding: 30px 0 30px;
     }
-    .cart-shiping-update > a,
-    .cart-clear > button,
-    .cart-clear > a {
+    .cart-shiping-update>a,
+    .cart-clear>button,
+    .cart-clear>a {
         margin: 0 0 15px;
         padding: 18px 35px 19px;
     }
@@ -746,62 +744,61 @@
     }
     .dec-img-wrapper {
         margin: 36px 0 33px;
-    }    
+    }
     .blog-comment-wrapper.mt-55 {
         margin-top: 32px;
     }
     .single-comment-wrapper.mt-50 {
         margin-top: 30px;
-    }    
+    }
     .blog-reply-wrapper.mt-50 {
         margin-top: 30px;
-    }    
-    .blog-reply-wrapper > form {
+    }
+    .blog-reply-wrapper>form {
         margin-top: 30px;
-    }    
+    }
     .blog-widget.mb-50 {
         margin-bottom: 40px;
-    }    
+    }
     .stick .logo {
         margin: 5px 0 0;
     }
     .stick .header-cart {
         padding: 0px;
         transition: all .3s ease 0s;
-    }    
+    }
     .stick.header-bottom {
         padding: 15px 0;
-    }  
+    }
     .testimonial-content-padding {
         padding: 30px 20px 33px;
     }
     .testimonial-3-content::before {
         left: 40%;
-    }    
+    }
     .testimonial-2-img {
         flex: 0 0 75px;
         margin-right: 12px;
-    }    
+    }
     .section-padding-none.mb-50 {
         margin-bottom: 25px;
-    }      
+    }
     .section-padding-none.mb-45 {
         margin-bottom: 20px;
-    }      
+    }
     .section-padding-none.mb-30 {
         margin-bottom: 10px;
-    }    
+    }
     .testimonial-wrapper-3 {
         padding: 20px 20px 0;
-    }    
-    .testimonial-2-name h3, .single-testimonial-4 h4 {
+    }
+    .testimonial-2-name h3,
+    .single-testimonial-4 h4 {
         font-size: 17px;
-    }    
+    }
     .testimonial-2-wrapper.mb-50 {
         margin-bottom: 30px;
-    }    
-    
-    
+    }
 }
 
 
@@ -811,7 +808,7 @@
     .account-curr-lang-wrap ul li {
         margin-right: 20px;
     }
-    .account-curr-lang-wrap > ul > li::before {
+    .account-curr-lang-wrap>ul>li::before {
         right: -12px;
     }
     .header-cart {
@@ -826,7 +823,7 @@
     .slider-content h1 {
         font-size: 40px;
     }
-    .overview-content-2 > h2 {
+    .overview-content-2>h2 {
         font-size: 30px;
     }
     .blog-dec-tags-social {
@@ -835,9 +832,9 @@
     .blog-dec-tags {
         margin-bottom: 0;
     }
-    .cart-shiping-update > a,
-    .cart-clear > button,
-    .cart-clear > a {
+    .cart-shiping-update>a,
+    .cart-clear>button,
+    .cart-clear>a {
         margin: 0 10px 15px 0;
         padding: 18px 20px 19px;
     }
@@ -846,7 +843,7 @@
         margin-right: 15px;
         margin-bottom: 0px;
     }
-    .product-list-details > h4 {
+    .product-list-details>h4 {
         font-size: 17px;
     }
     .product-list .product-wrapper {
@@ -858,8 +855,4 @@
     .testimonial-3-content::before {
         left: 46%;
     }
-    
-    
-    
-    
 }
