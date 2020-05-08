@@ -1,0 +1,22 @@
+/*Media Query*/
+
+@media (max-width: 992px) {
+    /*HEADER*/
+}
+
+@media (max-width: 768px) {
+    /*HEADER*/
+    .soffice img {
+        width: 20% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /*HEADER	*/
+    .navbar .LOGO {
+        width: 200px;
+    }
+    .navbar .nav-link a{
+        font-size: 13px !important;
+    }
+}

@@ -1,12 +1,17 @@
 
-<div class="header_login py-1" style="background-color: #0099cc;">
+<div class="header_login py-1" style="background-color: #0066cc;">
 	<div class="container">
 		<div class="row">
-			<div class="col text-left p-1">
+			
+			<div class="col text-left d-none d-lg-block text-white p-1">
+				<i class="fas fa-phone"></i> &nbsp;
+				<small> 0236.3653 592</small> 
+			</div>
+			<div class="col text-right p-1">
 				@if (Auth::check())
 				<small>
 					<a href="#" class="dropdown-toggle text-white" data-toggle="dropdown">
-						<i class="fas fa-user"></i> 
+						<i class="fas fa-user"></i> &nbsp;
 						{{ Auth::user()->fullname }}
 					</a>
 					<div class="dropdown-menu">
@@ -19,16 +24,12 @@
 				</small>
 				
 				@else
-				<i class="fas fa-user text-white"></i> 
-				<small><a href="{{route('dangnhap') }}" class="text-white" title="Đăng nhập/ Đăng ký">Đăng nhập</a></small>
+				<small><i class="fas fa-user text-white"></i> &nbsp;
+				<a href="{{route('dangnhap') }}" class="text-white" title="Đăng nhập/ Đăng ký">Đăng nhập</a></small>
 				@endif
 				
 			</div>
-			<div class="col text-center d-none d-lg-block text-white p-1">
-				<i class="fas fa-phone"></i> &ensp;
-				<small> 0236.3653 592</small> 
-			</div>
-			<div class="col px-1">
+			{{--  <div class="col px-1">
 				<form class="form-inline float-right" action="#">
 					@csrf
 					<div class="input-group">
@@ -40,7 +41,7 @@
 						</div>
 					</div>
 				</form>
-			</div>
+			</div>  --}}
 
 		</div>
 	</div>
@@ -52,7 +53,7 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528;border-top: 2px solid #D68528; z-index: 1;">
 	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
-			<img src="shared_asset/upload/images/logo_v2.png" class="img-fluid LOGO" alt="LOGO_SBA">
+			<img src="shared_asset/upload/images/logo_v3.png" class="img-fluid LOGO" alt="LOGO_SBA" style="max-width: 300px">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>
@@ -63,8 +64,8 @@
 				@foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
 				
 					@if (count($dm->ChildMenus)>0)
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-uppercase" style="color: #6600ff;" href="#" data-toggle="dropdown">
+					<li class="nav-item dropdown mx-1 py-2">
+						<a class="nav-link dropdown-toggle text-uppercase" style="color: #000066c9;" href="#" data-toggle="dropdown">
 							{{ $dm->name }}
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
@@ -89,8 +90,8 @@
 						</div>
 					</li>
 					@else
-					<li class="nav-item">
-						<a class="nav-link text-uppercase" style="color: #6600ff;" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
+					<li class="nav-item py-2">
+						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach
@@ -109,5 +110,7 @@
 		</div>
 	</div>
 </nav>
+
+
 
 {{-- <!-- Navigation --> --}}

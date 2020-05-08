@@ -21,6 +21,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	{{-- <!-- CUSTOM CSS------------------------ --> --}}
 	<link rel="stylesheet" href="shared_asset/css/style.css">
+	<link rel="stylesheet" href="shared_asset/css/responsive.css">
 	{{--  <link rel="stylesheet" href="{!! asset('shared_asset/css/style.css') !!}">  --}}
 	{{-- <link rel="stylesheet" href="shared_asset/css/sidebar_menu.css"> --}}
 	{{--  Tuy chinh khi print noi dung website  --}}

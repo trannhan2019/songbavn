@@ -1,4 +1,4 @@
-@extends('shared_3.layouts.master')
+@extends('shared.layouts.master')
 @section('title')
     Trang chủ
 @endsection
@@ -737,8 +737,7 @@
 								"price_line_color": "#71BDDF",
 								"grid_color": "#999999",
 								"label_color": "#999999",
-								"width": "100%",
-								"height": "200px"
+								"width": "100%"
 							});
 						</script>
 					</div>

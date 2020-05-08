@@ -1,4 +1,4 @@
-@extends('shared_3.layouts.master')
+@extends('shared.layouts.master')
 @section('recaptcha')
     {!! htmlScriptTagJsApi([
         'action' => 'homepage'
