@@ -11,7 +11,7 @@
             @if (empty($menu->Parent))
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @else
-            <li class="breadcrumb-item"><a href="{{ route('noidung.gioithieu',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('gioithieu',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @endif
         </ol>
@@ -43,7 +43,7 @@
                                 @if (count($content)>0)
                                     @foreach ($content as $ct)
                                     <li class="nav-item">
-                                        <a href="noidung/{{ $menu->id }}/{{ $ct->id }}/{{ $menu->slug }}.html" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
+                                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $menu->slug }}.html" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
                                     </li>
                                     <hr class="my-1 w-100">
                                     @endforeach

@@ -59,7 +59,21 @@
             $(this).alert('close');
         });
     </script>
-	{{-- <!-- Custom scripts for all pages--> --}}
+	{{-- Hiển thời gian trên header --}}
+	<script>
+		var dt = new Date();
+		var weekday = new Array(7);
+		weekday[0] = "Chủ nhật";
+		weekday[1] = "Thứ hai";
+		weekday[2] = "Thứ ba";
+		weekday[3] = "Thứ tư";
+		weekday[4] = "Thứ năm";
+		weekday[5] = "Thứ sáu";
+		weekday[6] = "Thứ bảy";
+		var n = weekday[dt.getDay()];
+		//document.getElementById("head_datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
+		document.getElementById("head_datetime").innerHTML = n +", "+(("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) ;
+	</script>
 	{{-- <!-- CUSTOM SCRIPT---------------- --> --}}
 	<script type="text/javascript" src="shared_asset/js/my.js"></script>
 

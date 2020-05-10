@@ -284,6 +284,10 @@ class UserController extends Controller
             return redirect('dangnhap')->with('loi','Đăng nhập không thành công');
         }
     }
+    public function getDangky()
+    {
+        return view('shared.pages.dangky');
+    }
     public function getDangxuat()
     { 
         Auth::logout();

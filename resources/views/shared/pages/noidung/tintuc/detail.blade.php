@@ -12,8 +12,8 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('noidung.tintuc',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('noidung.tintuc',$menu->id) }}">{{ $menu->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('tintuc',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('tintuc',$menu->id) }}">{{ $menu->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $tintuc->title }}</li>
         </ol>
     </nav>
@@ -102,7 +102,7 @@
                     <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>
                 </div>
                 <div class="card-body">
-                    <form action="noidung/binh-luan/{{ $tintuc->id }}/{{ $tintuc->slug }}.html" method="post" accept-charset="utf-8">
+                    <form action="binh-luan/{{ $tintuc->id }}/{{ $tintuc->slug }}.html" method="post" accept-charset="utf-8">
                         @csrf
                         @if (!Auth::check())
                         <div class="form-row">
@@ -144,7 +144,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($lienquan as $lq)
                     <li class="list-group-item">
-                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:h'):''}}

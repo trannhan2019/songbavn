@@ -28,34 +28,36 @@ Route::get('/', 'PagesController@getTrangchu')->name('trangchu');
 
 Route::get('dangnhap', 'UserController@getDangnhap')->name('dangnhap');
 Route::post('dangnhap', 'UserController@postDangnhap')->name('dangnhap');
+Route::get('dangky', 'UserController@getDangky')->name('dangky');
+Route::post('dangky', 'UserController@postDangky')->name('dangky');
 Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 //Nhóm nội dung
-Route::group(['prefix' => 'noidung'],function (){
+
     //Giới thiệu
-    Route::get('{menu_id}/gioi-thieu.html','PagesController@getGioithieu')->name('noidung.gioithieu');
-    Route::get('{menu_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuCocau');
-    Route::get('{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
-    Route::get('{menu_id}/cac-nha-may.html', 'PagesController@getGioithieuTab');
-    Route::get('{menu_id}/cac-du-an.html', 'PagesController@getGioithieuTab');
-    //Tin tức
-    Route::get('{menu_id}/tin-tuc.html','PagesController@getTintuc')->name('noidung.tintuc');
-    Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTintuc');
-    //Quan hệ cổ đông
-    Route::get('{menu_id}/quan-he-co-dong.html','PagesController@getQuanhecodong')->name('noidung.quanhecodong');
-    Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
-    Route::get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('noidung.ykiencodong');
-    Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong');
-    Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
-    Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong');
-    //Tuyển dụng
-    Route::get('{menu_id}/tuyen-dung.html','PagesController@getTuyendung')->name('noidung.tuyendung');
-    Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');
-    //Liên hệ
-    Route::get('{menu_id}/lien-he.html', 'PagesController@getLienhe')->name('noidung.lienhe');
-    //Comment
-    Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('noidung.binhluan');
-});
+Route::get('gioi-thieu/{menu_id}.html','PagesController@getGioithieu')->name('gioithieu');
+Route::get('gioi-thieu/{menu_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuCocau');
+Route::get('gioi-thieu/{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
+Route::get('gioi-thieu/{menu_id}/cac-nha-may.html', 'PagesController@getGioithieuTab');
+Route::get('gioi-thieu/{menu_id}/cac-du-an.html', 'PagesController@getGioithieuTab');
+//Tin tức
+Route::get('tin-tuc/{menu_id}.html','PagesController@getTintuc')->name('tintuc');
+Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTintuc');
+//Quan hệ cổ đông
+Route::get('quan-he-co-dong/{menu_id}.html','PagesController@getQuanhecodong')->name('quanhecodong');
+Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
+Route::get('quan-he-co-dong/{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('ykiencodong');
+Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong');
+Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
+Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong');
+//Tuyển dụng
+Route::get('tuyen-dung/{menu_id}.html','PagesController@getTuyendung')->name('tuyendung');
+Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');
+//Liên hệ
+Route::get('lien-he/{menu_id}.html', 'PagesController@getLienhe')->name('lienhe');
+//Comment
+Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
+
 
 // Nhom Admin
 Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {

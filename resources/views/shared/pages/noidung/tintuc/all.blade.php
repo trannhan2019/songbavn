@@ -21,11 +21,11 @@
                     <div class="head row mx-0 mb-3">
                         <div class="col-8">
                             <h4>
-                                <a href="{{ route('noidung.tintuc',$mn->id) }}">{{ $mn->name }}</a> 
+                                <a href="{{ route('tintuc',$mn->id) }}">{{ $mn->name }}</a> 
                             </h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a class="text-primary" href="{{ route('noidung.tintuc',$mn->id) }}">Xem tất cả</a>
+                            <a class="text-primary" href="{{ route('tintuc',$mn->id) }}">Xem tất cả</a>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -35,12 +35,12 @@
                         @endphp
                         <div class="col-md-7 home-left h-100">
                             <div class="card">
-                                <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con->id }}/{{ $tin1_con->slug }}.html" title="">
+                                <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con['id'] }}/{{ $tin1_con['slug'] }}.html" title="">
                                     <img src="shared_asset/upload/images/content/{{ $tin1_con['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
                                 </a>
                                 <div class="card-body p-2">
                                     <h6 class="card-title">
-                                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con->id }}/{{ $tin1_con->slug }}.html" title="">
+                                        <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin1_con['id'] }}/{{ $tin1_con['slug'] }}.html" title="">
                                             {{ $tin1_con['title'] }}
                                         </a>
                                     </h6>
@@ -64,14 +64,14 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-5">
-                                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
+                                        <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin['id'] }}/{{ $tin['slug ']}}.html">
                                             <img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
                                         </a>
                                     </div>
                                     <div class="col-7">
                                         <div class="card-body p-1">
                                             <h6 class="card-title mb-0">
-                                                <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">{{ $tin['title'] }}</a>
+                                                <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin['id ']}}/{{ $tin['slug'] }}.html">{{ $tin['title'] }}</a>
                                             </h6>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                     </div>
                     @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="noidung/{{ $menu->slug }}/{{ $mn->id }}/{{ $ctv->id }}/{{ $ctv->slug }}.html">
+                        <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $ctv->id }}/{{ $ctv->slug }}.html">
                             <p class="m-0">
                                 {{ $ctv->title }}
                             </p>

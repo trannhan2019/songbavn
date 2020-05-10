@@ -1,25 +1,13 @@
 /*All*/
+
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 a:hover {
     text-decoration: none;
 }
-
-
-/*Header*/
-
-.header {
-    background-color: #000066c9;
-    border-bottom: 2px solid #D68528;
-}
-
-
-
-/* .navbar .nav-link {
-    color: black !important;
-} */
 
 .navbar .nav-link:hover {
     color: black;
@@ -84,6 +72,7 @@ a:hover {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+
 .crop_text_3 {
     -webkit-line-clamp: 3;
     overflow: hidden;
@@ -99,13 +88,10 @@ a {
     color: #2c2c2c;
 }
 
-a:hover {
-    color: rgb(2, 139, 255);
-}
-
 .head {
     border-bottom: 4px solid #000066;
 }
+
 .navbar .LOGO {
     width: 400px;
 }
@@ -121,11 +107,6 @@ a:hover {
 
 .thsx_kn_info td {
     padding: 0;
-}
-
-footer {
-    border-top: 10px solid #00004d;
-    border-bottom: 10px solid #00004d;
 }
 
 
@@ -214,5 +195,3 @@ a.on_top {
 .title_cbtt {
     background-color: #e9ecef;
 }
-
-

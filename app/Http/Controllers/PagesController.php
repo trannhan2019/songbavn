@@ -155,6 +155,7 @@ class PagesController extends Controller
     //Tuyển dụng
     public function getTuyendung($menu_id)
     {
+        
         $menu = Menu::find($menu_id);
         if (empty($menu->Parent)) {
             $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);

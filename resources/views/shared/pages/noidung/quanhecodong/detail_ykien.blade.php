@@ -7,8 +7,8 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('noidung.quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('noidung.ykiencodong',$menu->id) }}">{{ $menu->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('ykiencodong',$menu->id) }}">{{ $menu->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Chi tiết ý kiến</li>
         </ol>
     </nav>
@@ -52,7 +52,7 @@
                     @foreach ($menu->Ykiens->where('status',1)->sortByDesc('created_at')->take(5) as $yv)
                     <div class="px-4 py-2 text-justify">
                         <div class="crop_text_3">
-                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
+                            <a href="{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
                         </div>
                         <p class="m-0">
                             <small>
@@ -74,7 +74,7 @@
                     @foreach ($menu->Ykiens->where('status',1)->sortByDesc('views')->take(5) as $yv)
                     <div class="px-4 py-2 text-justify">
                         <div class="crop_text_3">
-                            <a href="noidung/{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
+                            <a href="{{ $menu->id }}/{{ $yv->id }}/detail-{{ $menu->slug }}.html">{!! $yv->ask_content !!}</a>
                         </div>
                         <p class="m-0">
                             <small>

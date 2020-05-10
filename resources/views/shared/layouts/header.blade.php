@@ -3,9 +3,9 @@
 	<div class="container">
 		<div class="row">
 			
-			<div class="col text-left d-none d-lg-block text-white p-1">
-				<i class="fas fa-phone"></i> &nbsp;
-				<small> 0236.3653 592</small> 
+			<div class="col text-left text-white p-1">
+				<i class="far fa-clock"></i>&nbsp;
+				<small id="head_datetime"> </small> 
 			</div>
 			<div class="col text-right p-1">
 				@if (Auth::check())
@@ -50,12 +50,12 @@
 {{-- <!-- header --> --}}
 {{-- <!-- Navigation --> --}}
 
-<nav class="navbar navbar-expand-xl sticky-top" style="border-bottom: 2px solid #D68528;border-top: 2px solid #D68528; z-index: 1; background-color: #ffffff;">
+<nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528;border-top: 2px solid #D68528; z-index: 1;">
 	<div class="container">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
-			<img src="shared_asset/upload/images/logo_v3.png" class="img-fluid LOGO" alt="LOGO_SBA" style="max-width: 300px">
+			<img src="shared_asset/upload/images/logo_v3.png" class="img-fluid LOGO" alt="LOGO_SBA" style="max-width: 350px">
 		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+		<button class="navbar-toggler text-gray-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
@@ -70,20 +70,12 @@
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
 							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)
-								@if ($child->slug=='co-cau-to-chuc')
-								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
-								<div class="dropdown-divider my-0"></div>
-								@elseif($child->slug=='cac-nha-may')
-								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
-								<div class="dropdown-divider my-0"></div>
-								@elseif($child->slug=='cac-du-an')
-								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
-								<div class="dropdown-divider my-0"></div>
-								@elseif($child->slug=='y-kien-nha-dau-tu')
-								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
+									
+								@if ($child->slug=='co-cau-to-chuc'||$child->slug=='cac-nha-may'||$child->slug=='cac-du-an'||$child->slug=='y-kien-nha-dau-tu')
+								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
 								<div class="dropdown-divider my-0"></div>
 								@else
-								<a class="dropdown-item px-3" href="noidung/{{ $child->id }}/{{ $dm->slug }}.html">{{ $child->name }}</a>
+								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->id }}.html">{{ $child->name }}</a>
 								<div class="dropdown-divider my-0"></div>
 								@endif
 							@endforeach
@@ -91,7 +83,7 @@
 					</li>
 					@else
 					<li class="nav-item py-2">
-						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? 'noidung/'.$dm->id.'/'.$dm->slug.'.html':'#' }}">{{ $dm->name }}</a>
+						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? $dm->slug.'/'.$dm->id.'.html':'#' }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach

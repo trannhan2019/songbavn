@@ -18,15 +18,15 @@
         <div class="col-12">
             <div class="head row">
                 <div class="col-8">
-                    <h4><a href="{{ route('noidung.ykiencodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
+                    <h4><a href="{{ route('ykiencodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ route('noidung.ykiencodong',$mn->id) }}">Xem tất cả</a>
+                    <a href="{{ route('ykiencodong',$mn->id) }}">Xem tất cả</a>
                 </div>						
             </div>
             <div class="row my-3">
                 <div class="col-md-5">
-                    <a href="{{ route('noidung.ykiencodong',$mn->id) }}">
+                    <a href="{{ route('ykiencodong',$mn->id) }}">
                         <img src="shared_asset/upload/images/content/q-a-600x400.jpg" alt="" class="w-100 img-thumbnail"> 
                     </a>
                 </div>
@@ -60,15 +60,15 @@
             <div class="col-12">
                 <div class="head row">
                     <div class="col-8">
-                        <h4><a href="{{ route('noidung.quanhecodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
+                        <h4><a href="{{ route('quanhecodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="{{ route('noidung.quanhecodong',$mn->id) }}">Xem tất cả</a>
+                        <a href="{{ route('quanhecodong',$mn->id) }}">Xem tất cả</a>
                     </div>						
                 </div>
                 <div class="row my-3">
                     <div class="col-md-5">
-                        <a href="{{ route('noidung.quanhecodong',$mn->id) }}">
+                        <a href="{{ route('quanhecodong',$mn->id) }}">
                             @if ($mn->slug =='dai-hoi-dong-co-dong')
                             <img src="shared_asset/upload/images/content/dhdcd-600x400.jpg" alt="" class="w-100 img-thumbnail">
                             @elseif ($mn->slug =='cong-bo-thong-tin')

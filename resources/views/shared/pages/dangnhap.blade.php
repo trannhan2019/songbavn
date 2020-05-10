@@ -55,7 +55,7 @@
             </form>
       
             <p class="mb-1">
-              <a href="forgot-password.html">Đăng ký tài khoản</a>
+              <a href="{{ route('dangky') }}">Đăng ký tài khoản</a>
             </p>
             <p class="mb-0">
               <a href="{{ route('trangchu') }}" class="text-center">Quay về trang chủ</a>
