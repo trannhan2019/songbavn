@@ -43,15 +43,15 @@
 					<div class="col-md-5 home-right overflow-auto">
 						@foreach ($tin_noibat->all() as $tnb)
 						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-5">
+							<div class="row no-gutters d-flex align-content-center" style="height: 100px;">
+								<div class="col-5 ">
 									<a href="{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">
 										<img src="shared_asset/upload/images/content/{{ $tnb['imageorfile'] }}" class="w-100 img-fluid" alt="">
 									</a>
 								</div>
 								<div class="col-7">
 									<div class="card-body p-1">
-										<h6 class="card-title mb-0">
+										<h6 class="card-title mb-0 crop_text_3">
 											<a href="{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">{{ $tnb['title'] }}</a>
 										</h6>
 									</div>						
@@ -328,8 +328,8 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="card-img-top w-100" alt="">
-							<div class="card-body p-2">
+							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_tthd_1['title'] }}
 								</h6>
@@ -372,8 +372,8 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="card-img-top w-100" alt="">
-							<div class="card-body p-2">
+							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_dangdoan_1['title'] }}
 								</h6>
@@ -416,8 +416,8 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="card-img-top w-100" alt="">
-							<div class="card-body p-2">
+							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_sba_1['title'] }}
 								</h6>
