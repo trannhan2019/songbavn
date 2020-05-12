@@ -46,10 +46,10 @@ Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDeta
 //Quan hệ cổ đông
 Route::get('quan-he-co-dong/{menu_id}.html','PagesController@getQuanhecodong')->name('quanhecodong');
 Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
-Route::get('quan-he-co-dong/{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('ykiencodong');
-Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong');
-Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong');
-Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong');
+Route::get('quan-he-co-dong/{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('ykiencodong')->middleware('CheckDangnhap');
+Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
+Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
+Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
 //Tuyển dụng
 Route::get('tuyen-dung/{menu_id}.html','PagesController@getTuyendung')->name('tuyendung');
 Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');

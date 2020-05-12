@@ -24,18 +24,15 @@
                     </a>
                     <small>
                         <p class="d-inline-block m-0">
-                            <i class="far fa-calendar-alt"></i>: {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):''}}
+                            <i class="far fa-calendar-alt"></i> &nbsp; {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):''}}
                         </p>
-                        <p class="d-inline-block m-0 pl-4">
-                            <i class="fas fa-user-tie"></i>: {{ $ct->author }}
-                        </p>
-                    </small>
-                    <small class="d-block">
+                        &ensp;
                         <p class="d-inline-block m-0">
-                            <i class="far fa-eye"></i>: {{ $ct->views }}
+                            <i class="fas fa-user-tie"></i>&nbsp; {{ $ct->author }}
                         </p>
-                        <p class="d-inline-block m-0 pl-4">
-                            <i class="far fa-comments"></i>: {{ $ct->views }}
+                        &ensp;
+                        <p class="d-inline-block m-0">
+                            <i class="far fa-eye"></i>&nbsp; {{ $ct->views }}
                         </p>
                     </small>
                 </div>

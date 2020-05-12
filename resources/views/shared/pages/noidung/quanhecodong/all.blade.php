@@ -43,7 +43,7 @@
                                 <small>{{ $ykien->fullname}}</small>
                             </div>
                             <div class="crop_text_4">
-                                <a href="#">
+                                <a href="{{ $mn->id }}/{{ $ykien->id }}/detail-{{ $mn->slug }}.html">
                                     <h6>{!! $ykien->ask_content !!}</h6>
                                 </a>
                             </div>
@@ -94,7 +94,7 @@
                                     
                                 </div>
                                 <div class="title">
-                                    <a href="#">
+                                    <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
                                         <h6>{{ $tin->title }}</h6>
                                     </a>
                                 </div>
