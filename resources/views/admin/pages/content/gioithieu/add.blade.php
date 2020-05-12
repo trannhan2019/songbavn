@@ -35,14 +35,14 @@
 
                         <div class="form-group">
                             <label>Tiêu đề <span class="text-danger">(*)</span></label>
-                            <input type="text" name="title" class="form-control" placeholder="Tiêu đề">
+                            <input type="text" name="title" class="form-control" placeholder="Tiêu đề" value="{{old('title')}}">
                             @if ($errors->has('title'))
                                 <p class="text-danger mb-0">{{ $errors->first('title') }}</p>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Nội dung</label>
-                            <textarea name="content" id="ckeditor_gt" cols="30" rows="50"></textarea>  
+                            <textarea name="content" id="ckeditor_gt" cols="30" rows="50">{{old('content')}}xtarea> 
                         </div>
                         <div class="form-group">
                             <p class="mb-0"><label>Trạng thái</label></p>

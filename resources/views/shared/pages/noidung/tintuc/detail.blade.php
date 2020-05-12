@@ -39,7 +39,7 @@
                 <small>
                     <i class="fas fa-user-alt"></i> {{ $tintuc->author }}
                     &ensp;
-                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y H:h'):''}}
+                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y H:i'):''}}
                     &ensp;
                     <i class="far fa-eye"></i> {{ $tintuc->views }}
                     &ensp;
@@ -65,7 +65,7 @@
                                 <div class="media-body">
                                     <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
                                     <p class="card-text mb-0">{!! $cm->content !!}</p>
-                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
                                 </div>
                                 <img src="admin_asset/images/user/{{ $cm->User->image }}" class="rounded-circle m-3" style="width: 60px" alt="">
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="media-body">
                                     <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
                                     <p class="card-text mb-0">{!! $cm->content !!}</p>
-                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
                                 </div>
                             </div>
                             <hr>
@@ -87,7 +87,7 @@
                             <div class="media-body">
                                 <h6 class="card-title">{{ $cm->sendername }} - {{ $cm->senderemail }}</h6>
                                 <div class="card-text mb-0">{!! $cm->content !!}</div>
-                                <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):''}}</small></p>
+                                <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
                             </div>
                         </div>
                         <hr>
@@ -108,14 +108,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Họ và tên:</label>
-                                <input type="text" class="form-control" placeholder="Điền họ và tên..." name="sendername">
+                                <input type="text" class="form-control" placeholder="Điền họ và tên..." name="sendername" value="{{old('sendername')}}">
                                 @if ($errors->has('sendername'))
                                 <p class="text-danger mb-0">{{ $errors->first('sendername') }}</p>
                                 @endif
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="uname">Email:</label>
-                                <input type="email" class="form-control" placeholder="Điền email..." name="senderemail">
+                                <input type="email" class="form-control" placeholder="Điền email..." name="senderemail" value="{{old('senderemail')}}">
                                 @if ($errors->has('senderemail'))
                                 <p class="text-danger mb-0">{{ $errors->first('senderemail') }}</p>
                                 @endif
@@ -125,7 +125,7 @@
 
                         <div class="form-group">
                             <label for="content">Nội dung bình luận:</label>
-                            <textarea name="content" class="form-control" rows="5" placeholder="Nội dung bình luận..."></textarea>
+                            <textarea name="content" class="form-control" rows="5" placeholder="Nội dung bình luận...">{{old('content')}}</textarea>
                             @if ($errors->has('content'))
                                 <p class="text-danger mb-0">{{ $errors->first('content') }}</p>
                             @endif
@@ -147,7 +147,7 @@
                         <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:h'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:i'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $lq->views }}
                                 &ensp;
@@ -169,7 +169,7 @@
                         <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $xn->id }}/{{ $xn->slug }}.html" title="" class="text-dark"> {{ $xn->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:h'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:i'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $xn->views }}
                                 &ensp;

@@ -104,7 +104,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label>Tên nhà máy <span class="text-danger">(*)</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" value="{{old('name')}}">
                                         @if ($errors->has('name'))
                                             <p class="text-danger mb-0">{{ $errors->first('name') }}</p>
                                         @endif
@@ -112,7 +112,7 @@
 
                                     <div class="form-group">
                                         <label>Ký hiệu <span class="text-danger">(*)</label>
-                                        <input type="text" name="alias" class="form-control">
+                                        <input type="text" name="alias" class="form-control" value="{{old('alias')}}">
                                         @if ($errors->has('alias'))
                                             <p class="text-danger mb-0">{{ $errors->first('alias') }}</p>
                                         @endif

@@ -35,7 +35,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Tiêu đề hiển thị <span class="text-danger">(*)</label>
-                                        <input type="text" name="title" class="form-control">
+                                        <input type="text" name="title" class="form-control" {{old('title')}}>
                                         @if ($errors->has('title'))
                                             <p class="text-danger mb-0">{{ $errors->first('title') }}</p>
                                         @endif

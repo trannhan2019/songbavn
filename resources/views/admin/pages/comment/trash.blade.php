@@ -99,7 +99,7 @@
                         <td>{{ $cm->content }}</td>
                         <td>{{ $cm->sendername }}</td>
 
-                        <td>{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:h'):'' }}</td>
+                        <td>{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):'' }}</td>
 
                         <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $cm->id }}" data-toggle="modal" data-target="#restoreTrashCommentModal"><i class="fas fa-trash-restore"></i></button></td>
                         <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $cm->id }}" data-toggle="modal" data-target="#deletedTrashCommentModal"><i class="far fa-trash-alt"></i></button></td>

@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
                                         <div class="input-group date" id="datetimepickerEditcm" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditcm" name="created_at" value="{{ $comment->created_at ? $comment->created_at->format('d/m/Y H:h'):''}}"/>
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditcm" name="created_at" value="{{ $comment->created_at ? $comment->created_at->format('d/m/Y H:i'):''}}"/>
                                             <div class="input-group-append" data-target="#datetimepickerEditcm" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                             </div>
@@ -94,4 +94,15 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+		$(function () {
+			$('#datetimepickerEditcm').datetimepicker({
+                locale: 'vi',
+                format: 'DD/MM/YYYY HH:mm'
+			});
+        });
+    </script>
 @endsection

@@ -48,30 +48,30 @@
 
                                     <div class="form-group">
                                         <label>Họ và tên <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="fullname" class="form-control">
+                                        <input type="text" name="fullname" class="form-control" value="{{old('fullname')}}">
                                         @if ($errors->has('fullname'))
                                             <p class="text-danger mb-0">{{ $errors->first('fullname') }}</p>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ email <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="email" class="form-control">
+                                        <input type="text" name="email" class="form-control" value="{{old('email')}}">
                                         @if ($errors->has('email'))
                                             <p class="text-danger mb-0">{{ $errors->first('email') }}</p>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Số điện thoại </label>
-                                        <input type="text" name="phone" class="form-control">
+                                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}">
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ </label>
-                                        <input type="text" name="address" class="form-control">
+                                        <input type="text" name="address" class="form-control" value="{{old('address')}}">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Nội dung hỏi <span class="text-danger">(*)</span></label>
-                                        <textarea name="ask_content" rows="5" id="ckeditor_ykien"></textarea>
+                                        <textarea name="ask_content" rows="5" id="ckeditor_ykien">{{old('ask_content')}}</textarea>
                                         @if ($errors->has('ask_content'))
                                             <p class="text-danger mb-0">{{ $errors->first('ask_content') }}</p>
                                         @endif

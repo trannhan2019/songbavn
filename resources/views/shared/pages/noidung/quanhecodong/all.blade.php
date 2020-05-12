@@ -37,7 +37,7 @@
                         <div class="col-12">
                             <div class="time mt-2 mt-md-0">
                                 <i class="far fa-calendar-alt"></i>
-                                <small>{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y H:h'):''}}</small>
+                                <small>{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y H:i'):''}}</small>
                                 &ensp;
                                 <i class="fas fa-user-alt"></i>
                                 <small>{{ $ykien->fullname}}</small>
@@ -90,7 +90,7 @@
                             <div class="col-12">
                                 <div class="time mt-2 mt-md-0">
                                     <i class="far fa-calendar-alt"></i>
-                                    <small>{{ $tin->created_at ? $tin->created_at->format('d/m/Y H:h'):''}}</small>
+                                    <small>{{ $tin->created_at ? $tin->created_at->format('d/m/Y H:i'):''}}</small>
                                     
                                 </div>
                                 <div class="title">

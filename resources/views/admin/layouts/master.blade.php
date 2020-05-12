@@ -69,6 +69,7 @@
 
     {{--  Sử dụng input thêm số   --}}
     <script type="text/javascript">
+
         $("input[type='number']").inputSpinner()
     </script>
 
