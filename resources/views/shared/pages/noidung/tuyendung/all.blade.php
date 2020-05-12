@@ -47,7 +47,7 @@
                                     </h6>
                                     <p class="card-text mb-0">
                                         <small class="text-muted">
-                                            <i class="far fa-calendar-alt"></i> {{ $tin1_con['created_at'] ? $tin1_con['created_at']->format('d/m/Y H:h'):'' }}
+                                            <i class="far fa-calendar-alt"></i> {{ $tin1_con['created_at'] ? $tin1_con['created_at']->format('d/m/Y H:i'):'' }}
                                              
                                             <i class="far fa-eye"></i> {{ $tin1_con['views'] }}
                                              
@@ -102,7 +102,7 @@
                         </a>
                         <p class="m-0">
                             <small>
-                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:h'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:i'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ctv->views }}
                             </small>

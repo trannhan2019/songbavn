@@ -130,7 +130,7 @@
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
                                         <div class="input-group date" id="datetimepickerCreattd" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattd" name="created_at" value="{{ $content->created_at ? $content->created_at->format('d/m/Y H:h'):''}}"/>
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattd" name="created_at" value="{{ $content->created_at ? $content->created_at->format('d/m/Y H:i'):''}}"/>
                                             <div class="input-group-append" data-target="#datetimepickerCreattd" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                             </div>

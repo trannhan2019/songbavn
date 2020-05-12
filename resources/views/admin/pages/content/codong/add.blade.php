@@ -41,7 +41,7 @@
 
                                     <div class="form-group">
                                         <label>Tiêu đề <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="title" class="form-control" placeholder="Tiêu đề">
+                                        <input type="text" name="title" class="form-control" placeholder="Tiêu đề" value="{{ old('title') }}">
                                         @if ($errors->has('title'))
                                             <p class="text-danger mb-0">{{ $errors->first('title') }}</p>
                                         @endif
@@ -49,7 +49,7 @@
 
                                     <div class="form-group">
                                         <label>Trích yếu <span class="text-danger">(*)</span></label>
-                                        <textarea class="form-control" name="abstract" rows="4" placeholder="Trích yếu"></textarea>
+                                        <textarea class="form-control" name="abstract" rows="4" placeholder="Trích yếu">{{ old('abstract') }}</textarea>
                                         @if ($errors->has('abstract'))
                                             <p class="text-danger mb-0">{{ $errors->first('abstract') }}</p>
                                         @endif
@@ -99,7 +99,7 @@
 
                                     <div class="form-group">
                                         <label>Tác giả bài viết <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="author" class="form-control" placeholder="Tác giả bài viết">
+                                        <input type="text" name="author" class="form-control" placeholder="Tác giả bài viết" value="{{ old('author') }}">
                                         @if ($errors->has('author'))
                                             <p class="text-danger mb-0">{{ $errors->first('author') }}</p>
                                         @endif
@@ -139,7 +139,7 @@
 
                                     <div class="form-group">
                                         <label>Nội dung bài viết</label>
-                                        <textarea name="content" id="ckeditor_cd" cols="30" rows="50"></textarea>  
+                                        <textarea name="content" id="ckeditor_cd" cols="30" rows="50">{{ old('content') }}</textarea>  
                                     </div>
                                 </div>
                                 <div class="card-footer">

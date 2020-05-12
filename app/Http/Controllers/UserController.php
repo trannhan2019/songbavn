@@ -126,9 +126,7 @@ class UserController extends Controller
         $user->info = $request->info;
         // $user->timestamps = false;
         if ($request->created_at) {
-            // $r = str_replace('/','-',$request->created_at);
-            // $ThoigianTao = strtotime($r);
-            // $user->created_at = date('Y-m-d H:i:s',$ThoigianTao);
+
             $user->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $user->created_at = null;
@@ -287,6 +285,48 @@ class UserController extends Controller
     public function getDangky()
     {
         return view('shared.pages.dangky');
+    }
+    public function postDangky(Request $request)
+    {
+        $this->validate($request,
+        [
+            'fullname'=> 'required|min:3|max:255',
+            'username'=> 'required|unique:users,username|min:3|max:255',
+            'email'=> 'required|unique:users,email|email',
+            'password'=>'required|min:6|max:255',
+            'password_confirmation'=>'required|same:password|min:6|max:255',
+            'phone'=>'required',
+            'address'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự',
+            'unique'=>':attribute này đã tồn tại',
+            'email'=>':attribute chưa đúng đinh dạng',
+            'same'=>':attribute chưa khớp'
+        ],
+        [
+            'fullname'=>'Họ và tên',
+            'username'=>'Tên đăng nhập',
+            'password'=>'Mật khẩu',
+            'password_confirmation'=>'Mật khẩu nhập lại',
+            'phone'=>'Số điện thoại',
+            'address'=>'Địa chỉ'
+            
+        ]);
+        $user = new User;
+        $user->fullname = $request->fullname;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = 3;
+        $user->active = 0;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        
+        $user->save();
+        return redirect()->route('dangnhap')->with('thongbao','Đăng ký thành công! Tài khoản trong trạng thái chờ duyệt, xin cảm ơn.');
     }
     public function getDangxuat()
     { 

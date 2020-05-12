@@ -88,7 +88,7 @@
                                     {!! $sl->Active==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
                                </td>      
                                 <td>{{ $sl->Content ?  $sl->Content->title : '' }}</td>
-                                <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:h'):'' }}</td>
+                                <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:i'):'' }}</td>
                                 <td><a href="{{ route('admin.slide.edit',$sl->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedSlideModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>

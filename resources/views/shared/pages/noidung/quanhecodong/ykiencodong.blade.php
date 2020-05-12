@@ -38,7 +38,7 @@
                     <p class="my-0 text-justify">{!! $yk->ask_content !!}</p>
                     <p>
                         <small>
-                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y H:h'):''}}</span>
+                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y H:i'):''}}</span>
                              &ensp;  
                             <i class="fas fa-user-tie"></i>  <span >{{ $yk->fullname }}</span>
                             &ensp;  
@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Nội dung ý kiến:</label>
-                            <textarea name="ask_content" id="ckeditor_ykien" class="form-control" rows="5" placeholder="Nội dung ý kiến..."></textarea>
+                            <textarea name="ask_content" id="ckeditor_ykien" class="form-control" rows="5" placeholder="Nội dung ý kiến...">{{old('ask_content')}}</textarea>
                             @if ($errors->has('ask_content'))
                                 <p class="text-danger mb-0">{{ $errors->first('ask_content') }}</p>
                             @endif

@@ -26,7 +26,7 @@
 								</h6>
 								<p class="card-text mb-0">
 									<small class="text-muted">
-										<i class="far fa-calendar-alt"></i> {{ $tin_noibat_1['created_at'] ? $tin_noibat_1['created_at']->format('d/m/Y H:h'):'' }}
+										<i class="far fa-calendar-alt"></i> {{ $tin_noibat_1['created_at'] ? $tin_noibat_1['created_at']->format('d/m/Y H:i'):'' }}
 										 
 										<i class="far fa-eye"></i> {{ $tin_noibat_1['views'] }}
 										 
@@ -328,7 +328,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt="">
 							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_tthd_1['title'] }}
@@ -372,7 +372,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt="">
 							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_dangdoan_1['title'] }}
@@ -416,7 +416,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt="" style="height: 150px;">
+							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt="">
 							<div class="card-body p-2" style="height: 150px;">
 								<h6 class="card-title">
 									{{ $tin_sba_1['title'] }}

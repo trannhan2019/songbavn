@@ -36,21 +36,21 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Họ và tên <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="fullname" class="form-control" placeholder="Họ và tên">
+                                        <input type="text" name="fullname" class="form-control" placeholder="Họ và tên" value="{{old('fullname')}}">
                                         @if ($errors->has('fullname'))
                                             <p class="text-danger mb-0">{{ $errors->first('fullname') }}</p>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Tên đăng nhập <span class="text-danger">(*)</span></label>
-                                        <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập">
+                                        <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" value="{{old('username')}}">
                                         @if ($errors->has('username'))
                                             <p class="text-danger mb-0">{{ $errors->first('username') }}</p>
                                         @endif
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ email<span class="text-danger">(*)</span></label>
-                                        <input type="email" name="email" class="form-control" placeholder="Email">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{old('email')}}">
                                         @if ($errors->has('email'))
                                             <p class="text-danger mb-0">{{ $errors->first('email') }}</p>
                                         @endif
@@ -114,15 +114,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Số điện thoại </label>
-                                        <input type="text" name="phone" class="form-control" placeholder="Số điện thoại">
+                                        <input type="text" name="phone" class="form-control" placeholder="Số điện thoại" value="{{old('phone')}}">
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ</label>
-                                        <textarea class="form-control" name="address" rows="3" placeholder="Nhập thông tin ..."></textarea>
+                                        <textarea class="form-control" name="address" rows="3" placeholder="Nhập thông tin ...">{{old('address')}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Thông tin khác</label>
-                                        <textarea class="form-control" name="info" rows="3" placeholder="Nhập thông tin khác..."></textarea>
+                                        <textarea class="form-control" name="info" rows="3" placeholder="Nhập thông tin khác...">{{old('info')}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>

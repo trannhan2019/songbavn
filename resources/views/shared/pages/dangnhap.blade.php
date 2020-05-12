@@ -6,9 +6,12 @@
 @section('content')
 <div class="py-5" style="background-color: #e9ecef">
     <div class="mx-auto" style="max-width: 400px">
-        @if (session('loi'))
-            @include('shared.layouts.loi')
-        @endif
+      @if (session('loi'))
+      @include('shared.layouts.loi')
+      @endif
+      @if (session('thongbao'))
+          @include('shared.layouts.thongbao')
+      @endif 
         <div class="card">
           <div class="card-body login-card-body">
             <h5 class="text-info mb-3 text-center">Đăng nhập thông tin</h5>

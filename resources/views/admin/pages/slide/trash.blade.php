@@ -104,7 +104,7 @@
                                 <td class="text-center">{{ $sl->location }}</td>
 
                                 <td>{{ $sl->Content ?  $sl->Content->title : '' }}</td>
-                                <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:h'):'' }}</td>
+                                <td>{{ $sl->created_at ? $sl->created_at->format('d/m/Y H:i'):'' }}</td>
                                 <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#restoreTrashSlideModal"><i class="fas fa-trash-restore"></i></button></td>
                                 <td class="text-center"><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $sl->id }}" data-toggle="modal" data-target="#deletedTrashSlideModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
