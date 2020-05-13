@@ -57,6 +57,8 @@ Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getD
 Route::get('lien-he/{menu_id}.html', 'PagesController@getLienhe')->name('lienhe');
 //Comment
 Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
+//Tình hình sản xuất
+Route::get('tinh-hinh-san-xuat.html', 'SanxuatController@getSanxuat')->name('sanxuat');
 
 
 // Nhom Admin

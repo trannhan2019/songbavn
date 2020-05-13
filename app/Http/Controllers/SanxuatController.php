@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use DataTables;
 use App\Thsx;
 use App\Muctieunam;
+use App\Factory;
 
 class SanxuatController extends Controller
 {
@@ -182,5 +183,12 @@ class SanxuatController extends Controller
         $sanxuat->forceDelete();
         
         return redirect('admin/sanxuat/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
+    }
+    //shared
+    public function getSanxuat()
+    {
+        $thsx_day = Thsx::where('status',1)->orderBy('date','desc')->first();
+        //$thsxkn = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->sortByDesc('date')->first();
+        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day'));
     }
 }

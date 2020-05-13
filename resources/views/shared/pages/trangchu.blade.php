@@ -716,7 +716,7 @@
 							</div>
 						</div>
 						<div class="text-center">
-							<a href="#" class="text-primary"> Xem thông tin các ngày khác</a>
+							<a href="{{ route('sanxuat') }}" class="text-primary"> Xem thông tin các ngày khác</a>
 						</div>
 					</div>
 				</div>
