@@ -14,10 +14,11 @@ Hoạt động sản xuất
 <div class="container">
     {{--  tình hình hoạt động sản xuất theo ngày  --}}
     <h6 class="text-danger">THÔNG TIN THEO NGÀY</h6>
-    <form action="Tinhhinh_SX_submit" method="get" accept-charset="utf-8">
+    <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
+        @csrf
         <div class="form-inline">
             <div class="input-group date" id="datetimepicker_SXday" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_SXday" name="created_at" value="{{ !empty($thsx_day)? date("d/m/Y", strtotime($thsx_day->date)) : "" }}"/>
+                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_SXday" name="date_day" value="{{ !empty($thsx_day)? date("d/m/Y", strtotime($thsx_day->date)) : "" }}"/>
                 <div class="input-group-append" data-target="#datetimepicker_SXday" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                 </div>
@@ -32,26 +33,29 @@ Hoạt động sản xuất
                     <h6 class="card-title text-primary text-center mb-0">NMTĐ KHE DIÊN</h6>
                 </div>
                 <div class="card-body">
-                    @php
-                        $thsxkd_day = \App\Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
-                        $month_kd = date("m", strtotime($thsxkd_day->date));
-                        $year_kd = date("Y", strtotime($thsxkd_day->date));
-                        $muctieunam_kd = $thsxkd_day->Muctieunam->id;
-                        $sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
-                        ->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
-                        ->sum('quantity');
-                        $sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
-                        ->sum('quantity');
-                    @endphp
-                    @isset($thsxkd_day)
+                    @isset($thsx_day)
+                        @php
+                            $thsxkd_day = \App\Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
+                            $month_kd = date("m", strtotime($thsxkd_day->date));
+                            $year_kd = date("Y", strtotime($thsxkd_day->date));
+                            $muctieunam_kd = $thsxkd_day->Muctieunam->id;
+                            $sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
+                            ->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
+                            ->sum('quantity');
+                            $sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
+                            ->sum('quantity');
+                        @endphp   
+                    @endisset
+                    
+                    
                     <table class="table table-borderless table-sm">
                         <tbody>
                             <tr>
                                 <td class="text-primary">Công suất (MW):</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{ number_format($thsxkd_day->power, 1, ',', '.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->power, 1, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{ number_format($thsxkd_day->Muctieunam->ratedpower,1,',','.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->Muctieunam->ratedpower,1,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -59,28 +63,28 @@ Hoạt động sản xuất
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong ngày:</td>
-                                <td class="text-danger text-right">{{ number_format($thsxkd_day->quantity, 3, ',', '.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->quantity, 3, ',', '.'):'' }}</td>
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong tháng:</td>
-                                <td class="text-danger text-right">{{ number_format($sum_month_kd, 3, ',', '.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($sum_month_kd, 3, ',', '.'):'' }}</td>
                                 
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong năm:</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{ number_format($sum_year_kd, 3, ',', '.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($sum_year_kd, 3, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{number_format($thsxkd_day->Muctieunam->quantity,3,',','.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->Muctieunam->quantity,3,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-primary">Lượng mưa (mm):</td>
-                                <td class="text-danger text-right">{{number_format($thsxkd_day->rain,1,',','.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->rain,1,',','.'):'' }}</td>
                             </tr>
                         </tbody>
                     </table> 
-                    @endisset
+                   
                     
                 </div>					
             </div>
@@ -91,6 +95,7 @@ Hoạt động sản xuất
                     <h6 class="card-title text-primary text-center mb-0">NMTĐ KRÔNG HNĂNG </h6>
                 </div>
                 <div class="card-body">
+                    @isset($thsx_day)
                     @php
                         $thsxkn_day = \App\Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
                         $month_kn = date("m", strtotime($thsxkn_day->date));
@@ -102,15 +107,16 @@ Hoạt động sản xuất
                         $sum_year_kn = \App\Thsx::whereYear('created_at', $year_kn)->where('muctieunam_id',$muctieunam_kn)
                         ->sum('quantity');
                     @endphp
-                    @isset($thsxkn_day)
+                    @endisset
+                    
                     <table class="table table-borderless table-sm">
                         <tbody>
                             <tr>
                                 <td class="text-primary">Công suất (MW):</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{ number_format($thsxkn_day->power, 1, ',', '.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($thsxkn_day->power, 1, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{ number_format($thsxkn_day->Muctieunam->ratedpower,1,',','.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($thsxkn_day->Muctieunam->ratedpower,1,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -118,28 +124,28 @@ Hoạt động sản xuất
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong ngày:</td>
-                                <td class="text-danger text-right">{{ number_format($thsxkn_day->quantity, 3, ',', '.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($thsxkn_day->quantity, 3, ',', '.'):'' }}</td>
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong tháng:</td>
-                                <td class="text-danger text-right">{{ number_format($sum_month_kn, 3, ',', '.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($sum_month_kn, 3, ',', '.'):'' }}</td>
                                 
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong năm:</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{ number_format($sum_year_kn, 3, ',', '.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($sum_year_kn, 3, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{number_format($thsxkn_day->Muctieunam->quantity,3,',','.') }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($thsxkn_day->Muctieunam->quantity,3,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-primary">Lượng mưa (mm):</td>
-                                <td class="text-danger text-right">{{number_format($thsxkn_day->rain,1,',','.') }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($thsxkn_day->rain,1,',','.'):'' }}</td>
                             </tr>
                         </tbody>
                     </table> 
-                    @endisset
+                    
                     
                 </div>
             </div>
@@ -218,6 +224,7 @@ Hoạt động sản xuất
     });
     
 </script>
+
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker_SXmonth').datetimepicker({

@@ -191,4 +191,10 @@ class SanxuatController extends Controller
         //$thsxkn = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->sortByDesc('date')->first();
         return view('shared.pages.noidung.sanxuat.show',compact('thsx_day'));
     }
+    public function postSanxuatNgay(Request $request)
+    {
+        $thsx_day = Thsx::where('status',1)->where('date',date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))))->first();
+        //dd(date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))));
+        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day'));
+    }
 }
