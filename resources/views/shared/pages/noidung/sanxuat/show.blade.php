@@ -13,7 +13,7 @@ Hoạt động sản xuất
 </div>
 <div class="container">
     {{--  tình hình hoạt động sản xuất theo ngày  --}}
-    <h6 class="text-danger">THÔNG TIN THEO NGÀY</h6>
+    <h5 class="text-danger">THÔNG TIN THEO NGÀY</h5>
     <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
         @csrf
         <div class="form-inline">
@@ -36,18 +36,19 @@ Hoạt động sản xuất
                     @isset($thsx_day)
                         @php
                             $thsxkd_day = \App\Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
-                            $month_kd = date("m", strtotime($thsxkd_day->date));
-                            $year_kd = date("Y", strtotime($thsxkd_day->date));
-                            $muctieunam_kd = $thsxkd_day->Muctieunam->id;
-                            $sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
-                            ->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
-                            ->sum('quantity');
-                            $sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
-                            ->sum('quantity');
+                            if (!empty($thsxkd_day)) {
+                                $month_kd = date("m", strtotime($thsxkd_day->date));
+                                $year_kd = date("Y", strtotime($thsxkd_day->date));
+                                $muctieunam_kd = $thsxkd_day->Muctieunam->id;
+                                $sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
+                                ->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
+                                ->sum('quantity');
+                                $sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
+                                ->sum('quantity');
+                            }
                         @endphp   
                     @endisset
-                    
-                    
+ 
                     <table class="table table-borderless table-sm">
                         <tbody>
                             <tr>
@@ -98,14 +99,17 @@ Hoạt động sản xuất
                     @isset($thsx_day)
                     @php
                         $thsxkn_day = \App\Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
-                        $month_kn = date("m", strtotime($thsxkn_day->date));
-                        $year_kn = date("Y", strtotime($thsxkn_day->date));
-                        $muctieunam_kn = $thsxkn_day->Muctieunam->id;
-                        $sum_month_kn = \App\Thsx::whereYear('created_at', $year_kn)
-                        ->whereMonth('created_at', $month_kn)->where('muctieunam_id',$muctieunam_kn)
-                        ->sum('quantity');
-                        $sum_year_kn = \App\Thsx::whereYear('created_at', $year_kn)->where('muctieunam_id',$muctieunam_kn)
-                        ->sum('quantity');
+                        if (!empty($thsxkn_day)) {
+                            $month_kn = date("m", strtotime($thsxkn_day->date));
+                            $year_kn = date("Y", strtotime($thsxkn_day->date));
+                            $muctieunam_kn = $thsxkn_day->Muctieunam->id;
+                            $sum_month_kn = \App\Thsx::whereYear('created_at', $year_kn)
+                            ->whereMonth('created_at', $month_kn)->where('muctieunam_id',$muctieunam_kn)
+                            ->sum('quantity');
+                            $sum_year_kn = \App\Thsx::whereYear('created_at', $year_kn)->where('muctieunam_id',$muctieunam_kn)
+                            ->sum('quantity');
+                        }
+
                     @endphp
                     @endisset
                     
@@ -145,22 +149,31 @@ Hoạt động sản xuất
                             </tr>
                         </tbody>
                     </table> 
-                    
-                    
+
                 </div>
             </div>
         </div>
     </div>
     <hr>
-    <h6 class="text-danger">THÔNG TIN THEO THÁNG</h6>
-    <form action="Tinhhinh_SX_submit" method="get" accept-charset="utf-8">
+    <h5 class="text-danger">THÔNG TIN THEO THÁNG</h5>
+    <form action="{{ route('sanxuatthang') }}" method="post" accept-charset="utf-8">
+        @csrf
         <div class="form-row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="">Chọn Nhà máy:</label>
-                    <select name="" id="" class="form-control">
-                        <option>Khe Diên</option>
-                        <option>Krông Hnăng</option>
+                    {{-- {{ dd($thsx_month->first()->Muctieunam->Factory->id) }} --}}
+                    <select name="factory_id" class="form-control">
+                        @if (empty($thsx_month))
+                            @foreach ($factory as $f)
+                            <option value="{{$f->id}}">{{ $f->name }}</option>
+                            @endforeach
+                        @else
+                            @foreach ($factory as $f)
+                            <option {{ $thsx_month->first()->Muctieunam->Factory->id == $f->id ? 'selected': '' }} value="{{$f->id}}">{{ $f->name }}</option>
+                            @endforeach
+                        @endif
+                        
                     </select>
                 </div>
             </div>
@@ -169,48 +182,63 @@ Hoạt động sản xuất
                     <label for="">Chọn thời gian:</label>
                     <div class="form-inline">
                         <div class="input-group date" id="datetimepicker_SXmonth" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_SXmonth" name="created_at" />
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_SXmonth" name="date_month" value="{{ !empty($thsx_month)? date("m/Y", strtotime($thsx_month->first()->date)) : "" }}"/>
                             <div class="input-group-append" data-target="#datetimepicker_SXmonth" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary ml-sm-2 mb-sm-1">Xem thông tin</button>
+                        <button type="submit" class="btn btn-primary ml-sm-2">Xem thông tin</button>
                     </div>
                     
                 </div>
             </div>
+            @if ($errors->has('date'))
+                <p class="text-danger mb-0">{{ $errors->first('date') }}</p>
+            @endif
         </div>
     </form>
     {{--  bảng hiển thị thông tin  --}}
-    <h6 class="card-title">Tổng sản lượng</h6>
-    <p class="card-text">
-        <span>Sản lượng tháng: </span>
-        <span>0,987 (triệu kWh)</span>
-    </p>
-    <p class="card-text">
-        <span>Sản lượng nắm: </span>
-        <span>2,446 (triệu kWh)</span>
-    </p>
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="text-center">
-                <tr>
-                    <th>Ngày</th>
-                    <th>Công suất (MW)</th>
-                    <th>Sản lượng (MWh)</th>
-                    <th>Lượng mưa (mm)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>21/02/2020</td>
-                    <td>9,0</td>
-                    <td>0,054</td>
-                    <td>12,4</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    @isset($thsx_month)
+    <div class="card">
+        <div class="card-header">
+            <h6 class="card-title text-primary">Tổng sản lượng</h6>
+            <p class="card-text">
+                <span>Sản lượng tháng: </span>
+                <span>0,987 (triệu kWh)</span>
+            </p>
+            <p class="card-text">
+                <span>Sản lượng nắm: </span>
+                <span>2,446 (triệu kWh)</span>
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Công suất (MW)</th>
+                            <th>Sản lượng (MWh)</th>
+                            <th>Lượng mưa (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($thsx_month as $m)
+                        <tr>
+                            <td class="text-center">{{ !empty($thsx_day)? date("d/m/Y", strtotime($thsx_day->date)) : "" }}</td>
+                            <td class="text-right">{{ $m->power }}</td>
+                            <td class="text-right">0,054</td>
+                            <td class="text-right">12,4</td>
+                        </tr>
+                        @endforeach
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+    @endisset
+
 </div>
 @endsection
 

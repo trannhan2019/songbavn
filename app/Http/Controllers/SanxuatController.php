@@ -188,13 +188,51 @@ class SanxuatController extends Controller
     public function getSanxuat()
     {
         $thsx_day = Thsx::where('status',1)->orderBy('date','desc')->first();
+        $factory = Factory::where('status',1)->get();
         //$thsxkn = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->sortByDesc('date')->first();
-        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day'));
+        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory'));
     }
     public function postSanxuatNgay(Request $request)
     {
+        $this->validate($request,
+        [
+            'date_day'=>'required'
+        ],
+        [
+            'required'=>'Bạn chưa chọn :attribute'
+        ],
+        [
+            'date_day'=>'thời gian'
+        ]);
         $thsx_day = Thsx::where('status',1)->where('date',date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))))->first();
         //dd(date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))));
-        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day'));
+        $factory = Factory::where('status',1)->get();
+        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory'));
+    }
+    public function postSanxuatThang(Request $request)
+    {
+        $this->validate($request,
+        [
+            'date_month'=>'required',
+            'factory_id' => 'required'
+        ],
+        [
+            'required'=>'Bạn chưa chọn :attribute'
+        ],
+        [
+            'date_month'=>'thời gian',
+            'factory_id'=>'Nhà máy'
+        ]);
+        $thsx_day = Thsx::where('status',1)->latest()->first();
+        $factory = Factory::where('status',1)->get();
+        $mix = "01/".$request->date_month;
+        $date = date("Y-m-d",strtotime(str_replace('/','-',$mix)));
+        //dd($date);
+        $month = date("m", strtotime($date));
+        $year = date("Y", strtotime($date));
+        $muctieunam = Factory::find($request->factory_id)->Muctieunam->sortByDesc('date')->first();
+        $thsx_month = Thsx::where('muctieunam_id',$muctieunam->id)->whereYear('date', $year)->whereMonth('date', $month)->where('status',1)->get();
+
+        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsx_month'));
     }
 }

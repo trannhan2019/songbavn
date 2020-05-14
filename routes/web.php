@@ -60,6 +60,7 @@ Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->
 //Tình hình sản xuất
 Route::get('tinh-hinh-san-xuat.html', 'SanxuatController@getSanxuat')->name('sanxuat');
 Route::post('tinh-hinh-san-xuat-ngay.html','SanxuatController@postSanxuatNgay')->name('sanxuatngay');
+Route::post('tinh-hinh-san-xuat-thang.html','SanxuatController@postSanxuatThang')->name('sanxuatthang');
 
 
 // Nhom Admin
