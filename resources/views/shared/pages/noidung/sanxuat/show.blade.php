@@ -15,6 +15,11 @@ Hoạt động sản xuất
     @if (session('thongbao'))
         @include('shared.layouts.thongbao')
     @endif
+    {{--  <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
+        @csrf
+        <input type="text" value="15/05/2020" name="date_day">
+        <button type="submit" class="btn btn-dark">thong tin</button>
+    </form>  --}}
     @if (Auth::check())
         @if (Auth::user()->role == 1)
         <div class="btn-group btn-group-sm mb-2">
@@ -33,14 +38,12 @@ Hoạt động sản xuất
     <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
         @csrf
         <div class="form-inline">
-            <div class="input-group date" id="datetimepicker_SXday">
-                <input type="text" class="form-control">
-                {{-- <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
-                </div> --}}
-                <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
-            </div>
+            <input id="datetimepicker_SXday" type="text" class="form-control" name="date_day">
+            <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
         </div>
+        @if ($errors->has('date_day'))
+            <p class="text-danger mb-0">{{ $errors->first('date_day') }}</p>
+        @endif
     </form>		
     <div class="row mt-3">
         <div class="col-md-6 mb-3">
@@ -165,7 +168,7 @@ Hoạt động sản xuất
     </div>
     <hr>
     <h5 class="text-danger">THÔNG TIN THEO THÁNG</h5>
-    <form action="{{ route('sanxuatthang') }}" method="post" accept-charset="utf-8">
+    <form action="{{ route('sanxuatthang') }}" method="POST" accept-charset="utf-8">
         @csrf
         <div class="form-row">
             <div class="col-md-4">
@@ -189,17 +192,17 @@ Hoạt động sản xuất
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="">Chọn thời gian:</label>
-                    <div class="input-group date" id="datetimepicker_SXmonth">
-                        <input type="text" class="form-control">
+                    <div class="form-inline">
+                        <input id="datetimepicker_SXmonth" type="text" class="form-control" name="date_month">
+                        <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
                     </div>
-                    
                 </div>
             </div>
-            @if ($errors->has('date'))
-                <p class="text-danger mb-0">{{ $errors->first('date') }}</p>
+            @if ($errors->has('date_month'))
+                <p class="text-danger mb-0">{{ $errors->first('date_month') }}</p>
             @endif
         </div>
-        <button type="submit" class="btn btn-primary ml-2">Xem thông tin</button>
+        
     </form>
     {{--  bảng hiển thị thông tin  --}}
     @isset($thsx_month)
@@ -214,7 +217,7 @@ Hoạt động sản xuất
                 <span>Sản lượng năm: </span>
                 <span class="text-danger">{{!empty($thsx_month)? number_format($sum_year,3,',','.'):'' }}</span> 
                 <span> / </span>
-                <span class="text-danger">{{$thsx_month->first()->Muctieunam->quantity }}</span> 
+                <span class="text-danger">{{!empty($thsx_month) ? $thsx_month->first()->Muctieunam->quantity:'' }}</span> 
                 <span>(triệu kWh)</span>
             </p>
         </div>
@@ -256,14 +259,11 @@ Hoạt động sản xuất
             format: "dd/mm/yyyy"
         });
     });
-    
 </script>
-
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker_SXmonth').datepicker({
-            format: "mm/yyyy",
-            minViewMode: 1
+            format: "mm/yyyy"
         });
     });
 </script>
