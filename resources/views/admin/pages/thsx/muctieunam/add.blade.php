@@ -57,7 +57,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Công suất định mức (MW) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="ratedpower" value="" min="0" max="500" step="0.1" data-decimals="2"/>
+                                        <input class="form-control-sm" type="number" name="ratedpower" value="{{old('ratedpower')}}" min="0" max="500" step="0.1" data-decimals="2"/>
                                         @if ($errors->has('ratedpower'))
                                             <p class="text-danger mb-0">{{ $errors->first('ratedpower') }}</p>
                                         @endif
@@ -65,7 +65,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Sản lượng (triệu kWh) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="quantity" value="" min="0" max="500" step="0.01" data-decimals="3"/>
+                                        <input class="form-control-sm" type="number" name="quantity" value="{{old('quantity')}}" min="0" max="500" step="0.01" data-decimals="3"/>
                                         @if ($errors->has('quantity'))
                                             <p class="text-danger mb-0">{{ $errors->first('quantity') }}</p>
                                         @endif
@@ -73,7 +73,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Mực nước chết (m) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="MNHlowest" value="" min="0" max="500" step="0.01" data-decimals="2"/>
+                                        <input class="form-control-sm" type="number" name="MNHlowest" value="{{old('MNHlowest')}}" min="0" max="500" step="0.01" data-decimals="2"/>
                                         @if ($errors->has('MNHlowest'))
                                             <p class="text-danger mb-0">{{ $errors->first('MNHlowest') }}</p>
                                         @endif
@@ -81,7 +81,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Mực nước dâng bình thường (m) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="MNHnormal" value="" min="0" max="500" data-decimals="2" step="0.01"/>
+                                        <input class="form-control-sm" type="number" name="MNHnormal" value="{{old('MNHnormal')}}" min="0" max="500" data-decimals="2" step="0.01"/>
                                         @if ($errors->has('MNHnormal'))
                                             <p class="text-danger mb-0">{{ $errors->first('MNHnormal') }}</p>
                                         @endif

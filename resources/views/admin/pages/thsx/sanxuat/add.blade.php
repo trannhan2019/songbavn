@@ -57,7 +57,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Công suất (MW) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="power" value="" min="0" max="500" step="0.1" data-decimals="2"/>
+                                        <input class="form-control-sm" type="number" name="power" value="{{old('power')}}" min="0" max="500" step="0.1" data-decimals="2"/>
                                         @if ($errors->has('power'))
                                             <p class="text-danger mb-0">{{ $errors->first('power') }}</p>
                                         @endif
@@ -65,7 +65,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Sản lượng (triệu kWh) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="quantity" value="" min="0" max="500" step="0.001" data-decimals="3"/>
+                                        <input class="form-control-sm" type="number" name="quantity" value="{{old('quantity')}}" min="0" max="500" step="0.001" data-decimals="3"/>
                                         @if ($errors->has('quantity'))
                                             <p class="text-danger mb-0">{{ $errors->first('quantity') }}</p>
                                         @endif
@@ -73,7 +73,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Mực nước hồ (m) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="MNH" value="" min="0" max="500" step="0.01" data-decimals="2"/>
+                                        <input class="form-control-sm" type="number" name="MNH" value="{{old('MNH')}}" min="0" max="500" step="0.01" data-decimals="2"/>
                                         @if ($errors->has('MNH'))
                                             <p class="text-danger mb-0">{{ $errors->first('MNH') }}</p>
                                         @endif
@@ -81,7 +81,7 @@
 
                                     <div class="form-group">
                                         <p class="mb-0"><label>Lượng mưa (mm) <span class="text-danger">(*)</span></label></p>
-                                        <input class="form-control-sm" type="number" name="rain" value="" min="0" max="500" data-decimals="1" step="0.1"/>
+                                        <input class="form-control-sm" type="number" name="rain" value="{{old('rain')}}" min="0" max="500" data-decimals="1" step="0.1"/>
                                         @if ($errors->has('rain'))
                                             <p class="text-danger mb-0">{{ $errors->first('rain') }}</p>
                                         @endif

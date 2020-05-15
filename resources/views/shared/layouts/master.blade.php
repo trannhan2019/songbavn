@@ -16,7 +16,9 @@
 	{{--  ICON --}}
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 	{{-- <!-- tempusdominus-datepicker css> --}}
-	<link rel="stylesheet" href="shared_asset/tempusdominus/css/tempusdominus-bootstrap-4.min.css">
+	{{-- <link rel="stylesheet" href="shared_asset/tempusdominus/css/tempusdominus-bootstrap-4.min.css"> --}}
+	{{-- bootstrap-datepicker --}}
+	{{-- <link rel="stylesheet" href="shared_asset/bootstrapdatepicker/css/bootstrap-datepicker.css"> --}}
 	{{--  font Roboto Google  --}}
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	{{-- <!-- CUSTOM CSS------------------------ --> --}}
@@ -44,14 +46,24 @@
 	{{-- <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></!--> --> --}}
 	<script src="shared_asset/bootstrap4/dist/js/bootstrap.min.js"></script>
 	{{-- <!-- MOMENT----------------- --> --}}
-	<script src="shared_asset/tempusdominus/js/moment.min.js" type="text/javascript" charset="utf-8" async defer></script>
+	{{-- <script src="shared_asset/bootstrapdatepicker/js/moment.min.js" type="text/javascript" charset="utf-8" async defer></script> --}}
 	{{-- <!-- DATERANGEPICKER-------------- --> --}}
-	<script src="shared_asset/tempusdominus/js/tempusdominus-bootstrap-4.js" type="text/javascript" charset="utf-8" async defer></script>
+	{{-- <script src="shared_asset/tempusdominus/js/tempusdominus-bootstrap-4.js" type="text/javascript" charset="utf-8" async defer></script> --}}
+	{{-- bootstrap-datepicker --}}
+	{{-- <script src="shared_asset/bootstrapdatepicker/js/bootstrap-datepicker.js" type="text/javascript" charset="utf-8" async defer></script> --}}
+	{{-- <script src="shared_asset/bootstrapdatepicker/locales/bootstrap-datepicker.vi.min.js" type="text/javascript" charset="utf-8" async defer></script> --}}
+	
 	{{-- nhung ckeditor --}}
     <script src="{{ asset('admin_asset/plugins/ckeditor/ckeditor.js') }}"></script>
     {{-- nhung ckfinder --}}
     {{-- <script src="{{ asset('admin_asset/plugins/ckfinder/ckfinder.js') }}"></script> --}}
-    {{--  responsive image trong ckeditor  --}}
+	{{--  responsive image trong ckeditor  --}}
+	{{-- Them input number --}}
+	<script src="admin_asset/plugins/bootstrap-input-spinner/bootstrap-input-spinner.js"></script>
+	<script type="text/javascript">
+        $("input[type='number']").inputSpinner()
+    </script>
+
 	<script src="admin_asset/plugins/ckeditor/ckeditor-responsive-images.js" type="text/javascript" charset="utf-8" async defer></script>
 	{{--  Tự động đóng alert sau khoảng thời gian  --}}
 	<script type="text/javascript">

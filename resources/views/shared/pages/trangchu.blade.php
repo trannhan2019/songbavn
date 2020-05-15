@@ -517,10 +517,10 @@
 											$month_kd = date("m", strtotime($thsxkd->date));
 											$year_kd = date("Y", strtotime($thsxkd->date));
 											$muctieunam_kd = $thsxkd->Muctieunam->id;
-											$sum_month_kd = \App\Thsx::whereYear('created_at', $year_kd)
-											->whereMonth('created_at', $month_kd)->where('muctieunam_id',$muctieunam_kd)
+											$sum_month_kd = \App\Thsx::whereYear('date', $year_kd)
+											->whereMonth('date', $month_kd)->where('muctieunam_id',$muctieunam_kd)
 											->sum('quantity');
-											$sum_year_kd = \App\Thsx::whereYear('created_at', $year_kd)->where('muctieunam_id',$muctieunam_kd)
+											$sum_year_kd = \App\Thsx::whereYear('date', $year_kd)->where('muctieunam_id',$muctieunam_kd)
 											->sum('quantity');
 											@endphp
 											<tr>
@@ -635,10 +635,10 @@
 											$month_kn = date("m", strtotime($thsxkn->date));
 											$year_kn = date("Y", strtotime($thsxkn->date));
 											$muctieunam_kn = $thsxkn->Muctieunam->id;
-											$sum_month_kn = \App\Thsx::whereYear('created_at', $year_kn)
-											->whereMonth('created_at', $month_kn)->where('muctieunam_id',$muctieunam_kn)
+											$sum_month_kn = \App\Thsx::whereYear('date', $year_kn)
+											->whereMonth('date', $month_kn)->where('muctieunam_id',$muctieunam_kn)
 											->sum('quantity');
-											$sum_year_kn = \App\Thsx::whereYear('created_at', $year_kn)->where('muctieunam_id',$muctieunam_kn)
+											$sum_year_kn = \App\Thsx::whereYear('date', $year_kn)->where('muctieunam_id',$muctieunam_kn)
 											->sum('quantity');
 											@endphp
 											<tr>
