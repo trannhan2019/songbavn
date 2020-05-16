@@ -59,8 +59,7 @@ Route::get('lien-he/{menu_id}.html', 'PagesController@getLienhe')->name('lienhe'
 Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
 //Tình hình sản xuất
 Route::get('tinh-hinh-san-xuat.html', 'SanxuatController@getSanxuat')->name('sanxuat');
-Route::get('test', 'SanxuatController@gettest')->name('test');
-Route::post('tinh-hinh-san-xuat-ngay.html','SanxuatController@postSanxuatNgay')->name('sanxuatngay');
+Route::post('tinh-hinh-san-xuat.html','SanxuatController@postSanxuatNgay')->name('sanxuat');
 Route::post('tinh-hinh-san-xuat-thang.html','SanxuatController@postSanxuatThang')->name('sanxuatthang');
 Route::get('them-tinh-hinh-san-xuat.html', 'SanxuatController@getAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
 Route::post('them-tinh-hinh-san-xuat.html', 'SanxuatController@postAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');

@@ -52,7 +52,9 @@
 	{{--  <script src="shared_asset/tempusdominus/js/tempusdominus-bootstrap-4.min.js" type="text/javascript" charset="utf-8" async defer></script>  --}}
 	
 	{{--  <script src="shared_asset/jquerydatepicker/jquery.datetimepicker.full.min.js" type="text/javascript"></script>  --}}
-	{{-- <script src="shared_asset/bootstrapdatepicker/locales/bootstrap-datepicker.vi.min.js" type="text/javascript" charset="utf-8" async defer></script> --}}
+	{{-- bootstrap-datepicker --}}
+	<script src="shared_asset/bootstrapdatepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+	<script src="shared_asset/bootstrapdatepicker/locales/bootstrap-datepicker.vi.min.js" type="text/javascript" charset="utf-8" async defer></script>
 	
 	{{-- nhung ckeditor --}}
     <script src="{{ asset('admin_asset/plugins/ckeditor/ckeditor.js') }}"></script>
@@ -88,8 +90,7 @@
 		//document.getElementById("head_datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
 		document.getElementById("head_datetime").innerHTML = n +", "+(("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) ;
 	</script>
-	{{-- bootstrap-datepicker --}}
-	<script src="shared_asset/bootstrapdatepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+	
 	{{-- <!-- CUSTOM SCRIPT---------------- --> --}}
 	<script type="text/javascript" src="shared_asset/js/my.js"></script>
 

@@ -15,11 +15,7 @@ Hoạt động sản xuất
     @if (session('thongbao'))
         @include('shared.layouts.thongbao')
     @endif
-    {{--  <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
-        @csrf
-        <input type="text" value="15/05/2020" name="date_day">
-        <button type="submit" class="btn btn-dark">thong tin</button>
-    </form>  --}}
+
     @if (Auth::check())
         @if (Auth::user()->role == 1)
         <div class="btn-group btn-group-sm mb-2">
@@ -35,12 +31,18 @@ Hoạt động sản xuất
     @endif
     {{--  tình hình hoạt động sản xuất theo ngày  --}}
     <h5 class="text-danger">THÔNG TIN THEO NGÀY</h5>
-    <form action="{{ route('sanxuatngay')}}" method="post" accept-charset="utf-8">
+    <form action="{{ route('sanxuat')}}" method="post" accept-charset="utf-8">
         @csrf
         <div class="form-inline">
-            <input id="datetimepicker_SXday" type="text" class="form-control" name="date_day">
-            <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
+            <div class="input-group date" id="datetimepicker_SXday">
+                <input type="text" class="form-control" name="date_day" value="{{ empty($date) ? date("d/m/Y", strtotime($thsx_day->date)):$date}}">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary ml-2" name="thsx" value="day"><i class="fas fa-search"></i></button>
         </div>
+
         @if ($errors->has('date_day'))
             <p class="text-danger mb-0">{{ $errors->first('date_day') }}</p>
         @endif
@@ -168,13 +170,13 @@ Hoạt động sản xuất
     </div>
     <hr>
     <h5 class="text-danger">THÔNG TIN THEO THÁNG</h5>
-    <form action="{{ route('sanxuatthang') }}" method="POST" accept-charset="utf-8">
+    <form action="{{ route('sanxuat') }}" method="post" accept-charset="utf-8">
         @csrf
         <div class="form-row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="">Chọn Nhà máy:</label>
-                    {{-- {{ dd($thsx_month->first()->Muctieunam->Factory->id) }} --}}
+
                     <select name="factory_id" class="form-control">
                         @if (empty($thsx_month))
                             @foreach ($factory as $f)
@@ -193,60 +195,72 @@ Hoạt động sản xuất
                 <div class="form-group">
                     <label for="">Chọn thời gian:</label>
                     <div class="form-inline">
-                        <input id="datetimepicker_SXmonth" type="text" class="form-control" name="date_month">
-                        <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
+                        <div class="input-group date" id="datetimepicker_SXmonth">
+                            <input type="text" class="form-control" name="date_month" value="{{ !empty($thsx_month)&&count($thsx_month)>0 ? date("m/Y", strtotime($thsx_month->first()->date)):''}}">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-2" name="thsx" value="month"><i class="fas fa-search"></i></button>
                     </div>
+                    @if ($errors->has('date_month'))
+                        <p class="text-danger mb-0">{{ $errors->first('date_month') }}</p>
+                    @endif
                 </div>
+                
             </div>
-            @if ($errors->has('date_month'))
-                <p class="text-danger mb-0">{{ $errors->first('date_month') }}</p>
-            @endif
+            
         </div>
-        
     </form>
     {{--  bảng hiển thị thông tin  --}}
     @isset($thsx_month)
-    <div class="card">
-        <div class="card-header">
-            <h6 class="card-title text-primary">Tổng sản lượng</h6>
-            <p class="card-text">
-                <span>Sản lượng tháng: </span>
-                <span class="text-danger">{{!empty($thsx_month)? number_format($sum_month,3,',','.'):'' }} </span> <span>(triệu kWh)</span>
-            </p>
-            <p class="card-text">
-                <span>Sản lượng năm: </span>
-                <span class="text-danger">{{!empty($thsx_month)? number_format($sum_year,3,',','.'):'' }}</span> 
-                <span> / </span>
-                <span class="text-danger">{{!empty($thsx_month) ? $thsx_month->first()->Muctieunam->quantity:'' }}</span> 
-                <span>(triệu kWh)</span>
-            </p>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm">
-                    <thead class="text-center">
-                        <tr>
-                            <th>Ngày</th>
-                            <th>Công suất (MW)</th>
-                            <th>Sản lượng (MWh)</th>
-                            <th>Lượng mưa (mm)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($thsx_month as $m)
-                        <tr>
-                            <td class="text-center">{{ !empty($thsx_month)? date("d/m/Y", strtotime($m->date)) : "" }}</td>
-                            <td class="text-right">{{!empty($thsx_month)? number_format($m->power,1,',','.'):'' }}</td>
-                            <td class="text-right">{{!empty($thsx_month)? number_format($m->quantity,3,',','.'):'' }}</td>
-                            <td class="text-right">{{!empty($thsx_month)? number_format($m->rain,1,',','.'):'' }}</td>
-                        </tr>
-                        @endforeach
-                        
-                    </tbody>
-                </table>
+        @if (count($thsx_month)>0)
+        <div class="card">
+            <div class="card-header">
+                <h6 class="card-title text-primary">Tổng sản lượng</h6>
+                <p class="card-text">
+                    <span>Sản lượng tháng: </span>
+                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_month,3,',','.'):'' }} </span> <span>(triệu kWh)</span>
+                </p>
+                <p class="card-text">
+                    <span>Sản lượng năm: </span>
+                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_year,3,',','.'):'' }}</span> 
+                    <span> / </span>
+                    <span class="text-danger">{{count($thsx_month)>0 ? $thsx_month->first()->Muctieunam->quantity:'' }}</span> 
+                    <span>(triệu kWh)</span>
+                </p>
             </div>
-        </div>
-    </div> 
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-sm">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Công suất (MW)</th>
+                                <th>Sản lượng (MWh)</th>
+                                <th>Lượng mưa (mm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($thsx_month as $m)
+                            <tr>
+                                <td class="text-center">{{ !empty($thsx_month)? date("d/m/Y", strtotime($m->date)) : "" }}</td>
+                                <td class="text-right">{{!empty($thsx_month)? number_format($m->power,1,',','.'):'' }}</td>
+                                <td class="text-right">{{!empty($thsx_month)? number_format($m->quantity,3,',','.'):'' }}</td>
+                                <td class="text-right">{{!empty($thsx_month)? number_format($m->rain,1,',','.'):'' }}</td>
+                            </tr>
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+        @else
+            <div class="col-12">
+                <p class="text-primary">Không có dữ liệu</p>
+            </div>
+        @endif
     @endisset
 
 </div>
@@ -256,15 +270,23 @@ Hoạt động sản xuất
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker_SXday').datepicker({
-            format: "dd/mm/yyyy"
+            format: "dd/mm/yyyy",
+            weekStart: 1,
+            language: "vi",
+            autoclose: true
         });
     });
 </script>
 <script type="text/javascript">
     $(function () {
         $('#datetimepicker_SXmonth').datepicker({
-            format: "mm/yyyy"
+            format: "mm/yyyy",
+            weekStart: 1,
+            minViewMode: 1,
+            language: "vi",
+            autoclose: true
         });
     });
 </script>
+
 @endsection

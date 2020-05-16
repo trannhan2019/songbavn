@@ -187,7 +187,7 @@ class SanxuatController extends Controller
     //shared
     public function getSanxuat()
     {
-        $thsx_day = Thsx::where('status',1)->latest()->first();
+        $thsx_day = Thsx::where('status',1)->orderBy('date','desc')->first();
         $factory = Factory::where('status',1)->get();
 
         $thsxkd_day = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
@@ -218,44 +218,101 @@ class SanxuatController extends Controller
     }
     public function postSanxuatNgay(Request $request)
     {
-        $this->validate($request,
-        [
-            'date_day'=>'required'
-        ],
-        [
-            'required'=>'Bạn chưa chọn :attribute'
-        ],
-        [
-            'date_day'=>'thời gian'
-        ]);
-        $thsx_day = Thsx::where('status',1)->where('date',date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))))->first();
-        $factory = Factory::where('status',1)->get();
+        switch ($request->input('thsx')) {
+            case 'day':
+                $this->validate($request,
+                    [
+                        'date_day'=>'required'
+                    ],
+                    [
+                        'required'=>'Bạn chưa chọn :attribute'
+                    ],
+                    [
+                        'date_day'=>'thời gian'
+                    ]);
+                    $thsx_day = Thsx::where('status',1)->where('date',date('Y-m-d',strtotime(str_replace('/','-',$request->date_day))))->first();
+                    $factory = Factory::where('status',1)->get();
+                    $date = $request->date_day;
 
-        $thsxkd_day = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime(str_replace('/','-',$request->date_day))))->first();
-        if (!empty($thsxkd_day)) {
-            $month_kd = date("m", strtotime($thsxkd_day->date));
-            $year_kd = date("Y", strtotime($thsxkd_day->date));
-            $muctieunam_kd = $thsxkd_day->Muctieunam->id;
-            $sum_month_kd = Thsx::whereYear('date', $year_kd)
-            ->whereMonth('date', $month_kd)->where('muctieunam_id',$muctieunam_kd)
-            ->sum('quantity');
-            $sum_year_kd = Thsx::whereYear('date', $year_kd)->where('muctieunam_id',$muctieunam_kd)
-            ->sum('quantity');
+                    $thsxkd_day = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime(str_replace('/','-',$request->date_day))))->first();
+                    if (!empty($thsxkd_day)) {
+                        $month_kd = date("m", strtotime($thsxkd_day->date));
+                        $year_kd = date("Y", strtotime($thsxkd_day->date));
+                        $muctieunam_kd = $thsxkd_day->Muctieunam->id;
+                        $sum_month_kd = Thsx::whereYear('date', $year_kd)
+                        ->whereMonth('date', $month_kd)->where('muctieunam_id',$muctieunam_kd)
+                        ->sum('quantity');
+                        $sum_year_kd = Thsx::whereYear('date', $year_kd)->where('muctieunam_id',$muctieunam_kd)
+                        ->sum('quantity');
+                    }
+
+                    $thsxkn_day = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime(str_replace('/','-',$request->date_day))))->first();
+                    if (!empty($thsxkn_day)) {
+                        $month_kn = date("m", strtotime($thsxkn_day->date));
+                        $year_kn = date("Y", strtotime($thsxkn_day->date));
+                        $muctieunam_kn = $thsxkn_day->Muctieunam->id;
+                        $sum_month_kn = Thsx::whereYear('date', $year_kn)
+                        ->whereMonth('date', $month_kn)->where('muctieunam_id',$muctieunam_kn)
+                        ->sum('quantity');
+                        $sum_year_kn = Thsx::whereYear('date', $year_kn)->where('muctieunam_id',$muctieunam_kn)
+                        ->sum('quantity');
+                    }
+                    return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsxkd_day','sum_month_kd','sum_year_kd','thsxkn_day','sum_month_kn','sum_year_kn','date'));
+                break;
+    
+            case 'month':
+                $this->validate($request,
+                    [
+                        'date_month'=>'required',
+                        'factory_id' => 'required'
+                    ],
+                    [
+                        'required'=>'Bạn chưa chọn :attribute'
+                    ],
+                    [
+                        'date_month'=>'thời gian',
+                        'factory_id'=>'Nhà máy'
+                    ]);
+                    $thsx_day = Thsx::where('status',1)->latest()->first();
+                    $factory = Factory::where('status',1)->get();
+
+                    $thsxkd_day = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
+                    if (!empty($thsxkd_day)) {
+                        $month_kd = date("m", strtotime($thsxkd_day->date));
+                        $year_kd = date("Y", strtotime($thsxkd_day->date));
+                        $muctieunam_kd = $thsxkd_day->Muctieunam->id;
+                        $sum_month_kd = Thsx::whereYear('date', $year_kd)
+                        ->whereMonth('date', $month_kd)->where('muctieunam_id',$muctieunam_kd)
+                        ->sum('quantity');
+                        $sum_year_kd = Thsx::whereYear('date', $year_kd)->where('muctieunam_id',$muctieunam_kd)
+                        ->sum('quantity');
+                    }
+                    $thsxkn_day = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
+                    if (!empty($thsxkn_day)) {
+                        $month_kn = date("m", strtotime($thsxkn_day->date));
+                        $year_kn = date("Y", strtotime($thsxkn_day->date));
+                        $muctieunam_kn = $thsxkn_day->Muctieunam->id;
+                        $sum_month_kn = Thsx::whereYear('date', $year_kn)
+                        ->whereMonth('date', $month_kn)->where('muctieunam_id',$muctieunam_kn)
+                        ->sum('quantity');
+                        $sum_year_kn = Thsx::whereYear('date', $year_kn)->where('muctieunam_id',$muctieunam_kn)
+                        ->sum('quantity');
+                    }
+
+                    $mix = "01/".$request->date_month;
+                    $date = date("Y-m-d",strtotime(str_replace('/','-',$mix)));
+                    //dd($date);
+                    $month = date("m", strtotime($date));
+                    $year = date("Y", strtotime($date));
+                    $muctieunam = Factory::find($request->factory_id)->Muctieunam->sortByDesc('year')->first();
+                    $sum_year = Thsx::whereYear('date', $year)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
+                    $sum_month = Thsx::whereYear('date', $year)->whereMonth('date', $month)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
+                    $thsx_month = Thsx::where('muctieunam_id',$muctieunam->id)->whereYear('date', $year)->whereMonth('date', $month)->where('status',1)->get();
+
+                    return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsx_month','sum_year','sum_month','thsxkd_day','sum_month_kd','sum_year_kd','thsxkn_day','sum_month_kn','sum_year_kn','muctieunam'));
+                break;
         }
-
-        $thsxkn_day = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime(str_replace('/','-',$request->date_day))))->first();
-        if (!empty($thsxkn_day)) {
-            $month_kn = date("m", strtotime($thsxkn_day->date));
-            $year_kn = date("Y", strtotime($thsxkn_day->date));
-            $muctieunam_kn = $thsxkn_day->Muctieunam->id;
-            $sum_month_kn = Thsx::whereYear('date', $year_kn)
-            ->whereMonth('date', $month_kn)->where('muctieunam_id',$muctieunam_kn)
-            ->sum('quantity');
-            $sum_year_kn = Thsx::whereYear('date', $year_kn)->where('muctieunam_id',$muctieunam_kn)
-            ->sum('quantity');
-        }
-
-        return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsxkd_day','sum_month_kd','sum_year_kd','thsxkn_day','sum_month_kn','sum_year_kn'));
+        
     }
     public function postSanxuatThang(Request $request)
     {
@@ -302,7 +359,7 @@ class SanxuatController extends Controller
         //dd($date);
         $month = date("m", strtotime($date));
         $year = date("Y", strtotime($date));
-        $muctieunam = Factory::find($request->factory_id)->Muctieunam->sortByDesc('date')->first();
+        $muctieunam = Factory::find($request->factory_id)->Muctieunam->sortByDesc('year')->first();
         $sum_year = Thsx::whereYear('date', $year)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
         $sum_month = Thsx::whereYear('date', $year)->whereMonth('date', $month)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
         $thsx_month = Thsx::where('muctieunam_id',$muctieunam->id)->whereYear('date', $year)->whereMonth('date', $month)->where('status',1)->get();
@@ -394,8 +451,5 @@ class SanxuatController extends Controller
         $sanxuat->save();
         return redirect()->route('sanxuat')->with('thongbao','Sửa thông tin thành công !');
     }
-    public function gettest()
-    {
-        return view('shared.pages.noidung.sanxuat.test_date');
-    }
+ 
 }
