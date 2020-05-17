@@ -32,15 +32,15 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3 col-12 col-sm-6">
-                                        <div class="small-box bg-warning">
+                                        <div class="small-box bg-primary">
                                             <div class="inner">
-                                              <h3>44</h3>
-                                              <p>User Registrations</p>
+                                              <h3>{{ !empty($all_user)? count($all_user):0 }}</h3>
+                                              <p>Tài khoản đã đăng ký</p>
                                             </div>
                                             <div class="icon">
                                               <i class="ion ion-person-add"></i>
                                             </div>
-                                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                            <a href="{{ route('admin.user.list') }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Quản lý bài viết</h3>
+                                <h3 class="card-title">Quản lý nội dung</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -61,14 +61,14 @@
                                       
                                       <div class="small-box bg-info">
                                         <div class="inner">
-                                          <h3>150</h3>
+                                          <h3>{{ !empty($all_gioithieu)?count($all_gioithieu):'' }}</h3>
                           
-                                          <p>New Orders</p>
+                                          <p> Trang tin giới thiệu</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.gioithieu',$gioithieu->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                                    
@@ -76,14 +76,14 @@
                                      
                                       <div class="small-box bg-success">
                                         <div class="inner">
-                                          <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                          <h3>{{ !empty($all_tintuc)?count($all_tintuc):'' }}</h3>
                           
-                                          <p>Bounce Rate</p>
+                                          <p>Trang tin tức</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-stats-bars"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="#" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                                     

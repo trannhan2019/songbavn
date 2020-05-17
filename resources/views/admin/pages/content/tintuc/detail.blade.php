@@ -14,9 +14,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                            <li class="breadcrumb-item"><a href="#">{{ $content->menu->name }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$content->menu->Parent->id) }}">{{ $content->menu->Parent->name }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$content->menu->id) }}">{{ $content->menu->name }}</a></li>
                             <li class="breadcrumb-item active">Chi tiết</li>
                         </ol>
                     </div>

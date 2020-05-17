@@ -6,6 +6,7 @@
 @section('content')
     @include('shared.layouts.slide')
     <div class="container content">
+		
 		<div class="row mt-3">
 			<div class="col-md-9 col-lg-9">
 				<div class="row">

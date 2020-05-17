@@ -328,6 +328,56 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('dangnhap')->with('thongbao','Đăng ký thành công! Tài khoản trong trạng thái chờ duyệt, xin cảm ơn.');
     }
+    public function getThongtin()
+    {
+        $user = Auth::user();
+        return view('shared.pages.thongtin',compact('user'));
+    }
+    public function postThongtin(Request $request)
+    {
+        $this->validate($request,
+        [
+            'fullname'=> 'required|min:3|max:255',
+            'phone'=> 'required',
+            'address'=> 'required'
+        ],
+        [
+            'required'=>'Bạn chưa nhập :attribute',
+            'min'=>':attribute phải có ít nhất :min ký tự',
+            'max'=>':attribute tối đa :max ký tự'
+        ],
+        [
+            'fullname'=>'Họ và tên',
+            'phone'=>'Số điện thoại',
+            'address'=>'Địa chỉ'
+        ]);
+        $user = Auth::user();
+        $user->fullname = $request->fullname;
+        if ($request->changePassword == "on") {
+            $this->validate($request,
+            [
+                'password'=>'required|min:6|max:255',
+                'password_confirmation'=>'required|same:password|min:6|max:255'
+            ],
+            [
+                'required'=>'Bạn chưa nhập :attribute',
+                'min'=>':attribute phải có ít nhất :min ký tự',
+                'max'=>':attribute tối đa :max ký tự',
+                'same'=>':attribute chưa khớp'
+            ],
+            [
+                'password'=>'Mật khẩu',
+                'password_confirmation'=>'Mật khẩu nhập lại'
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+        
+        Auth::logout();
+        return redirect()->route('dangnhap')->with('thongbao','Thay đổi thông tin thành công, xin đăng nhập lại!');
+    }
     public function getDangxuat()
     { 
         Auth::logout();

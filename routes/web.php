@@ -25,11 +25,14 @@ Auth::routes([
   ]);
 
 Route::get('/', 'PagesController@getTrangchu')->name('trangchu');
+Route::get('trangchu', 'PagesController@getTrangchu')->name('trangchu');
 
 Route::get('dangnhap', 'UserController@getDangnhap')->name('dangnhap');
 Route::post('dangnhap', 'UserController@postDangnhap')->name('dangnhap');
 Route::get('dangky', 'UserController@getDangky')->name('dangky');
 Route::post('dangky', 'UserController@postDangky')->name('dangky');
+Route::get('thongtin', 'UserController@getThongtin')->name('thongtin');
+Route::post('thongtin', 'UserController@postThongtin')->name('thongtin');
 Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 //Nhóm nội dung
@@ -59,8 +62,7 @@ Route::get('lien-he/{menu_id}.html', 'PagesController@getLienhe')->name('lienhe'
 Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
 //Tình hình sản xuất
 Route::get('tinh-hinh-san-xuat.html', 'SanxuatController@getSanxuat')->name('sanxuat');
-Route::post('tinh-hinh-san-xuat.html','SanxuatController@postSanxuatNgay')->name('sanxuat');
-Route::post('tinh-hinh-san-xuat-thang.html','SanxuatController@postSanxuatThang')->name('sanxuatthang');
+Route::post('tinh-hinh-san-xuat.html','SanxuatController@postSanxuat')->name('sanxuat');
 Route::get('them-tinh-hinh-san-xuat.html', 'SanxuatController@getAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
 Route::post('them-tinh-hinh-san-xuat.html', 'SanxuatController@postAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
 Route::get('sua-tinh-hinh-san-xuat/{id}.html', 'SanxuatController@getEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
@@ -108,7 +110,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     //Content
     Route::group(['prefix' => 'content'], function () {
         //giới thiệu
-        Route::get('{menu_id}/gioi-thieu.html','ContentController@getAdminGioithieu');
+        Route::get('{menu_id}/gioi-thieu.html','ContentController@getAdminGioithieu')->name('admin.content.gioithieu');
         Route::get('{menu_id}/add-gioi-thieu.html','ContentController@getAdminAddGioithieu');
         Route::post('{menu_id}/add-gioi-thieu.html','ContentController@postAdminAddGioithieu');
         Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');
@@ -136,7 +138,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::post('{menu_id}/{content_id}/edit-cac-du-an.html', 'ContentController@postAdminEditSubgioithieu');
         
         //Tin tức
-        Route:: get('{menu_id}/tin-tuc.html','ContentController@getAdminTintuc');
+        Route:: get('{menu_id}/tin-tuc.html','ContentController@getAdminTintuc')->name('admin.content.tintuc');
         Route:: get('{menu_id}/add-tin-tuc.html','ContentController@getAdminAddTintuc');
         Route:: post('{menu_id}/add-tin-tuc.html','ContentController@postAdminAddTintuc');
         Route:: get('{tintuc_id}/detail-tin-tuc.html','ContentController@getAdminDetailTintuc');
@@ -172,7 +174,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::post('{id}/danh-muc-y-kien-restore.html','DanhmucykienController@postRestore');
 
         //Tuyển dụng
-        Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung');
+        Route:: get('{menu_id}/tuyen-dung.html','ContentController@getAdminTuyendung')->name('admin.content.tuyendung');
         Route:: get('{menu_id}/add-tuyen-dung.html','ContentController@getAdminAddTuyendung');
         Route:: post('{menu_id}/add-tuyen-dung.html','ContentController@postAdminAddTuyendung');
         Route:: get('{content_id}/detail-tuyen-dung.html','ContentController@getAdminDetailTuyendung');

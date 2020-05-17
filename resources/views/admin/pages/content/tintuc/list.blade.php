@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Tin tức: <small>{{ $menu_tintuc->name }}</small></h1>
+                        <h1 class="m-0 text-dark">Tin tức: <small>{{ empty($menu_tintuc->Parent)? 'Thông tin hoạt động': $menu_tintuc->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                            <li class="breadcrumb-item active">{{ $menu_tintuc->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                            <li class="breadcrumb-item"><a href="{{ empty($menu_tintuc->Parent)? route('admin.content.tintuc',$menu_tintuc->id): route('admin.content.tintuc',$menu_tintuc->Parent->id) }}">{{ empty($menu_tintuc->Parent)? $menu_tintuc->name: $menu_tintuc->Parent->name}}</a></li>
+                            <li class="breadcrumb-item active">{{ empty($menu_tintuc->Parent)? 'Thông tin hoạt động': $menu_tintuc->name }}</li>
                         </ol>
                     </div>
                 </div>

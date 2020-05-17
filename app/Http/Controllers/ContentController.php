@@ -17,7 +17,14 @@ class ContentController extends Controller
     public function getAdminGioithieu($menu_id)
     {
         $menu_gioithieu = Menu::find($menu_id);
-        $content_gioithieu = $menu_gioithieu->Contents()->where('status',1)->first();
+        if (empty($menu_gioithieu->Parent)) {
+            $gioithieuchung = Menu::where('slug','gioi-thieu-chung')->first();
+            
+            $content_gioithieu = $gioithieuchung->Contents->where('status',1)->first();
+        } else {
+            $content_gioithieu = $menu_gioithieu->Contents->where('status',1)->first();
+        }
+        // $content_gioithieu = $menu_gioithieu->Contents()->where('status',1)->first();
         return view('admin.pages.content.gioithieu.detail',compact('menu_gioithieu','content_gioithieu'));
     }
 
@@ -185,7 +192,14 @@ class ContentController extends Controller
     public function getAdminTintuc($menu_id)
     {
         $menu_tintuc = Menu::find($menu_id);
-        $content_tintuc = $menu_tintuc->Contents->sortByDesc('created_at');
+        if (empty($menu_tintuc->Parent)) {
+            $menu_content = Menu::where('slug','thong-tin-hoat-dong')->first();
+            $content_tintuc = $menu_content->Contents->sortByDesc('created_at');
+            
+        } else {
+            $content_tintuc = $menu_tintuc->Contents->sortByDesc('created_at');
+        }
+        
         return view('admin.pages.content.tintuc.list',compact('menu_tintuc','content_tintuc'));
     }
     public function getAdminAddTintuc($menu_id)
@@ -476,7 +490,13 @@ class ContentController extends Controller
     public function getAdminTuyendung($menu_id)
     {
         $menu = Menu::find($menu_id);
-        $content = $menu->Contents->sortByDesc('created_at');
+        if (empty($menu->Parent)) {
+            $menu_content = Menu::where('slug','tin-tuyen-dung')->first();
+            $content = $menu_content->Contents->sortByDesc('created_at');
+            
+        } else {
+            $content = $menu->Contents->sortByDesc('created_at');
+        }
         return view('admin.pages.content.tuyendung.list',compact('menu','content'));
     }
     public function getAdminAddTuyendung($menu_id)

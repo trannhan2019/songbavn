@@ -13,10 +13,10 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                        <li class="breadcrumb-item"><a href="#">Nội dung</a></li>
-                        <li class="breadcrumb-item"><a href="#">Giới thiệu</a></li>
-                        <li class="breadcrumb-item active">{{ $menu_gioithieu->name }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                        <li class="breadcrumb-item"><a href="{{empty($menu_gioithieu->Parent)? route('admin.content.gioithieu',$menu_gioithieu->id):route('admin.content.gioithieu',$menu_gioithieu->Parent->id) }}">{{empty($menu_gioithieu->Parent)? $menu_gioithieu->name:$menu_gioithieu->Parent->name }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.content.gioithieu',$content->Menu->id) }}">{{ $content->Menu->name }}</a></li>
+                        <li class="breadcrumb-item active">Sửa thông tin</li>
                     </ol>
                 </div>
             </div>

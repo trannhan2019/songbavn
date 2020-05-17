@@ -18,7 +18,7 @@
 						@if (Auth::user()->role ==1)
 						<small><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a></small>
 						@endif
-						<small><a class="dropdown-item" href="#">Thay đổi thông tin</a></small>
+						<small><a class="dropdown-item" href="{{ route('thongtin') }}">Thay đổi thông tin</a></small>
 						<small><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></small>
 					</div>
 				</small>

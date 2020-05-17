@@ -15,7 +15,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                        <li class="breadcrumb-item"><a href="#">{{ $menu->name }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.content.gioithieu',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
+                        <li class="breadcrumb-item"><a href="admin/content/{{ $menu->id }}/{{ $menu->slug }}.html">{{ $menu->name }}</a></li>
                         <li class="breadcrumb-item active">Sửa thông tin</li>
                     </ol>
                 </div>

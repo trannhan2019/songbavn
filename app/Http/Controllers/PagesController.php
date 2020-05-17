@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\User;
 use App\Slide;
 use App\Menu;
 use App\Ykiencodong;
@@ -17,7 +18,15 @@ class PagesController extends Controller
 {
     public function getDashboard()
     {
-        return view('admin.pages.dashboard');
+        $all_user = User::all();
+        //giới thiệu
+        $gioithieu = Menu::where('slug','gioi-thieu')->first();
+        $all_gioithieu = Menu::find($gioithieu->id)->ParentContents;
+        //tin tức
+        $tintuc = Menu::where('slug','tin-tuc')->first();
+        $all_tintuc = Menu::find($tintuc->id)->ParentContents;
+        //dd($all_tintuc);
+        return view('admin.pages.dashboard',compact('all_user','gioithieu','all_gioithieu','tintuc','all_tintuc'));
     }
     public function getTrangchu()
     {

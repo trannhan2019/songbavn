@@ -33,10 +33,10 @@ Hoạt động sản xuất
 
                         <div class="form-group">
                             <label>Ngày <span class="text-danger">(*)</span></label>
-                            <div class="input-group date" id="datetimepickerEditsx" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditsx" name="date" value="{{ date("d/m/Y", strtotime($sanxuat->date))}}"/>
-                                <div class="input-group-append" data-target="#datetimepickerEditsx" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                            <div class="input-group date" id="datetimepickerEditsx">
+                                <input type="text" class="form-control" name="date" value="{{ date("d/m/Y", strtotime($sanxuat->date))}}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                 </div>
                             </div>
                             @if ($errors->has('date'))
@@ -112,9 +112,11 @@ Hoạt động sản xuất
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerEditsx').datetimepicker({
-                locale: 'vi',
-                format: 'DD/MM/YYYY'
+			$('#datetimepickerEditsx').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>
