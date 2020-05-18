@@ -16,23 +16,23 @@ class ContentController extends Controller
     //Giới thiệu
     public function getAdminGioithieu($menu_id)
     {
-        $menu_gioithieu = Menu::find($menu_id);
-        if (empty($menu_gioithieu->Parent)) {
-            $gioithieuchung = Menu::where('slug','gioi-thieu-chung')->first();
+        $menu = Menu::find($menu_id);
+        // if (empty($menu_gioithieu->Parent)) {
+        //     $gioithieuchung = Menu::where('slug','gioi-thieu-chung')->first();
             
-            $content_gioithieu = $gioithieuchung->Contents->where('status',1)->first();
-        } else {
-            $content_gioithieu = $menu_gioithieu->Contents->where('status',1)->first();
-        }
-        // $content_gioithieu = $menu_gioithieu->Contents()->where('status',1)->first();
-        return view('admin.pages.content.gioithieu.detail',compact('menu_gioithieu','content_gioithieu'));
+        //     $content_gioithieu = $gioithieuchung->Contents->where('status',1)->first();
+        // } else {
+        //     $content_gioithieu = $menu_gioithieu->Contents->where('status',1)->first();
+        // }
+        $content = $menu->Contents()->where('status',1)->first();
+        return view('admin.pages.content.gioithieu.detail',compact('menu','content'));
     }
 
     public function getAdminEditGioithieu($menu_id,$content_id)
     {
-        $menu_gioithieu = Menu::find($menu_id);
+        $menu = Menu::find($menu_id);
         $content = Content::find($content_id);
-        return view('admin.pages.content.gioithieu.edit',compact('menu_gioithieu','content'));
+        return view('admin.pages.content.gioithieu.edit',compact('menu','content'));
     }
     public function postAdminEditGioithieu(Request $request, $menu_id,$content_id)
     {

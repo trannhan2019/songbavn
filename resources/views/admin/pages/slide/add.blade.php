@@ -14,8 +14,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Slide</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.slide.list') }}">Slide</a></li>
                             <li class="breadcrumb-item active">thêm mới</li>
                         </ol>
                     </div>

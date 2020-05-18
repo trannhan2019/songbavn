@@ -9,13 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Sửa nội dung {{ $menu_gioithieu->name }}</h1>
+                    <h1 class="m-0 text-dark">Sửa nội dung {{ $menu->name }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                        <li class="breadcrumb-item"><a href="{{empty($menu_gioithieu->Parent)? route('admin.content.gioithieu',$menu_gioithieu->id):route('admin.content.gioithieu',$menu_gioithieu->Parent->id) }}">{{empty($menu_gioithieu->Parent)? $menu_gioithieu->name:$menu_gioithieu->Parent->name }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.content.gioithieu',$content->Menu->id) }}">{{ $content->Menu->name }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.content.gioithieu',$menu->id) }}">{{ $menu->name }}</a></li>
                         <li class="breadcrumb-item active">Sửa thông tin</li>
                     </ol>
                 </div>
@@ -26,12 +25,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="admin/content/{{ $menu_gioithieu->id }}/{{ $content->id }}/edit-gioi-thieu.html" method="post">
+                    <form action="admin/content/{{ $menu->id }}/{{ $content->id }}/edit-gioi-thieu.html" method="post">
                         @csrf
 
                         <div class="form-group">
                             <label>Thuộc danh mục</label>
-                            <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu_gioithieu->name }}">
+                            <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu->name }}">
                         </div>
 
                         <div class="form-group">

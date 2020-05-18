@@ -116,7 +116,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');
         Route::post('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@postAdminEditGioithieu');
         //Giới thiệu/Cơ cấu tổ chức
-        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminSubgioithieu');
+        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminSubgioithieu')->name('admin.content.cocau');
         Route::get('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@getAdminAddSubgioithieu');
         Route::post('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@postAdminAddSubgioithieu');
         Route::get('{menu_id}/{content_id}/detail-co-cau-to-chuc.html', 'ContentController@getAdminDetailSubgioithieu');
