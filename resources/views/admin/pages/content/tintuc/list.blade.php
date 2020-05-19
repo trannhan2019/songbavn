@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{ $menu_tintuc->name }}
+    {{ $menu->name }}
 @endsection
 
 @section('content')
@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Tin tức: <small>{{ empty($menu_tintuc->Parent)? 'Thông tin hoạt động': $menu_tintuc->name }}</small></h1>
+                        <h1 class="m-0 text-dark">{{ $menu->Parent->name }}: <small>{{ $menu->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="{{ empty($menu_tintuc->Parent)? route('admin.content.tintuc',$menu_tintuc->id): route('admin.content.tintuc',$menu_tintuc->Parent->id) }}">{{ empty($menu_tintuc->Parent)? $menu_tintuc->name: $menu_tintuc->Parent->name}}</a></li>
-                            <li class="breadcrumb-item active">{{ empty($menu_tintuc->Parent)? 'Thông tin hoạt động': $menu_tintuc->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$menu->id)}}">{{ $menu->name}}</a></li>
+                            <li class="breadcrumb-item active">Danh sách</li>
                         </ol>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             </div>
         </div>
         {{--  Them moi  --}}
-        <a href="admin/content/{{ $menu_tintuc->id }}/add-tin-tuc.html" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
+        <a href="admin/content/{{ $menu->id }}/add-tin-tuc.html" class="btn btn-primary ml-3 mb-3"><i class="fas fa-plus"></i> Thêm mới</a>
         <div class="content">
             <div class="container-fluid">
                 {{--  Phan thong bao  --}}
@@ -76,10 +76,10 @@
                             @php
                                 $i=1;
                             @endphp
-                            @foreach ($content_tintuc as $tintuc)
+                            @foreach ($content as $tintuc)
                             <tr>
                                 <td class="text-center">{{ $i++ }}</td>
-                                <td>{{ $menu_tintuc->name }}</td>
+                                <td>{{ $menu->name }}</td>
                                 <td>
                                     <a href="admin/content/{{ $tintuc->id }}/detail-tin-tuc.html">{{ $tintuc->title }}</a>
                                 </td>

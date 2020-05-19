@@ -10,13 +10,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Nội dung: <small>{{ $menu->name }}</small></h1>
+                        <h1 class="m-0 text-dark">{{ $menu->Parent->name }}: <small>{{ $menu->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="{{ empty($menu->Parent)? route('admin.content.tuyendung',$menu->id): route('admin.content.tuyendung',$menu->Parent->id)}}">{{ empty($menu->Parent)?$menu->name:$menu->Parent->name }}</a></li>
-                            <li class="breadcrumb-item active">{{empty($menu->Parent)? 'Tin tuyển dung':$menu->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tuyendung',$menu->id)}}">{{ $menu->name}}</a></li>
+                            <li class="breadcrumb-item active">Danh sách</li>
                         </ol>
                     </div>
                 </div>

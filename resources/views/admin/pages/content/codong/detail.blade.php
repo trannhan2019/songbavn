@@ -14,10 +14,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Nội dung</a></li>
-                            <li class="breadcrumb-item"><a href="#">{{ $content->Menu->Parent->name }}</a></li>
-                            <li class="breadcrumb-item active">{{ $content->Menu->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.codong',$content->Menu->id)}}">{{ $content->Menu->name}}</a></li>
+                            <li class="breadcrumb-item active">Chi tiết</li>
                         </ol>
                     </div>
                 </div>

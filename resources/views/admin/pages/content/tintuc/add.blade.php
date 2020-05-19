@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{ $menu_tintuc->name }}
+    {{ $menu->name }}
 @endsection
 
 @section('content')
@@ -10,13 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Tin tức: <small>{{ $menu_tintuc->name }}</small></h1>
+                        <h1 class="m-0 text-dark">Tin tức: <small>{{ $menu->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$menu_tintuc->Parent->id) }}">{{ $menu_tintuc->Parent->name }}</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$menu_tintuc->id) }}">{{ $menu_tintuc->name}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.tintuc',$menu->id)}}">{{ $menu->name}}</a></li>
                             <li class="breadcrumb-item active">Thêm tin</li>
                         </ol>
                     </div>
@@ -31,12 +30,12 @@
                             <div class="card-header">
                               <h3 class="card-title">Thêm tin tức mới</h3>
                             </div>
-                            <form action="admin/content/{{ $menu_tintuc->id }}/add-tin-tuc.html" method="post" enctype="multipart/form-data">
+                            <form action="admin/content/{{ $menu->id }}/add-tin-tuc.html" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Thuộc danh mục</label>
-                                        <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu_tintuc->name }}">
+                                        <input type="text" name="menu_id" class="form-control" readonly value="{{ $menu->name }}">
                                     </div>
 
                                     <div class="form-group">

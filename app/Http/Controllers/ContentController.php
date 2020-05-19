@@ -191,21 +191,15 @@ class ContentController extends Controller
     //Tin tức
     public function getAdminTintuc($menu_id)
     {
-        $menu_tintuc = Menu::find($menu_id);
-        if (empty($menu_tintuc->Parent)) {
-            $menu_content = Menu::where('slug','thong-tin-hoat-dong')->first();
-            $content_tintuc = $menu_content->Contents->sortByDesc('created_at');
-            
-        } else {
-            $content_tintuc = $menu_tintuc->Contents->sortByDesc('created_at');
-        }
+        $menu = Menu::find($menu_id);
+        $content = $menu->Contents->sortByDesc('created_at');
         
-        return view('admin.pages.content.tintuc.list',compact('menu_tintuc','content_tintuc'));
+        return view('admin.pages.content.tintuc.list',compact('menu','content'));
     }
     public function getAdminAddTintuc($menu_id)
     {
-        $menu_tintuc = Menu::find($menu_id);
-        return view('admin.pages.content.tintuc.add',compact('menu_tintuc'));
+        $menu = Menu::find($menu_id);
+        return view('admin.pages.content.tintuc.add',compact('menu'));
     }
     public function postAdminAddTintuc(Request $request, $menu_id)
     {
@@ -490,13 +484,7 @@ class ContentController extends Controller
     public function getAdminTuyendung($menu_id)
     {
         $menu = Menu::find($menu_id);
-        if (empty($menu->Parent)) {
-            $menu_content = Menu::where('slug','tin-tuyen-dung')->first();
-            $content = $menu_content->Contents->sortByDesc('created_at');
-            
-        } else {
-            $content = $menu->Contents->sortByDesc('created_at');
-        }
+        $content = $menu->Contents->sortByDesc('created_at');
         return view('admin.pages.content.tuyendung.list',compact('menu','content'));
     }
     public function getAdminAddTuyendung($menu_id)
