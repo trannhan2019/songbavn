@@ -154,7 +154,7 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
         Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
         //Ý kiến nhà đầu tư
-        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getAdminYkien');
+        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getAdminYkien')->name('admin.content.ykien');
         Route:: get('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@getAdminAddYkien');
         Route:: post('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@postAdminAddYkien');
         Route:: get('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@getAdminEditYkien');

@@ -16,6 +16,10 @@ class Ykiencodong extends Model
     {
         return $this->belongsTo(Menu::class,'menu_id','id');
     }
+    public function Menu_trash()
+    {
+        return $this->belongsTo(Menu::class,'menu_id','id')->withTrashed();
+    }
 
     public function Danhmuc()
     {

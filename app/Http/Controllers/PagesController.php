@@ -25,8 +25,19 @@ class PagesController extends Controller
         //tin tức
         $tintuc = Menu::where('slug','tin-tuc')->first();
         $all_tintuc = Menu::find($tintuc->id)->ParentContents;
-        //dd($all_tintuc);
-        return view('admin.pages.dashboard',compact('all_user','gioithieu','all_gioithieu','tintuc','all_tintuc'));
+        //quan hệ cổ đông
+        $codong = Menu::where('slug','quan-he-co-dong')->first();
+        $all_codong = Menu::find($codong->id)->ParentContents;
+        $all_ykien = Ykiencodong::all();
+        //tuyển dụng
+        $tuyendung = Menu::where('slug','tuyen-dung')->first();
+        $all_tuyendung = Menu::find($tuyendung->id)->ParentContents;
+        //tin xem nhiều
+
+        //tin bình luận nhiều
+
+
+        return view('admin.pages.dashboard',compact('all_user','gioithieu','all_gioithieu','tintuc','all_tintuc','codong','all_codong','all_ykien','tuyendung','all_tuyendung'));
     }
     public function getTrangchu()
     {

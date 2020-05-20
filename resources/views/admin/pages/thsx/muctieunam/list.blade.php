@@ -15,8 +15,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tình hình SX</a></li>
-                            <li class="breadcrumb-item active">Mục tiêu năm</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.muctieu.list') }}">Mục tiêu sản xuất</a></li>
+                            <li class="breadcrumb-item active">Danh sách</li>
                         </ol>
                     </div>
                 </div>

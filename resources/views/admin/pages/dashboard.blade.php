@@ -61,14 +61,14 @@
                                       
                                       <div class="small-box bg-info">
                                         <div class="inner">
-                                          <h3>{{ !empty($all_gioithieu)?count($all_gioithieu):'' }}</h3>
+                                          <h3>{{ !empty($all_gioithieu)?count($all_gioithieu):0 }}</h3>
                           
                                           <p> Trang tin giới thiệu</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="{{ route('admin.content.gioithieu',$gioithieu->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.gioithieu',$gioithieu->ChildMenus->first()->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                                    
@@ -76,14 +76,14 @@
                                      
                                       <div class="small-box bg-success">
                                         <div class="inner">
-                                          <h3>{{ !empty($all_tintuc)?count($all_tintuc):'' }}</h3>
+                                          <h3>{{ !empty($all_tintuc)?count($all_tintuc):0 }}</h3>
                           
                                           <p>Trang tin tức</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-stats-bars"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.tintuc',$tintuc->ChildMenus->first()->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                                     
@@ -91,14 +91,14 @@
                                      
                                       <div class="small-box bg-warning">
                                         <div class="inner">
-                                          <h3>44</h3>
+                                          <h3>{{ !empty($all_codong)&& !empty($all_ykien) ? count($all_codong)+count($all_ykien):0 }}</h3>
                           
-                                          <p>User Registrations</p>
+                                          <p>Trang tin Quan hệ cổ đông</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-person-add"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.codong',$codong->ChildMenus->first()->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                 
@@ -106,14 +106,14 @@
                  
                                       <div class="small-box bg-danger">
                                         <div class="inner">
-                                          <h3>65</h3>
+                                          <h3>{{ !empty($all_tuyendung)?count($all_tuyendung):0 }}</h3>
                           
-                                          <p>Unique Visitors</p>
+                                          <p>Trang tin tuyển dụng</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-pie-graph"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.tuyendung',$tuyendung->ChildMenus->first()->id) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                 
@@ -263,13 +263,13 @@
                                 <div class="col-md-3 col-12 col-sm-6">
                                     <div class="small-box bg-warning">
                                         <div class="inner">
-                                          <h3>44</h3>
-                                          <p>User Registrations</p>
+                                          <h3>{{ !empty($all_ykien)? count($all_ykien):0 }}</h3>
+                                          <p>Ý kiến nhà đầu tư</p>
                                         </div>
                                         <div class="icon">
                                           <i class="ion ion-person-add"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.ykien',$codong->ChildMenus->sortByDesc('position')->first()->id) }}" class="small-box-footer">Xem chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>

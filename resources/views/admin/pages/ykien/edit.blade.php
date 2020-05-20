@@ -8,12 +8,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Sửa: <small>Ý kiến nhà đầu tư</small></h1>
+                        <h1 class="m-0 text-dark">Sửa: <small>{{ $ykien->Menu->name }}</small></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Ý kiến</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.content.ykien',$ykien->Menu->id) }}">{{ $ykien->Menu->name }}</a></li>
                             <li class="breadcrumb-item active">Sửa</li>
                         </ol>
                     </div>

@@ -14,8 +14,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Bình luận</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.comment.list') }}">Bình luận</a></li>
                             <li class="breadcrumb-item active">Sửa bình luận</li>
                         </ol>
                     </div>

@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Quản trị</a></li>
-                            <li class="breadcrumb-item"><a href="#">Tình hình SX</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.sanxuat.list') }}">Tình hình sản xuất</a></li>
                             <li class="breadcrumb-item active">Danh sách</li>
                         </ol>
                     </div>
