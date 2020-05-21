@@ -33,14 +33,17 @@ class PagesController extends Controller
         $tuyendung = Menu::where('slug','tuyen-dung')->first();
         $all_tuyendung = Menu::find($tuyendung->id)->ParentContents;
         //tin xem nhiều
-
+        $tin_xemnhieu = Content::orderBy('views','desc')->take(5)->get();
         //tin bình luận nhiều
+        $tin_binhluan = Content::withCount('Comments')->orderBy('Comments_count', 'desc')->take(5)->get();
+        //dd($tin_binhluan);
 
-
-        return view('admin.pages.dashboard',compact('all_user','gioithieu','all_gioithieu','tintuc','all_tintuc','codong','all_codong','all_ykien','tuyendung','all_tuyendung'));
+        return view('admin.pages.dashboard',compact('all_user','gioithieu','all_gioithieu','tintuc','all_tintuc','codong','all_codong','all_ykien','tuyendung','all_tuyendung','tin_xemnhieu','tin_binhluan'));
     }
     public function getTrangchu()
     {
+        // $admin = User::where('role', 1)->get();
+        // dd($admin);
         $slide = Slide::where('Active',1)->orderBy('location')->get();
         $tin_noibat = Content::where('highlights',1)->where('status',1)->orderBy('created_at','desc')->take(10)->get();
         //dd($tin_noibat_1->Menu->Parent->id);

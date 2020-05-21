@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="py-5" style="background-color: #e9ecef">
+<div class="py-5" style="background-color: #e9ecef; height: 500px;">
     <div class="mx-auto" style="max-width: 400px">
       @if (session('loi'))
       @include('shared.layouts.loi')

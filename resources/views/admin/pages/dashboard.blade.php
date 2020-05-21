@@ -27,7 +27,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Quản lý Users</h3>
+                                <h3 class="card-title font-weight-bold">Quản lý Users</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -53,7 +53,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Quản lý nội dung</h3>
+                                <h3 class="card-title font-weight-bold">Quản lý nội dung</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -122,60 +122,31 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                           <div class="card-header">
-                                            <h3 class="card-title">Top viết xem nhiều nhất</h3>
+                                            <h3 class="card-title font-weight-bold">Top viết xem nhiều nhất</h3>
                                           </div>
                                           
                                           <div class="card-body p-0">
-                                            <table class="table">
+                                            <table class="table table-striped">
                                               <thead>
                                                 <tr>
-                                                  <th style="width: 10px">#</th>
-                                                  <th>Task</th>
-                                                  <th>Progress</th>
-                                                  <th style="width: 40px">Label</th>
+                                                  <th class="align-middle" style="width: 10px">#</th>
+                                                  <th class="align-middle">Tiêu đề</th>
+                                                  <th class="align-middle">Tác giả</th>
+                                                  <th class="align-middle" style="width: 40px">Lượt xem</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
+                                                @php
+                                                  $i=1;
+                                                @endphp
+                                                @foreach ($tin_xemnhieu as $v)
                                                 <tr>
-                                                  <td>1.</td>
-                                                  <td>Update software</td>
-                                                  <td>
-                                                    <div class="progress progress-xs">
-                                                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                                    </div>
-                                                  </td>
-                                                  <td><span class="badge bg-danger">55%</span></td>
+                                                  <td class="align-middle">{{ $i++ }}</td>
+                                                  <td class="align-middle">{{ $v->title }}</td>
+                                                  <td class="align-middle">{{ $v->author }}</td>
+                                                  <td class="align-middle"><span class="badge bg-danger">{{ $v->views }}</span></td>
                                                 </tr>
-                                                <tr>
-                                                  <td>2.</td>
-                                                  <td>Clean database</td>
-                                                  <td>
-                                                    <div class="progress progress-xs">
-                                                      <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                                    </div>
-                                                  </td>
-                                                  <td><span class="badge bg-warning">70%</span></td>
-                                                </tr>
-                                                <tr>
-                                                  <td>3.</td>
-                                                  <td>Cron job running</td>
-                                                  <td>
-                                                    <div class="progress progress-xs progress-striped active">
-                                                      <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                                    </div>
-                                                  </td>
-                                                  <td><span class="badge bg-primary">30%</span></td>
-                                                </tr>
-                                                <tr>
-                                                  <td>4.</td>
-                                                  <td>Fix and squish bugs</td>
-                                                  <td>
-                                                    <div class="progress progress-xs progress-striped active">
-                                                      <div class="progress-bar bg-success" style="width: 90%"></div>
-                                                    </div>
-                                                  </td>
-                                                  <td><span class="badge bg-success">90%</span></td>
-                                                </tr>
+                                                @endforeach
                                               </tbody>
                                             </table>
                                           </div>
@@ -185,60 +156,33 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
-                                              <h3 class="card-title">Top bài viết bình luận nhiều</h3>
+                                              <h3 class="card-title font-weight-bold">Top bài viết bình luận nhiều</h3>
                                             </div>
                                             
                                             <div class="card-body p-0">
                                               <table class="table table-striped">
                                                 <thead>
                                                   <tr>
-                                                    <th style="width: 10px">#</th>
-                                                    <th>Task</th>
-                                                    <th>Progress</th>
-                                                    <th style="width: 40px">Label</th>
+                                                    <th class="align-middle" style="width: 10px">#</th>
+                                                    <th class="align-middle">Tiêu đề</th>
+                                                    <th class="align-middle">Tác giả</th>
+                                                    <th class="align-middle" style="width: 40px">Lượt bình luận</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
-                                                  <tr>
-                                                    <td>1.</td>
-                                                    <td>Update software</td>
-                                                    <td>
-                                                      <div class="progress progress-xs">
-                                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                                      </div>
-                                                    </td>
-                                                    <td><span class="badge bg-danger">55%</span></td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>2.</td>
-                                                    <td>Clean database</td>
-                                                    <td>
-                                                      <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                                      </div>
-                                                    </td>
-                                                    <td><span class="badge bg-warning">70%</span></td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>3.</td>
-                                                    <td>Cron job running</td>
-                                                    <td>
-                                                      <div class="progress progress-xs progress-striped active">
-                                                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                                      </div>
-                                                    </td>
-                                                    <td><span class="badge bg-primary">30%</span></td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>4.</td>
-                                                    <td>Fix and squish bugs</td>
-                                                    <td>
-                                                      <div class="progress progress-xs progress-striped active">
-                                                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                                                      </div>
-                                                    </td>
-                                                    <td><span class="badge bg-success">90%</span></td>
-                                                  </tr>
+                                                  @php
+                                                    $j=1;
+                                                  @endphp
+                                                @foreach ($tin_binhluan as $b)
+                                                @if (count($b->Comments)>0)
+                                                <tr>
+                                                  <td class="align-middle">{{ $j++ }}</td>
+                                                  <td class="align-middle">{{ $b->title }}</td>
+                                                  <td class="align-middle">{{ $b->author }}</td>
+                                                  <td class="align-middle"><span class="badge bg-danger">{{ count($b->Comments) }}</span></td>
+                                                </tr> 
+                                                @endif
+                                                @endforeach
                                                 </tbody>
                                               </table>
                                             </div>
@@ -256,7 +200,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Quản lý Ý kiến nhà đầu tư</h3>
+                            <h3 class="card-title font-weight-bold">Quản lý Ý kiến nhà đầu tư</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">

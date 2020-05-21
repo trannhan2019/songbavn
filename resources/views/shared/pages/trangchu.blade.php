@@ -45,14 +45,14 @@
 						@foreach ($tin_noibat->all() as $tnb)
 						<div class="card">
 							<div class="row no-gutters d-flex align-content-center" style="height: 100px;">
-								<div class="col-5 ">
+								<div class="col-5 align-middle>
 									<a href="{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">
 										<img src="shared_asset/upload/images/content/{{ $tnb['imageorfile'] }}" class="w-100 img-fluid" alt="">
 									</a>
 								</div>
 								<div class="col-7">
 									<div class="card-body p-1">
-										<h6 class="card-title mb-0 crop_text_3">
+										<h6 class="card-title mb-0 crop_text_3 align-middle">
 											<a href="{{ $tnb->Menu->Parent->slug }}/{{ $tnb->Menu->id }}/{{ $tnb->id }}/{{ $tnb->slug }}.html">{{ $tnb['title'] }}</a>
 										</h6>
 									</div>						

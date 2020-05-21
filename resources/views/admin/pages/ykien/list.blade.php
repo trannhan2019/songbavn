@@ -70,7 +70,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="text-center">STT</th>
-                                <th style="width: 300px !important;">Nội dung hỏi</th>
+                                <th style="width: 300px">Nội dung hỏi</th>
                                 <th style="width: 200px !important;">Thuộc danh mục</th>
                                 <th>Người gửi</th>
                                 <th>Email</th>

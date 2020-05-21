@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Datatables;
 // use
 use App\User;
 use Carbon\Carbon;
 use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Storage;
+//use Event;
+//use App\Events\NewUserEvent;
+use App\Notifications\NewUserNotification;
 
 class UserController extends Controller
 {
@@ -326,6 +330,9 @@ class UserController extends Controller
         $user->address = $request->address;
         
         $user->save();
+        //event(new NewUserEvent($user));
+        $admin = User::where('role', 1)->get();
+        Notification::send($admin, new NewUserNotification($user));
         return redirect()->route('dangnhap')->with('thongbao','Đăng ký thành công! Tài khoản trong trạng thái chờ duyệt, xin cảm ơn.');
     }
     public function getThongtin()
