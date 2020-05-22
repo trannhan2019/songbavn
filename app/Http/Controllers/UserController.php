@@ -252,6 +252,11 @@ class UserController extends Controller
         }
         return redirect()->route('admin.user.trash')->with('thongbao','Xóa vĩnh viễn người dùng thành công !');
     }
+    public function getThongbao($id)
+    {
+        auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+        return redirect()->route('admin.user.list');
+    }
     //Đăng nhập
     public function getDangnhap()
     {

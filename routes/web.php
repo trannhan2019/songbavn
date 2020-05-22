@@ -37,7 +37,7 @@ Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
 //Nhóm nội dung
 
-    //Giới thiệu
+//Giới thiệu
 Route::get('gioi-thieu/{menu_id}.html','PagesController@getGioithieu')->name('gioithieu');
 Route::get('gioi-thieu/{menu_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuCocau');
 Route::get('gioi-thieu/{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
@@ -57,7 +57,7 @@ Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongCont
 Route::get('tuyen-dung/{menu_id}.html','PagesController@getTuyendung')->name('tuyendung');
 Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');
 //Liên hệ
-Route::get('lien-he/{menu_id}.html', 'PagesController@getLienhe')->name('lienhe');
+Route::get('lien-he', 'PagesController@getLienhe')->name('lienhe');
 //Comment
 Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
 //Tình hình sản xuất
@@ -69,7 +69,7 @@ Route::get('sua-tinh-hinh-san-xuat/{id}.html', 'SanxuatController@getEditSanxuat
 Route::post('sua-tinh-hinh-san-xuat/{id}.html', 'SanxuatController@postEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
 
 
-// Nhom Admin
+// Nhom ADMIN
 Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
     Route::get('dashboard','PagesController@getDashboard')->name('admin.dashboard');
     //Menu
@@ -256,5 +256,10 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::post('restore/{id}','SanxuatController@postRestore')->name('admin.sanxuat.restore');
         Route::post('forcedelete/{id}','SanxuatController@postForcedelete')->name('admin.sanxuat.forcedelete');
     });
-
+    //Thông báo
+    Route::group(['prefix' => 'thongbao'], function (){
+        Route:: get('nguoidung/{id}','UserController@getThongbao')->name('admin.thongbao.nguoidung');
+        Route:: get('ykien/{id}','YkiencodongController@getThongbao')->name('admin.thongbao.ykien');
+        Route:: get('binhluan/{id}','CommentController@getThongbao')->name('admin.thongbao.binhluan');
+    });
 });

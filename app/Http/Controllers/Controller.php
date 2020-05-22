@@ -13,8 +13,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct() {
-        $danhmuc = Menu::whereNull('parent')->with('ChildMenus')->get();
-        // view()->share('menus', $menus);
-        View::share('danhmuc', $danhmuc);
+        // $danhmuc = Menu::whereNull('parent')->with('ChildMenus')->get();
+        
+        // View::share('danhmuc', $danhmuc);
     }
 }

@@ -36,7 +36,7 @@
                                     &ensp;
                                     <i class="far fa-eye"></i> {{ $ct->views }}
                                     &ensp;
-                                    <i class="far fa-comments"></i> {{ count($ct->Comments) }}
+                                    <i class="far fa-comments"></i> {{ count($ct->Comments->where('status',1)) }}
                                 </small>
                             </p>
                         </div>

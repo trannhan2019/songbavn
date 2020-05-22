@@ -1,10 +1,17 @@
 @extends('shared.layouts.master')
 @section('title')
-    {{ $menu->name }}
+    Liên hệ
 @endsection
 
 @section('content')
-@include('shared.layouts.breadcrumb')
+<div style="background-color: #e9ecef;">
+    <nav aria-label="breadcrumb" class="container">
+        <ol class="breadcrumb row">
+            <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Liên hệ</li>
+        </ol>
+    </nav>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-12">

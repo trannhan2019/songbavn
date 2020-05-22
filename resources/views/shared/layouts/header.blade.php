@@ -9,19 +9,17 @@
 			</div>
 			<div class="col text-right p-1">
 				@if (Auth::check())
-				<small>
-					<a href="#" class="dropdown-toggle text-white" data-toggle="dropdown">
-						<i class="fas fa-user"></i> &nbsp;
-						{{ Auth::user()->fullname }}
-					</a>
-					<div class="dropdown-menu">
-						@if (Auth::user()->role ==1)
-						<small><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a></small>
-						@endif
-						<small><a class="dropdown-item" href="{{ route('thongtin') }}">Thay đổi thông tin</a></small>
-						<small><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></small>
-					</div>
-				</small>
+				<a href="#" class="dropdown-toggle text-white" data-toggle="dropdown">
+					<small><i class="fas fa-user"></i></small> &nbsp;
+					<small>{{ Auth::user()->fullname }}</small>
+				</a>
+				<div class="dropdown-menu">
+					@if (Auth::user()->role ==1)
+					<small><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Quản trị hệ thống</a></small>
+					@endif
+					<small><a class="dropdown-item" href="{{ route('thongtin') }}">Thay đổi thông tin</a></small>
+					<small><a class="dropdown-item" href="{{ route('dangxuat') }}">Đăng xuất</a></small>
+				</div>
 				
 				@else
 				<small><i class="fas fa-user text-white"></i> &nbsp;
@@ -61,7 +59,10 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
 			<ul class="navbar-nav">
 				{{--  <!-- Dropdown -->  --}}
-				@foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
+				@php
+					$danhmucgoc = App\Menu::whereNull('parent')->with('ChildMenus')->get();
+				@endphp
+				@foreach ($danhmucgoc->where('status',1)->sortBy('position') as $dm)
 				
 					@if (count($dm->ChildMenus)>0)
 					<li class="nav-item dropdown mx-1 py-2">
@@ -69,13 +70,12 @@
 							{{ $dm->name }}
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
-							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)
-									
+							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)	
 								@if ($child->slug=='co-cau-to-chuc'||$child->slug=='cac-nha-may'||$child->slug=='cac-du-an'||$child->slug=='y-kien-nha-dau-tu')
 								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
 								<div class="dropdown-divider my-0"></div>
 								@else
-								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->id }}.html">{{ $child->name }}</a>
+								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->slug }}">{{ $child->name }}</a>
 								<div class="dropdown-divider my-0"></div>
 								@endif
 							@endforeach
@@ -83,7 +83,7 @@
 					</li>
 					@else
 					<li class="nav-item py-2">
-						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? $dm->slug.'/'.$dm->id.'.html':'#' }}">{{ $dm->name }}</a>
+						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? $dm->slug :'#' }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach

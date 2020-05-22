@@ -42,123 +42,92 @@
 		@php
 		$notifications = auth()->user()->unreadNotifications;
 		@endphp
+{{--  {{ dd($notifications->where('type','App\Notifications\NewYkienNotification')) }}  --}}
+		{{--  Thông báo thông tin người dùng  --}}
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#">
 				<i class="fas fa-users"></i>
-				<span class="badge badge-danger navbar-badge">{{ count($notifications)>0 ? count($notifications):0 }}</span>
+				<span class="badge badge-danger navbar-badge">{{ count($notifications->where('type','App\Notifications\NewUserNotification'))>0 ? count($notifications->where('type','App\Notifications\NewUserNotification')):0 }}</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 				@if(auth()->user()->role==1)
-					@forelse($notifications as $notification)
-						<a href="#" class="dropdown-item">
+					@forelse($notifications->where('type','App\Notifications\NewUserNotification') as $usernoti)
+						<a href="{{ route('admin.thongbao.nguoidung',$usernoti->id) }}" class="dropdown-item">
 							{{-- <!-- Message Start --> --}}
 							<div class="media">
 								<div class="media-body">
-									<h3 class="dropdown-item-title">
-										{{ $notification->data['fullname'] }}
-									</h3>
-									<p class="text-sm">{{ $notification->data['email'] }}</p>
-									<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ $notification->created_at }}</p>
+									<p class="text-sm"> Người dùng <strong>{{ $usernoti->data['fullname'] }}</strong> đã đăng ký tài khoản vào lúc <strong>{{ $usernoti->created_at->format('d/m/Y H:i') }}</strong> </p>
 								</div>
 							</div>
 							{{-- <!-- Message End --> --}}
 						</a>
-						@if($loop->last)
-							<div class="dropdown-divider"></div>
-							<a href="#" id="mark-all" class="dropdown-item dropdown-footer">
-								Đánh dấu đọc tất cả
-							</a>
-						@endif
 					@empty
-						There are no new notifications
+					<div class="media">
+						<div class="media-body">
+							<p class="text-sm text-center"> Không có thông báo mới </p>
+						</div>
+					</div>
 					@endforelse
 				@endif
 			</div>
 		</li>
+		{{--  Thông báo ý kiến cổ đông  --}}
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#">
-			<i class="far fa-comments"></i>
-			<span class="badge badge-danger navbar-badge">3</span>
+				<i class="fas fa-tty"></i>
+				<span class="badge badge-danger navbar-badge">{{ count($notifications->where('type','App\Notifications\NewYkienNotification'))>0 ? count($notifications->where('type','App\Notifications\NewYkienNotification')):0 }}</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-			<a href="#" class="dropdown-item">
-				{{-- <!-- Message Start --> --}}
-				<div class="media">
-				<img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-				<div class="media-body">
-					<h3 class="dropdown-item-title">
-					Brad Diesel
-					<span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-					</h3>
-					<p class="text-sm">Call me whenever you can...</p>
-					<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-				</div>
-				</div>
-				{{-- <!-- Message End --> --}}
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item">
-				{{-- <!-- Message Start --> --}}
-				<div class="media">
-				<img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-				<div class="media-body">
-					<h3 class="dropdown-item-title">
-					John Pierce
-					<span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-					</h3>
-					<p class="text-sm">I got your message bro</p>
-					<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-				</div>
-				</div>
-				{{-- <!-- Message End --> --}}
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item">
-				{{-- <!-- Message Start --> --}}
-				<div class="media">
-				<img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-				<div class="media-body">
-					<h3 class="dropdown-item-title">
-					Nora Silvester
-					<span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-					</h3>
-					<p class="text-sm">The subject goes here</p>
-					<p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-				</div>
-				</div>
-				{{-- <!-- Message End --> --}}
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+				@if(auth()->user()->role==1)
+				@forelse($notifications->where('type','App\Notifications\NewYkienNotification') as $ykiennoti)
+						<a href="{{ route('admin.thongbao.ykien',$ykiennoti->id) }}" class="dropdown-item">
+							{{-- <!-- Message Start --> --}}
+							<div class="media">
+								<div class="media-body">
+									<p class="text-sm"> Cổ đông <strong>{{ $ykiennoti->data['fullname'] }}</strong> đã đăng ý kiến mới vào lúc <strong>{{ $ykiennoti->created_at->format('d/m/Y H:i') }}</strong> </p>
+								</div>
+							</div>
+							{{-- <!-- Message End --> --}}
+						</a>
+					@empty
+					<div class="media">
+						<div class="media-body">
+							<p class="text-sm text-center"> Không có thông báo mới</p>
+						</div>
+					</div>
+					@endforelse
+				@endif
 			</div>
 		</li>
-	{{-- <!-- Notifications Dropdown Menu --> --}}
+		{{--  Thông báo bình luận mới  --}}
 		<li class="nav-item dropdown">
 			<a class="nav-link" data-toggle="dropdown" href="#">
-			<i class="far fa-bell"></i>
-			<span class="badge badge-warning navbar-badge">15</span>
+				<i class="far fa-comments"></i>
+				<span class="badge badge-danger navbar-badge">{{ count($notifications->where('type','App\Notifications\NewBinhluanNotification'))>0 ? count($notifications->where('type','App\Notifications\NewBinhluanNotification')):0 }}</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-			<span class="dropdown-header">15 Notifications</span>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item">
-				<i class="fas fa-envelope mr-2"></i> 4 new messages
-				<span class="float-right text-muted text-sm">3 mins</span>
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item">
-				<i class="fas fa-users mr-2"></i> 8 friend requests
-				<span class="float-right text-muted text-sm">12 hours</span>
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item">
-				<i class="fas fa-file mr-2"></i> 3 new reports
-				<span class="float-right text-muted text-sm">2 days</span>
-			</a>
-			<div class="dropdown-divider"></div>
-			<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+				@if(auth()->user()->role==1)
+				@forelse($notifications->where('type','App\Notifications\NewBinhluanNotification') as $binhluannoti)
+						<a href="{{ route('admin.thongbao.binhluan',$binhluannoti->id) }}" class="dropdown-item">
+							{{-- <!-- Message Start --> --}}
+							<div class="media">
+								<div class="media-body">
+									<p class="text-sm"> <strong>{{ $binhluannoti->data['sendername'] }}</strong> đã đăng bình luận mới vào lúc <strong>{{ $binhluannoti->created_at->format('d/m/Y H:i') }}</strong> </p>
+								</div>
+							</div>
+							{{-- <!-- Message End --> --}}
+						</a>
+					@empty
+					<div class="media">
+						<div class="media-body">
+							<p class="text-sm text-center"> Không có thông báo mới</p>
+						</div>
+					</div>
+					@endforelse
+				@endif
 			</div>
 		</li>
+
 	</ul>
 </nav>
 {{-- <!-- /.navbar --> --}}

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
 use App\Comment;
+use App\Notifications\NewBinhluanNotification;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -29,6 +32,8 @@ class CommentController extends Controller
             $comment->senderemail = Auth::user()->email;
             $comment->content = $request->content;
             $comment->save();
+            $admin = User::where('role', 1)->get();
+            Notification::send($admin, new NewBinhluanNotification($comment));
         } else {
             $this->validate($request,
             [
@@ -53,6 +58,8 @@ class CommentController extends Controller
             $comment->senderemail = $request->senderemail;
             $comment->content = $request->content;
             $comment->save();
+            $admin = User::where('role', 1)->get();
+            Notification::send($admin, new NewBinhluanNotification($comment));
         }
         return redirect()->back()->with('thongbao','Xin cảm ơn, nội dung bình luận đang trong trạng thái kiểm duyệt!');
         
@@ -122,5 +129,11 @@ class CommentController extends Controller
         $comment = Comment::withTrashed()->find($id);
         $comment->forceDelete();
         return redirect('admin/comment/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
+    }
+    public function getThongbao($id)
+    {
+        auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+       
+        return redirect()->route('admin.comment.list');
     }
 }

@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
 use App\Menu;
 use App\Ykiencodong;
 use App\Traloicodong;
+use App\User;
+use App\Notifications\NewYkienNotification;
 
 class YkiencodongController extends Controller
 {
@@ -223,6 +226,8 @@ class YkiencodongController extends Controller
         $ykien->ask_content = $request->ask_content;
         $ykien->status = 0;
         $ykien->save();
+        $admin = User::where('role', 1)->get();
+        Notification::send($admin, new NewYkienNotification($ykien));
         return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
     }
     public function getDetailYkiencodong($menu_id,$ykien_id)
@@ -236,5 +241,11 @@ class YkiencodongController extends Controller
         $ykien = Ykiencodong::find($ykien_id);
         
         return view('shared.pages.noidung.quanhecodong.detail_ykien',compact('menu','ykien'));
+    }
+    public function getThongbao($id)
+    {
+        auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+        $menu_ykien = Menu::where('slug','y-kien-nha-dau-tu')->first();
+        return redirect()->route('admin.content.ykien',$menu_ykien->id);
     }
 }

@@ -50,7 +50,7 @@
                                              
                                             <i class="far fa-eye"></i> {{ $tin1_con['views'] }}
                                              
-                                            <i class="far fa-comments"></i> 0
+                                            <i class="far fa-comments"></i> {{ count($tin1_con->Comments->where('status',1)) }}
                                         </small>
                                     </p>
                                     <p class="card-text mb-0">
@@ -63,14 +63,14 @@
                             @foreach ($tin_con->all() as $tin)
                             <div class="card">
                                 <div class="row no-gutters">
-                                    <div class="col-5">
+                                    <div class="col-5 align-self-center">
                                         <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin['id'] }}/{{ $tin['slug ']}}.html">
                                             <img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
                                         </a>
                                     </div>
                                     <div class="col-7">
                                         <div class="card-body p-1">
-                                            <h6 class="card-title mb-0">
+                                            <h6 class="card-title mb-0 crop_text_4">
                                                 <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin['id ']}}/{{ $tin['slug'] }}.html">{{ $tin['title'] }}</a>
                                             </h6>
                                         </div>

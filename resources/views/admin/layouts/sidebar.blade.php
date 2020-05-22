@@ -62,7 +62,10 @@
           <hr class="border-light bg-white my-2">
           {{--  QUẢN LÝ NỘI DUNG  --}}
           <li class="nav-header pt-2"> QUẢN TRỊ NỘI DUNG </li>
-          @foreach ($danhmuc->where('status',1)->sortBy('position') as $dm)
+          @php
+            $danhmucgoc = App\Menu::whereNull('parent')->with('ChildMenus')->get();
+          @endphp
+          @foreach ($danhmucgoc->where('status',1)->sortBy('position') as $dm)
           <li class="nav-item {{ count($dm->ChildMenus)>0 ? 'has-treeview': '' }}">
             <a href="{{ $dm->slug =='lien-he' ? 'admin/content/'.$dm->id.'/'.$dm->slug.'.html':'#' }}" class="nav-link">
               <i class=" nav-icon fas fa-bars text-primary"></i>

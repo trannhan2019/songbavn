@@ -214,10 +214,8 @@ class PagesController extends Controller
     }
     
     //Liên hệ
-    public function getLienhe($menu_id)
+    public function getLienhe()
     {
-        $menu = Menu::find($menu_id);
-        $content = $menu->Contents()->where('status',1)->first();
-        return view('shared.pages.noidung.lienhe',compact('menu','content'));
+        return view('shared.pages.noidung.lienhe');
     }
 }

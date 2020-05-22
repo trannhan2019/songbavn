@@ -4,6 +4,10 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
+a{
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
 
 a:hover {
     text-decoration: none;
