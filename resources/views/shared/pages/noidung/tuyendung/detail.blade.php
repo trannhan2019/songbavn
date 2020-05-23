@@ -12,7 +12,6 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('tuyendung',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('tuyendung',$menu->id) }}">{{ $menu->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $tintuc->title }}</li>
         </ol>
@@ -27,9 +26,9 @@
             @if (Auth::check())
                 @if (Auth::user()->role == 1)
                 <div class="btn-group btn-group-sm mb-2">
-                    <a href="admin/content/{{ $menu->id }}/add-{{ $menu->Parent->slug }}.html" title="thêm" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
-                    <a href="admin/content/{{ $tintuc->id }}/edit-{{ $menu->Parent->slug }}.html" title="sửa" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
-                    <a href="admin/content/{{ $menu->id }}/{{ $menu->Parent->slug }}.html" title="quản lý" class="btn btn-outline-info"><i class="fas fa-cogs"></i></a>
+                    <a href="admin/content/{{ $menu->id }}/add-{{ $menu->slug }}.html" title="thêm" class="btn btn-outline-success"><i class="fas fa-plus"></i></a>
+                    <a href="admin/content/{{ $tintuc->id }}/edit-{{ $menu->slug }}.html" title="sửa" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                    <a href="admin/content/{{ $menu->id }}/{{ $menu->slug }}.html" title="quản lý" class="btn btn-outline-info"><i class="fas fa-cogs"></i></a>
                 </div> 
                 @endif
             @endif
@@ -143,7 +142,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($lienquan as $lq)
                     <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
+                        <a href="{{ $menu->slug }}/{{ $lq->id }}" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:i'):''}}
@@ -165,7 +164,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($xemnhieu as $xn)
                     <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $xn->id }}/{{ $xn->slug }}.html" title="" class="text-dark"> {{ $xn->title }}</a>
+                        <a href="{{ $menu->slug }}/{{ $xn->id }}" title="" class="text-dark"> {{ $xn->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:i'):''}}

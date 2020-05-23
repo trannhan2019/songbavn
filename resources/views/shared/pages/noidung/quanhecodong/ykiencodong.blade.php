@@ -12,7 +12,7 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
         </ol>
     </nav>
@@ -24,9 +24,9 @@
     <div class="row">
         <div class="col-md-4">
             <div class="list-group">
-                <a href="{{ route('ykiencodong',$menu->id) }}" class="list-group-item list-group-item-action list-group-item-info">Tất cả</a>
-                @foreach ($danhmucykien as $dmyk)
-                <a href="{{ $menu->id }}/{{ $dmyk->id }}/{{ $menu->slug }}.html" class="list-group-item list-group-item-info">{{ $dmyk->name }}</a>  
+                <a href="{{ route('codongslug',$menu->slug) }}" class="list-group-item list-group-item-action list-group-item-info">Tất cả</a>
+                @foreach ($listdanhmucykien as $dmyk)
+                <a href="{{ $menu->slug }}/{{ $dmyk->slug }}" class="list-group-item list-group-item-info">{{ $dmyk->name }}</a>  
                 @endforeach
             </div>
         </div>
@@ -47,7 +47,7 @@
                     </p>
                     <p class="font-weight-bold my-0">Trả lời: 
                     </p>
-                    <a href="{{ $menu->id }}/{{ $yk->id }}/detail-{{ $menu->slug }}.html" class="text-primary">Xem chi tiết nội dung trả lời...</a>
+                    <a href="{{ $menu->slug }}/{{ $yk->Danhmuc->slug }}/{{ $yk->id }}" class="text-primary">Xem chi tiết nội dung trả lời...</a>
                 </div>
             </div>
             <hr class="w-100 border-secondary my-2">  
@@ -61,12 +61,12 @@
                     <h6 class="card-title mb-0">GỬI Ý KIẾN</h6>							
                 </div>
                 <div class="card-body">
-                    <form action="{{ $menu->id }}/{{ $menu->slug }}.html" method="post" accept-charset="utf-8">
+                    <form action="{{ $menu->Parent->slug }}/{{ $menu->slug }}" method="post" accept-charset="utf-8">
                         @csrf
                         <div class="form-group">
                             <label>Chọn chuyên mục <span class="text-danger">(*)</span></label>
                             <select class="form-control" name="danhmucykien_id">
-                                @foreach ($danhmucykien as $dm)
+                                @foreach ($listdanhmucykien as $dm)
                                 <option value="{{$dm->id}}">{{ $dm->name }}</option>
                                 @endforeach
                             </select>
@@ -97,5 +97,15 @@
             toolbar: basic,
             height: 200
           });
+    </script>
+    <script type="text/javascript">
+        var url = window.location;
+        // Will only work if string in href matches with location
+        $('a[href="'+ url +'"]').addClass('active');
+
+        // Will also work for relative and absolute hrefs
+        $('a').filter(function() {
+            return this.href == url;
+        }).addClass('active');
     </script>
 @endsection

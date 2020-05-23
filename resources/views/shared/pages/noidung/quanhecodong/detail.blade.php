@@ -7,8 +7,8 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('quanhecodong',$menu->id) }}">{{ $menu->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('codongslug',$menu->slug) }}">{{ $menu->name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $tintuc->title }}</li>
         </ol>
     </nav>
@@ -51,7 +51,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($lienquan as $lq)
                     <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $lq->id }}/{{ $lq->slug }}.html" title="" class="text-dark"> {{ $lq->title }}</a>
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="fas fa-user-tie"></i> {{ $lq->author }}
@@ -73,7 +73,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($xemnhieu as $xn)
                     <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $xn->id }}/{{ $xn->slug }}.html" title="" class="text-dark"> {{ $xn->title }}</a>
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}" title="" class="text-dark"> {{ $xn->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="fas fa-user-tie"></i> {{ $lq->author }}

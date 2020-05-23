@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('quanhecodong',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
         </ol>
     </nav>
@@ -19,7 +19,7 @@
             @foreach ($content as $ct)
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html">
+                    <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}">
                         <p class="font-weight-bold m-0">{{ $ct->title }}</p>
                     </a>
                     <small>
@@ -54,7 +54,7 @@
                     </div>
                     @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ctv->id }}/{{ $ctv->slug }}.html">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctv->id }}">
                             <p class="m-0">
                                 {{ $ctv->title }}
                             </p>

@@ -35,27 +35,46 @@ Route::get('thongtin', 'UserController@getThongtin')->name('thongtin');
 Route::post('thongtin', 'UserController@postThongtin')->name('thongtin');
 Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 
-//Nhóm nội dung
+//NHÓM NỘI DUNG
 
 //Giới thiệu
-Route::get('gioi-thieu/{menu_id}.html','PagesController@getGioithieu')->name('gioithieu');
-Route::get('gioi-thieu/{menu_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuCocau');
-Route::get('gioi-thieu/{menu_id}/{content_id}/co-cau-to-chuc.html', 'PagesController@getGioithieuSubCocau');
-Route::get('gioi-thieu/{menu_id}/cac-nha-may.html', 'PagesController@getGioithieuTab');
-Route::get('gioi-thieu/{menu_id}/cac-du-an.html', 'PagesController@getGioithieuTab');
+Route::get('gioi-thieu','PagesController@getGioithieu')->name('gioithieu');
+Route::get('gioi-thieu/{slug}', function ($slug) {
+    if ($slug == 'co-cau-to-chuc') {
+        //return redirect()->route('gioithieucocau');
+        return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getGioithieuCocau');
+    } elseif($slug == 'cac-nha-may'|| $slug == 'cac-du-an') {
+        return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getGioithieuTab');
+    }
+    else{
+        return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getGioithieuSlug');
+    }
+});
+Route::get('gioi-thieu/{slug}/{content_id}', 'PagesController@getGioithieuSubCocau');
+
 //Tin tức
-Route::get('tin-tuc/{menu_id}.html','PagesController@getTintuc')->name('tintuc');
-Route::get('tin-tuc/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTintuc');
+Route::get('tin-tuc','PagesController@getTintuc')->name('tintuc');
+Route::get('tin-tuc/{slug}','PagesController@getTintucSlug')->name('tintucslug');
+Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc');
+
 //Quan hệ cổ đông
-Route::get('quan-he-co-dong/{menu_id}.html','PagesController@getQuanhecodong')->name('quanhecodong');
-Route::get('quan-he-co-dong/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailQuanhecodong');
-Route::get('quan-he-co-dong/{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getYkiencodong')->name('ykiencodong')->middleware('CheckDangnhap');
-Route::get('{menu_id}/{danhmuc_id}/y-kien-nha-dau-tu.html','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
-Route::post('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
-Route::get('{menu_id}/{ykien_id}/detail-y-kien-nha-dau-tu.html','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
+Route::get('quan-he-co-dong','PagesController@getCodong')->name('codong');
+Route::get('quan-he-co-dong/{slug}', function ($slug) {
+    if ($slug == 'y-kien-nha-dau-tu') {
+        return app()->call(\App\Http\Controllers\YkiencodongController::class, ['slug' => $slug], 'getYkiencodong');
+    }
+    else{
+        return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getCodongSlug');
+    }
+})->name('codongslug')->middleware('CheckDangnhap');
+
+Route::get('quan-he-co-dong/{menu_slug}/{content_id}','PagesController@getDetailQuanhecodong')->middleware('CheckDangnhap');
+Route::get('y-kien-nha-dau-tu/{danhmuc_slug}','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
+Route::post('quan-he-co-dong/{menu_slug}','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
+Route::get('y-kien-nha-dau-tu/{danhmuc_slug}/{ykien_id}','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
 //Tuyển dụng
-Route::get('tuyen-dung/{menu_id}.html','PagesController@getTuyendung')->name('tuyendung');
-Route::get('tuyen-dung/{menu_id}/{content_id}/{slug}.html','PagesController@getDetailTuyendung');
+Route::get('tuyen-dung','PagesController@getTuyendung')->name('tuyendung');
+Route::get('tuyen-dung/{content_id}','PagesController@getDetailTuyendung');
 //Liên hệ
 Route::get('lien-he', 'PagesController@getLienhe')->name('lienhe');
 //Comment

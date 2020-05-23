@@ -67,59 +67,60 @@ class PagesController extends Controller
     }
     //Nội dung từng menu
     //Giới thiệu và giới thiệu chung
-    public function getGioithieu($menu_id)
+    public function getGioithieu()
     {
-        $menu = Menu::find($menu_id);
-        if (empty($menu->Parent)) {
-            $gioithieuchung = Menu::where('slug','gioi-thieu-chung')->first();
-            
-            $content = $gioithieuchung->Contents->where('status',1)->first();
-        } else {
-            $content = $menu->Contents->where('status',1)->first();
-        }
+        $menu = Menu::where('slug','gioi-thieu-chung')->first();
+        $content = $menu->Contents->where('status',1)->first();
+        return view('shared.pages.noidung.gioithieu.chitiet',compact('menu','content'));
+    }
+    public function getGioithieuSlug($slug)
+    {
+        $menu = Menu::where('slug',$slug)->first();
+        $content = $menu->Contents->where('status',1)->first();
         return view('shared.pages.noidung.gioithieu.chitiet',compact('menu','content'));
     }
     //Giới thiệu -> Cơ cấu tổ chức
-    public function getGioithieuCocau($menu_id)
+    public function getGioithieuCocau($slug)
     {
-        $menu = Menu::find($menu_id);
+        $menu = Menu::where('slug',$slug)->first();
         $content = $menu->Contents()->orderBy('created_at')->get();
         $sub_content = $menu->Contents()->orderBy('created_at')->first();
         return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
     }
-    public function getGioithieuSubCocau($menu_id,$content_id)
+    public function getGioithieuSubCocau($slug,$content_id)
     {
-        $menu = Menu::find($menu_id);
+        $menu = Menu::where('slug',$slug)->first();
         $content = $menu->Contents()->orderBy('created_at')->get();
         $sub_content = Content::find($content_id);
         return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
     }
-    //Giới thiệu -> Các nhà máy
-    public function getGioithieuTab($menu_id)
+    //Giới thiệu -> Các nhà máy || Cac du an
+    public function getGioithieuTab($slug)
     {
-        $menu = Menu::find($menu_id);
+        $menu = Menu::where('slug',$slug)->first();
         $content = $menu->Contents()->orderBy('created_at')->get();
         $sub_content = $menu->Contents()->orderBy('created_at')->first();
         return view('shared.pages.noidung.gioithieu.chitiet_tab',compact('menu','content','sub_content'));
     }
 
     //Tin tức
-    public function getTintuc($menu_id)
+    public function getTintuc()
     {
-        $menu = Menu::find($menu_id);
-        if (empty($menu->Parent)) {
-            $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
-            //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
-            return view('shared.pages.noidung.tintuc.all',compact('menu','content_view'));
-        } else {
-            $content = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
-            $content_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-            return view('shared.pages.noidung.tintuc.list',compact('content','content_view','menu'));
-        }  
+        $menu = Menu::where('slug','tin-tuc')->first();
+        $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
+        return view('shared.pages.noidung.tintuc.all',compact('menu','content_view'));
+
     }
-    public function getDetailTintuc($menu_id,$content_id)
+    public function getTintucSlug($slug)
     {
-        $menu = Menu::find($menu_id);
+        $menu = Menu::where('slug',$slug)->first();
+        $content = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        $content_view = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+        return view('shared.pages.noidung.tintuc.list',compact('content','content_view','menu'));
+    }
+    public function getDetailTintuc($slug,$content_id)
+    {
+        $menu = Menu::where('slug',$slug)->first();
         
         $noidungKey = 'noidung_' . $content_id;
 
@@ -139,24 +140,25 @@ class PagesController extends Controller
         // Trả về view
         return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
+
     //Quan hệ cổ đông
-    public function getQuanhecodong($menu_id)
+    public function getCodong()
     {
-        $menu = Menu::find($menu_id);
-        if (empty($menu->Parent)) {
-            $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
-            //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
-            return view('shared.pages.noidung.quanhecodong.all',compact('menu','content_view'));
-        } else {
-            $content = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(7);
-            $content_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-            return view('shared.pages.noidung.quanhecodong.quanhecodong',compact('content','content_view','menu'));
-        }  
+        $menu = Menu::where('slug','quan-he-co-dong')->first();
+        $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
+        return view('shared.pages.noidung.quanhecodong.all',compact('menu','content_view'));
     }
-    public function getDetailQuanhecodong($menu_id,$content_id)
+    public function getCodongSlug($slug)
     {
-        $menu = Menu::find($menu_id);
-        
+        $menu = Menu::where('slug',$slug)->first();
+        $content = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(7);
+        $content_view = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+        return view('shared.pages.noidung.quanhecodong.quanhecodong',compact('content','content_view','menu'));
+    }
+    public function getDetailQuanhecodong($slug,$content_id)
+    {
+        $menu = Menu::where('slug',$slug)->first();
+         
         $noidungKey = 'noidung_' . $content_id;
 
         // Kiểm tra Session của sản phẩm có tồn tại hay không.
@@ -176,23 +178,16 @@ class PagesController extends Controller
         return view('shared.pages.noidung.quanhecodong.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
     //Tuyển dụng
-    public function getTuyendung($menu_id)
+    public function getTuyendung()
     {
-        
-        $menu = Menu::find($menu_id);
-        if (empty($menu->Parent)) {
-            $content_view = $menu->ParentContents->where('status',1)->sortByDesc('views')->take(5);
-            //$tintuc_new = $menu->ParentContents->where('status',1)->sortByDesc('created_at')->take(5);
-            return view('shared.pages.noidung.tuyendung.all',compact('menu','content_view'));
-        } else {
-            $content = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
-            $content_view = Content::where('menu_id',$menu_id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-            return view('shared.pages.noidung.tuyendung.list',compact('content','content_view','menu'));
-        }  
+        $menu = Menu::where('slug','tuyen-dung')->first();
+        $content = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        $content_view = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
+        return view('shared.pages.noidung.tuyendung.list',compact('content','content_view','menu'));
     }
-    public function getDetailTuyendung($menu_id,$content_id)
+    public function getDetailTuyendung($content_id)
     {
-        $menu = Menu::find($menu_id);
+        $menu = Menu::where('slug','tuyen-dung')->first();
         
         $noidungKey = 'noidung_' . $content_id;
 
@@ -210,7 +205,7 @@ class PagesController extends Controller
         $lienquan = $menu->Contents->where('status',1)->sortByDesc('created_at')->take(5);
         $xemnhieu = $menu->Contents->where('status',1)->sortByDesc('views')->take(5);
         // Trả về view
-        return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc','lienquan','xemnhieu'));
+        return view('shared.pages.noidung.tuyendung.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
     
     //Liên hệ

@@ -22,7 +22,7 @@
           {{-- Dashboard --}}
           <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-th text-warning"></i>
+              <i class="nav-icon fas fa-tachometer-alt text-warning"></i>
               <p>
                 Trang tổng quan
 
@@ -67,7 +67,7 @@
           @endphp
           @foreach ($danhmucgoc->where('status',1)->sortBy('position') as $dm)
           <li class="nav-item {{ count($dm->ChildMenus)>0 ? 'has-treeview': '' }}">
-            <a href="{{ $dm->slug =='lien-he' ? 'admin/content/'.$dm->id.'/'.$dm->slug.'.html':'#' }}" class="nav-link">
+            <a href="{{ 'admin/content/'.$dm->id.'/'.$dm->slug.'.html'}}" class="nav-link">
               <i class=" nav-icon fas fa-bars text-primary"></i>
               <p>
                 {{ $dm->name }}

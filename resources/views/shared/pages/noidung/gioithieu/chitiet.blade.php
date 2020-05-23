@@ -10,7 +10,7 @@
             @if (empty($menu->Parent))
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @else
-            <li class="breadcrumb-item"><a href="{{ route('gioithieu',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('gioithieu') }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @endif
         </ol>

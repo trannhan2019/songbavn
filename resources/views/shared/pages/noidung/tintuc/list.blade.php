@@ -7,7 +7,7 @@
     <nav aria-label="breadcrumb" class="container">
         <ol class="breadcrumb row">
             <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('tintuc',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('tintuc') }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
         </ol>
     </nav>
@@ -20,14 +20,14 @@
             <div class="card mb-2">
                 <div class="row no-gutters">
                     <div class="col-md-4 py-4">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html" title="">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}" title="">
                             <img src="shared_asset/upload/images/content/{{ $ct->imageorfile }}" class="img-fluid align-self-center" alt="">
                         </a>		
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h6 class="card-title">
-                                <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ct->id }}/{{ $ct->slug }}.html" title="">{{ $ct->title }}</a>
+                                <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}" title="">{{ $ct->title }}</a>
                             </h6>
                             <p class="card-text mb-0 crop_text_4">{{ $ct->abstract }}</p>
                             <p class="card-text">
@@ -59,7 +59,7 @@
                     </div>
                     @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->id }}/{{ $ctv->id }}/{{ $ctv->slug }}.html">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctv->id }}">
                             <p class="m-0">
                                 {{ $ctv->title }}
                             </p>

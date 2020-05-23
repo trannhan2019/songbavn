@@ -22,8 +22,8 @@
 				</div>
 				
 				@else
-				<small><i class="fas fa-user text-white"></i> &nbsp;
-				<a href="{{route('dangnhap') }}" class="text-white" title="Đăng nhập/ Đăng ký">Đăng nhập</a></small>
+				<small><i class="fas fa-user text-white"></i></small> &nbsp;
+				<small><a href="{{route('dangnhap') }}" class="text-white" title="Đăng nhập/ Đăng ký">Đăng nhập</a></small>
 				@endif
 				
 			</div>
@@ -71,6 +71,12 @@
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
 							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)	
+							<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->slug }}">{{ $child->name }}</a>
+							<div class="dropdown-divider my-0"></div>
+							@endforeach
+						</div>
+						{{--  <div class="dropdown-menu p-0 dropdown-content">
+							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)	
 								@if ($child->slug=='co-cau-to-chuc'||$child->slug=='cac-nha-may'||$child->slug=='cac-du-an'||$child->slug=='y-kien-nha-dau-tu')
 								<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->id }}/{{ $child->slug }}.html">{{ $child->name }}</a>
 								<div class="dropdown-divider my-0"></div>
@@ -79,11 +85,11 @@
 								<div class="dropdown-divider my-0"></div>
 								@endif
 							@endforeach
-						</div>
+						</div>  --}}
 					</li>
 					@else
 					<li class="nav-item py-2">
-						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug =='lien-he' ? $dm->slug :'#' }}">{{ $dm->name }}</a>
+						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach

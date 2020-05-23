@@ -18,15 +18,15 @@
         <div class="col-12">
             <div class="head row">
                 <div class="col-8">
-                    <h4><a href="{{ route('ykiencodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
+                    <a href="{{ route('codongslug',$mn->slug) }}"><h4>{{ $mn->name }}</h4></a>
                 </div>
                 <div class="col-4 text-right">
-                    <a href="{{ route('ykiencodong',$mn->id) }}">Xem tất cả</a>
+                    <a href="{{ route('codongslug',$mn->slug) }}">Xem tất cả</a>
                 </div>						
             </div>
             <div class="row my-3">
                 <div class="col-md-5">
-                    <a href="{{ route('ykiencodong',$mn->id) }}">
+                    <a href="{{ route('codongslug',$mn->slug) }}">
                         <img src="shared_asset/upload/images/content/q-a-600x400.jpg" alt="" class="w-100 img-thumbnail"> 
                     </a>
                 </div>
@@ -60,15 +60,15 @@
             <div class="col-12">
                 <div class="head row">
                     <div class="col-8">
-                        <h4><a href="{{ route('quanhecodong',$mn->id) }}">{{ $mn->name }}</a> </h4>
+                        <a href="{{ route('codongslug',$mn->slug) }}"><h4>{{ $mn->name }}</h4></a>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="{{ route('quanhecodong',$mn->id) }}">Xem tất cả</a>
+                        <a href="{{ route('codongslug',$mn->slug) }}">Xem tất cả</a>
                     </div>						
                 </div>
                 <div class="row my-3">
                     <div class="col-md-5">
-                        <a href="{{ route('quanhecodong',$mn->id) }}">
+                        <a href="{{ route('codongslug',$mn->slug) }}">
                             @if ($mn->slug =='dai-hoi-dong-co-dong')
                             <img src="shared_asset/upload/images/content/dhdcd-600x400.jpg" alt="" class="w-100 img-thumbnail">
                             @elseif ($mn->slug =='cong-bo-thong-tin')
@@ -94,7 +94,7 @@
                                     
                                 </div>
                                 <div class="title">
-                                    <a href="{{ $menu->slug }}/{{ $mn->id }}/{{ $tin->id }}/{{ $tin->slug }}.html">
+                                    <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin->id }}">
                                         <h6>{{ $tin->title }}</h6>
                                     </a>
                                 </div>

@@ -189,23 +189,24 @@ class YkiencodongController extends Controller
         return redirect()->back()->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
     //phần shared
-    public function getYkiencodong($id)
+    public function getYkiencodong($slug)
     {
-        $menu = Menu::find($id);
-        $ykien = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        $menu = Menu::where('slug',$slug)->first();
+        $ykien = Ykiencodong::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
         //$ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
-        $danhmucykien = Danhmucykien::where('status',1)->get();
-        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','danhmucykien'));
+        $listdanhmucykien = Danhmucykien::where('status',1)->get();
+        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','listdanhmucykien'));
     }
-    public function getDanhmucYkiencodong($menu_id,$danhmucykien_id)
+    public function getDanhmucYkiencodong($danhmuc_slug)
     {
-        $menu = Menu::find($menu_id);
-        $danhmucykien = Danhmucykien::where('status',1)->get();
+        $menu = Menu::where('slug','y-kien-nha-dau-tu')->first();
+        $danhmucykien = Danhmucykien::where('slug',$danhmuc_slug)->first();
+        $listdanhmucykien = Danhmucykien::where('status',1)->get();
         //$ykien = $danhmucykien->Ykiencodong->where('status',1)->sortByDesc('created_at')->paginate(5);
-        $ykien = Ykiencodong::where('danhmucykien_id',$danhmucykien_id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
-        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','danhmucykien'));
+        $ykien = Ykiencodong::where('danhmucykien_id',$danhmucykien->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
+        return view('shared.pages.noidung.quanhecodong.ykiencodong',compact('menu','ykien','listdanhmucykien','danhmucykien'));
     }
-    public function postYkiencodong(Request $request,$menu_id)
+    public function postYkiencodong(Request $request,$menu_slug)
     {
         $this->validate($request,[
             'ask_content'=>'required'
@@ -217,7 +218,8 @@ class YkiencodongController extends Controller
             'ask_content'=>'Nội dung ý kiến'
         ]);
         $ykien = new Ykiencodong();
-        $ykien->menu_id = $menu_id;
+        $menu = Menu::where('slug',$menu_slug)->first();
+        $ykien->menu_id = $menu->id;
         $ykien->danhmucykien_id = $request->danhmucykien_id;
         $ykien->fullname = Auth::user()->fullname;
         $ykien->email = Auth::user()->email;
@@ -230,16 +232,16 @@ class YkiencodongController extends Controller
         Notification::send($admin, new NewYkienNotification($ykien));
         return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
     }
-    public function getDetailYkiencodong($menu_id,$ykien_id)
+    public function getDetailYkiencodong($danhmuc_slug, $ykien_id)
     {
-        $menu = Menu::find($menu_id);
         $noidungKey = 'noidung_' . $ykien_id;
         if (!Session::has($noidungKey)) {
             Ykiencodong::where('id', $ykien_id)->increment('views');
             Session::put($noidungKey, 1);
         }
         $ykien = Ykiencodong::find($ykien_id);
-        
+        $menu = Menu::find($ykien->menu_id);
+
         return view('shared.pages.noidung.quanhecodong.detail_ykien',compact('menu','ykien'));
     }
     public function getThongbao($id)
