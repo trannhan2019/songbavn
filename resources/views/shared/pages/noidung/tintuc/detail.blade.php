@@ -102,7 +102,7 @@
                     <h6 class="card-title mb-0">GỬI GÓP Ý / BÌNH LUẬN</h6>
                 </div>
                 <div class="card-body">
-                    <form action="binh-luan/{{ $tintuc->id }}/{{ $tintuc->slug }}.html" method="post" accept-charset="utf-8">
+                    <form action="binh-luan/{{ $tintuc->id }}" method="post" accept-charset="utf-8">
                         @csrf
                         @if (!Auth::check())
                         <div class="form-row">

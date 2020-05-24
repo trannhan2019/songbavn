@@ -14,9 +14,16 @@ use App\Ykiencodong;
 use App\Traloicodong;
 use App\User;
 use App\Notifications\NewYkienNotification;
+use App\Http\Middleware\CheckDangnhap;
 
 class YkiencodongController extends Controller
 {
+    //Gắn Middleware
+    // public function __construct()
+    // {
+    //     $this->middleware(CheckDangnhap::class);
+    //     $this->middleware('CheckDangnhap', ['only' => ['getYkiencodong','getDanhmucYkiencodong','postYkiencodong','getDetailYkiencodong']]);
+    // }
     //Ý kiến 
     public function getAdminYkien ($menu_id)
     {
@@ -189,9 +196,9 @@ class YkiencodongController extends Controller
         return redirect()->back()->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
     //phần shared
-    public function getYkiencodong($slug)
+    public function getYkiencodong()
     {
-        $menu = Menu::where('slug',$slug)->first();
+        $menu = Menu::where('slug','y-kien-nha-dau-tu')->first();
         $ykien = Ykiencodong::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
         //$ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
         $listdanhmucykien = Danhmucykien::where('status',1)->get();

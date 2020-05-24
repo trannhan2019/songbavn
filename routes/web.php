@@ -61,14 +61,15 @@ Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc');
 Route::get('quan-he-co-dong','PagesController@getCodong')->name('codong');
 Route::get('quan-he-co-dong/{slug}', function ($slug) {
     if ($slug == 'y-kien-nha-dau-tu') {
-        return app()->call(\App\Http\Controllers\YkiencodongController::class, ['slug' => $slug], 'getYkiencodong');
+        return redirect()->route('ykiennhadautu');
     }
     else{
         return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getCodongSlug');
     }
-})->name('codongslug')->middleware('CheckDangnhap');
+})->name('codongslug');
 
 Route::get('quan-he-co-dong/{menu_slug}/{content_id}','PagesController@getDetailQuanhecodong')->middleware('CheckDangnhap');
+Route::get('y-kien-nha-dau-tu','YkiencodongController@getYkiencodong')->middleware('CheckDangnhap')->name('ykiennhadautu');
 Route::get('y-kien-nha-dau-tu/{danhmuc_slug}','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
 Route::post('quan-he-co-dong/{menu_slug}','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
 Route::get('y-kien-nha-dau-tu/{danhmuc_slug}/{ykien_id}','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
@@ -78,14 +79,14 @@ Route::get('tuyen-dung/{content_id}','PagesController@getDetailTuyendung');
 //Liên hệ
 Route::get('lien-he', 'PagesController@getLienhe')->name('lienhe');
 //Comment
-Route::post('binh-luan/{content_id}/{slug}.html', 'CommentController@PostAdd')->name('binhluan');
+Route::post('binh-luan/{content_id}', 'CommentController@PostAdd')->name('binhluan');
 //Tình hình sản xuất
-Route::get('tinh-hinh-san-xuat.html', 'SanxuatController@getSanxuat')->name('sanxuat');
-Route::post('tinh-hinh-san-xuat.html','SanxuatController@postSanxuat')->name('sanxuat');
-Route::get('them-tinh-hinh-san-xuat.html', 'SanxuatController@getAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
-Route::post('them-tinh-hinh-san-xuat.html', 'SanxuatController@postAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
-Route::get('sua-tinh-hinh-san-xuat/{id}.html', 'SanxuatController@getEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
-Route::post('sua-tinh-hinh-san-xuat/{id}.html', 'SanxuatController@postEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
+Route::get('tinh-hinh-san-xuat', 'SanxuatController@getSanxuat')->name('sanxuat');
+Route::post('tinh-hinh-san-xuat','SanxuatController@postSanxuat')->name('sanxuat');
+Route::get('them-tinh-hinh-san-xuat', 'SanxuatController@getAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
+Route::post('them-tinh-hinh-san-xuat', 'SanxuatController@postAddSanxuat')->name('themsanxuat')->middleware('CheckTHSX');
+Route::get('sua-tinh-hinh-san-xuat/{id}', 'SanxuatController@getEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
+Route::post('sua-tinh-hinh-san-xuat/{id}', 'SanxuatController@postEditSanxuat')->name('suasanxuat')->middleware('CheckTHSX');
 
 
 // Nhom ADMIN

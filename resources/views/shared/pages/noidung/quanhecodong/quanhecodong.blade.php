@@ -3,14 +3,34 @@
 {{ $menu->name }}
 @endsection
 @section('content')
+
 <div style="background-color: #e9ecef;">
-    <nav aria-label="breadcrumb" class="container">
-        <ol class="breadcrumb row">
-            <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 
-            <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
-        </ol>
-    </nav>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <nav aria-label="breadcrumb" class="container">
+                    <ol class="breadcrumb mb-0 pl-0">
+                        <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 
+                        <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-4 py-2">
+                <form class="float-right w-100" action="#" method="POST">
+					@csrf
+					<div class="input-group">
+						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
+						<div class="input-group-append">
+							<button class="btn btn-sm btn-outline-secondary" type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container">
     <div class="row">
