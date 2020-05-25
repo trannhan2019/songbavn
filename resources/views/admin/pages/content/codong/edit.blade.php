@@ -170,6 +170,8 @@
         });
     </script>
     <script> 
-        CKEDITOR.replace('ckeditor_cd'); 
+        CKEDITOR.replace('ckeditor_cd');
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false;
     </script>
 @endsection

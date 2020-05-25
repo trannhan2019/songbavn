@@ -31,7 +31,7 @@ class PagesController extends Controller
         $all_ykien = Ykiencodong::all();
         //tuyển dụng
         $tuyendung = Menu::where('slug','tuyen-dung')->first();
-        $all_tuyendung = Menu::find($tuyendung->id)->ParentContents;
+        $all_tuyendung = Menu::find($tuyendung->id)->Contents;
         //tin xem nhiều
         $tin_xemnhieu = Content::orderBy('views','desc')->take(5)->get();
         //tin bình luận nhiều
@@ -139,6 +139,21 @@ class PagesController extends Controller
         $xemnhieu = $menu->Contents->where('status',1)->sortByDesc('views')->take(5);
         // Trả về view
         return view('shared.pages.noidung.tintuc.detail',compact('menu','tintuc','lienquan','xemnhieu'));
+    }
+    public function postTimkiem(Request $request,$menu_slug)
+    {
+        $menu = Menu::where('slug',$menu_slug)->first();
+        $tukhoa = $request->tukhoa;
+        if ($tukhoa != "") {
+            // $content = Content::where('title','like','%'.$tukhoa.'%')->orWhere('abstract','like','%'.$tukhoa.'%')->orWhere('content','like','%'.$tukhoa.'%')->orWhere('author','like','%'.$tukhoa.'%')->where('status',1)->where('menu_id',$menu->id)->orderBy('created_at','desc')->paginate(8);
+            $content = Content::where('title','like','%'.$tukhoa.'%')->orWhere('abstract','like','%'.$tukhoa.'%')->orWhere('content','like','%'.$tukhoa.'%')->orWhere('author','like','%'.$tukhoa.'%')->where('status',1)->orderBy('created_at','desc')->paginate(8);
+            $content_new = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at','desc')->take(5)->get();
+            $content->appends(['tukhoa' => $tukhoa ]);
+            return view('shared.pages.noidung.tintuc.search',compact('menu','tukhoa','content','content_new'));
+        } else {
+            return redirect()->back();
+        }
+        
     }
 
     //Quan hệ cổ đông

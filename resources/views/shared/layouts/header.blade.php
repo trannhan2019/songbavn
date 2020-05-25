@@ -27,19 +27,7 @@
 				@endif
 				
 			</div>
-			{{--  <div class="col px-1">
-				<form class="form-inline float-right" action="#">
-					@csrf
-					<div class="input-group">
-						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
-						<div class="input-group-append">
-							<button class="btn btn-sm btn-outline-secondary" type="submit">
-								<i class="fas fa-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>  --}}
+
 
 		</div>
 	</div>

@@ -171,5 +171,7 @@
     </script>
     <script> 
         CKEDITOR.replace('ckeditor_td'); 
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false;
     </script>
 @endsection

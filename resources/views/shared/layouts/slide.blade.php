@@ -19,6 +19,7 @@
         @endphp
         @foreach ($slide as $sl)
             @if ($sl->content_id)
+
             <div class="carousel-item {{ $i == 0 ? 'active':'' }}">
                 <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="{{ $sl->title }}" class="d-block">
                 <div class="carousel-caption">

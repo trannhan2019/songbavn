@@ -173,6 +173,7 @@
     </script>
     <script> 
         CKEDITOR.replace('ckeditor_tt');
-        //CKEDITOR.env.isCompatible = true;
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false;
     </script>
 @endsection

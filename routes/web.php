@@ -55,7 +55,9 @@ Route::get('gioi-thieu/{slug}/{content_id}', 'PagesController@getGioithieuSubCoc
 //Tin tức
 Route::get('tin-tuc','PagesController@getTintuc')->name('tintuc');
 Route::get('tin-tuc/{slug}','PagesController@getTintucSlug')->name('tintucslug');
-Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc');
+Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc')->name('tintucdetail');
+Route::any('tin-tuc-tim-kiem/{menu_slug}','PagesController@postTimkiem')->name('tintuctimkiem');
+//Route::get('tin-tuc/{menu_slug}/tim-kiem','PagesController@postTimkiem')->name('tintuctimkiem');
 
 //Quan hệ cổ đông
 Route::get('quan-he-co-dong','PagesController@getCodong')->name('codong');

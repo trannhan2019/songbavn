@@ -117,6 +117,8 @@
             toolbar: basic,
             height: 200
           });
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false;
     </script>
     <script type="text/javascript">
         var url = window.location;

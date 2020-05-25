@@ -113,7 +113,7 @@
                                         <div class="icon">
                                           <i class="ion ion-pie-graph"></i>
                                         </div>
-                                        <a href="{{ route('admin.content.tuyendung',$tuyendung->ChildMenus->first()->id) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('admin.content.tuyendung',$tuyendung->id) }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                       </div>
                                     </div>
                 

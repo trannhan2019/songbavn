@@ -156,8 +156,12 @@
         CKEDITOR.replace('ckeditor_ykien', {
             toolbar: basic
           });
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false;
     </script>
     <script> 
-        CKEDITOR.replace('ckeditor_traloi'); 
+        CKEDITOR.replace('ckeditor_traloi');
+        CKEDITOR.config.htmlEncodeOutput = false;
+        CKEDITOR.config.entities = false; 
     </script>
 @endsection

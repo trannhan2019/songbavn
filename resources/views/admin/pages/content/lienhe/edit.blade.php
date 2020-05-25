@@ -68,6 +68,8 @@
 @endsection
 @section('script')
 <script> 
-    CKEDITOR.replace('ckeditor_lh'); 
+    CKEDITOR.replace('ckeditor_lh');
+    CKEDITOR.config.htmlEncodeOutput = false;
+    CKEDITOR.config.entities = false; 
 </script>
 @endsection

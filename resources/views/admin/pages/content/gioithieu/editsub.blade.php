@@ -79,7 +79,9 @@
 
 @section('script')
 <script> 
-    CKEDITOR.replace('ckeditor_sub'); 
+    CKEDITOR.replace('ckeditor_sub');
+    CKEDITOR.config.htmlEncodeOutput = false;
+    CKEDITOR.config.entities = false; 
 </script>
 
 <script type="text/javascript">
