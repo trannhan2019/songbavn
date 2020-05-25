@@ -16,10 +16,10 @@
                 </nav>
             </div>
             <div class="col-md-4 py-2">
-                <form class="float-right w-100" action="#" method="POST">
+                <form class="float-right w-100" action="{{ route('tuyendungtimkiem',$menu->slug) }}" method="POST">
 					@csrf
 					<div class="input-group">
-						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
+						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ..." name="tukhoa">
 						<div class="input-group-append">
 							<button class="btn btn-sm btn-outline-secondary" type="submit">
 								<i class="fas fa-search"></i>
@@ -51,6 +51,8 @@
                             <p class="card-text mb-0 crop_text_4">{{ $ct->abstract }}</p>
                             <p class="card-text">
                                 <small class="text-muted">
+                                    <i class="fas fa-user-alt"></i> {{ $ct->author }}
+                                    &ensp;
                                     <i class="far fa-calendar-alt"></i> {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):''}}
                                     &ensp;
                                     <i class="far fa-eye"></i> {{ $ct->views }}

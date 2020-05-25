@@ -56,8 +56,7 @@ Route::get('gioi-thieu/{slug}/{content_id}', 'PagesController@getGioithieuSubCoc
 Route::get('tin-tuc','PagesController@getTintuc')->name('tintuc');
 Route::get('tin-tuc/{slug}','PagesController@getTintucSlug')->name('tintucslug');
 Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc')->name('tintucdetail');
-Route::any('tin-tuc-tim-kiem/{menu_slug}','PagesController@postTimkiem')->name('tintuctimkiem');
-//Route::get('tin-tuc/{menu_slug}/tim-kiem','PagesController@postTimkiem')->name('tintuctimkiem');
+Route::any('tin-tuc-tim-kiem/{menu_slug}','PagesController@postTintucTimkiem')->name('tintuctimkiem');
 
 //Quan hệ cổ đông
 Route::get('quan-he-co-dong','PagesController@getCodong')->name('codong');
@@ -78,6 +77,7 @@ Route::get('y-kien-nha-dau-tu/{danhmuc_slug}/{ykien_id}','YkiencodongController@
 //Tuyển dụng
 Route::get('tuyen-dung','PagesController@getTuyendung')->name('tuyendung');
 Route::get('tuyen-dung/{content_id}','PagesController@getDetailTuyendung');
+Route::any('tuyen-dung-tim-kiem/{menu_slug}','PagesController@postTuyendungTimkiem')->name('tuyendungtimkiem');
 //Liên hệ
 Route::get('lien-he', 'PagesController@getLienhe')->name('lienhe');
 //Comment
