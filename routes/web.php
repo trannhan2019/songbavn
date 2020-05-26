@@ -69,11 +69,15 @@ Route::get('quan-he-co-dong/{slug}', function ($slug) {
     }
 })->name('codongslug');
 
-Route::get('quan-he-co-dong/{menu_slug}/{content_id}','PagesController@getDetailQuanhecodong')->middleware('CheckDangnhap');
+Route::get('quan-he-co-dong/{menu_slug}/{content_id}','PagesController@getDetailQuanhecodong');
 Route::get('y-kien-nha-dau-tu','YkiencodongController@getYkiencodong')->middleware('CheckDangnhap')->name('ykiennhadautu');
 Route::get('y-kien-nha-dau-tu/{danhmuc_slug}','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
 Route::post('quan-he-co-dong/{menu_slug}','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
 Route::get('y-kien-nha-dau-tu/{danhmuc_slug}/{ykien_id}','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
+//Tìm kiếm
+Route::any('co-dong-tim-kiem/{menu_slug}','PagesController@postCodongTimkiem')->name('codongtimkiem');
+Route::any('y-kien-tim-kiem/{menu_slug}','YkiencodongController@postYkienTimkiem')->name('ykientimkiem');
+
 //Tuyển dụng
 Route::get('tuyen-dung','PagesController@getTuyendung')->name('tuyendung');
 Route::get('tuyen-dung/{content_id}','PagesController@getDetailTuyendung');

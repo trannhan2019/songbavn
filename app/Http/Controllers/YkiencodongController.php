@@ -257,4 +257,23 @@ class YkiencodongController extends Controller
         $menu_ykien = Menu::where('slug','y-kien-nha-dau-tu')->first();
         return redirect()->route('admin.content.ykien',$menu_ykien->id);
     }
+    //Tìm kiếm
+    public function postYkienTimkiem(Request $request,$menu_slug)
+    {
+        $menu = Menu::where('slug',$menu_slug)->first();
+        $tukhoa = $request->tukhoa;
+        if ($tukhoa != "") {
+            
+            $ykien = Ykiencodong::where([['menu_id',$menu->id],['status',1]])
+            ->where(function($query) use ($tukhoa){
+                $query->orWhere('fullname','like','%'.$tukhoa.'%')->orWhere('ask_content','like','%'.$tukhoa.'%');
+            })->orderBy('created_at','desc')->paginate(5);
+
+            $ykien_new = Ykiencodong::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at','desc')->take(5)->get();
+            $ykien->appends(['tukhoa' => $tukhoa ]);
+            return view('shared.pages.noidung.quanhecodong.searchykien',compact('menu','tukhoa','ykien','ykien_new'));
+        } else {
+            return redirect()->back();
+        } 
+    }
 }

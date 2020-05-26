@@ -150,18 +150,13 @@ class PagesController extends Controller
             ->where(function($query) use ($tukhoa){
                 $query->orWhere('title','like','%'.$tukhoa.'%')->orWhere('abstract','like','%'.$tukhoa.'%')->orWhere('content','like','%'.$tukhoa.'%')->orWhere('author','like','%'.$tukhoa.'%');
             })->orderBy('created_at','desc')->paginate(5);
-            // $content = $pre_content->where('title','like','%'.$tukhoa.'%')->orWhere('abstract','like','%'.$tukhoa.'%')->orWhere('content','like','%'.$tukhoa.'%')->orWhere('author','like','%'.$tukhoa.'%')->paginate(5);
-            //dd($content);
-            // $content = $pre_content->where(function ($query) use ($tukhoa){
-            //     $query->where('player1_id', '=' , $id)->orWhere('player2_id', '=', $id);
-            // })->paginate(5);
+
             $content_new = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at','desc')->take(5)->get();
             $content->appends(['tukhoa' => $tukhoa ]);
             return view('shared.pages.noidung.tintuc.search',compact('menu','tukhoa','content','content_new'));
         } else {
             return redirect()->back();
-        }
-        
+        } 
     }
 
     //Quan hệ cổ đông
@@ -200,6 +195,25 @@ class PagesController extends Controller
         // Trả về view
         return view('shared.pages.noidung.quanhecodong.detail',compact('menu','tintuc','lienquan','xemnhieu'));
     }
+    public function postCodongTimkiem(Request $request,$menu_slug)
+    {
+        $menu = Menu::where('slug',$menu_slug)->first();
+        $tukhoa = $request->tukhoa;
+        if ($tukhoa != "") {
+            
+            $content = Content::where([['menu_id',$menu->id],['status',1]])
+            ->where(function($query) use ($tukhoa){
+                $query->orWhere('title','like','%'.$tukhoa.'%')->orWhere('abstract','like','%'.$tukhoa.'%')->orWhere('content','like','%'.$tukhoa.'%');
+            })->orderBy('created_at','desc')->paginate(5);
+
+            $content_new = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at','desc')->take(5)->get();
+            $content->appends(['tukhoa' => $tukhoa ]);
+            return view('shared.pages.noidung.quanhecodong.search',compact('menu','tukhoa','content','content_new'));
+        } else {
+            return redirect()->back();
+        } 
+    }
+
     //Tuyển dụng
     public function getTuyendung()
     {

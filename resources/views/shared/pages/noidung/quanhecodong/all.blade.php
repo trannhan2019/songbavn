@@ -43,7 +43,7 @@
                                 <small>{{ $ykien->fullname}}</small>
                             </div>
                             <div class="crop_text_4">
-                                <a href="{{ $mn->id }}/{{ $ykien->id }}/detail-{{ $mn->slug }}.html">
+                                <a href="{{ $mn->slug }}/{{ $ykien->Danhmuc->slug }}/{{ $ykien->id }}">
                                     <h6>{!! $ykien->ask_content !!}</h6>
                                 </a>
                             </div>

@@ -22,10 +22,10 @@
                 </nav>
             </div>
             <div class="col-md-4 py-2">
-                <form class="float-right w-100" action="#" method="POST">
+                <form class="float-right w-100" action="{{ route('ykientimkiem',$menu->slug) }}" method="POST">
 					@csrf
 					<div class="input-group">
-						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
+						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ..." name="tukhoa">
 						<div class="input-group-append">
 							<button class="btn btn-sm btn-outline-secondary" type="submit">
 								<i class="fas fa-search"></i>
@@ -78,7 +78,7 @@
             </div>
             <div class="card mt-4">
                 <div class="card-header bg-info text-white">
-                    <h6 class="card-title mb-0">GỬI Ý KIẾN</h6>							
+                    <h6 class="card-title mb-0">GỬI Ý KIẾN</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ $menu->Parent->slug }}/{{ $menu->slug }}" method="post" accept-charset="utf-8">

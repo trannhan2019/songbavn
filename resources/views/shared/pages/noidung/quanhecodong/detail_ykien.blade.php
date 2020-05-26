@@ -25,9 +25,10 @@
                 @endif
             @endif
             <div class="ykien-q">
-                <h5 class="font-weight-bold">Thông tin chi tiết</h5>
-                <p class="m-0">Người đăng: &ensp; {{ $ykien->fullname }}</p>
-                <p class="m-0">Email: &ensp; {{ $ykien->email }}</p>
+                <h3 class="text-danger">Thông tin chi tiết</h3>
+                <hr>
+                <p class="m-0">Người đăng: &ensp; <span class="text-primary">{{ $ykien->fullname }}</span></p>
+                <p class="m-0">Email: &ensp; <span class="text-primary">{{ $ykien->email }}</span></p>
                 <p class="m-0">Thời gian: &ensp;{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y H:i'):''}}</p>
                 <p>Lượt xem: &ensp; {{ $ykien->views }}</p>
                 <h5 class="font-weight-bold">Nội dung câu hỏi:</h5>
