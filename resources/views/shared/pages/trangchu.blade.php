@@ -762,7 +762,7 @@
 						</h5>
 						<div class="evncpc text-center">
 							<a href="https://cpc.vn/vi-vn/" target="_blank">
-							<img src="shared_asset/upload/images/LOGO_EVNCPC.png" alt="">
+							<img src="shared_asset/upload/images/logo_cpc.jpg" alt="">
 							<p>Tổng công ty Điện lực miền Trung</p>
 							</a>
 						</div>	

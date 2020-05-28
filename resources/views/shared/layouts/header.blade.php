@@ -54,7 +54,7 @@
 				
 					@if (count($dm->ChildMenus)>0)
 					<li class="nav-item dropdown mx-1 py-2">
-						<a class="nav-link dropdown-toggle text-uppercase" style="color: #000066c9;" href="#" data-toggle="dropdown">
+						<a class="nav-link dropdown-toggle text-uppercase font-weight-bold" style="color: #000066c9;" href="#" data-toggle="dropdown">
 							{{ $dm->name }}
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
@@ -77,21 +77,11 @@
 					</li>
 					@else
 					<li class="nav-item py-2">
-						<a class="nav-link text-uppercase" style="color: #000066c9;" href="{{ $dm->slug }}">{{ $dm->name }}</a>
+						<a class="nav-link text-uppercase font-weight-bold" style="color: #000066c9;" href="{{ $dm->slug }}">{{ $dm->name }}</a>
 					</li>
 					@endif
 				@endforeach
 
-				{{--  <form class="form-inline ml-3" action="#">
-					<div class="input-group">
-						<input type="text" class="form-control form-control-sm" placeholder="Tìm kiếm..." aria-label="Tìm kiếm ...">
-						<div class="input-group-append">
-							<button class="btn btn-sm btn-outline-primary" type="submit">
-								<i class="fas fa-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>  --}}
 			</ul>
 		</div>
 	</div>
