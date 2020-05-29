@@ -99,7 +99,7 @@ class CommentController extends Controller
             $comment->content = $request->content;
             $comment->status = $request->status;
             if ($request->created_at) {
-                $comment->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+                $comment->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
             } else {
                 $comment->created_at = Carbon::now();
             }

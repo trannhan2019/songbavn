@@ -89,7 +89,7 @@
                                 <td class="text-center">{{ $ct->views }}</td>
                                 <td>{{ $ct->highlights==1 ? 'Có':'Không' }}</td>
                                 <td>{{ $ct->User->fullname }}</td>
-                                <td>{{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):'' }}</td>
+                                <td>{{ $ct->created_at ? $ct->created_at->format('d/m/Y'):'' }}</td>
                                 <td><a href="admin/content/{{ $ct->id }}/edit-tuyen-dung.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $ct->id }}" data-toggle="modal" data-target="#deletedTuyendungModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>

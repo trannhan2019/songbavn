@@ -67,7 +67,7 @@ class YkiencodongController extends Controller
         $ykien->ask_content = $request->ask_content;
         $ykien->status = $request->status;
         if ($request->created_at) {
-            $ykien->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $ykien->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $ykien->created_at = Carbon::now();
         }
@@ -110,7 +110,7 @@ class YkiencodongController extends Controller
         $ykien->ask_content = $request->ask_content;
         
         if ($request->created_at) {
-            $ykien->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $ykien->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $ykien->created_at = Carbon::now();
         }

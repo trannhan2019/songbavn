@@ -107,7 +107,7 @@
                                 ">{!! $y->ask_content !!}</td>
                                 <td >{{ $y->Danhmuc->name}}</td>
                                 <td>{{ $y->fullname}}</td>
-                                <td>{{ date("d/m/Y H:i", strtotime( $y->created_at))}}</td>
+                                <td>{{ date("d/m/Y", strtotime( $y->created_at))}}</td>
 
                                <td>
                                     {!! $y->Traloi_trash == null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 

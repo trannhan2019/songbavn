@@ -44,10 +44,10 @@
 
                                     <div class="form-group">
                                         <label>Năm <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerCreatmt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatmt" name="year"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreatmt" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerCreatmt">
+                                            <input type="text" class="form-control" name="year">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                         @if ($errors->has('year'))
@@ -118,11 +118,12 @@
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreatmt').datetimepicker({
-                locale: 'vi',
-                viewMode: 'years',
-                format: 'YYYY',
-                date: moment()
+			$('#datetimepickerCreatmt').datepicker({
+                format: "yyyy",
+                weekStart: 1,
+                minViewMode: 2,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

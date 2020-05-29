@@ -79,10 +79,10 @@
 
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerCreatykien" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatykien" name="created_at"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreatykien" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerCreatykien">
+                                            <input type="text" class="form-control" name="created_at">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                         @if ($errors->has('created_at'))
@@ -121,11 +121,11 @@
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreatykien').datetimepicker({
-                
-                locale: 'vi',
-                format: 'DD/MM/YYYY HH:mm'
-
+			$('#datetimepickerCreatykien').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

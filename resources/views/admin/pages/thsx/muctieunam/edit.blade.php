@@ -44,10 +44,10 @@ Mục tiêu sản xuất
 
                                     <div class="form-group">
                                         <label>Năm <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerCreatmt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatmt" name="year" value="{{$muctieu->year}}"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreatmt" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerEditmt">
+                                            <input type="text" class="form-control" name="year" value="{{$muctieu->year}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                         @if ($errors->has('year'))
@@ -117,13 +117,15 @@ Mục tiêu sản xuất
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-		$(function () {
-			$('#datetimepickerCreatmt').datetimepicker({
-                viewMode: 'years',
-                format: 'YYYY',
-                date: moment()
-			});
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepickerEditmt').datepicker({
+            format: "yyyy",
+            weekStart: 1,
+            minViewMode: 2,
+            language: "vi",
+            autoclose: true
         });
-    </script>
+    });
+</script>
 @endsection

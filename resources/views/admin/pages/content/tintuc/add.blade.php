@@ -130,10 +130,10 @@
 
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
-                                        <div class="input-group date" id="datetimepickerCreattt" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattt" name="created_at"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreattt" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerCreattt">
+                                            <input type="text" class="form-control" name="created_at">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>                                       
                                     </div>
@@ -165,9 +165,11 @@
     </script>
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreattt').datetimepicker({
-                locale: 'vi',
-                format: 'DD/MM/YYYY HH:mm'
+			$('#datetimepickerCreattt').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

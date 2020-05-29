@@ -44,12 +44,12 @@
 
                                     <div class="form-group">
                                         <label>Ngày <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerCreatsx" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatsx" name="date"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreatsx" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerCreatsx">
+                                            <input type="text" class="form-control" name="date">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                        </div>
+                                        </div> 
                                         @if ($errors->has('date'))
                                             <p class="text-danger mb-0">{{ $errors->first('date') }}</p>
                                         @endif                                     
@@ -126,11 +126,11 @@
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreatsx').datetimepicker({
-                
-                locale: 'vi',
-                format: 'DD/MM/YYYY'
-
+			$('#datetimepickerCreatsx').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

@@ -80,7 +80,7 @@
                         <td>
                             {!! $cm->status==1 ? '<span class="badge badge-primary">Hoạt động</span>':'<span class="badge badge-secondary">Không hoạt động</span>' !!} 
                         </td>
-                        <td>{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):'' }}</td>
+                        <td>{{ $cm->created_at ? $cm->created_at->format('d/m/Y'):'' }}</td>
                         <td><a href="{{ route('admin.comment.edit',$cm->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                         <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $cm->id }}" data-toggle="modal" data-target="#deletedCommentModal"><i class="far fa-trash-alt"></i></button></td>
                     </tr>

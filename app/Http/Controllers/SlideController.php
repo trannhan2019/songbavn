@@ -71,9 +71,9 @@ class SlideController extends Controller
         }
 
         if ($request->created_at) {
-            $slide->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $slide->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $slide->created_at = null;
+            $slide->created_at = Carbon::now();
         }
         $slide->save();
         return redirect('admin/slide/list')->with('thongbao','Thêm thông tin thành công !');
@@ -145,7 +145,7 @@ class SlideController extends Controller
         }
 
         if ($request->created_at) {
-            $slide->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $slide->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $slide->created_at = Carbon::now();
         }

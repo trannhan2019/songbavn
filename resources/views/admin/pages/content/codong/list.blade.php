@@ -89,7 +89,7 @@
                                 <td class="text-center">{{ $cd->views }}</td>
                                 <td>{{ $cd->highlights==1 ? 'Có':'Không' }}</td>
                                 <td>{{ $cd->User->fullname }}</td>
-                                <td>{{ $cd->created_at ? $cd->created_at->format('d/m/Y H:i'):'' }}</td>
+                                <td>{{ $cd->created_at ? $cd->created_at->format('d/m/Y'):'' }}</td>
                                 <td><a href="admin/content/{{ $cd->id }}/edit-quan-he-co-dong.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $cd->id }}" data-toggle="modal" data-target="#deletedCodongModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>

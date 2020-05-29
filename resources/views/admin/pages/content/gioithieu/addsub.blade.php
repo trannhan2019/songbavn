@@ -46,10 +46,10 @@
                         </div>
                         <div class="form-group">
                             <label>Thời gian khởi tạo</label>
-                            <div class="input-group date" id="datetimepickerCreatsub" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreatsub" name="created_at"/>
-                                <div class="input-group-append" data-target="#datetimepickerCreatsub" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                            <div class="input-group date" id="datetimepickerCreatsub">
+                                <input type="text" class="form-control" name="created_at">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                 </div>
                             </div>                                       
                         </div>
@@ -87,11 +87,14 @@
     CKEDITOR.config.htmlEncodeOutput = false;
     CKEDITOR.config.entities = false; 
 </script>
+
 <script type="text/javascript">
     $(function () {
-        $('#datetimepickerCreatsub').datetimepicker({
-            locale: 'vi',
-            format: 'DD/MM/YYYY HH:mm'
+        $('#datetimepickerCreatsub').datepicker({
+            format: "dd/mm/yyyy",
+            weekStart: 1,
+            language: "vi",
+            autoclose: true
         });
     });
 </script>

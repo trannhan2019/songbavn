@@ -73,7 +73,7 @@
                                 <td>{{ $content->Menu->Parent->name}}/{{ $content->Menu->name }}</td>
                                 <td>{{ $content->title }}</td>
                                 <td>{{ $content->User->fullname }}</td>
-                                <td>{{ $content->created_at ? $content->created_at->format('d/m/Y H:i'):'' }}</td>
+                                <td>{{ $content->created_at ? $content->created_at->format('d/m/Y'):'' }}</td>
                                 <td><a href="admin/content/restore/{{ $content->id }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $content->id }}" data-toggle="modal" data-target="#deletedContentModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>

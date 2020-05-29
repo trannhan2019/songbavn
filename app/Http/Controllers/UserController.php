@@ -131,9 +131,9 @@ class UserController extends Controller
         // $user->timestamps = false;
         if ($request->created_at) {
 
-            $user->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $user->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
-            $user->created_at = null;
+            $user->created_at = Carbon::now();
         }
         
         $user->save();
@@ -218,7 +218,9 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->info = $request->info;
         if ($request->created_at) {
-            $user->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $user->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
+        }else {
+            $user->created_at = Carbon::now();
         }
         $user->save();
         return redirect('admin/user/list')->with('thongbao','Sửa tài khoản thành công !');

@@ -98,7 +98,7 @@
                                 <td >{{ $y->Danhmuc->name}}</td>
                                 <td>{{ $y->fullname}}</td>
                                 <td>{{ $y->email}}</td>
-                                <td>{{ date("d/m/Y H:i", strtotime( $y->created_at))}}</td>
+                                <td>{{ date("d/m/Y", strtotime( $y->created_at))}}</td>
                                 
                                 <td>
                                     {!! $y->status==1 ? '<span class="badge badge-primary">Hiển thị</span>':'<span class="badge badge-secondary">Không hiển thị</span>' !!} 

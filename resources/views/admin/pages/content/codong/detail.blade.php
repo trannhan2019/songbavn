@@ -29,7 +29,7 @@
                     <small>
                         <i class="fas fa-user-alt"></i> {{ $content->author }}
                         &ensp;
-                        <i class="far fa-calendar-alt"></i> {{ $content->created_at ? $content->created_at->format('d/m/Y H:i'):''}}
+                        <i class="far fa-calendar-alt"></i> {{ $content->created_at ? $content->created_at->format('d/m/Y'):''}}
                         &ensp;
                         <i class="far fa-eye"></i> {{ $content->views }}
                         &ensp;

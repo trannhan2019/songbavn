@@ -77,10 +77,10 @@
 
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo <span class="text-danger">(*)</span></label>
-                                        <div class="input-group date" id="datetimepickerEditykien" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditykien" name="created_at" value="{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y H:i'):''}}"/>
-                                            <div class="input-group-append" data-target="#datetimepickerEditykien" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerEditykien">
+                                            <input type="text" class="form-control" name="created_at" value="{{ date("d/m/Y", strtotime($ykien->created_at))}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                         @if ($errors->has('created_at'))
@@ -143,9 +143,11 @@
 @section('script')
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerEditykien').datetimepicker({
-                locale: 'vi',
-                format: 'DD/MM/YYYY HH:mm'
+			$('#datetimepickerEditykien').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

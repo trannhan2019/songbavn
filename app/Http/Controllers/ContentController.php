@@ -132,7 +132,7 @@ class ContentController extends Controller
         $content->content = $request->content;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -178,7 +178,7 @@ class ContentController extends Controller
         $content->content = $request->content;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -244,7 +244,7 @@ class ContentController extends Controller
         $content->source = $request->source;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -317,7 +317,7 @@ class ContentController extends Controller
         $tintuc->source = $request->source;
         $tintuc->status = $request->status;
         if ($request->created_at) {
-            $tintuc->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $tintuc->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $tintuc->created_at = Carbon::now();
         }
@@ -389,7 +389,7 @@ class ContentController extends Controller
         $content->source = $request->source;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -461,7 +461,7 @@ class ContentController extends Controller
         $content->source = $request->source;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -535,7 +535,7 @@ class ContentController extends Controller
         $content->source = $request->source;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }
@@ -607,7 +607,7 @@ class ContentController extends Controller
         $content->source = $request->source;
         $content->status = $request->status;
         if ($request->created_at) {
-            $content->created_at = date('Y-m-d H:i:s',strtotime(str_replace('/','-',$request->created_at)));
+            $content->created_at = date('Y-m-d',strtotime(str_replace('/','-',$request->created_at)));
         } else {
             $content->created_at = Carbon::now();
         }

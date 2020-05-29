@@ -128,12 +128,12 @@
 
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
-                                        <div class="input-group date" id="datetimepickerCreattd" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerCreattd" name="created_at" value="{{ $content->created_at ? $content->created_at->format('d/m/Y H:i'):''}}"/>
-                                            <div class="input-group-append" data-target="#datetimepickerCreattd" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                        <div class="input-group date" id="datetimepickerEdittd">
+                                            <input type="text" class="form-control" name="created_at" value="{{ date("d/m/Y", strtotime($content->created_at))}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                        </div>                                      
+                                        </div>                                       
                                     </div>
 
                                     <div class="form-group">
@@ -163,9 +163,11 @@
     </script>
     <script type="text/javascript">
 		$(function () {
-			$('#datetimepickerCreattd').datetimepicker({
-                locale: 'vi',
-                format: 'DD/MM/YYYY HH:mm'
+			$('#datetimepickerEdittd').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

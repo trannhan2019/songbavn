@@ -131,12 +131,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Thời gian khởi tạo</label>
-                                        <div class="input-group date" id="datetimepickerEditu" data-target-input="nearest">
+                                        {{--  <div class="input-group date" id="datetimepickerEditu" data-target-input="nearest">
                                             <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerEditu" name="created_at" value="{{ $user->created_at ? $user->created_at->format('d/m/Y H:i'):''}}"/>
                                             <div class="input-group-append" data-target="#datetimepickerEditu" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                             </div>
-                                        </div>                                        
+                                        </div>  --}}
+                                        <div class="input-group date" id="datetimepickerEditu">
+                                            <input type="text" class="form-control" name="created_at" value="{{ date("d/m/Y", strtotime($user->created_at))}}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                 </div>
@@ -161,10 +167,12 @@
     </script>
 
     <script type="text/javascript">
-        $(function () {
-            $('#datetimepickerEditu').datetimepicker({
-                locale: 'vi',
-                format: 'DD/MM/YYYY HH:mm'
+		$(function () {
+			$('#datetimepickerEditu').datepicker({
+                format: "dd/mm/yyyy",
+                weekStart: 1,
+                language: "vi",
+                autoclose: true
 			});
         });
     </script>

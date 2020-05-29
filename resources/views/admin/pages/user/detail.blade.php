@@ -49,7 +49,7 @@
                                         <p class="card-text mb-1">Ngày khởi tạo: 
                                             <span>
                                                 @if ($user->created_at)
-                                                {{ $user->created_at->format('d/m/Y H:i') }}
+                                                {{ $user->created_at->format('d/m/Y') }}
                                                 @else
                                                     {{ '' }}
                                                 @endif
