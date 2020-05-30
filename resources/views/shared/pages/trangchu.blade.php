@@ -21,13 +21,13 @@
 							</a>					
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
+									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
 										{{ $tin_noibat_1['title'] }}
 									</a>
 								</h6>
 								<p class="card-text mb-0">
 									<small class="text-muted">
-										<i class="far fa-calendar-alt"></i> {{ $tin_noibat_1['created_at'] ? $tin_noibat_1['created_at']->format('d/m/Y H:i'):'' }}
+										<i class="far fa-calendar-alt"></i> {{ $tin_noibat_1['created_at'] ? $tin_noibat_1['created_at']->format('d/m/Y'):'' }}
 										 
 										<i class="far fa-eye"></i> {{ $tin_noibat_1['views'] }}
 										 
@@ -329,9 +329,10 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt="">
-							<div class="card-body p-2" style="height: 150px;">
-								<h6 class="card-title">
+							{{-- <img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_tthd_1['imageorfile'])}});"></div>
+							<div class="card-body p-2">
+								<h6 class="card-title crop_text">
 									{{ $tin_tthd_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
@@ -374,9 +375,10 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt="">
-							<div class="card-body p-2" style="height: 150px;">
-								<h6 class="card-title">
+							{{-- <img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_dangdoan_1['imageorfile'])}});"></div>
+							<div class="card-body p-2">
+								<h6 class="card-title crop_text">
 									{{ $tin_dangdoan_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
@@ -418,9 +420,10 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							<img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt="">
-							<div class="card-body p-2" style="height: 150px;">
-								<h6 class="card-title">
+							{{-- <img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_sba_1['imageorfile'])}});"></div>
+							<div class="card-body p-2">
+								<h6 class="card-title crop_text">
 									{{ $tin_sba_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
