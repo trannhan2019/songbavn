@@ -39,7 +39,7 @@
                 <small>
                     <i class="fas fa-user-alt"></i> {{ $tintuc->author }}
                     &ensp;
-                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y H:i'):''}}
+                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y'):''}}
                     &ensp;
                     <i class="far fa-eye"></i> {{ $tintuc->views }}
                     &ensp;
@@ -65,7 +65,7 @@
                                 <div class="media-body">
                                     <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
                                     <p class="card-text mb-0">{!! $cm->content !!}</p>
-                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y'):''}}</small></p>
                                 </div>
                                 <img src="admin_asset/images/user/{{ $cm->User->image }}" class="rounded-circle m-3" style="width: 60px" alt="">
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="media-body">
                                     <h6 class="card-title">{{ $cm->User->fullname }} - {{ $cm->User->email }}</h6>
                                     <p class="card-text mb-0">{!! $cm->content !!}</p>
-                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
+                                    <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y'):''}}</small></p>
                                 </div>
                             </div>
                             <hr>
@@ -87,7 +87,7 @@
                             <div class="media-body">
                                 <h6 class="card-title">{{ $cm->sendername }} - {{ $cm->senderemail }}</h6>
                                 <div class="card-text mb-0">{!! $cm->content !!}</div>
-                                <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y H:i'):''}}</small></p>
+                                <p class="card-text"><small class="text-muted">{{ $cm->created_at ? $cm->created_at->format('d/m/Y'):''}}</small></p>
                             </div>
                         </div>
                         <hr>
@@ -147,7 +147,7 @@
                         <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $lq->views }}
                                 &ensp;
@@ -169,7 +169,7 @@
                         <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}" title="" class="text-dark"> {{ $xn->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $xn->views }}
                                 &ensp;

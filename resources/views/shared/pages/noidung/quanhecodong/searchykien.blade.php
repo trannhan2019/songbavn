@@ -30,7 +30,7 @@
                     <p class="my-0 text-justify">{!! $yk->ask_content !!}</p>
                     <p>
                         <small>
-                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y H:i'):''}}</span>
+                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y'):''}}</span>
                              &ensp;  
                             <i class="fas fa-user-tie"></i>  <span >{{ $yk->fullname }}</span>
                             &ensp;  
@@ -67,7 +67,7 @@
                             <small>
                                 <i class="fas fa-user-tie"></i>  <span >{{ $ykn->fullname }}</span>
                                 &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $ykn->created_at ? $ykn->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ykn->created_at ? $ykn->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ykn->views }}
                             </small>

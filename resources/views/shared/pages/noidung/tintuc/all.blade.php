@@ -28,7 +28,7 @@
                     </div>
                     <div class="row mb-3">
                         @php
-                            $tin_con = $mn->Contents->where('status',1)->sortByDesc('created_at')->take(6);
+                            $tin_con = $mn->Contents->where('status',1)->sortByDesc('created_at')->take(7);
                             $tin1_con = $tin_con->shift();
                         @endphp
                         <div class="col-md-7 home-left h-100">
@@ -44,14 +44,14 @@
                                     </h6>
                                     <p class="card-text mb-0">
                                         <small class="text-muted">
-                                            <i class="far fa-calendar-alt"></i> {{ $tin1_con['created_at'] ? $tin1_con['created_at']->format('d/m/Y H:i'):'' }}
+                                            <i class="far fa-calendar-alt"></i> {{ $tin1_con['created_at'] ? $tin1_con['created_at']->format('d/m/Y'):'' }}
                                              
                                             <i class="far fa-eye"></i> {{ $tin1_con['views'] }}
                                              
                                             <i class="far fa-comments"></i> {{ count($tin1_con->Comments->where('status',1)) }}
                                         </small>
                                     </p>
-                                    <p class="card-text mb-0">
+                                    <p class="card-text mb-0 crop_text_4">
                                         {{ $tin1_con['abstract'] }}
                                     </p>
                                 </div>
@@ -99,7 +99,7 @@
                         </a>
                         <p class="m-0">
                             <small>
-                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ctv->views }}
                             </small>

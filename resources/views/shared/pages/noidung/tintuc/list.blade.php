@@ -53,7 +53,7 @@
                                 <small class="text-muted">
                                     <i class="fas fa-user-alt"></i> {{ $ct->author }}
                                     &ensp;
-                                    <i class="far fa-calendar-alt"></i> {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):''}}
+                                    <i class="far fa-calendar-alt"></i> {{ $ct->created_at ? $ct->created_at->format('d/m/Y'):''}}
                                     &ensp;
                                     <i class="far fa-eye"></i> {{ $ct->views }}
                                     &ensp;
@@ -87,7 +87,7 @@
                         </a>
                         <p class="m-0">
                             <small>
-                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ctv->views }}
                             </small>

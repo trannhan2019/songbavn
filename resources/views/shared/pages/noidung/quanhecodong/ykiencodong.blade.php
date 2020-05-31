@@ -58,7 +58,7 @@
                     <p class="my-0 text-justify">{!! $yk->ask_content !!}</p>
                     <p>
                         <small>
-                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y H:i'):''}}</span>
+                            <i class="far fa-calendar-alt"></i>  <span >{{ $yk->created_at ? $yk->created_at->format('d/m/Y'):''}}</span>
                              &ensp;  
                             <i class="fas fa-user-tie"></i>  <span >{{ $yk->fullname }}</span>
                             &ensp;  

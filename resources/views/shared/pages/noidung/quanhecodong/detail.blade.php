@@ -33,7 +33,7 @@
                 <small>
                     <i class="fas fa-user-alt"></i> {{ $tintuc->author }}
                     &ensp;
-                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y H:i'):''}}
+                    <i class="far fa-calendar-alt"></i> {{ $tintuc->created_at ? $tintuc->created_at->format('d/m/Y'):''}}
                     &ensp;
                     <i class="far fa-eye"></i> {{ $tintuc->views }}
                     &ensp;
@@ -56,7 +56,7 @@
                             <small class="text-muted">
                                 <i class="fas fa-user-tie"></i> {{ $lq->author }}
                                 &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $lq->views }}
                             </small>
@@ -78,7 +78,7 @@
                             <small class="text-muted">
                                 <i class="fas fa-user-tie"></i> {{ $lq->author }}
                                 &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $xn->views }}
                             </small>

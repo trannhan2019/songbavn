@@ -44,7 +44,7 @@
                     </a>
                     <small>
                         <p class="d-inline-block m-0">
-                            <i class="far fa-calendar-alt"></i> &nbsp; {{ $ct->created_at ? $ct->created_at->format('d/m/Y H:i'):''}}
+                            <i class="far fa-calendar-alt"></i> &nbsp; {{ $ct->created_at ? $ct->created_at->format('d/m/Y'):''}}
                         </p>
                         &ensp;
                         <p class="d-inline-block m-0">
@@ -81,7 +81,7 @@
                         </a>
                         <p class="m-0">
                             <small>
-                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $ctv->created_at ? $ctv->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $ctv->views }}
                             </small>

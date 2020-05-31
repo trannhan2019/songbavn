@@ -29,7 +29,7 @@
                 <hr>
                 <p class="m-0">Người đăng: &ensp; <span class="text-primary">{{ $ykien->fullname }}</span></p>
                 <p class="m-0">Email: &ensp; <span class="text-primary">{{ $ykien->email }}</span></p>
-                <p class="m-0">Thời gian: &ensp;{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y H:i'):''}}</p>
+                <p class="m-0">Thời gian: &ensp;{{ $ykien->created_at ? $ykien->created_at->format('d/m/Y'):''}}</p>
                 <p>Lượt xem: &ensp; {{ $ykien->views }}</p>
                 <h5 class="font-weight-bold">Nội dung câu hỏi:</h5>
                 <p class="font-weight-bold">Thuộc chuyên mục: &ensp; {{ $ykien->Danhmuc->name }}</p>
@@ -59,7 +59,7 @@
                             <small>
                                 <i class="fas fa-user-tie"></i> {{ $yv->fullname}}
                                 &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $yv->created_at ? $yv->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $yv->created_at ? $yv->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $yv->views }}
                             </small>
@@ -81,7 +81,7 @@
                             <small>
                                 <i class="fas fa-user-tie"></i> {{ $yv->fullname}}
                                 &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $yv->created_at ? $yv->created_at->format('d/m/Y H:i'):''}}
+                                <i class="far fa-calendar-alt"></i> {{ $yv->created_at ? $yv->created_at->format('d/m/Y'):''}}
                                 &ensp;
                                 <i class="far fa-eye"></i> {{ $yv->views }}
                             </small>
