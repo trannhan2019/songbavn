@@ -23,9 +23,8 @@
             <div class="carousel-item {{ $i == 0 ? 'active':'' }}">
                 <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="{{ $sl->title }}" class="d-block">
                 <div class="carousel-caption">
-                    <a href="#" class="btn btn-outline-light btn-lg">
-                       {{ $sl->title }}
-                    </a>
+                    <h5>{{ $sl->title }}</h5>
+                    <p><a href="{{$sl->Content->Menu->Parent->slug}}/{{$sl->Content->Menu->slug}}/{{$sl->content_id}}" class="btn btn-outline-secondary btn-sm">Xem chi tiết</a></p>
                 </div>
             </div>
             @else

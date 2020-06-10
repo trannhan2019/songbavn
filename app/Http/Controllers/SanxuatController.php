@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use DataTables;
 use App\Thsx;
 use App\Muctieunam;
@@ -23,16 +24,16 @@ class SanxuatController extends Controller
         return Datatables::of($sanxuat)
         // them cot stt
         ->addIndexColumn()
-        
+
         ->editColumn('muctieunam_id',function($sanxuat){
             return $sanxuat->Muctieunam->title;
         })
-        
+
         ->editColumn('date',function($sanxuat){
             return date('d/m/Y', strtotime($sanxuat->date));
 
         })
-        
+
         ->editColumn('power',function($sanxuat){
             return number_format($sanxuat->power, 1, ',', '.');
         })
@@ -45,7 +46,7 @@ class SanxuatController extends Controller
         ->editColumn('rain',function($sanxuat){
             return number_format($sanxuat->rain, 1, ',', '.');
         })
-        
+
         ->editColumn('status',function($sanxuat){
 
             if ($sanxuat->status == 1) {
@@ -53,9 +54,9 @@ class SanxuatController extends Controller
             } else {
                 return '<span class="badge badge-secondary"> Không hoạt động </span>';
             }
-             
+
         })
-        
+
         ->addColumn('edit', function ($sanxuat) {
             return
             '<a href="' . route('admin.sanxuat.edit', $sanxuat->id) .'" class="btn btn-warning btn-sm btn-edit" >
@@ -68,7 +69,7 @@ class SanxuatController extends Controller
             <i class="far fa-trash-alt"></i>
             </a>';
         })
-        
+
         ->rawColumns(['status','edit','delete'])
         ->make(true);
     }
@@ -111,7 +112,7 @@ class SanxuatController extends Controller
         $sanxuat->device = $request->device;
         $sanxuat->status = $request->status;
         $sanxuat->user_id = Auth::user()->id;
-        
+
         $sanxuat->save();
         return redirect('admin/sanxuat/list')->with('thongbao','Thêm thông tin thành công !');
     }
@@ -154,7 +155,7 @@ class SanxuatController extends Controller
         $sanxuat->device = $request->device;
         $sanxuat->status = $request->status;
         $sanxuat->user_id = Auth::user()->id;
-        
+
         $sanxuat->save();
         return redirect('admin/sanxuat/list')->with('thongbao','Sửa thông tin thành công !');
     }
@@ -162,7 +163,7 @@ class SanxuatController extends Controller
     {
         $sanxuat = Thsx::find($id);
         $sanxuat->delete();
-        
+
         return redirect()->route('admin.sanxuat.list')->with('thongbao','Xóa thông tin thành công !');
     }
     //Đã xóa
@@ -181,7 +182,7 @@ class SanxuatController extends Controller
     {
         $sanxuat = Thsx::withTrashed()->find($id);
         $sanxuat->forceDelete();
-        
+
         return redirect('admin/sanxuat/trash')->with('thongbao','Xóa vĩnh viễn nội dung thành công !');
     }
     //shared
@@ -244,6 +245,8 @@ class SanxuatController extends Controller
                         ->sum('quantity');
                         $sum_year_kd = Thsx::whereYear('date', $year_kd)->where('muctieunam_id',$muctieunam_kd)
                         ->sum('quantity');
+                        // $sum_year_kd = Thsx::where('muctieunam_id',$muctieunam_kd)->sum('quantity');
+                        //dd($sum_year_kd);
                     }
 
                     $thsxkn_day = Factory::where('alias','NMKN')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime(str_replace('/','-',$request->date_day))))->first();
@@ -259,7 +262,7 @@ class SanxuatController extends Controller
                     }
                     return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsxkd_day','sum_month_kd','sum_year_kd','thsxkn_day','sum_month_kn','sum_year_kn','date'));
                 break;
-    
+
             case 'month':
                 $this->validate($request,
                     [
@@ -273,7 +276,7 @@ class SanxuatController extends Controller
                         'date_month'=>'thời gian',
                         'factory_id'=>'Nhà máy'
                     ]);
-                    $thsx_day = Thsx::where('status',1)->latest()->first();
+                    $thsx_day = Thsx::where('status',1)->orderBy('date','desc')->first();
                     $factory = Factory::where('status',1)->get();
 
                     $thsxkd_day = Factory::where('alias','NMKD')->first()->Thsx->where('status',1)->where('date',date("Y-m-d", strtotime($thsx_day->date)))->first();
@@ -299,12 +302,16 @@ class SanxuatController extends Controller
                         ->sum('quantity');
                     }
 
-                    $mix = "01/".$request->date_month;
-                    $date = date("Y-m-d",strtotime(str_replace('/','-',$mix)));
+                    //$mix = "01/".$request->date_month;
+                    //$date = date("Y-m-d",strtotime(str_replace('/','-',$mix)));
+                    $dateMonthArray = explode('/', $request->date_month);
+                    $month = $dateMonthArray[0];
+                    $year = $dateMonthArray[1];
+                    $date = Carbon::createFromDate($year, $month, 1);
                     //dd($date);
                     $month = date("m", strtotime($date));
                     $year = date("Y", strtotime($date));
-                    $muctieunam = Factory::find($request->factory_id)->Muctieunam->sortByDesc('year')->first();
+                    $muctieunam = Factory::find($request->factory_id)->Muctieunam->where('year',$year)->first();
                     $sum_year = Thsx::whereYear('date', $year)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
                     $sum_month = Thsx::whereYear('date', $year)->whereMonth('date', $month)->where('muctieunam_id',$muctieunam->id)->sum('quantity');
                     $thsx_month = Thsx::where('muctieunam_id',$muctieunam->id)->whereYear('date', $year)->whereMonth('date', $month)->where('status',1)->get();
@@ -312,9 +319,9 @@ class SanxuatController extends Controller
                     return view('shared.pages.noidung.sanxuat.show',compact('thsx_day','factory','thsx_month','sum_year','sum_month','thsxkd_day','sum_month_kd','sum_year_kd','thsxkn_day','sum_month_kn','sum_year_kn','muctieunam'));
                 break;
         }
-        
+
     }
-    
+
     public function getAddSanxuat()
     {
         $muctieu = Muctieunam::orderBy('year','desc')->where('status',1)->get();
@@ -353,7 +360,7 @@ class SanxuatController extends Controller
         $sanxuat->device = $request->device;
         $sanxuat->status = $request->status;
         $sanxuat->user_id = Auth::user()->id;
-        
+
         $sanxuat->save();
         return redirect()->route('sanxuat')->with('thongbao','Thêm thông tin thành công !');
     }
@@ -396,9 +403,9 @@ class SanxuatController extends Controller
         $sanxuat->device = $request->device;
         $sanxuat->status = $request->status;
         $sanxuat->user_id = Auth::user()->id;
-        
+
         $sanxuat->save();
         return redirect()->route('sanxuat')->with('thongbao','Sửa thông tin thành công !');
     }
- 
+
 }
