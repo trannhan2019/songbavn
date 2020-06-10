@@ -6,7 +6,7 @@
 @section('content')
     @include('shared.layouts.slide')
     <div class="container content">
-		
+
 		<div class="row mt-3">
 			<div class="col-md-9 col-lg-9">
 				<div class="row">
@@ -18,7 +18,7 @@
 						<div class="card">
 							<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id }}" title="">
 								<img src="shared_asset/upload/images/content/{{ $tin_noibat_1['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
-							</a>					
+							</a>
 							<div class="card-body p-2">
 								<h6 class="card-title">
 									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
@@ -55,12 +55,12 @@
 										<h6 class="card-title mb-0 crop_text_3 align-middle">
 											<a href="{{ !empty($tnb->Menu->Parent) ? $tnb->Menu->Parent->slug.'/'. $tnb->Menu->slug.'/'.$tnb->id : $tnb->Menu->slug.'/'.$tnb->id}}">{{ $tnb['title'] }}</a>
 										</h6>
-									</div>						
+									</div>
 								</div>
 							</div>
 						</div>
 						@endforeach
-						
+
 					</div>
 				</div>
 
@@ -99,7 +99,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_dhdcd->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
 										{{ $item['title'] }}
 									</a>
@@ -139,7 +139,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_cbtt->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
 										{{ $item['title'] }}
 									</a>
@@ -179,7 +179,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_bctc->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
 										{{ $item['title'] }}
 									</a>
@@ -217,7 +217,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_bctn->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
 										{{ $item['title'] }}
 									</a>
@@ -255,7 +255,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_thqt->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
 										{{ $item['title'] }}
 									</a>
@@ -293,7 +293,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_ykien->all() as $item)
-								<li class="crop_text">
+								<li class="crop_text font-weight-bold">
 									<a href="{{ $item->Menu->slug }}/{{ $item->Danhmuc->slug }}/{{ $item['id'] }}">
 										{!! $item['ask_content'] !!}
 									</a>
@@ -332,7 +332,7 @@
 							{{-- <img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_tthd_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
-								<h6 class="card-title crop_text">
+								<h6 class="card-title crop_text font-weight-bold">
 									{{ $tin_tthd_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
@@ -351,7 +351,7 @@
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -378,7 +378,7 @@
 							{{-- <img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_dangdoan_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
-								<h6 class="card-title crop_text">
+								<h6 class="card-title crop_text font-weight-bold">
 									{{ $tin_dangdoan_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
@@ -397,7 +397,7 @@
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -423,7 +423,7 @@
 							{{-- <img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_sba_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
-								<h6 class="card-title crop_text">
+								<h6 class="card-title crop_text font-weight-bold">
 									{{ $tin_sba_1['title'] }}
 								</h6>
 								<p class="card-text m-0 crop_text">
@@ -442,7 +442,7 @@
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -467,7 +467,7 @@
 							@foreach ($tin_thongbao as $tin)
 							<li>
 								<a href="{{ !empty($tin->Menu->Parent) ? $tin->Menu->Parent->slug.'/'. $tin->Menu->slug .'/'.$tin->id : $tin->Menu->slug.'/'.$tin->id }}">
-									{{ $tin->title }} 
+									{{ $tin->title }}
 								</a>
 							</li>
 							<li>
@@ -536,7 +536,7 @@
 													<span class="text-danger">{{ number_format($sum_month_kd, 3, ',', '.') }}</span>
 												</td>
 											</tr>
-											<tr>	
+											<tr>
 												<td class="pl-3">
 													<span>Năm: </span>
 												</td>
@@ -588,7 +588,7 @@
 												</tr>
 												@endif
 											@endif
-											
+
 											<tr>
 												<td>
 													<span class="text-primary">Tình trạng thiết bị: </span>
@@ -654,7 +654,7 @@
 													<span class="text-danger">{{ number_format($sum_month_kn, 3, ',', '.') }}</span>
 												</td>
 											</tr>
-											<tr>	
+											<tr>
 												<td class="pl-3">
 													<span>Năm: </span>
 												</td>
@@ -706,7 +706,7 @@
 												</tr>
 												@endif
 											@endif
-											
+
 											<tr>
 												<td>
 													<span class="text-primary">Tình trạng thiết bị: </span>
@@ -768,8 +768,8 @@
 							<img src="shared_asset/upload/images/logo_cpc.jpg" alt="">
 							<p>Tổng công ty Điện lực miền Trung</p>
 							</a>
-						</div>	
-						<hr class="my-3">					
+						</div>
+						<hr class="my-3">
 					</div>
 					<div class="col-12 mt-3">
 						<div class="soffice text-center w-100">

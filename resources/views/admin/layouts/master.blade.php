@@ -19,6 +19,7 @@
     {{--  <!-- datetimepicker  --}}
     {{--  <link rel="stylesheet" href="admin_asset/plugins/tempusdominus/css/tempusdominus-bootstrap-4.min.css">  --}}
 	<link rel="stylesheet" href="admin_asset/plugins/bootstrapdatepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="shared_asset/css/style.css">
     {{--  Google Font: Source Sans Pro  --}}
     {{--  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">  --}}
     {{--  font Roboto Google  --}}
@@ -46,7 +47,7 @@
     {{--  Datatable js  --}}
     <script type="text/javascript" src="admin_asset/plugins/DataTables/datatables.min.js"></script>
     {{--  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>  --}}
-    
+
     {{--  <script src="admin_asset/plugins/tempusdominus/js/moment.min.js" type="text/javascript" charset="utf-8" async defer></script>  --}}
 	{{--  <!-- DATEPICKER-------------- -->  --}}
 	<script src="admin_asset/plugins/bootstrapdatepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
@@ -81,7 +82,7 @@
         const currentLink = [...allLinks].filter(e => {
         return e.href == url;
         });
-    
+
         currentLink[0].classList.add("active");
         currentLink[0].closest(".nav-treeview").style.display="block";
         currentLink[0].closest(".has-treeview").classList.add("menu-open");
