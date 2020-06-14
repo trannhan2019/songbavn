@@ -20,9 +20,10 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes([
     'register' => false,
-    'verify' => false,
-    'reset' => false
+    'verify' => true,
+    'reset' => true //mới chuyển từ false sang
   ]);
+Auth::routes();
 
 Route::get('/', 'PagesController@getTrangchu')->name('trangchu');
 Route::get('trangchu', 'PagesController@getTrangchu')->name('trangchu');
@@ -56,6 +57,7 @@ Route::get('gioi-thieu/{slug}/{content_id}', 'PagesController@getGioithieuSubCoc
 Route::get('tin-tuc','PagesController@getTintuc')->name('tintuc');
 Route::get('tin-tuc/{slug}','PagesController@getTintucSlug')->name('tintucslug');
 Route::get('tin-tuc/{slug}/{content_id}','PagesController@getDetailTintuc')->name('tintucdetail');
+
 Route::any('tin-tuc-tim-kiem/{menu_slug}','PagesController@postTintucTimkiem')->name('tintuctimkiem');
 
 //Quan hệ cổ đông

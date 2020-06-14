@@ -277,21 +277,46 @@ class UserController extends Controller
             'max'=>':attribute tối đa :max ký tự'
         ],
         [
-            'username'=>'Tên đăng nhập',
+            'username'=>'Tên đăng nhập hoặc Email',
             'password'=>'Mật khẩu'
             
         ]);
         $username = $request->username;
         $password = $request->password;
         $remember = $request->has('remember')? true:false;
-        if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1],$remember))
-        {
-            return redirect()->route('trangchu');
+        //code chỉ đăng nhập với username
+        // if(Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1],$remember))
+        // {
+        //     if (Auth::user()->role == 1) {
+        //         return redirect()->route('admin.dashboard');
+        //     } else {
+        //         return redirect()->route('trangchu');
+        //     }
+            
+        // }
+        // else
+        // {
+        //     return redirect('dangnhap')->with('loi','Đăng nhập không thành công');
+        // }
+        //code đăng nhập cả username với email
+        if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
+            //user sent their email 
+            Auth::attempt(['email' => $username, 'password' => $password,'active' => 1],$remember);
+        } else {
+            //they sent their username instead 
+            Auth::attempt(['username' => $username, 'password' => $password,'active' => 1],$remember);
         }
-        else
-        {
+        //Kiểm tra tiếp theo
+        if (Auth::check()) {
+            if (Auth::user()->role == 1) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('trangchu');
+            }
+        } else {
             return redirect('dangnhap')->with('loi','Đăng nhập không thành công');
         }
+          
     }
     public function getDangky()
     {

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="py-5" style="background-color: #e9ecef; height: 500px;">
+<div class="py-5" style="background-color: #e9ecef; height: 400px;">
     <div class="mx-auto" style="max-width: 400px">
       @if (session('loi'))
       @include('shared.layouts.loi')
@@ -19,7 +19,7 @@
             <form action="{{ route('dangnhap') }}" method="post">
             @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Tên đăng nhập" name="username">
+                    <input type="text" class="form-control" placeholder="Tên đăng nhập hoặc email" name="username" value="{{ old('username') }}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -58,10 +58,10 @@
             </form>
       
             <p class="mb-1">
-              <a href="{{ route('dangky') }}">Đăng ký tài khoản</a>
+              <a href="{{ route('dangky') }}" class="text-primary">Đăng ký tài khoản</a>
             </p>
             <p class="mb-0">
-              <a href="{{ route('trangchu') }}" class="text-center">Quay về trang chủ</a>
+              <a href="{{ route('password.request') }}" class="text-center text-danger">Quên mật khẩu?</a>
             </p>
           </div>
           {{--  <!-- /.login-card-body -->  --}}

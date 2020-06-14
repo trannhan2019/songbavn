@@ -37,7 +37,7 @@
                                     <img src="shared_asset/upload/images/content/{{ $tin1_con['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
                                 </a>
                                 <div class="card-body p-2">
-                                    <h6 class="card-title">
+                                    <h6 class="card-title font-weight-bold">
                                         <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin1_con['id'] }}" title="">
                                             {{ $tin1_con['title'] }}
                                         </a>
