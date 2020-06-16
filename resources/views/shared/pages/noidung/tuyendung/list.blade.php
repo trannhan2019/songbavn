@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h6 class="card-title">
+                            <h6 class="card-title font-weight-bold">
                                 <a href="{{ $menu->slug }}/{{ $ct->id }}" title="">{{ $ct->title }}</a>
                             </h6>
                             <p class="card-text mb-0 crop_text_4">{{ $ct->abstract }}</p>
