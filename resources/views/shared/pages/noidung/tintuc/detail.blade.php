@@ -144,7 +144,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($lienquan as $lq)
                     <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}" title="" class="text-dark"> {{ $lq->title }}</a>
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}-{{$lq->slug}}" title="" class="text-dark"> {{ $lq->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y'):''}}
@@ -166,7 +166,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($xemnhieu as $xn)
                     <li class="list-group-item">
-                        <a href="noidung/{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}" title="" class="text-dark"> {{ $xn->title }}</a>
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}-{{ $xn->slug }}" title="" class="text-dark"> {{ $xn->title }}</a>
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y'):''}}

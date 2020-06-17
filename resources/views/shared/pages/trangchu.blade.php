@@ -16,12 +16,12 @@
 					@endphp
 					<div class="col-md-7 home-left h-100">
 						<div class="card">
-							<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id }}" title="">
+							<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id }}" title="">
 								<img src="shared_asset/upload/images/content/{{ $tin_noibat_1['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
 							</a>
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
+									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
 										{{ $tin_noibat_1['title'] }}
 									</a>
 								</h6>

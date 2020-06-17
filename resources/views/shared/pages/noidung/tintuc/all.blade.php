@@ -33,12 +33,12 @@
                         @endphp
                         <div class="col-md-7 home-left h-100">
                             <div class="card">
-                                <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin1_con['id'] }}" title="">
+                                <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin1_con['id'] }}-{{ $tin1_con['slug'] }}" title="">
                                     <img src="shared_asset/upload/images/content/{{ $tin1_con['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
                                 </a>
                                 <div class="card-body p-2">
                                     <h6 class="card-title font-weight-bold">
-                                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin1_con['id'] }}" title="">
+                                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin1_con['id'] }}-{{ $tin1_con['slug'] }}" title="">
                                             {{ $tin1_con['title'] }}
                                         </a>
                                     </h6>
@@ -62,14 +62,14 @@
                             <div class="card">
                                 <div class="row no-gutters">
                                     <div class="col-5 align-self-center">
-                                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin['id'] }}">
+                                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin['id']}}-{{ $tin['slug'] }}">
                                             <img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
                                         </a>
                                     </div>
                                     <div class="col-7">
                                         <div class="card-body p-1">
                                             <h6 class="card-title mb-0 crop_text_4">
-                                                <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin['id ']}}">{{ $tin['title'] }}</a>
+                                                <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin['id']}}-{{ $tin['slug'] }}">{{ $tin['title'] }}</a>
                                             </h6>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                     </div>
                     @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $ctv->id }}">
+                        <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $ctv->id }}-{{ $ctv->slug }}">
                             <p class="m-0">
                                 {{ $ctv->title }}
                             </p>

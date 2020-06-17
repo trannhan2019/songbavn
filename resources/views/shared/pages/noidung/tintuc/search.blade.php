@@ -27,14 +27,14 @@
             <div class="card mb-2">
                 <div class="row no-gutters">
                     <div class="col-md-4 py-4">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}" title="">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}-{{ $ct->slug }}" title="">
                             <img src="shared_asset/upload/images/content/{{ $ct->imageorfile }}" class="img-fluid align-self-center" alt="">
                         </a>		
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h6 class="card-title">
-                                <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}" title="">{{ $ct->title }}</a>
+                            <h6 class="card-title font-weight-bold">
+                                <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}-{{ $ct->slug }}" title="">{{ $ct->title }}</a>
                             </h6>
                             <p class="card-text mb-0 crop_text_4">{{$ct->abstract }}</p>
                             <p class="card-text">
@@ -68,7 +68,7 @@
                     </div>
                     @foreach ($content_new as $ctn)
                     <div class="px-4 py-2 text-justify">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctn->id }}">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctn->id }}-{{ $ctn->slug }}">
                             <p class="m-0">
                                 {{ $ctn->title }}
                             </p>

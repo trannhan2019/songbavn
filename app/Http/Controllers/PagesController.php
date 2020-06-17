@@ -122,7 +122,7 @@ class PagesController extends Controller
         $content_view = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
         return view('shared.pages.noidung.tintuc.list',compact('content','content_view','menu'));
     }
-    public function getDetailTintuc($slug,$content_id)
+    public function getDetailTintuc($slug,$content_id,$content_slug)
     {
         $menu = Menu::where('slug',$slug)->first();
         
