@@ -24,7 +24,7 @@
                 <img src="shared_asset/upload/images/slide/{{ $sl->image }}" alt="{{ $sl->title }}" class="d-block">
                 <div class="carousel-caption">
                     <h5>{{ $sl->title }}</h5>
-                    <p><a href="{{$sl->Content->Menu->Parent->slug}}/{{$sl->Content->Menu->slug}}/{{$sl->content_id}}" class="btn btn-outline-secondary btn-sm">Xem chi tiết</a></p>
+                    <p><a href="{{$sl->Content->Menu->Parent->slug}}/{{$sl->Content->Menu->slug}}/{{$sl->content_id}}-{{ $sl->Content->slug }}" class="btn btn-outline-secondary btn-sm">Xem chi tiết</a></p>
                 </div>
             </div>
             @else

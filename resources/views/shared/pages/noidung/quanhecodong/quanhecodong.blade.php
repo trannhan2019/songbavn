@@ -39,7 +39,7 @@
             @foreach ($content as $ct)
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}">
+                    <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}-{{ $ct->slug }}">
                         <p class="font-weight-bold m-0">{{ $ct->title }}</p>
                     </a>
                     <small>
@@ -74,7 +74,7 @@
                     </div>
                     @foreach ($content_view as $ctv)
                     <div class="px-4 py-2 text-justify">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctv->id }}">
+                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ctv->id }}-{{ $ctv->slug }}">
                             <p class="m-0">
                                 {{ $ctv->title }}
                             </p>

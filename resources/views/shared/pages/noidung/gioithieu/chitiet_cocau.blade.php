@@ -43,7 +43,7 @@
                                 @if (count($content)>0)
                                     @foreach ($content as $ct)
                                     <li class="nav-item">
-                                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
+                                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}-{{ $ct->slug }}" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
                                     </li>
                                     <hr class="my-1 w-100">
                                     @endforeach

@@ -94,7 +94,7 @@
                                     
                                 </div>
                                 <div class="title">
-                                    <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin->id }}">
+                                    <a href="{{ $menu->slug }}/{{ $mn->slug }}/{{ $tin->id }}-{{ $tin->slug }}">
                                         <h6>{{ $tin->title }}</h6>
                                     </a>
                                 </div>

@@ -239,7 +239,7 @@ class YkiencodongController extends Controller
         Notification::send($admin, new NewYkienNotification($ykien));
         return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
     }
-    public function getDetailYkiencodong($danhmuc_slug, $ykien_id)
+    public function getDetailYkiencodong($danhmuc_slug,$ykien_id)
     {
         $noidungKey = 'noidung_' . $ykien_id;
         if (!Session::has($noidungKey)) {

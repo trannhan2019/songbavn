@@ -177,7 +177,7 @@ class PagesController extends Controller
         $content_view = Content::where('menu_id',$menu->id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
         return view('shared.pages.noidung.quanhecodong.quanhecodong',compact('content','content_view','menu'));
     }
-    public function getDetailQuanhecodong($slug,$content_id)
+    public function getDetailQuanhecodong($slug,$content_id,$content_slug)
     {
         $menu = Menu::where('slug',$slug)->first();
          

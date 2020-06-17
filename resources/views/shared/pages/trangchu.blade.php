@@ -16,12 +16,12 @@
 					@endphp
 					<div class="col-md-7 home-left h-100">
 						<div class="card">
-							<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1->id }}" title="">
+							<a href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] }}" title="">
 								<img src="shared_asset/upload/images/content/{{ $tin_noibat_1['imageorfile'] }}" class="card-img-top w-100 img-fluid" alt="">
 							</a>
 							<div class="card-body p-2">
 								<h6 class="card-title">
-									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'] }}" title="">
+									<a class="font-weight-bold" href="{{ !empty($tin_noibat_1->Menu->Parent) ? $tin_noibat_1->Menu->Parent->slug.'/'. $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] : $tin_noibat_1->Menu->slug.'/'.$tin_noibat_1['id'].'-'.$tin_noibat_1['slug'] }}" title="">
 										{{ $tin_noibat_1['title'] }}
 									</a>
 								</h6>
@@ -46,14 +46,14 @@
 						<div class="card">
 							<div class="row no-gutters d-flex align-content-center" style="height: 100px;">
 								<div class="col-5 align-middle">
-									<a href="{{ !empty($tnb->Menu->Parent) ? $tnb->Menu->Parent->slug.'/'. $tnb->Menu->slug .'/'.$tnb->id : $tnb->Menu->slug.'/'.$tnb->id }}">
+									<a href="{{ !empty($tnb->Menu->Parent) ? $tnb->Menu->Parent->slug.'/'. $tnb->Menu->slug .'/'.$tnb->id.'-'.$tnb['slug'] : $tnb->Menu->slug.'/'.$tnb['id'].'-'.$tnb['slug'] }}">
 										<img src="shared_asset/upload/images/content/{{ $tnb['imageorfile'] }}" class="w-100 img-fluid" alt="">
 									</a>
 								</div>
 								<div class="col-7">
 									<div class="card-body p-1">
 										<h6 class="card-title mb-0 crop_text_3 align-middle">
-											<a href="{{ !empty($tnb->Menu->Parent) ? $tnb->Menu->Parent->slug.'/'. $tnb->Menu->slug.'/'.$tnb->id : $tnb->Menu->slug.'/'.$tnb->id}}">{{ $tnb['title'] }}</a>
+											<a href="{{ !empty($tnb->Menu->Parent) ? $tnb->Menu->Parent->slug.'/'. $tnb->Menu->slug.'/'.$tnb['id'].'-'.$tnb['slug'] : $tnb->Menu->slug.'/'.$tnb['id'].'-'.$tnb['slug']}}">{{ $tnb['title'] }}</a>
 										</h6>
 									</div>
 								</div>
@@ -91,7 +91,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="font-weight-bold crop_text">
-									<a href="{{ $tin1_dhdcd->Menu->Parent->slug }}/{{ $tin1_dhdcd->Menu->slug }}/{{ $tin1_dhdcd['id'] }}">
+									<a href="{{ $tin1_dhdcd->Menu->Parent->slug }}/{{ $tin1_dhdcd->Menu->slug }}/{{ $tin1_dhdcd['id'] }}-{{ $tin1_dhdcd['slug'] }}">
 										{{ $tin1_dhdcd['title'] }}
 									</a>
 								</li>
@@ -99,8 +99,8 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_dhdcd->all() as $item)
-								<li class="crop_text font-weight-bold">
-									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
+								<li class="crop_text">
+									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}-{{ $item['slug'] }}">
 										{{ $item['title'] }}
 									</a>
 								</li>
@@ -131,7 +131,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="font-weight-bold crop_text">
-									<a href="{{ $tin1_cbtt->Menu->Parent->slug }}/{{ $tin1_cbtt->Menu->slug }}/{{ $tin1_cbtt['id'] }}">
+									<a href="{{ $tin1_cbtt->Menu->Parent->slug }}/{{ $tin1_cbtt->Menu->slug }}/{{ $tin1_cbtt['id'] }}-{{ $tin1_cbtt['slug'] }}">
 										{{ $tin1_cbtt['title'] }}
 									</a>
 								</li>
@@ -139,8 +139,8 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_cbtt->all() as $item)
-								<li class="crop_text font-weight-bold">
-									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
+								<li class="crop_text">
+									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}-{{ $item['slug'] }}">
 										{{ $item['title'] }}
 									</a>
 								</li>
@@ -171,7 +171,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="font-weight-bold crop_text">
-									<a href="{{ $tin1_bctc->Menu->Parent->slug }}/{{ $tin1_bctc->Menu->slug }}/{{ $tin1_bctc['id'] }}">
+									<a href="{{ $tin1_bctc->Menu->Parent->slug }}/{{ $tin1_bctc->Menu->slug }}/{{ $tin1_bctc['id'] }}-{{ $tin1_bctc['slug'] }}">
 										{{ $tin1_bctc['title'] }}
 									</a>
 								</li>
@@ -179,8 +179,8 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_bctc->all() as $item)
-								<li class="crop_text font-weight-bold">
-									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
+								<li class="crop_text">
+									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}-{{ $item['slug'] }}">
 										{{ $item['title'] }}
 									</a>
 								</li>
@@ -209,7 +209,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="font-weight-bold crop_text">
-									<a href="{{ $tin1_bctn->Menu->Parent->slug }}/{{ $tin1_bctn->Menu->slug }}/{{ $tin1_bctn['id'] }}">
+									<a href="{{ $tin1_bctn->Menu->Parent->slug }}/{{ $tin1_bctn->Menu->slug }}/{{ $tin1_bctn['id'] }}-{{ $tin1_bctn['slug'] }}">
 										{{ $tin1_bctn['title'] }}
 									</a>
 								</li>
@@ -217,8 +217,8 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_bctn->all() as $item)
-								<li class="crop_text font-weight-bold">
-									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
+								<li class="crop_text">
+									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}-{{ $item['slug'] }}">
 										{{ $item['title'] }}
 									</a>
 								</li>
@@ -247,7 +247,7 @@
 						<div class="mt-2">
 							<ul class="list-unstyled text-justify">
 								<li class="font-weight-bold crop_text">
-									<a href="{{ $tin1_thqt->Menu->Parent->slug }}/{{ $tin1_thqt->Menu->slug }}/{{ $tin1_thqt['id'] }}">
+									<a href="{{ $tin1_thqt->Menu->Parent->slug }}/{{ $tin1_thqt->Menu->slug }}/{{ $tin1_thqt['id'] }}-{{ $tin1_thqt['slug'] }}">
 										{{ $tin1_thqt['title'] }}
 									</a>
 								</li>
@@ -255,8 +255,8 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_thqt->all() as $item)
-								<li class="crop_text font-weight-bold">
-									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}">
+								<li class="crop_text">
+									<a href="{{ $item->Menu->Parent->slug }}/{{ $item->Menu->slug }}/{{ $item['id'] }}-{{ $item['slug'] }}">
 										{{ $item['title'] }}
 									</a>
 								</li>
@@ -293,7 +293,7 @@
 									<hr class="my-1">
 								</li>
 								@foreach ($tin_ykien->all() as $item)
-								<li class="crop_text font-weight-bold">
+								<li class="crop_text">
 									<a href="{{ $item->Menu->slug }}/{{ $item->Danhmuc->slug }}/{{ $item['id'] }}">
 										{!! $item['ask_content'] !!}
 									</a>
@@ -338,20 +338,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_tthd_1['abstract'] }}
 								</p>
-								<a href="{{ $tin_tthd_1->Menu->Parent->slug }}/{{ $tin_tthd_1->Menu->slug }}/{{ $tin_tthd_1['id'] }}" class="stretched-link"></a>
+								<a href="{{ $tin_tthd_1->Menu->Parent->slug }}/{{ $tin_tthd_1->Menu->slug }}/{{ $tin_tthd_1['id'] }}-{{ $tin_tthd_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_tthd->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin->id }}">
+								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin->id }}-{{ $tin['slug'] }}">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -384,20 +384,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_dangdoan_1['abstract'] }}
 								</p>
-								<a href="{{ $tin_dangdoan_1->Menu->Parent->slug }}/{{ $tin_dangdoan_1->Menu->slug }}/{{ $tin_dangdoan_1['id'] }}" class="stretched-link"></a>
+								<a href="{{ $tin_dangdoan_1->Menu->Parent->slug }}/{{ $tin_dangdoan_1->Menu->slug }}/{{ $tin_dangdoan_1['id'] }}-{{ $tin_dangdoan_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_dangdoan->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin->id }}">
+								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -429,20 +429,20 @@
 								<p class="card-text m-0 crop_text">
 									{{ $tin_sba_1['abstract'] }}
 								</p>
-								<a href="{{ $tin_sba_1->Menu->Parent->slug }}/{{ $tin_sba_1->Menu->slug }}/{{ $tin_sba_1['id'] }}" class="stretched-link"></a>
+								<a href="{{ $tin_sba_1->Menu->Parent->slug }}/{{ $tin_sba_1->Menu->slug }}/{{ $tin_sba_1['id'] }}-{{ $tin_sba_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
 						@foreach ($tin_sba->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
-								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin->id }}">
+								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}">
 									<img src="shared_asset/upload/images/content/{{ $tin['imageorfile'] }}" class="w-100 img-fluid" alt="">
 								</a>
 							</div>
 
 							<div class="col-8 pl-0">
 								<h6 class="text-justify">
-									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}" class="crop_text font-weight-bold">
+									<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}" class="crop_text font-weight-bold">
 										{{ $tin['title'] }}
 									</a>
 								</h6>
@@ -466,7 +466,7 @@
 						<ul class="list-unstyled text-justify">
 							@foreach ($tin_thongbao as $tin)
 							<li>
-								<a href="{{ !empty($tin->Menu->Parent) ? $tin->Menu->Parent->slug.'/'. $tin->Menu->slug .'/'.$tin->id : $tin->Menu->slug.'/'.$tin->id }}">
+								<a href="{{ !empty($tin->Menu->Parent) ? $tin->Menu->Parent->slug.'/'. $tin->Menu->slug .'/'.$tin->id.'-'.$tin->slug : $tin->Menu->slug.'/'.$tin->id.'-'.$tin->slug }}">
 									{{ $tin->title }}
 								</a>
 							</li>
