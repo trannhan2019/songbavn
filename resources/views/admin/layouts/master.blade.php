@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="shared_asset/css/style.css">
     {{--  Google Font: Source Sans Pro  --}}
     {{--  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">  --}}
+    {{-- Tạo hiệu ứng animate --}}
+    <link rel="stylesheet" href="shared_asset/aos/aos.css">
     {{--  font Roboto Google  --}}
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="admin_asset/dist/css/fontgoogle.css">
@@ -87,6 +89,11 @@
         currentLink[0].closest(".nav-treeview").style.display="block";
         currentLink[0].closest(".has-treeview").classList.add("menu-open");
     </script>
+    {{-- tạo hiệu ứng animate --}}
+    <script src="shared_asset/aos/aos.js"></script>
+	<script>
+	  	AOS.init();
+	</script>
     @yield('script')
 </body>
 </html>

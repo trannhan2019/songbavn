@@ -37,7 +37,7 @@
 {{-- <!-- Navigation --> --}}
 
 <nav class="navbar navbar-expand-xl navbar-light bg-light sticky-top" style="border-bottom: 2px solid #D68528;border-top: 2px solid #D68528; z-index: 1;">
-	<div class="container">
+	<div class="container px-0">
 		<a href="{{ route('trangchu') }}" class="navbar-brand p-0" title="Home">
 			<img src="shared_asset/upload/images/logo_v4.png" class="img-fluid LOGO" alt="LOGO_SBA" style="max-width: 400px">
 		</a>
@@ -59,7 +59,7 @@
 						</a>
 						<div class="dropdown-menu p-0 dropdown-content">
 							@foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)	
-							<a class="dropdown-item px-3" href="{{ $dm->slug }}/{{ $child->slug }}">{{ $child->name }}</a>
+							<a class="dropdown-item px-3 py-2" href="{{ $dm->slug }}/{{ $child->slug }}">{{ $child->name }}</a>
 							<div class="dropdown-divider my-0"></div>
 							@endforeach
 						</div>

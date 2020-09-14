@@ -72,7 +72,7 @@ class YkiencodongController extends Controller
             $ykien->created_at = Carbon::now();
         }
         $ykien->save();
-        return redirect('admin/content/'.$menu_id.'/y-kien-nha-dau-tu.html')->with('thongbao','Thêm thông tin thành công !');
+        return redirect('admin/content/'.$menu_id.'/y-kien-tra-loi.html')->with('thongbao','Thêm thông tin thành công !');
     }
     public function getAdminEditYkien($ykien_id)
     {
@@ -155,7 +155,7 @@ class YkiencodongController extends Controller
             $traloi->save();
         }
         
-        return redirect('admin/content/'.$ykien->Menu->id.'/y-kien-nha-dau-tu.html')->with('thongbao','Sửa thông tin thành công !');
+        return redirect('admin/content/'.$ykien->Menu->id.'/y-kien-tra-loi.html')->with('thongbao','Sửa thông tin thành công !');
     }
     public function postAdminDeleteYkien($ykien_id)
     {
@@ -198,7 +198,7 @@ class YkiencodongController extends Controller
     //phần shared
     public function getYkiencodong()
     {
-        $menu = Menu::where('slug','y-kien-nha-dau-tu')->first();
+        $menu = Menu::where('slug','y-kien-tra-loi')->first();
         $ykien = Ykiencodong::where('menu_id',$menu->id)->where('status',1)->orderBy('created_at', 'desc')->paginate(5);
         //$ykien_view = Ykiencodong::where('menu_id',$id)->where('status',1)->orderBy('views', 'desc')->take(5)->get();
         $listdanhmucykien = Danhmucykien::where('status',1)->get();
@@ -206,7 +206,7 @@ class YkiencodongController extends Controller
     }
     public function getDanhmucYkiencodong($danhmuc_slug)
     {
-        $menu = Menu::where('slug','y-kien-nha-dau-tu')->first();
+        $menu = Menu::where('slug','y-kien-tra-loi')->first();
         $danhmucykien = Danhmucykien::where('slug',$danhmuc_slug)->first();
         $listdanhmucykien = Danhmucykien::where('status',1)->get();
         //$ykien = $danhmucykien->Ykiencodong->where('status',1)->sortByDesc('created_at')->paginate(5);
@@ -215,29 +215,67 @@ class YkiencodongController extends Controller
     }
     public function postYkiencodong(Request $request,$menu_slug)
     {
-        $this->validate($request,[
-            'ask_content'=>'required'
-        ],
-        [
-            'required'=>'Bạn chưa nhập :attribute'
-        ],
-        [
-            'ask_content'=>'Nội dung ý kiến'
-        ]);
-        $ykien = new Ykiencodong();
-        $menu = Menu::where('slug',$menu_slug)->first();
-        $ykien->menu_id = $menu->id;
-        $ykien->danhmucykien_id = $request->danhmucykien_id;
-        $ykien->fullname = Auth::user()->fullname;
-        $ykien->email = Auth::user()->email;
-        $ykien->phone = Auth::user()->phone;
-        $ykien->address = Auth::user()->address;
-        $ykien->ask_content = $request->ask_content;
-        $ykien->status = 0;
-        $ykien->save();
-        $admin = User::where('role', 1)->get();
-        Notification::send($admin, new NewYkienNotification($ykien));
-        return redirect()->back()->with('thongbao','Gửi ý kiến thành công ! Nội dung đang được kiểm duyệt. ');
+        if(Auth::check()){
+            $this->validate($request,[
+                'ask_content'=>'required'
+            ],
+            [
+                'required'=>'Bạn chưa nhập :attribute'
+            ],
+            [
+                'ask_content'=>'Nội dung ý kiến'
+            ]);
+            $ykien = new Ykiencodong();
+            $menu = Menu::where('slug',$menu_slug)->first();
+            $ykien->menu_id = $menu->id;
+            $ykien->danhmucykien_id = $request->danhmucykien_id;
+            $ykien->fullname = Auth::user()->fullname;
+            $ykien->email = Auth::user()->email;
+            $ykien->phone = Auth::user()->phone;
+            $ykien->address = Auth::user()->address;
+            $ykien->ask_content = $request->ask_content;
+            $ykien->status = 0;
+            $ykien->save();
+            $admin = User::where('role', 1)->get();
+            Notification::send($admin, new NewYkienNotification($ykien));
+        }
+        else{
+            $this->validate($request,[
+                'danhmucykien_id'=> 'required',
+                'fullname'=>'required|min:3|max:255',
+                'email'=>'email|required',
+                'phone'=>'required',
+                'ask_content'=>'required'
+            ],
+            [
+                'required'=>'Bạn chưa nhập :attribute',
+                'min'=>':attribute phải có ít nhất :min ký tự',
+                'max'=>':attribute tối đa :max ký tự',
+                'email'=>':attribute chưa đúng đinh dạng',
+            ],
+            [
+                'danhmucykien_id'=>'Tên chuyên mục',
+                'fullname'=>'Họ và tên',
+                'email'=>'Địa chỉ email',
+                'phone'=>'Số điện thoại',
+                'ask_content'=>'Nội dung hỏi'
+            ]);
+            $ykien = new Ykiencodong();
+            $menu = Menu::where('slug',$menu_slug)->first();
+            $ykien->menu_id = $menu->id;
+            $ykien->danhmucykien_id = $request->danhmucykien_id;
+            $ykien->fullname = $request->fullname;
+            $ykien->email = $request->email;
+            $ykien->phone = $request->phone;
+            $ykien->address = $request->address;
+            $ykien->ask_content = $request->ask_content;
+            $ykien->status = 0;
+            $ykien->save();
+            $admin = User::where('role', 1)->get();
+            Notification::send($admin, new NewYkienNotification($ykien));
+        }
+        
+        return redirect()->back()->with('thongbao','Gửi ý kiến thành công! Nội dung đang được kiểm duyệt. Xin cảm ơn');
     }
     public function getDetailYkiencodong($danhmuc_slug,$ykien_id)
     {
@@ -254,7 +292,7 @@ class YkiencodongController extends Controller
     public function getThongbao($id)
     {
         auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
-        $menu_ykien = Menu::where('slug','y-kien-nha-dau-tu')->first();
+        $menu_ykien = Menu::where('slug','y-kien-tra-loi')->first();
         return redirect()->route('admin.content.ykien',$menu_ykien->id);
     }
     //Tìm kiếm

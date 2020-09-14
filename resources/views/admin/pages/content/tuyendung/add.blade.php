@@ -166,8 +166,10 @@
 			$('#datetimepickerCreattd').datepicker({
                 format: "dd/mm/yyyy",
                 weekStart: 1,
+                todayBtn: "linked",
                 language: "vi",
-                autoclose: true
+                autoclose: true,
+                todayHighlight: true
 			});
         });
     </script>

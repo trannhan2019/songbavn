@@ -22,7 +22,7 @@
         </div>
         <div class="content">
             <div class="container-fluid">
-                <form action="admin/content/{{ $ykien->id }}/edit-y-kien-nha-dau-tu.html" method="post">
+                <form action="admin/content/{{ $ykien->id }}/edit-y-kien-tra-loi.html" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Sửa</button>
-                                    <a href="admin/content/{{ $ykien->Menu->id }}/y-kien-nha-dau-tu.html" class="btn btn-default float-right">Quay về</a>
+                                    <a href="admin/content/{{ $ykien->Menu->id }}/y-kien-tra-loi.html" class="btn btn-default float-right">Quay về</a>
                                 </div>
                             </div>
                         </div>
@@ -146,8 +146,10 @@
 			$('#datetimepickerEditykien').datepicker({
                 format: "dd/mm/yyyy",
                 weekStart: 1,
+                todayBtn: "linked",
                 language: "vi",
-                autoclose: true
+                autoclose: true,
+                todayHighlight: true
 			});
         });
     </script>

@@ -14,7 +14,7 @@
 <div class="container">
     @if (!empty($menu->ChildMenus))
     @foreach ($menu->ChildMenus->where('status',1)->sortBy('position') as $mn)
-        @if ($mn->slug == 'y-kien-nha-dau-tu')
+        @if ($mn->slug == 'y-kien-tra-loi')
         <div class="col-12">
             <div class="head row">
                 <div class="col-8">

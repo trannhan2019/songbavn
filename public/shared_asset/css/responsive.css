@@ -20,3 +20,12 @@
         font-size: 13px !important;
     }
 }
+
+
+/* fix cho class container man hinh full hd 1920x1080 */
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 85%;
+    }
+}

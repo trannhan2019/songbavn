@@ -282,9 +282,11 @@ Hoạt động sản xuất
         $('#datetimepicker_SXmonth').datepicker({
             format: "mm/yyyy",
             weekStart: 1,
+            todayBtn: "linked",
             minViewMode: 1,
             language: "vi",
-            autoclose: true
+            autoclose: true,
+            todayHighlight: true
         });
     });
 </script>

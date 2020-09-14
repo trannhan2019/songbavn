@@ -85,7 +85,7 @@
 <script> 
     CKEDITOR.replace('ckeditor_sub');
     CKEDITOR.config.htmlEncodeOutput = false;
-    CKEDITOR.config.entities = false; 
+    CKEDITOR.config.entities = false;
 </script>
 
 <script type="text/javascript">
@@ -93,8 +93,10 @@
         $('#datetimepickerCreatsub').datepicker({
             format: "dd/mm/yyyy",
             weekStart: 1,
+            todayBtn: "linked",
             language: "vi",
-            autoclose: true
+            autoclose: true,
+            todayHighlight: true
         });
     });
 </script>

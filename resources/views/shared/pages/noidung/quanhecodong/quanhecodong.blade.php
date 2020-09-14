@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row mb-2">
             <div class="col-md-8">
-                <nav aria-label="breadcrumb" class="container">
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 pl-0">
                         <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 

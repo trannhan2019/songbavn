@@ -22,6 +22,8 @@
 	{{--  <link rel="stylesheet" href="shared_asset/jquerydatepicker/jquery.datetimepicker.min.css">  --}}
 	{{--  font Roboto Google  --}}
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	{{-- Hieu ung animate --}}
+	<link rel="stylesheet" href="shared_asset/aos/aos.css">
 	{{-- <!-- CUSTOM CSS------------------------ --> --}}
 	<link rel="stylesheet" href="shared_asset/css/style.css">
 	<link rel="stylesheet" href="shared_asset/css/responsive.css">
@@ -90,7 +92,10 @@
 		//document.getElementById("head_datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
 		document.getElementById("head_datetime").innerHTML = n +", "+(("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) ;
 	</script>
-	
+	<script src="shared_asset/aos/aos.js"></script>
+	<script>
+	  	AOS.init();
+	</script>
 	{{-- <!-- CUSTOM SCRIPT---------------- --> --}}
 	<script type="text/javascript" src="shared_asset/js/my.js"></script>
 

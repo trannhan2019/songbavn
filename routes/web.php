@@ -41,7 +41,7 @@ Route::get('dangxuat', 'UserController@getDangxuat')->name('dangxuat');
 //Giới thiệu
 Route::get('gioi-thieu','PagesController@getGioithieu')->name('gioithieu');
 Route::get('gioi-thieu/{slug}', function ($slug) {
-    if ($slug == 'co-cau-to-chuc') {
+    if ($slug == 'ban-dieu-hanh') {
         //return redirect()->route('gioithieucocau');
         return app()->call(\App\Http\Controllers\PagesController::class, ['slug' => $slug], 'getGioithieuCocau');
     } elseif($slug == 'cac-nha-may'|| $slug == 'cac-du-an') {
@@ -63,7 +63,7 @@ Route::any('tin-tuc-tim-kiem/{menu_slug}','PagesController@postTintucTimkiem')->
 //Quan hệ cổ đông
 Route::get('quan-he-co-dong','PagesController@getCodong')->name('codong');
 Route::get('quan-he-co-dong/{slug}', function ($slug) {
-    if ($slug == 'y-kien-nha-dau-tu') {
+    if ($slug == 'y-kien-tra-loi') {
         return redirect()->route('ykiennhadautu');
     }
     else{
@@ -72,10 +72,10 @@ Route::get('quan-he-co-dong/{slug}', function ($slug) {
 })->name('codongslug');
 
 Route::get('quan-he-co-dong/{menu_slug}/{content_id}-{content_slug}','PagesController@getDetailQuanhecodong');
-Route::get('y-kien-nha-dau-tu','YkiencodongController@getYkiencodong')->middleware('CheckDangnhap')->name('ykiennhadautu');
-Route::get('y-kien-nha-dau-tu/{danhmuc_slug}','YkiencodongController@getDanhmucYkiencodong')->middleware('CheckDangnhap');
-Route::post('quan-he-co-dong/{menu_slug}','YkiencodongController@postYkiencodong')->middleware('CheckDangnhap');
-Route::get('y-kien-nha-dau-tu/{danhmuc_slug}/{ykien_id}','YkiencodongController@getDetailYkiencodong')->middleware('CheckDangnhap');
+Route::get('y-kien-tra-loi','YkiencodongController@getYkiencodong')->name('ykiennhadautu');
+Route::get('y-kien-tra-loi/{danhmuc_slug}','YkiencodongController@getDanhmucYkiencodong');
+Route::post('quan-he-co-dong/{menu_slug}','YkiencodongController@postYkiencodong');
+Route::get('y-kien-tra-loi/{danhmuc_slug}/{ykien_id}','YkiencodongController@getDetailYkiencodong');
 //Tìm kiếm
 Route::any('co-dong-tim-kiem/{menu_slug}','PagesController@postCodongTimkiem')->name('codongtimkiem');
 Route::any('y-kien-tim-kiem/{menu_slug}','YkiencodongController@postYkienTimkiem')->name('ykientimkiem');
@@ -144,12 +144,12 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route::get('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@getAdminEditGioithieu');
         Route::post('{menu_id}/{content_id}/edit-gioi-thieu.html','ContentController@postAdminEditGioithieu');
         //Giới thiệu/Cơ cấu tổ chức
-        Route::get('{menu_id}/co-cau-to-chuc.html', 'ContentController@getAdminSubgioithieu')->name('admin.content.cocau');
-        Route::get('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@getAdminAddSubgioithieu');
-        Route::post('{menu_id}/add-co-cau-to-chuc.html', 'ContentController@postAdminAddSubgioithieu');
-        Route::get('{menu_id}/{content_id}/detail-co-cau-to-chuc.html', 'ContentController@getAdminDetailSubgioithieu');
-        Route::get('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@getAdminEditSubgioithieu');
-        Route::post('{menu_id}/{content_id}/edit-co-cau-to-chuc.html', 'ContentController@postAdminEditSubgioithieu');
+        Route::get('{menu_id}/ban-dieu-hanh.html', 'ContentController@getAdminSubgioithieu')->name('admin.content.cocau');
+        Route::get('{menu_id}/add-ban-dieu-hanh.html', 'ContentController@getAdminAddSubgioithieu');
+        Route::post('{menu_id}/add-ban-dieu-hanh.html', 'ContentController@postAdminAddSubgioithieu');
+        Route::get('{menu_id}/{content_id}/detail-ban-dieu-hanh.html', 'ContentController@getAdminDetailSubgioithieu');
+        Route::get('{menu_id}/{content_id}/edit-ban-dieu-hanh.html', 'ContentController@getAdminEditSubgioithieu');
+        Route::post('{menu_id}/{content_id}/edit-ban-dieu-hanh.html', 'ContentController@postAdminEditSubgioithieu');
         //Giới thiệu/Các nhà máy
         Route::get('{menu_id}/cac-nha-may.html', 'ContentController@getAdminSubgioithieu');
         Route::get('{menu_id}/add-cac-nha-may.html', 'ContentController@getAdminAddSubgioithieu');
@@ -182,15 +182,15 @@ Route::group(['prefix' => 'admin','middleware'=>'CheckAdmin'], function () {
         Route:: post('{content_id}/edit-quan-he-co-dong.html','ContentController@postAdminEditCodong');
         Route:: post('{content_id}/delete-quan-he-co-dong.html','ContentController@postAdminDeleteCodong');
         //Ý kiến nhà đầu tư
-        Route:: get('{menu_id}/y-kien-nha-dau-tu.html','YkiencodongController@getAdminYkien')->name('admin.content.ykien');
-        Route:: get('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@getAdminAddYkien');
-        Route:: post('{menu_id}/add-y-kien-nha-dau-tu.html','YkiencodongController@postAdminAddYkien');
-        Route:: get('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@getAdminEditYkien');
-        Route:: post('{ykien_id}/edit-y-kien-nha-dau-tu.html','YkiencodongController@postAdminEditYkien');
-        Route:: post('{ykien_id}/delete-y-kien-nha-dau-tu.html','YkiencodongController@postAdminDeleteYkien');
-        Route::get('trash-y-kien-nha-dau-tu.html','YkiencodongController@getTrash');
-        Route::post('{id}/restore-y-kien-nha-dau-tu.html','YkiencodongController@postRestore');
-        Route::post('{id}/forcedelete-y-kien-nha-dau-tu.html','YkiencodongController@postForcedelete');
+        Route:: get('{menu_id}/y-kien-tra-loi.html','YkiencodongController@getAdminYkien')->name('admin.content.ykien');
+        Route:: get('{menu_id}/add-y-kien-tra-loi.html','YkiencodongController@getAdminAddYkien');
+        Route:: post('{menu_id}/add-y-kien-tra-loi.html','YkiencodongController@postAdminAddYkien');
+        Route:: get('{ykien_id}/edit-y-kien-tra-loi.html','YkiencodongController@getAdminEditYkien');
+        Route:: post('{ykien_id}/edit-y-kien-tra-loi.html','YkiencodongController@postAdminEditYkien');
+        Route:: post('{ykien_id}/delete-y-kien-tra-loi.html','YkiencodongController@postAdminDeleteYkien');
+        Route::get('trash-y-kien-tra-loi.html','YkiencodongController@getTrash');
+        Route::post('{id}/restore-y-kien-tra-loi.html','YkiencodongController@postRestore');
+        Route::post('{id}/forcedelete-y-kien-tra-loi.html','YkiencodongController@postForcedelete');
 
         //Danh mục ý kiến
         Route:: get('danh-muc-y-kien.html','DanhmucykienController@getAdminDanhmucYkien');

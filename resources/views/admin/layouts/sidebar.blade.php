@@ -79,7 +79,7 @@
             @if (count($dm->ChildMenus)>0)
             <ul class="nav nav-treeview" style="display: none;">
               @foreach ($dm->ChildMenus->where('status',1)->sortBy('position') as $child)
-                @if ($child->slug=='co-cau-to-chuc')
+                @if ($child->slug=='ban-dieu-hanh')
                 <li class="nav-item">
                   <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -100,7 +100,7 @@
                     <p>{{ $child->name }}</p>
                   </a>
                 </li>
-                @elseif($child->slug=='y-kien-nha-dau-tu')
+                @elseif($child->slug=='y-kien-tra-loi')
                 <li class="nav-item">
                   <a href="admin/content/{{ $child->id }}/{{ $child->slug }}.html" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -212,7 +212,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin/content/trash-y-kien-nha-dau-tu.html" class="nav-link">
+                <a href="admin/content/trash-y-kien-tra-loi.html" class="nav-link">
                   <i class="fas fa-bullseye nav-icon"></i>
                   <p>Ý kiến đã xóa</p>
                 </a>

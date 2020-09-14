@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row bg-light p-1">
                     <div class="col-6">
-                        <a href="admin/content/{{ $menu->id }}/add-y-kien-nha-dau-tu.html" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+                        <a href="admin/content/{{ $menu->id }}/add-y-kien-tra-loi.html" class="btn btn-outline-primary"><i class="fas fa-plus"></i> Thêm mới</a>
                     </div>
                     <div class="col-6 text-right">
                         <a href="admin/content/danh-muc-y-kien.html" class="btn btn-outline-success"> Quản lý Danh mục</a>
@@ -106,7 +106,7 @@
                                <td>
                                     {!! $y->Traloi==null ? '<span href="#" class="badge badge-secondary">Chưa trả lời</span>':'<span class="badge badge-primary">Đã trả lời</span>' !!} 
                                 </td>
-                                <td><a href="admin/content/{{ $y->id }}/edit-y-kien-nha-dau-tu.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
+                                <td><a href="admin/content/{{ $y->id }}/edit-y-kien-tra-loi.html" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a></td>
                                 <td><button class="btn btn-danger btn-sm btn-detete" data-id="{{ $y->id }}" data-toggle="modal" data-target="#deletedYkienModal"><i class="far fa-trash-alt"></i></button></td>
                             </tr>
                             @endforeach
@@ -150,7 +150,7 @@
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/content/"+ id +"/delete-y-kien-nha-dau-tu.html";
+            var url = "admin/content/"+ id +"/delete-y-kien-tra-loi.html";
             $('#deletedYkienModal form').attr('action', url);
         });
     </script>

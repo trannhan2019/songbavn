@@ -35,37 +35,60 @@
                 </button>
                 <h5 class="d-inline py-3 ml-3 ml-md-0 text-uppercase">{{ $menu->name }}</h5>
             </div>
-            <div class="card p-3">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="border">
-                            <ul class="nav flex-column">
-                                @if (count($content)>0)
-                                    @foreach ($content as $ct)
-                                    <li class="nav-item">
-                                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct->id }}-{{ $ct->slug }}" class="nav-link" title=""><i class="fas fa-angle-double-right pr-2"></i> {{ $ct->title }}</a>
-                                    </li>
-                                    <hr class="my-1 w-100">
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        @if (!empty($sub_content))
-                            <div class="row">
-                                <div class="col-12">
-                                    {!! $sub_content->content !!}
-                                </div>
-                            </div>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <ul class="nav nav-tabs" role="tablist">
+                        @if (count($content)>0)
+                            @php
+                            $content1 = $content->shift();
+                            @endphp
+                            <li class="nav-item">
+                                <a class="nav-link px-2 active" href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $content1['id'] }}-{{ $content1['slug'] }}">{{ $content1['title'] }}</a>
+                            </li>
+                            @foreach ($content->all() as $ct)
+                            <li class="nav-item">
+                                <a class="nav-link px-2" href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $ct['id'] }}-{{ $ct['slug'] }}">{{ $ct['title'] }}</a>
+                            </li>
+                            @endforeach
                         @endif
-                    </div>
+                    </ul>
                 </div>
-                
+                <div class="col-12 tab-content">
+                    @if (!empty($sub_content))
+                        <div class="tab-pane active">
+                            {!! $sub_content->content !!}
+                        </div>
+                    @endif
+                </div>
             </div>
            
         </div>
     </div>
     
 </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //console.log("Hello world!");
+            //$('a.nav-link').removeClass('active');
+            //$('a.nav-link[href="' + this.location.pathname + '"]').addClass('active');
+            let path = window.location.href;
+            console.log(path);
+            $('ul li a.nav-link').each(function() { 
+                if (this.href === path) {
+                    $('li a.active').removeClass('active');
+                    $(this).addClass('active');
+                } 
+            });
+            $('#sidebar-menu a.list-group-item').each(function(){
+                if(this.href === path){
+                    $('#sidebar-menu a.list-group-item.active').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+    
 @endsection

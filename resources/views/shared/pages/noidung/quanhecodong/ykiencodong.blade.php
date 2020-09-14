@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row mb-2">
             <div class="col-md-8">
-                <nav aria-label="breadcrumb" class="container">
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 pl-0">
                         <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('codong') }}">{{ $menu->Parent->name }}</a></li> 
@@ -91,8 +91,35 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if (!Auth::check())
                         <div class="form-group">
-                            <label for="content">Nội dung ý kiến:</label>
+                            <label>Họ và tên <span class="text-danger">(*)</span></label>
+                            <input type="text" name="fullname" class="form-control" value="{{old('fullname')}}">
+                            @if ($errors->has('fullname'))
+                                <p class="text-danger mb-0">{{ $errors->first('fullname') }}</p>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ email <span class="text-danger">(*)</span></label>
+                            <input type="text" name="email" class="form-control" value="{{old('email')}}">
+                            @if ($errors->has('email'))
+                                <p class="text-danger mb-0">{{ $errors->first('email') }}</p>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại <span class="text-danger">(*)</span></label>
+                            <input type="text" name="phone" class="form-control" value="{{old('phone')}}">
+                            @if ($errors->has('phone'))
+                                <p class="text-danger mb-0">{{ $errors->first('phone') }}</p>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ </label>
+                            <input type="text" name="address" class="form-control" value="{{old('address')}}">
+                        </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="content">Nội dung ý kiến <span class="text-danger">(*)</span></label>
                             <textarea name="ask_content" id="ckeditor_ykien" class="form-control" rows="5" placeholder="Nội dung ý kiến...">{{old('ask_content')}}</textarea>
                             @if ($errors->has('ask_content'))
                                 <p class="text-danger mb-0">{{ $errors->first('ask_content') }}</p>

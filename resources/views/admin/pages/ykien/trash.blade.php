@@ -156,14 +156,14 @@
     <script type="text/javascript">
         $('.btn-detete').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/content/"+ id +"/forcedelete-y-kien-nha-dau-tu.html";
+            var url = "admin/content/"+ id +"/forcedelete-y-kien-tra-loi.html";
             $('#deletedYkienModal form').attr('action', url);
         });
     </script>
     <script type="text/javascript">
         $('.btn-restore').on('click', function() {
             var id = $(this).data('id');
-            var url = "admin/content/"+ id + "/restore-y-kien-nha-dau-tu.html";
+            var url = "admin/content/"+ id + "/restore-y-kien-tra-loi.html";
             $('#restoreYkienModal form').attr('action', url);
         });
     </script>

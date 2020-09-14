@@ -43,3 +43,16 @@
     
 </div>
 @endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        let path = window.location.href;       
+        $('#sidebar-menu a.list-group-item').each(function(){
+            if(this.href === path){
+                $('#sidebar-menu a.list-group-item.active').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+    });
+</script>
+@endsection

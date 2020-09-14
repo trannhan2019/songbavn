@@ -57,7 +57,7 @@ class PagesController extends Controller
         $bctc = Menu::where('slug','bao-cao-tai-chinh')->where('status',1)->first();
         $bctn = Menu::where('slug','bao-cao-thuong-nien')->where('status',1)->first();
         $thqt = Menu::where('slug','tinh-hinh-quan-tri')->where('status',1)->first();
-        $ykien_ndt = Menu::where('slug','y-kien-nha-dau-tu')->where('status',1)->first();
+        $ykien_ndt = Menu::where('slug','y-kien-tra-loi')->where('status',1)->first();
         //$tin_ykien = $ykien_ndt->Ykiens->where('status',1)->sortByDesc('created_at')->take(5);
         //dd($tin_ykien);
         $thongtinhd = Menu::where('slug','thong-tin-hoat-dong')->where('status',1)->first();
@@ -87,14 +87,14 @@ class PagesController extends Controller
     public function getGioithieuCocau($slug)
     {
         $menu = Menu::where('slug',$slug)->first();
-        $content = $menu->Contents()->orderBy('created_at')->get();
-        $sub_content = $menu->Contents()->orderBy('created_at')->first();
+        $content = $menu->Contents()->where('status',1)->orderBy('created_at')->get();
+        $sub_content = $menu->Contents()->where('status',1)->orderBy('created_at')->first();
         return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
     }
     public function getGioithieuSubCocau($slug,$content_id)
     {
         $menu = Menu::where('slug',$slug)->first();
-        $content = $menu->Contents()->orderBy('created_at')->get();
+        $content = $menu->Contents()->where('status',1)->orderBy('created_at')->get();
         $sub_content = Content::find($content_id);
         return view('shared.pages.noidung.gioithieu.chitiet_cocau',compact('menu','content','sub_content'));
     }
@@ -102,7 +102,7 @@ class PagesController extends Controller
     public function getGioithieuTab($slug)
     {
         $menu = Menu::where('slug',$slug)->first();
-        $content = $menu->Contents()->orderBy('created_at')->get();
+        $content = $menu->Contents()->where('status',1)->orderBy('created_at')->get();
         $sub_content = $menu->Contents()->orderBy('created_at')->first();
         return view('shared.pages.noidung.gioithieu.chitiet_tab',compact('menu','content','sub_content'));
     }

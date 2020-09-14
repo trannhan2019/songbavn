@@ -7,10 +7,16 @@
     @include('shared.layouts.slide')
     <div class="container content">
 
-		<div class="row mt-3">
+		<div class="row mt-2">
 			<div class="col-md-9 col-lg-9">
 				<div class="row">
 					{{--   Tin nổi bật, mới nhất chính   --}}
+					<div class="headline ml-3 mb-1 w-100">
+						<h6 class="d-inline p-1 pr-2">
+							<i class="fas fa-newspaper"></i>
+							<a href="{{ route('codong') }}" class="ml-2 text-white">TIN CHÍNH NỔI BẬT</a>
+						</h6>
+					</div>
 					@php
 					$tin_noibat_1 = $tin_noibat->shift();
 					@endphp
@@ -76,7 +82,7 @@
 					{{--  Đại hội đồng cổ đông  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_dhdcd = $dhdcd->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_dhdcd = $dhdcd->Contents->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_dhdcd = $tin_dhdcd->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -116,7 +122,7 @@
 					{{--  <!-- Công bố thông tin -->  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_cbtt = $cbtt->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_cbtt = $cbtt->Contents->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_cbtt = $tin_cbtt->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -156,7 +162,7 @@
 					{{--  Báo cáo tài chính  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_bctc = $bctc->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_bctc = $bctc->Contents->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_bctc = $tin_bctc->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -194,7 +200,7 @@
 					{{--  Báo cáo thường niên  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_bctn = $bctn->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_bctn = $bctn->Contents->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_bctn = $tin_bctn->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -232,7 +238,7 @@
 					{{--  Tình hình quản trị  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_thqt = $thqt->Contents->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_thqt = $thqt->Contents->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_thqt = $tin_thqt->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -270,7 +276,7 @@
 					{{--  <!-- Ý kiến cổ đông -->  --}}
 					<div class="col-12 col-md-4">
 						@php
-						$tin_ykien = $ykien_ndt->Ykiens->where('status',1)->sortByDesc('created_at')->take(5);
+						$tin_ykien = $ykien_ndt->Ykiens->where('status',1)->sortByDesc('created_at')->take(7);
 						$tin1_ykien = $tin_ykien->shift();
 						@endphp
 						<div class="text-center mt-lg-3 mt-2">
@@ -308,7 +314,7 @@
 				</div>
 
 				{{--  <!-- TIN TỨC - SỰ KIỆN -->  --}}
-				<div class="row mt-4">
+				{{--  <div class="row mt-4">
 					<div class="headline w-100 ml-3">
 						<h6 class="d-inline p-1 pr-2">
 							<i class="fas fa-newspaper"></i>
@@ -316,7 +322,7 @@
 						</h6>
 					</div>
 
-					{{--  <!-- THÔNG TIN HOẠT ĐỘNG -->  --}}
+					
 					<div class="col-12 col-md-4">
 						@php
 						$tin_tthd = $thongtinhd->Contents->where('status',1)->sortByDesc('created_at')->take(5);
@@ -329,7 +335,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							{{-- <img src="shared_asset/upload/images/content/{{ $tin_tthd_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+							
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_tthd_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
 								<h6 class="card-title crop_text font-weight-bold">
@@ -361,7 +367,7 @@
 						@endforeach
 					</div>
 
-					{{--  <!-- ĐẢNG - ĐOÀN THỂ -->  --}}
+					
 
 					<div class="col-12 col-md-4">
 						@php
@@ -375,7 +381,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							{{-- <img src="shared_asset/upload/images/content/{{ $tin_dangdoan_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+						
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_dangdoan_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
 								<h6 class="card-title crop_text font-weight-bold">
@@ -406,7 +412,7 @@
 						<hr class="m-0 mb-2">
 						@endforeach
 					</div>
-					{{--  <!-- BÀI VIẾT SBA -->  --}}
+					
 
 					<div class="col-12 col-md-4">
 						@php
@@ -420,7 +426,7 @@
 							<hr class="m-0 mb-2">
 						</div>
 						<div class="card">
-							{{-- <img src="shared_asset/upload/images/content/{{ $tin_sba_1['imageorfile'] }}" class="img-fluid" alt=""> --}}
+							
 							<div class="thumb" style="background-image: url({{url('shared_asset/upload/images/content/'.$tin_sba_1['imageorfile'])}});"></div>
 							<div class="card-body p-2">
 								<h6 class="card-title crop_text font-weight-bold">
@@ -451,7 +457,7 @@
 						<hr class="m-0 mb-2">
 						@endforeach
 					</div>
-				</div>
+				</div>  --}}
 			</div>
 
 
@@ -460,9 +466,9 @@
 				{{--  <!-- THÔNG BÁO -->  --}}
 				<div class="row">
 					<div class="col-12">
-						<h5 class="text-center p-2 banner_inside text-white">
+						<h6 class="text-center p-2 banner_inside text-white">
 							THÔNG BÁO
-						</h5>
+						</h6>
 						<ul class="list-unstyled text-justify">
 							@foreach ($tin_thongbao as $tin)
 							<li>
@@ -480,14 +486,14 @@
 				{{--  <!-- TÌNH HÌNH SẢN XUẤT -->  --}}
 				<div class="row">
 					<div class="col-12">
-						<h5 class="text-center p-2 banner_inside text-white">
+						<h6 class="text-center p-2 banner_inside text-white">
 							TÌNH HÌNH SẢN XUẤT
-						</h5>
+						</h6>
 						<div class="thsx">
 							<div class="thsx_kd">
 								<div class="thsx_kd_top text-center">
 									<h6 class="text-danger font-weight-bold">Ngày: {{ date("d/m/Y", strtotime($thsxkd->date))}}</h6>
-									<h5 class="text-primary font-weight-bold">NHÀ MÁY KHE DIÊN</h5>
+									<h6 class="text-primary font-weight-bold">NHÀ MÁY KHE DIÊN</h6>
 								</div>
 								<div class="thsx_kd_info">
 									<table class="table table-borderless">
@@ -605,7 +611,7 @@
 							<div class="thsx_kn">
 								<div class="thsx_kn_top text-center">
 									<h6 class="text-danger font-weight-bold">Ngày: {{ date("d/m/Y", strtotime($thsxkn->date))}}</h6>
-									<h5 class="text-primary font-weight-bold">NHÀ MÁY KRÔNG HNĂNG</h5>
+									<h6 class="text-primary font-weight-bold">NHÀ MÁY KRÔNG HNĂNG</h6>
 								</div>
 								<div class="thsx_kn_info">
 									<table class="table table-borderless">
@@ -729,14 +735,28 @@
 				{{--  <!-- THÔNG TIN CỔ PHIẾU -->  --}}
 				<div class="row mt-3">
 					<div class="col-12 ttcp">
-						<h5 class="text-center p-2 banner_inside text-white">
-							THÔNG TIN CỔ PHIẾU
-						</h5>
-						<script src="https://www.fireant.vn/Scripts/web/widgets.js"></script>
-						<div><iframe class="fireant-widget" id="fan-quote-117" src="https://www.fireant.vn/Widgets/Quote?container_id=fan-quote-117&amp;symbols=SBA&amp;locale=vi&amp;price_line_color=%2371BDDF&amp;grid_color=%23999999&amp;label_color=%23999999&amp;height=200px" width="100%" height="508px" frameborder="0" allowtransparency="true" scrolling="no"></iframe></div>
+						<h6 class="text-center p-2 banner_inside text-white">
+							CỔ PHIẾU SBA
+						</h6>
+						{{--  <script src="https://www.fireant.vn/Scripts/web/widgets.js"></script>
+						<div><iframe class="fireant-widget" id="fan-quote-117" src="https://www.fireant.vn/Widgets/Quote?container_id=fan-quote-117&amp;symbols=SBA&amp;locale=vi&amp;price_line_color=%2371BDDF&amp;grid_color=%23999999&amp;label_color=%23999999&amp;height=100px" width="100%" height="300px" frameborder="0" allowtransparency="true" scrolling="no"></iframe></div>
 						<script type="text/javascript">
 							new FireAnt.QuoteWidget({
 								"container_id": "fan-quote-117",
+								"symbols": "SBA",
+								"locale": "vi",
+								"price_line_color": "#71BDDF",
+								"grid_color": "#999999",
+								"label_color": "#999999",
+								"width": "100%",
+								"height": "100px"
+							});
+						</script>  --}}
+						<script src="https://www.fireant.vn/Scripts/web/widgets.js"></script>
+						<div id="fan-quote-540"></div>
+						<script type="text/javascript">
+							new FireAnt.QuoteWidget({
+								"container_id": "fan-quote-540",
 								"symbols": "SBA",
 								"locale": "vi",
 								"price_line_color": "#71BDDF",
@@ -751,18 +771,18 @@
 
 				<div class="row d-none d-lg-block">
 					<div class="col-12">
-						<h5 class="text-center p-2 banner_inside text-white">
+						<h6 class="text-center p-2 banner_inside text-white">
 							THÔNG TIN WINDY
-						</h5>
-						<iframe width="100%" height="350" src="https://embed.windy.com/embed2.html?lat=16.069&lon=108.221&zoom=5&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=16.069&detailLon=108.221&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
+						</h6>
+						<iframe width="100%" height="300" src="https://embed.windy.com/embed2.html?lat=16.069&lon=108.221&zoom=5&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=16.069&detailLon=108.221&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
 					</div>
 				</div>
 				{{--  <!-- LIÊN KẾT -->  --}}
 				<div class="row mt-3">
 					<div class="col-12">
-						<h5 class="text-center p-2 banner_inside text-white">
+						<h6 class="text-center p-2 banner_inside text-white">
 							LIÊN KẾT
-						</h5>
+						</h6>
 						<div class="evncpc text-center">
 							<a href="https://cpc.vn/vi-vn/" target="_blank">
 							<img src="shared_asset/upload/images/logo_cpc.jpg" alt="">
@@ -771,7 +791,7 @@
 						</div>
 						<hr class="my-3">
 					</div>
-					<div class="col-12 mt-3">
+					{{--  <div class="col-12 mt-3">
 						<div class="soffice text-center w-100">
 							<a href="http://office.songba.vn:8080/security/login.aspx" target="_blank">
 							<img src="shared_asset/upload/images/LOGO.png" alt="" class="w-25">
@@ -779,7 +799,7 @@
 							</a>
 						</div>
 						<hr class="my-3">
-					</div>
+					</div>  --}}
 				</div>
 
 			</div>

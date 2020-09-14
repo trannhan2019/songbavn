@@ -5,7 +5,8 @@ body {
     font-size: 15px;
     line-height: 1.3 !important;
 }
-a{
+
+a {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
@@ -34,7 +35,9 @@ a:hover {
     display: inline-block;
 }
 
+
 /* TRANG CHỦ */
+
 .thumb {
     width: 100%;
     height: 180px;
@@ -44,6 +47,7 @@ a:hover {
     background-position: center center;
     background-size: cover;
 }
+
 
 /*Carousel*/
 
@@ -95,6 +99,14 @@ a:hover {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+}
+
+
+/* Giới thiệu */
+
+#sidebar-menu a.list-group-item:hover {
+    background-color: #007bff;
+    color: white;
 }
 
 

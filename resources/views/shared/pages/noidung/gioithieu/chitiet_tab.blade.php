@@ -10,7 +10,7 @@
             @if (empty($menu->Parent))
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @else
-            <li class="breadcrumb-item"><a href="{{ route('gioithieu',$menu->Parent->id) }}">{{ $menu->Parent->name }}</a></li> 
+            <li class="breadcrumb-item"><a href="{{ route('gioithieu') }}">{{ $menu->Parent->name }}</a></li> 
             <li class="breadcrumb-item active" aria-current="page">{{ $menu->name }}</li>
             @endif
         </ol>
@@ -34,7 +34,7 @@
                 <h5 class="d-inline py-3 ml-3 ml-md-0 text-uppercase">{{ $menu->name }}</h5>
             </div>
             <div class="row">
-                <div class="col-12 mb-3">
+                <div class="col-12">
                     <ul class="nav nav-tabs" role="tablist">
                         @if (count($content)>0)
                             @php
@@ -68,4 +68,17 @@
     </div>
     
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        let path = window.location.href;       
+        $('#sidebar-menu a.list-group-item').each(function(){
+            if(this.href === path){
+                $('#sidebar-menu a.list-group-item.active').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+    });
+</script>
 @endsection
