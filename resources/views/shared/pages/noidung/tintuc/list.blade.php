@@ -72,8 +72,8 @@
 
         </div>
         
-        <div class="col-md-4">
-            <div class="row">
+        <div class="col-md-4 position-relative">
+            <div class="row fixed_scroll_right">
                 <div class="border shadow col-12 p-0">
                     <div class="text-center py-3" style="background-color: #e9ecef;">
                         <h6 class="m-0">TIN BÀI ĐỌC NHIỀU</h6>

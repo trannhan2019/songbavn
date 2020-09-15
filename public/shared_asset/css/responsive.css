@@ -29,3 +29,10 @@
         max-width: 85%;
     }
 }
+
+/* fix cho khoi div ben phai trong cac muc tin tuc fix khi scroll chuoi */
+@media (min-width: 768px){
+	.fixed_scroll_right{
+		position: sticky;
+	}
+}

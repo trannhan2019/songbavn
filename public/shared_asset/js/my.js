@@ -31,4 +31,8 @@ $(document).ready(function(){
 });
 //set button ẩn hiện sidebar menu
 $(document).ready(function(){$('#sidebarCollapse').on('click',function(){$('#sidebar').toggleClass('active');});});
-//set responsive cho img
+
+//set top cho right bar khi scoll
+$(window).scroll(function(){
+    $(".fixed_scroll_right").css("top",100);
+});

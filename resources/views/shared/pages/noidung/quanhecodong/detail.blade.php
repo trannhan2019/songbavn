@@ -43,50 +43,53 @@
                 {!! $tintuc->content !!}
             </div>
         </div>
-        <div class="col-md-4 my-2">
-            <div class="card">
-                <div class="card-header" style="background-color: #e9ecef;">
-                    <h6 class="card-title text-center m-0">BÀI VIẾT LIÊN QUAN</h6>
+        <div class="col-md-4 my-2 position-relative">
+            <div class="fixed_scroll_right">
+                <div class="card">
+                    <div class="card-header" style="background-color: #e9ecef;">
+                        <h6 class="card-title text-center m-0">BÀI VIẾT LIÊN QUAN</h6>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach ($lienquan as $lq)
+                        <li class="list-group-item">
+                            <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}-{{ $lq->slug }}" title="" class="text-dark"> {{ $lq->title }}</a>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-user-tie"></i> {{ $lq->author }}
+                                    &ensp;
+                                    <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y'):''}}
+                                    &ensp;
+                                    <i class="far fa-eye"></i> {{ $lq->views }}
+                                </small>
+                            </p>									
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    @foreach ($lienquan as $lq)
-                    <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $lq->id }}-{{ $lq->slug }}" title="" class="text-dark"> {{ $lq->title }}</a>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                <i class="fas fa-user-tie"></i> {{ $lq->author }}
-                                &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $lq->created_at ? $lq->created_at->format('d/m/Y'):''}}
-                                &ensp;
-                                <i class="far fa-eye"></i> {{ $lq->views }}
-                            </small>
-                        </p>									
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-            {{--  <!-- BÀI VIẾT XEM NHIỀU -->  --}}
-            <div class="card mt-3">
-                <div class="card-header" style="background-color: #e9ecef;">
-                    <h6 class="card-title text-center m-0">BÀI VIẾT XEM NHIỀU</h6>
+                {{--  <!-- BÀI VIẾT XEM NHIỀU -->  --}}
+                <div class="card mt-3">
+                    <div class="card-header" style="background-color: #e9ecef;">
+                        <h6 class="card-title text-center m-0">BÀI VIẾT XEM NHIỀU</h6>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach ($xemnhieu as $xn)
+                        <li class="list-group-item">
+                            <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}-{{ $xn->slug }}" title="" class="text-dark"> {{ $xn->title }}</a>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="fas fa-user-tie"></i> {{ $lq->author }}
+                                    &ensp;
+                                    <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y'):''}}
+                                    &ensp;
+                                    <i class="far fa-eye"></i> {{ $xn->views }}
+                                </small>
+                            </p>									
+                        </li> 
+                        @endforeach
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    @foreach ($xemnhieu as $xn)
-                    <li class="list-group-item">
-                        <a href="{{ $menu->Parent->slug }}/{{ $menu->slug }}/{{ $xn->id }}-{{ $xn->slug }}" title="" class="text-dark"> {{ $xn->title }}</a>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                <i class="fas fa-user-tie"></i> {{ $lq->author }}
-                                &ensp;
-                                <i class="far fa-calendar-alt"></i> {{ $xn->created_at ? $xn->created_at->format('d/m/Y'):''}}
-                                &ensp;
-                                <i class="far fa-eye"></i> {{ $xn->views }}
-                            </small>
-                        </p>									
-                    </li> 
-                    @endforeach
-                </ul>
             </div>
+            
         </div>
     </div>
 
