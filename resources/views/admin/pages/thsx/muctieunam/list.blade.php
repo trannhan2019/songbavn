@@ -81,7 +81,7 @@
                                 <td class="text-center">{{ $i++ }}</td>
                                 <td>{{ $m->title }}</td>
                                 <td>{{ number_format($m->ratedpower, 1, ',', '.')}}</td>
-                                <td>{{ number_format($m->quantity, 3, ',', '.')}}</td>
+                                <td>{{ number_format($m->quantity, 4, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHlowest, 2, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHnormal, 2, ',', '.')}}</td>
                                 <td>

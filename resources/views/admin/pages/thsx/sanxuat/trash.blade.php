@@ -103,7 +103,7 @@
                                 <td>{{ $sx->Muctieunam->title }}</td>
                                 <td>{{ date("d/m/Y", strtotime($sx->date)) }}</td>
                                 <td>{{ number_format($sx->power, 2, ',', '.')}}</td>
-                                <td>{{ number_format($sx->quantity, 3, ',', '.')}}</td>
+                                <td>{{ number_format($sx->quantity, 4, ',', '.')}}</td>
                                 <td>{{ number_format($sx->MNH, 2, ',', '.')}}</td>
                                 <td>{{ number_format($sx->rain, 1, ',', '.')}}</td>
                                 {{-- <td><a href="{{ route('admin.sanxuat.restore',$sx->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore"></i></a></td> --}}

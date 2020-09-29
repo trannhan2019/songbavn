@@ -79,7 +79,7 @@
                                 <td class="text-center">{{ $i++ }}</td>
                                 <td>{{ $m->title }}</td>
                                 <td>{{ number_format($m->ratedpower, 1, ',', '.')}}</td>
-                                <td>{{ number_format($m->quantity, 3, ',', '.')}}</td>
+                                <td>{{ number_format($m->quantity, 4, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHlowest, 2, ',', '.')}}</td>
                                 <td>{{ number_format($m->MNHnormal, 2, ',', '.')}}</td>
                                 <td><button class="btn btn-primary btn-sm btn-restore" data-id="{{ $m->id }}" data-toggle="modal" data-target="#restoreMuctieuModal"><i class="fas fa-trash-restore"></i></button></td>

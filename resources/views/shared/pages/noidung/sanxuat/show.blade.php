@@ -69,19 +69,19 @@ Hoạt động sản xuất
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong ngày:</td>
-                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->quantity, 3, ',', '.'):'' }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->quantity, 4, ',', '.'):'' }}</td>
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong tháng:</td>
-                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($sum_month_kd, 3, ',', '.'):'' }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($sum_month_kd, 4, ',', '.'):'' }}</td>
                                 
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong năm:</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($sum_year_kd, 3, ',', '.'):'' }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($sum_year_kd, 4, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->Muctieunam->quantity,3,',','.'):'' }}</span>
+                                    <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->Muctieunam->quantity,4,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             @if (Auth::check())
@@ -130,19 +130,19 @@ Hoạt động sản xuất
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong ngày:</td>
-                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($thsxkn_day->quantity, 3, ',', '.'):'' }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($thsxkn_day->quantity, 4, ',', '.'):'' }}</td>
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong tháng:</td>
-                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($sum_month_kn, 3, ',', '.'):'' }}</td>
+                                <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($sum_month_kn, 4, ',', '.'):'' }}</td>
                                 
                             </tr>
                             <tr>
                                 <td>Tổng sản lượng trong năm:</td>
                                 <td class="text-right">
-                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($sum_year_kn, 3, ',', '.'):'' }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($sum_year_kn, 4, ',', '.'):'' }}</span>
                                     <span>&nbsp;/&nbsp;</span>
-                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($thsxkn_day->Muctieunam->quantity,3,',','.'):'' }}</span>
+                                    <span class="text-danger">{{!empty($thsxkn_day)? number_format($thsxkn_day->Muctieunam->quantity,4,',','.'):'' }}</span>
                                 </td>
                             </tr>
                             @if (Auth::check())
@@ -220,11 +220,11 @@ Hoạt động sản xuất
                 <h6 class="card-title text-primary">Tổng sản lượng</h6>
                 <p class="card-text">
                     <span>Sản lượng tháng: </span>
-                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_month,3,',','.'):'' }} </span> <span>(triệu kWh)</span>
+                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_month,4,',','.'):'' }} </span> <span>(triệu kWh)</span>
                 </p>
                 <p class="card-text">
                     <span>Sản lượng năm: </span>
-                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_year,3,',','.'):'' }}</span> 
+                    <span class="text-danger">{{count($thsx_month)>0 ? number_format($sum_year,4,',','.'):'' }}</span> 
                     <span> / </span>
                     <span class="text-danger">{{count($thsx_month)>0 ? $thsx_month->first()->Muctieunam->quantity:'' }}</span> 
                     <span>(triệu kWh)</span>
@@ -246,7 +246,7 @@ Hoạt động sản xuất
                             <tr>
                                 <td class="text-center">{{ !empty($thsx_month)? date("d/m/Y", strtotime($m->date)) : "" }}</td>
                                 <td class="text-right">{{!empty($thsx_month)? number_format($m->power,1,',','.'):'' }}</td>
-                                <td class="text-right">{{!empty($thsx_month)? number_format($m->quantity,3,',','.'):'' }}</td>
+                                <td class="text-right">{{!empty($thsx_month)? number_format($m->quantity,4,',','.'):'' }}</td>
                                 <td class="text-right">{{!empty($thsx_month)? number_format($m->rain,1,',','.'):'' }}</td>
                             </tr>
                             @endforeach

@@ -54,7 +54,7 @@ Hoạt động sản xuất
 
                         <div class="form-group">
                             <p class="mb-0"><label>Sản lượng (triệu kWh) <span class="text-danger">(*)</span></label></p>
-                            <input class="form-control-sm" type="number" name="quantity" value="{{old('quantity')}}" min="0" max="500" step="0.001" data-decimals="3"/>
+                            <input class="form-control-sm" type="number" name="quantity" value="{{old('quantity')}}" min="0" max="500" step="0.0001" data-decimals="4"/>
                             @if ($errors->has('quantity'))
                                 <p class="text-danger mb-0">{{ $errors->first('quantity') }}</p>
                             @endif

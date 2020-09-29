@@ -38,7 +38,7 @@ class SanxuatController extends Controller
             return number_format($sanxuat->power, 1, ',', '.');
         })
         ->editColumn('quantity',function($sanxuat){
-            return number_format($sanxuat->quantity, 3, ',', '.');
+            return number_format($sanxuat->quantity, 4, ',', '.');
         })
         ->editColumn('MNH',function($sanxuat){
             return number_format($sanxuat->MNH, 2, ',', '.');
