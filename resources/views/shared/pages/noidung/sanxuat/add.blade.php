@@ -46,7 +46,7 @@ Hoạt động sản xuất
 
                         <div class="form-group">
                             <p class="mb-0"><label>Công suất (MW) <span class="text-danger">(*)</span></label></p>
-                            <input class="form-control-sm" type="number" name="power" value="{{old('power')}}" min="0" max="500" step="0.1" data-decimals="2"/>
+                            <input class="form-control-sm" type="number" name="power" value="{{old('power')}}" min="0" max="500" step="0.01" data-decimals="2"/>
                             @if ($errors->has('power'))
                                 <p class="text-danger mb-0">{{ $errors->first('power') }}</p>
                             @endif

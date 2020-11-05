@@ -84,14 +84,18 @@ Hoạt động sản xuất
                                     <span class="text-danger">{{!empty($thsxkd_day)? number_format($thsxkd_day->Muctieunam->quantity,4,',','.'):'' }}</span>
                                 </td>
                             </tr>
-                            @if (Auth::check())
+                            <tr>
+                                <td class="text-primary">Mực nước hồ (m):</td>
+                                <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->MNH,2,',','.'):'' }}</td>
+                            </tr>
+                            {{--@if (Auth::check())
                                 @if (Auth::user()->role == 1 ||Auth::user()->role == 2)
                                 <tr>
                                     <td class="text-primary">Mực nước hồ (m):</td>
                                     <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->MNH,2,',','.'):'' }}</td>
                                 </tr>
                                 @endif
-                            @endif
+                            @endif--}}
                             <tr>
                                 <td class="text-primary">Lượng mưa (mm):</td>
                                 <td class="text-danger text-right">{{!empty($thsxkd_day)? number_format($thsxkd_day->rain,1,',','.'):'' }}</td>

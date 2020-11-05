@@ -549,9 +549,49 @@
 												<td class="text-right text-danger">
 													<span>{{ number_format($sum_year_kd, 3, ',', '.') }}</span><span class="text-dark"> / </span> <span>{{number_format($thsxkd->Muctieunam->quantity,3,',','.') }}</span>
 												</td>
-											@if (Auth::check())
+											</tr>
+											<tr>
+												<td>
+													<span class="text-primary">Mực nước hồ: </span>
+												</td>
+												<td class="text-right">
+													<span>(m)</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="pl-3">
+													<span>Tối thiểu:</span>
+												</td>
+												<td class="text-right">
+													<span>{{number_format($thsxkd->Muctieunam->MNHlowest,2,',','.') }}</span>
+												</td>
+											</tr>
+											<tr class="text-danger">
+												<td class="pl-3">
+													<span>Hiện tại:</span>
+												</td>
+												<td class="text-right">
+													<span>{{number_format($thsxkd->MNH,2,',','.') }}</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="pl-3">
+													<span>Tối đa:</span>
+												</td>
+												<td class="text-right">
+													<span>{{number_format($thsxkd->Muctieunam->MNHnormal,2,',','.') }}</span>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="text-primary">Lượng mưa (mm): </span>
+												</td>
+												<td class="text-right">
+													<span class="text-danger">{{number_format($thsxkd->rain,1,',','.') }}</span>
+												</td>
+											</tr>
+											{{--@if (Auth::check())
 												@if (Auth::user()->role==1 || Auth::user()->role==2)
-												</tr>
 												<tr>
 													<td>
 														<span class="text-primary">Mực nước hồ: </span>
@@ -593,7 +633,7 @@
 													</td>
 												</tr>
 												@endif
-											@endif
+											@endif--}}
 
 											<tr>
 												<td>
@@ -667,9 +707,9 @@
 												<td class="text-right text-danger">
 													<span>{{ number_format($sum_year_kn, 3, ',', '.') }}</span><span class="text-dark"> / </span> <span>{{number_format($thsxkn->Muctieunam->quantity,3,',','.') }}</span>
 												</td>
+											</tr>
 											@if (Auth::check())
 												@if (Auth::user()->role==1 || Auth::user()->role==2)
-												</tr>
 												<tr>
 													<td>
 														<span class="text-primary">Mực nước hồ: </span>
