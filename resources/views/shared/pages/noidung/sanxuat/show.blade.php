@@ -155,7 +155,17 @@ Hoạt động sản xuất
                                     <td class="text-primary">Mực nước hồ (m):</td>
                                     <td class="text-danger text-right">{{!empty($thsxkn_day)? number_format($thsxkn_day->MNH,2,',','.'):'' }}</td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td class="text-primary">Mực nước hồ (m):</td>
+                                    <td class="text-danger text-right">---</td>
+                                </tr>
                                 @endif
+                            @else
+                            <tr>
+                                <td class="text-primary">Mực nước hồ (m):</td>
+                                <td class="text-danger text-right">---</td>
+                            </tr>
                             @endif
                             <tr>
                                 <td class="text-primary">Lượng mưa (mm):</td>

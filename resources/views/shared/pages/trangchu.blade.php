@@ -14,7 +14,7 @@
 					<div class="headline ml-3 mb-1 w-100">
 						<h6 class="d-inline p-1 pr-2">
 							<i class="fas fa-newspaper"></i>
-							<a href="{{ route('codong') }}" class="ml-2 text-white">TIN CHÍNH NỔI BẬT</a>
+							<a href="{{ route('tintuc') }}" class="ml-2 text-white">TIN CHÍNH NỔI BẬT</a>
 						</h6>
 					</div>
 					@php
@@ -314,7 +314,7 @@
 				</div>
 
 				{{--  <!-- TIN TỨC - SỰ KIỆN -->  --}}
-				{{--  <div class="row mt-4">
+				<div class="row mt-4">
 					<div class="headline w-100 ml-3">
 						<h6 class="d-inline p-1 pr-2">
 							<i class="fas fa-newspaper"></i>
@@ -347,7 +347,7 @@
 								<a href="{{ $tin_tthd_1->Menu->Parent->slug }}/{{ $tin_tthd_1->Menu->slug }}/{{ $tin_tthd_1['id'] }}-{{ $tin_tthd_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
-						@foreach ($tin_tthd->all() as $tin)
+						{{--@foreach ($tin_tthd->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin->id }}-{{ $tin['slug'] }}">
@@ -364,7 +364,7 @@
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-						@endforeach
+						@endforeach--}}
 					</div>
 
 					
@@ -393,7 +393,7 @@
 								<a href="{{ $tin_dangdoan_1->Menu->Parent->slug }}/{{ $tin_dangdoan_1->Menu->slug }}/{{ $tin_dangdoan_1['id'] }}-{{ $tin_dangdoan_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
-						@foreach ($tin_dangdoan->all() as $tin)
+						{{--@foreach ($tin_dangdoan->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}">
@@ -410,7 +410,7 @@
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-						@endforeach
+						@endforeach--}}
 					</div>
 					
 
@@ -438,7 +438,7 @@
 								<a href="{{ $tin_sba_1->Menu->Parent->slug }}/{{ $tin_sba_1->Menu->slug }}/{{ $tin_sba_1['id'] }}-{{ $tin_sba_1['slug'] }}" class="stretched-link"></a>
 							</div>
 						</div>
-						@foreach ($tin_sba->all() as $tin)
+						{{--@foreach ($tin_sba->all() as $tin)
 						<div class="row my-1">
 							<div class="col-4">
 								<a href="{{ $tin->Menu->Parent->slug }}/{{ $tin->Menu->slug }}/{{ $tin['id'] }}-{{ $tin['slug'] }}">
@@ -455,9 +455,9 @@
 							</div>
 						</div>
 						<hr class="m-0 mb-2">
-						@endforeach
+						@endforeach--}}
 					</div>
-				</div>  --}}
+				</div>
 			</div>
 
 
@@ -499,7 +499,7 @@
 									<table class="table table-borderless">
 										<tbody>
 											<tr>
-												<td>
+												<td style="width: 50%">
 													<span class="text-primary">Công suất (MW): </span>
 												</td>
 												<td class="text-danger text-right">
@@ -555,39 +555,18 @@
 													<span class="text-primary">Mực nước hồ: </span>
 												</td>
 												<td class="text-right">
-													<span>(m)</span>
+													<span class="text-danger">{{number_format($thsxkd->MNH,2,',','.') }}</span>
+													<span> m</span>
 												</td>
 											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối thiểu:</span>
-												</td>
-												<td class="text-right">
-													<span>{{number_format($thsxkd->Muctieunam->MNHlowest,2,',','.') }}</span>
-												</td>
-											</tr>
-											<tr class="text-danger">
-												<td class="pl-3">
-													<span>Hiện tại:</span>
-												</td>
-												<td class="text-right">
-													<span>{{number_format($thsxkd->MNH,2,',','.') }}</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="pl-3">
-													<span>Tối đa:</span>
-												</td>
-												<td class="text-right">
-													<span>{{number_format($thsxkd->Muctieunam->MNHnormal,2,',','.') }}</span>
-												</td>
-											</tr>
+											
 											<tr>
 												<td>
-													<span class="text-primary">Lượng mưa (mm): </span>
+													<span class="text-primary">Lượng mưa: </span>
 												</td>
 												<td class="text-right">
 													<span class="text-danger">{{number_format($thsxkd->rain,1,',','.') }}</span>
+													<span> mm</span>
 												</td>
 											</tr>
 											{{--@if (Auth::check())
@@ -657,12 +636,12 @@
 									<table class="table table-borderless">
 										<tbody>
 											<tr>
-												<td>
+												<td style="width: 50%">
 													<span class="text-primary">Công suất (MW): </span>
 												</td>
 												<td class="text-danger text-right">
 													<span class="text-danger">{{ number_format($thsxkn->power, 1, ',', '.') }}</span>
-													<span class="text-dark"> / </span>
+													<span class="text-dark">/</span>
 													<span class="text-danger">{{ number_format($thsxkn->Muctieunam->ratedpower,1,',','.') }}</span>
 												</td>
 											</tr>
@@ -712,46 +691,45 @@
 												@if (Auth::user()->role==1 || Auth::user()->role==2)
 												<tr>
 													<td>
-														<span class="text-primary">Mực nước hồ: </span>
+														<span class="text-primary">Mực nước hồ:</span>
 													</td>
 													<td class="text-right">
-														<span>(m)</span>
+														<span class="text-danger">{{number_format($thsxkn->MNH,2,',','.') }}</span>
+														<span> m</span>
 													</td>
 												</tr>
-												<tr>
-													<td class="pl-3">
-														<span>Tối thiểu:</span>
-													</td>
-													<td class="text-right">
-														<span>{{number_format($thsxkn->Muctieunam->MNHlowest,2,',','.') }}</span>
-													</td>
-												</tr>
-												<tr class="text-danger">
-													<td class="pl-3">
-														<span>Hiện tại:</span>
-													</td>
-													<td class="text-right">
-														<span>{{number_format($thsxkn->MNH,2,',','.') }}</span>
-													</td>
-												</tr>
-												<tr>
-													<td class="pl-3">
-														<span>Tối đa:</span>
-													</td>
-													<td class="text-right">
-														<span>{{number_format($thsxkn->Muctieunam->MNHnormal,2,',','.') }}</span>
-													</td>
-												</tr>
+												@else
 												<tr>
 													<td>
-														<span class="text-primary">Lượng mưa (mm): </span>
+														<span class="text-primary">Mực nước hồ:</span>
 													</td>
 													<td class="text-right">
-														<span class="text-danger">{{number_format($thsxkn->rain,1,',','.') }}</span>
+														<span class="text-danger">-----</span>
+														<span> m</span>
 													</td>
 												</tr>
 												@endif
+											@else
+											<tr>
+												<td>
+													<span class="text-primary">Mực nước hồ:</span>
+												</td>
+												<td class="text-right">
+													<span class="text-danger">-----</span>
+													<span> m</span>
+												</td>
+											</tr>
 											@endif
+
+											<tr>
+												<td>
+													<span class="text-primary">Lượng mưa: </span>
+												</td>
+												<td class="text-right">
+													<span class="text-danger">{{number_format($thsxkn->rain,1,',','.') }}</span>
+													<span> mm</span>
+												</td>
+											</tr>
 
 											<tr>
 												<td>
@@ -778,32 +756,19 @@
 						<h6 class="text-center p-2 banner_inside text-white">
 							CỔ PHIẾU SBA
 						</h6>
-						{{--  <script src="https://www.fireant.vn/Scripts/web/widgets.js"></script>
-						<div><iframe class="fireant-widget" id="fan-quote-117" src="https://www.fireant.vn/Widgets/Quote?container_id=fan-quote-117&amp;symbols=SBA&amp;locale=vi&amp;price_line_color=%2371BDDF&amp;grid_color=%23999999&amp;label_color=%23999999&amp;height=100px" width="100%" height="300px" frameborder="0" allowtransparency="true" scrolling="no"></iframe></div>
-						<script type="text/javascript">
-							new FireAnt.QuoteWidget({
-								"container_id": "fan-quote-117",
-								"symbols": "SBA",
-								"locale": "vi",
-								"price_line_color": "#71BDDF",
-								"grid_color": "#999999",
-								"label_color": "#999999",
-								"width": "100%",
-								"height": "100px"
-							});
-						</script>  --}}
+
 						<script src="https://www.fireant.vn/Scripts/web/widgets.js"></script>
-						<div id="fan-quote-540"></div>
+						<div id="fan-quote-937"></div>
 						<script type="text/javascript">
 							new FireAnt.QuoteWidget({
-								"container_id": "fan-quote-540",
+								"container_id": "fan-quote-937",
 								"symbols": "SBA",
 								"locale": "vi",
 								"price_line_color": "#71BDDF",
 								"grid_color": "#999999",
 								"label_color": "#999999",
 								"width": "100%",
-								"height": "100px"
+								"height": "150px"
 							});
 						</script>
 					</div>
@@ -814,7 +779,7 @@
 						<h6 class="text-center p-2 banner_inside text-white">
 							THÔNG TIN WINDY
 						</h6>
-						<iframe width="100%" height="300" src="https://embed.windy.com/embed2.html?lat=16.069&lon=108.221&zoom=5&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=16.069&detailLon=108.221&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
+						<iframe width="100%" height="200" src="https://embed.windy.com/embed2.html?lat=16.069&lon=108.221&zoom=4&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=16.069&detailLon=108.221&metricWind=default&metricTemp=default&radarRange=-1" frameborder="0"></iframe>
 					</div>
 				</div>
 				{{--  <!-- LIÊN KẾT -->  --}}
